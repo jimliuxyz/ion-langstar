@@ -1,0 +1,33 @@
+{
+  "SAYHI": "你好啊～{{firstname}}～",
+  
+  "SETTING":"設定",
+  "LOGIN":"登入",
+  "LOGOUT":"登出",
+  "OKAY":"確定",
+  "CANCEL":"取消",
+  "CLOSE":"關閉",
+  "CREDIT":"讚譽",
+
+  "_SETTINGS": {
+    "TITLE": "設定",
+    "LANG":"語系",
+    "NALANG":"母語"
+  },
+  "_NEWS": {
+    "TITLE": "新聞"
+  },
+  "_CREDIT": {
+    "TITLE": "讚譽"
+  },
+  "_CREATION": {
+    "TITLE": "創建"
+  },
+  "_PLACEHOLDER": {
+    "QUESTION": "題目",
+    "ANSWER": "答案",
+    "EXAMPLE": "例句",
+    "TIPS": "題解",
+    "STAR": "星星"
+  }
+}

@@ -1,0 +1,34 @@
+<!-- Generated template for the HomeSettingsComponent component -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{'_SETTINGS.TITLE'|translate}}
+    </ion-title>
+
+    <ion-buttons end>
+        <button ion-button icon-only (click)="dismiss()">
+            <ion-icon name="md-close"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list padding-top>
+    
+      <div ion-text color="primary">&nbsp; {{'_SETTINGS.LANG'|translate}}</div>
+
+      <ion-item>
+        <ion-label>{{'_SETTINGS.NALANG'|translate}}</ion-label>
+
+        <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="nalang">
+          <ion-option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{misc.getLang(lang).nalang}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      
+  </ion-list>
+
+</ion-content>

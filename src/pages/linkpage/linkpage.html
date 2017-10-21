@@ -1,0 +1,19 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>linkpage</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openModal('settings')">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  {{ 'SAYHI' | translate:{firstname:misc.user.first_name} }}
+
+</ion-content>

@@ -1,0 +1,26 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>testpage</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openModal('settings')">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  Firebase test...
+  <button ion-button outline (click)="signInWithFacebook()">Login</button>  
+  <button ion-button outline (click)="signOut()">Logout</button>
+  
+	<ion-list>
+      <ion-item class="text" *ngFor="let item of items | async">
+        {{item | json}}
+      </ion-item>
+    </ion-list>
+</ion-content>

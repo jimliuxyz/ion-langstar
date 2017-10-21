@@ -1,0 +1,55 @@
+
+slide-refresher {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  
+  &.refresher-active {
+    display: block;
+  }
+
+  // border:1px solid black;
+  top:-50px;
+  transition: top 1s;
+  // top:350px;
+}
+
+@keyframes rotating {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+slide-refresher-content {
+  display: block;
+  .refresher-pulling{
+    display: block;
+    width: 100%;
+  }
+  ion-icon::before{
+    color:#E0E1EB;
+    background-color: #6D96C2;
+    // transform: scale(.8);
+    width:35px;
+    height:35px;
+    border-radius: 50%;
+  }
+
+  img{
+    width:35px !important;
+    border:2px solid #C1CFDF;
+    border-radius: 50%;
+  }
+}
+
+slide-refresher-content[state=refreshing] {
+  ion-icon::before{
+    display: block;
+    animation: rotating 1s linear infinite;
+  }
+  img{
+    animation: rotating 1.5s linear infinite;
+  }
+  
+} 
+

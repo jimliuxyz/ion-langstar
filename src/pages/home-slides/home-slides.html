@@ -1,0 +1,41 @@
+<ion-header >
+  
+  <ion-navbar>
+
+    <ion-title *ngIf="slides.length>0">
+      {{slides[sidx].title | translate}}
+    </ion-title>
+    <ion-buttons end>
+
+        <button ion-button icon-only (click)="openModal('login')">
+            <img style='border-radius: 50%;    overflow: hidden;width: 40px;height: 40px;' [src]="serv.user.photoURL">
+        </button>
+
+        <button ion-button icon-only (click)="openModal('settings')">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-segment class="SwipedTabs-tabs"  >
+    <ion-segment-button *ngFor='let tab of slides ; let i = index '  (click)="selectTab(i)" 
+    [ngClass]='{ "SwipedTabs-activeTab" : ( this.SwipedTabsSlider  && ( this.SwipedTabsSlider.getActiveIndex() === i || (  slides.length -1 === i&& this.SwipedTabsSlider.isEnd()))) }' > 
+      {{tab.tabtitle|translate}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- here is our dynamic line  "indicator"-->
+  <div #idc id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]="{'width.%': (100/this.slides.length)}"></div>
+  
+</ion-header>
+  
+  <ion-content>
+      {{serv.user.displayName}}
+      <ion-slides #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition();" (pan)="updateIndicatorPosition()" [pager]="false" (ionSlideWillChange)="changeSlide()">
+      <ng-template #SlideTpl></ng-template>
+  
+    </ion-slides>
+
+  </ion-content>
+
