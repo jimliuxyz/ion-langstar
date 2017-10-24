@@ -17,9 +17,8 @@ let config = new AuthServiceConfig([
   // }
 ]);
 
-import { MiscService } from '../providers/misc/misc';
 import { MyService } from '../providers/myservice/myservice';
-import { IDBapi,DBapiFirebase } from '../providers/myservice/dbapi.firebase';
+import { IRDBapi,DBapiFirebase } from '../providers/myservice/dbapi.firebase';
 
 
 @NgModule({
@@ -33,7 +32,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [MiscService, MyService, {provide:IDBapi, useClass:DBapiFirebase}]
+      providers: [MyService, {provide:IRDBapi, useClass:DBapiFirebase}]
     };
   }
 }

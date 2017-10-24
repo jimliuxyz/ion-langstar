@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomeSlidePage } from '../home-slides/home-slides';
-import { MiscService } from '../../providers/misc/misc'
 
 
 @Component({
@@ -13,11 +12,11 @@ export class CreationComponent implements HomeSlidePage {
   tabtitle: string = "_CREATION.TITLE";
   inited = false;
 
-  constructor(public navCtrl: NavController, private misc: MiscService) {
+  constructor(public navCtrl: NavController) {
   }
 
   navTo() {
-    this.navCtrl.push('EditPage');
+    this.navCtrl.push('EditorPage');
   }
 
   doRefresh(refresher) {

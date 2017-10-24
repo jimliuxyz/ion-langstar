@@ -30,11 +30,11 @@ import { HomeSlidesPage } from '../pages/home-slides/home-slides';
 import { NewsComponent } from "../pages/news/news";
 import { CreditComponent } from "../pages/credit/credit";
 import { HomeSettingsComponent } from '../pages/home-settings/home-settings';
-import { MiscService } from '../providers/misc/misc';
 import { SharedModule } from './shared.module';
 import { LoginPage } from '../pages/login/login';
 import { LogoutPage } from '../pages/logout/logout';
 import { CreationComponent } from '../pages/creation/creation';
+import { EditPageModule } from '../pages/editor/editorpage.module';
 
 
 
@@ -53,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
   BrowserModule,
     HttpClientModule,
+    EditPageModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     IonicPatchModule,
@@ -83,7 +84,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     GooglePlus,
     ToastController,
     AngularFireDatabase,
-    MiscService
   ]
 })
 export class AppModule {}

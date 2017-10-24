@@ -2,8 +2,7 @@ import { Component ,ViewChild} from '@angular/core';
 import { NavController ,Slides} from 'ionic-angular';
 import { HomeSlidePage } from '../home-slides/home-slides';
 import {TranslateService} from '@ngx-translate/core';
-// import { NewpagePage } from '../newpage/newpage';
-import { MiscService } from '../../providers/misc/misc'
+import { MyService } from '../../providers/myservice/myservice';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class NewsComponent implements HomeSlidePage {
   tabtitle: string = "news-"+this.rnd;
   inited = false;
 
-  constructor(public navCtrl: NavController,private translate: TranslateService,public misc: MiscService) {
+  constructor(public navCtrl: NavController,private translate: TranslateService,public serv:MyService) {
     // console.log('Hello NewsComponent Component');
   }
 

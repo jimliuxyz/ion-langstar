@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomeSlidePage } from '../home-slides/home-slides';
-import { MiscService } from '../../providers/misc/misc'
 
 
 @Component({
@@ -13,7 +12,7 @@ export class CreditComponent implements HomeSlidePage {
   tabtitle: string = "_CREDIT.TITLE";
   inited = false;
 
-  constructor(public navCtrl: NavController, private misc: MiscService) {
+  constructor(public navCtrl: NavController) {
   }
 
   doRefresh(refresher) {

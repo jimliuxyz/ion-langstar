@@ -12,7 +12,6 @@ import { HomeSettingsComponent } from '../home-settings/home-settings';
 
 import { LoginPage } from '../login/login';
 import { LogoutPage } from '../logout/logout';
-import { MiscService } from '../../providers/misc/misc'
 import { CreationComponent } from '../creation/creation';
 import { MyService } from '../../providers/myservice/myservice';
 
@@ -44,7 +43,7 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
   slides: HomeSlidePage[] = [];
   sidx: number = 0;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public cfr: ComponentFactoryResolver, private platform: Platform, public toastCtrl: ToastController, private googlePlus: GooglePlus, public misc: MiscService, private _zone: NgZone,public serv:MyService) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public cfr: ComponentFactoryResolver, private platform: Platform, public toastCtrl: ToastController, private googlePlus: GooglePlus, private _zone: NgZone,public serv:MyService) {
     console.log("Hello HomeSlidesPage!")
     this._zone.runOutsideAngular(()=>{
       window.onunload = function(){

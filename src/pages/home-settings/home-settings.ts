@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Platform,NavParams,ViewController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { MyService } from '../../providers/myservice/myservice';
-import { MiscFunc } from '../../providers/myservice/misc';
-import { UserCfg } from '../../providers/myservice/userinfo';
+import { MiscFunc } from '../../define/misc';
+import { UserCfg } from '../../define/userinfo';
 
 @Component({
   selector: 'home-settings',

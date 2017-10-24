@@ -9,24 +9,29 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { UserInfo, ANONYMOUS, UserCfg } from './userinfo';
+import { UserInfo, ANONYMOUS, UserCfg } from '../../define/userinfo';
 
 
-export abstract class IDBapi {
+export abstract class IRDBapi {
   abstract login(socialtype:string): Promise<UserInfo>;
   abstract logout(user: UserInfo): Promise<any>;
   abstract login_anonymous(): Promise<UserInfo>;
   abstract loginStateChanged(): Observable<UserInfo | number>;
+
+  abstract getDataVer(path: string[]): Promise<number>;
+  abstract getData(path: string[]);
+  abstract setData(path: string[], data: any): Promise<any>;
+  abstract updateData(path: string[], data: any): Promise<any>;
   
-  abstract getData(type: any);
-  abstract setData(type: any, data: any);
+
+  abstract test1(data: any);
 }
 
 const _USERCFG = "usercfg/";
 
 
 @Injectable()
-export class DBapiFirebase implements IDBapi {
+export class DBapiFirebase implements IRDBapi {
   PROVIDERID = "firebase";
   anonymous_email = "anonymous@anonymous.com";
   anonymous_pwd = "sdfncvf913";
@@ -142,13 +147,14 @@ export class DBapiFirebase implements IDBapi {
       // ANONYMOUS.displayName='Anonymous'
       return ANONYMOUS;      
     }
-    return {
-      displayName: user.displayName,
-      email: user.email,
-      photoURL: user.photoURL,
-      socialtype: UserInfo.normalizeSocialType(user.providerData[0].providerId),
-      provider: this.PROVIDERID,
-    };
+    let userinfo = new UserInfo();
+    userinfo.uid = user.uid;
+    userinfo.displayName = user.displayName;
+    userinfo.email = user.email;
+    userinfo.photoURL = user.photoURL;
+    userinfo.socialtype = UserInfo.normalizeSocialType(user.providerData[0].providerId);
+    userinfo.provider = this.PROVIDERID;  
+    return userinfo;
   }
 
   private appWidgetLogin(socialtype: string): Promise<any> {
@@ -172,47 +178,57 @@ export class DBapiFirebase implements IDBapi {
 
 //-----
 
-
-  getData(type: any) {
+  getDataVer(path: string[]): Promise<number> {
     return new Promise((resolve, reject) => {
-      let user = firebase.auth().currentUser;
-      let data;
+      // let user = firebase.auth().currentUser;
 
-      let dbpath;
-      if (type === UserCfg)
-        dbpath = _USERCFG + user.uid;
-
-      firebase.database().ref(dbpath).once('value').then((snapshot) => {
-
-        data = snapshot.val();
-        if (!data) {
-          if (type === UserCfg)
-            data = UserCfg.getDefault();
-          if (data)
-            this.setData(UserCfg, data);
-        }
-
-        resolve(data);
+      firebase.database().ref(path.join("/") + "/ver").once('value').then((snapshot) => {
+        let data = snapshot.val();
+        if (data != null)
+          resolve(data);
+        else
+          resolve(-1);  
       });
-
     })
   }
 
 
-  setData(type:any, data: any) {
-    let user = firebase.auth().currentUser;
+  getData(path: string[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // let user = firebase.auth().currentUser;
 
-    if (type === UserCfg)
-      firebase.database().ref(_USERCFG + user.uid).set(data);
-    else
-      console.error("unknown data ", data);  
+      firebase.database().ref(path.join("/")).once('value').then((snapshot) => {
+        let data = snapshot.val();
+        if (data != null)
+          resolve(data);
+        else
+          resolve();  
+      });
+    })
   }
 
 
-  
+  setData(path: string[], data: any): Promise<any> {
+    if (data.ver==null) console.error("set data without version time!", path.join("/"));
 
+    data = Object.assign({}, data);
+    delete data.localdb;
 
+    return firebase.database().ref(path.join("/")).set(data);
+  }
 
+  updateData(path: string[], data: any): Promise<any> {
+    if (data.ver==null) console.error("set data without version time!", path.join("/"));
 
+    return firebase.database().ref(path.join("/")).update(data);
+  }
+    
+  test1(data: any) {
+    let user = firebase.auth().currentUser;
+    console.dir(user)
+
+    firebase.database().ref("test-" + user.uid).set(data);
+  }
 
 }
+

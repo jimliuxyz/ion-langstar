@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController, Platform, LoadingController } from 'ionic-angular';
-import { MiscService } from '../../providers/misc/misc'
 import { MyService } from '../../providers/myservice/myservice'
 import { HomeSettingsComponent } from '../home-settings/home-settings';
 
@@ -21,7 +20,7 @@ import { environment } from '../../environments/environments';
 export class TestPage {
   items: Observable<any[]>;
   
-  constructor(public platform: Platform, private loadCtrl: LoadingController, public modalCtrl: ModalController, private misc: MiscService, public navCtrl: NavController, public navParams: NavParams, afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public googleplus: GooglePlus, public myservice:MyService) {
+  constructor(public platform: Platform, private loadCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams, afDB: AngularFireDatabase, private afAuth: AngularFireAuth, public googleplus: GooglePlus, public myservice:MyService) {
     console.dir('----')
     this.items = afDB.list('cuisines').valueChanges();
     

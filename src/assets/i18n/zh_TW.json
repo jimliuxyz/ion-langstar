@@ -9,10 +9,21 @@
   "CLOSE":"關閉",
   "CREDIT":"讚譽",
 
+  "NALANG":"母語",
+  "TALANG":"學語",
+  "TAG":"標籤",
+  "LANG":"語言",
+  "PUBLISH":"出版",
+  "EDIT":"編輯",
+  "BOOKNAME": "書名",
+  "GENERAL": "一般",
+
+  "_BOOKSETTING": {
+    "TITLE": "書本設定",
+    "BOOKNAMEDEF": "我的語言學習書"
+  },
   "_SETTINGS": {
-    "TITLE": "設定",
-    "LANG":"語系",
-    "NALANG":"母語"
+    "TITLE": "設定"
   },
   "_NEWS": {
     "TITLE": "新聞"

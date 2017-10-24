@@ -2,9 +2,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EDIT...</ion-title>
+    <ion-title>EDITOR</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="openModal('settings')">
+      <button ion-button icon-only (click)="openModal($event)">
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
@@ -14,7 +14,8 @@
 
 
 <ion-content #content>
-
+{{setting|json}}
+{{dirty}}
   <textarea #tarea autofocus style='height:100%;width:100%;padding:10px;border:0px;' placeholder="## {{'_PLACEHOLDER.QUESTION' | translate}}
 ==  {{'_PLACEHOLDER.ANSWER' | translate}}
 #=  {{'_PLACEHOLDER.EXAMPLE' | translate}}
