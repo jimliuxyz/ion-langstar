@@ -10,7 +10,8 @@ export class UserInfo{
   socialtype: string = "";
   provider: string = "";
 
-  creation: string = ""; //book uid list
+  bookcnt: number = 0;
+  booklist: string = ""; //book uid list
   
   static normalizeSocialType(socialtype: string): string {
     socialtype = socialtype.toLowerCase();
@@ -38,7 +39,7 @@ export class UserCfg{
   nalang: string;
   talang: string;
 
-  favorite: string = ""; //book uid list
+  favorites: string = ""; //book uid list
   
   static getDefault():UserCfg {
     let cfg = new UserCfg();

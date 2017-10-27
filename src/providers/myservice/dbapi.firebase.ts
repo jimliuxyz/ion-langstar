@@ -10,6 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 import { UserInfo, ANONYMOUS, UserCfg } from '../../define/userinfo';
+import { MiscFunc } from '../../define/misc';
 
 
 export abstract class IRDBapi {
@@ -18,13 +19,15 @@ export abstract class IRDBapi {
   abstract login_anonymous(): Promise<UserInfo>;
   abstract loginStateChanged(): Observable<UserInfo | number>;
 
+  abstract clear(path: string[]): Promise<number>;
   abstract getDataVer(path: string[]): Promise<number>;
   abstract getData(path: string[]);
   abstract setData(path: string[], data: any): Promise<any>;
   abstract updateData(path: string[], data: any): Promise<any>;
-  
-
-  abstract test1(data: any);
+  abstract transaction(path: string[], fnUpdate: any, fnComplete?: any): Promise<any>;
+  abstract getSortData(path: string[]): Promise<any>;
+    
+  abstract test1(data: any): Promise<any>;
 }
 
 const _USERCFG = "usercfg/";
@@ -148,7 +151,8 @@ export class DBapiFirebase implements IRDBapi {
       return ANONYMOUS;      
     }
     let userinfo = new UserInfo();
-    userinfo.uid = user.uid;
+    //do not use firebase uid as uid, because you can't retrieve it once you don't use firebase anymore
+    userinfo.uid = MiscFunc.md5(user.email);
     userinfo.displayName = user.displayName;
     userinfo.email = user.email;
     userinfo.photoURL = user.photoURL;
@@ -177,6 +181,12 @@ export class DBapiFirebase implements IRDBapi {
   }
 
 //-----
+
+    // this.dbapi.clear(["bookinfo"]);
+    // this.dbapi.clear(["/"]);  
+  async clear(path: string[]): Promise<number> {
+    return await firebase.database().ref(path.join("/")).remove();
+  }  
 
   getDataVer(path: string[]): Promise<number> {
     return new Promise((resolve, reject) => {
@@ -207,6 +217,21 @@ export class DBapiFirebase implements IRDBapi {
     })
   }
 
+  getSortData(path: string[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // let user = firebase.auth().currentUser;
+
+      console.log("...", path.join("/"))
+
+      firebase.database().ref(path.join("/")).orderByChild("cnt").once('value').then((snapshot) => {
+        let data = snapshot.val();
+        if (data != null)
+          resolve(data);
+        else
+          resolve();  
+      });
+    })
+  }
 
   setData(path: string[], data: any): Promise<any> {
     if (data.ver==null) console.error("set data without version time!", path.join("/"));
@@ -222,12 +247,28 @@ export class DBapiFirebase implements IRDBapi {
 
     return firebase.database().ref(path.join("/")).update(data);
   }
-    
-  test1(data: any) {
-    let user = firebase.auth().currentUser;
-    console.dir(user)
 
-    firebase.database().ref("test-" + user.uid).set(data);
+  async transaction(path: string[], fnUpdate: any, fnComplete: any): Promise<any> {
+    return firebase.database().ref(path.join("/")).transaction(fnUpdate, fnComplete);
+  }
+
+  async test1(data: any) {
+    // console.log("test")
+    // let ref = firebase.database().ref("/test");
+    // ref.on()
+
+    // await ref.set({ ver: 999 });
+    // for (let i = 0; i < 5; i++){
+    //   let item = { value: Math.round(Math.random()*10) };
+    //   await ref.push().set(item);
+    // }
+
+    // let x1 = await ref.orderByChild("value").once('value');
+    // console.log(x1.val())
+
+    // let x2 = await ref.orderByChild("value").limitToLast(3).once('value');
+    // console.log(x2.val())
+
   }
 
 }

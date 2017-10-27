@@ -1,3 +1,5 @@
+import MD5 from "md5.js";
+
 class Lang{
   constructor(public code, public lang, public nalang) {
   }
@@ -54,6 +56,11 @@ const langlist: Lang[] = [
 
 export class MiscFunc{
 
+  static md5(str: string): string{
+    return new MD5().update(str).digest('hex');
+  }
+
+
   //get Lang by its code
   static getLang(code= ''):Lang {
     return langlist.find((lang) => {
@@ -108,9 +115,9 @@ export class MiscFunc{
 
   static getLangPair(lang1: string, lang2: string):string {
     const compare = lang1.localeCompare(lang2);
-    const ord1 = (compare > 0) ? lang1 : lang2;
-    const ord2 = (compare > 0) ? lang2 : lang1;
-    return (ord1 + "_" + ord2).toLowerCase();
+    const ord1 = (compare < 0) ? lang1 : lang2;
+    const ord2 = (compare < 0) ? lang2 : lang1;
+    return (ord1 + "+" + ord2).toLowerCase();
   }
 }
 
@@ -123,11 +130,29 @@ export class JsObjDiffer{
   constructor(public IGNOREARRAY:boolean=true) {
   }
 
-  public addPrimevalData(id: string, data:object) {
+  /**
+   * add/set Primeval Data
+   * @param id Primeval Data ID
+   * @param data Primeval Data
+   */
+  public addData(id: string, data:object) {
     this.pdatas[id] = Object.assign({}, data);
   }
-  public getPrimevalData(id: string) {
+
+  /**
+   * get Primeval Data
+   * @param id Primeval Data ID
+   */
+  public getData(id: string):any {
     return this.pdatas[id];
+  }
+
+  /**
+   * delete Primeval Data
+   * @param id Primeval Data ID
+   */
+  public delData(id: string) {
+    delete this.pdatas[id];
   }
 
   private checkChanges(pdata: object, data: object): object {
@@ -182,7 +207,12 @@ export class JsObjDiffer{
     return changes;
   }
 
-  public getDiff(id: string, data:object):DifferResult {
+  /**
+   * get diff by Primeval Data ID
+   * @param id Id of Primeval Data
+   * @param data Data
+   */
+  public diffById(id: string, data:object):DifferResult {
     const pdata = this.pdatas[id];
     if (pdata == null) {
       console.error("diff warning: counldn't find ", id);
@@ -191,6 +221,11 @@ export class JsObjDiffer{
     return this.diff(pdata, data);
   }
 
+  /**
+   * get diff of two input object
+   * @param pdata Primeval Data
+   * @param data Data
+   */
   public diff(pdata:object, data:object):DifferResult {
     let changes = this.checkChanges(pdata,data)
     let dels = this.checkDels(pdata,data)
@@ -201,7 +236,7 @@ export class JsObjDiffer{
 
 }
 
-class DifferResult{
+export class DifferResult{
   changes: any;
   adds: any;
   dels: any;

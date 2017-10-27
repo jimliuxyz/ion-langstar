@@ -17,10 +17,14 @@
   "EDIT":"編輯",
   "BOOKNAME": "書名",
   "GENERAL": "一般",
+  "MYFIRSTBOOKNAME": "我的第一本書",
+
+  "_CLOUD_HOME": {
+    "TITLE": "雲書櫃"
+  },
 
   "_BOOKSETTING": {
-    "TITLE": "書本設定",
-    "BOOKNAMEDEF": "我的語言學習書"
+    "TITLE": "書本設定"
   },
   "_SETTINGS": {
     "TITLE": "設定"

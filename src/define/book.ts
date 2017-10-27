@@ -33,12 +33,6 @@ export class BookReaderCfg{
   }
 }
 
-export class Tag{
-  name: string;
-  adds: number = 0;
-  list: TagBookInfo[];
-}
-
 export class TagBookInfo{
   title: string;
   author: string;

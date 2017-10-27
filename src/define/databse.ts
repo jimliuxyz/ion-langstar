@@ -5,8 +5,9 @@ export class DbPrefix{
   static USERINFO = "userinfo";
   static USERCFG = "usercfg";   //local only
 
-  static TAG = "tag";
-
+  static TAGLIST = "taglist";
+  static TAGBOOKS = "tagbooks";
+  
   static BOOKINFO = "bookinfo";
   static BOOKDATA = "bookdata";
   

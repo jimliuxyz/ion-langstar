@@ -14,6 +14,7 @@ import { LoginPage } from '../login/login';
 import { LogoutPage } from '../logout/logout';
 import { CreationComponent } from '../creation/creation';
 import { MyService } from '../../providers/myservice/myservice';
+import { CloudHomeComponent } from '../cloud-home/cloud-home';
 
 export interface HomeSlidePage{
   title: string,
@@ -22,8 +23,9 @@ export interface HomeSlidePage{
 }
 
 const SLIDECLS:any[] = [
-  [NewsComponent, null],
+  [CloudHomeComponent, null],
   [CreationComponent, null],
+  [NewsComponent, null],
   [CreditComponent, null],
 ]
 

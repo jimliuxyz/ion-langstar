@@ -35,6 +35,7 @@ import { LoginPage } from '../pages/login/login';
 import { LogoutPage } from '../pages/logout/logout';
 import { CreationComponent } from '../pages/creation/creation';
 import { EditPageModule } from '../pages/editor/editorpage.module';
+import { CloudHomeComponent } from '../pages/cloud-home/cloud-home';
 
 
 
@@ -46,7 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     MyApp,
     HomeSettingsComponent,
-    NewsComponent,CreditComponent,CreationComponent,
+    NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,
     LoginPage,LogoutPage
     // NewpagePage
   ],
@@ -73,7 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [
     MyApp,
     HomeSettingsComponent,
-    NewsComponent,CreditComponent,CreationComponent,
+    NewsComponent, CreditComponent, CreationComponent,
+    CloudHomeComponent,
     LoginPage,LogoutPage
     // NewpagePage
   ],

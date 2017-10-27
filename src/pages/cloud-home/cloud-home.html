@@ -10,6 +10,11 @@
         </ion-fab-list>
       </ion-fab>
 
+      <button (click)='update();'>+</button>
+      <div *ngIf='wata'>
+            {{wata.data.v}}
+      </div>
+
       <ion-card>
         <ion-card-header text-left>
             example /ɪɡ'zæmpəl/ 

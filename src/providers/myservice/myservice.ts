@@ -11,7 +11,7 @@ import {TranslateService} from '@ngx-translate/core';
 
 import { UserInfo, ANONYMOUS, FAKEUSER, UserCfg } from '../../define/userinfo';
 import { IRDBapi } from './dbapi.firebase';
-import { MiscFunc, JsObjDiffer } from '../../define/misc';
+import { MiscFunc, JsObjDiffer, DifferResult } from '../../define/misc';
 import { DbPrefix } from '../../define/databse';
 import { BookSet, BookInfo, BookType, BookData_MCQ, BookData } from '../../define/book';
 
@@ -39,7 +39,8 @@ export class MyService {
     this.translate.addLangs(["en_US", "zh_TW", "ja", "ko"]);
     this.translate.setDefaultLang('en_US');
 
-    setTimeout(_ => {
+    setTimeout(async _ => {
+      await this.devInitDB();
       dbapi.loginStateChanged().subscribe(this.loginStateCallback())      
     }, 0) //for test network delay
     
@@ -112,7 +113,6 @@ export class MyService {
   }
 
   private async setLoginUser(user: UserInfo) {
-    this.storage.clear();
 
     //load user info
     this.user = await this.db.loadSyncedData(
@@ -121,11 +121,6 @@ export class MyService {
 
     this.user.localPhotoURL = await MiscFunc.getBase64ImgUrl(user.photoURL);
 
-    // this.user.displayName = 'QQQQ';
-    // this.user.email = 'QWER2';
-    // this.user.provider = 'JIM2';
-    // this.db.saveData([DbPrefix.USERINFO, user.uid], this.user);
-
     //load user cfg
     this.ucfg = await this.db.loadSyncedData(
       [DbPrefix.USERCFG, user.uid],
@@ -133,8 +128,28 @@ export class MyService {
 
     this.translate.use(this.ucfg.nalang);
 
-    //load tags
   }
+
+  /**
+   * get tags by user's lang pair
+   */
+  public async getTaglist():Promise<Tag[]> {
+    const langpair = MiscFunc.getLangPair(this.ucfg.nalang, this.ucfg.talang);
+
+    let tlist = await this.db.loadSyncedData(
+      [DbPrefix.TAGLIST, langpair],
+      _ => { return {ver:1} });
+
+    let arr: Tag[] = [];
+    Object.keys(tlist.list).forEach(async key => {
+      if (tlist.list[key] instanceof Object)
+        arr.push(tlist.list[key])
+    });
+
+    arr.sort(function (a, b) { return b.cnt - a.cnt });
+    return arr;
+  }
+
 
   setDirty(type:any, obj: any) {
     obj._dirty_ = true;
@@ -158,45 +173,96 @@ export class MyService {
     bset.info.talang = this.ucfg.talang;
 
     //testing...
-    bset.info.title = "my book";
-    // bset.info.nalang = "ja";
-    // bset.info.talang = "ko";
+    this.translate.get("MYFIRSTBOOKNAME").take(1).subscribe(data => {bset.info.title=data });
     bset.info.tag1 = "英文";
-    bset.info.tag2 = "EFL";
+    bset.info.tag2 = "";
     // this.dbapi.test1(bset)
     return bset;
   }
 
   async saveBook(bset: BookSet) {
 
-    console.dir(bset)
-
     bset.info.author = this.user.displayName;
     bset.info.author_uid = this.user.uid;
     bset.info.qnum = bset.data.data.length;
 
+    //save book info and data
     await this.db.saveData([DbPrefix.BOOKINFO, bset.info.uid], bset.info)
     await this.db.saveData([DbPrefix.BOOKDATA, bset.info.uid], bset.data)
 
+    //about its tag
+    bset.info.tag1 = bset.info.tag1.trim();
+    bset.info.tag2 = bset.info.tag2.trim();
     const langpair = MiscFunc.getLangPair(bset.info.nalang, bset.info.talang);
-    if (bset.info.tag1)
-      await this.db.saveData([DbPrefix.TAG, langpair, bset.info.tag1, bset.info.uid], bset.info);
-    if (bset.info.tag2)
-      await this.db.saveData([DbPrefix.TAG, langpair, bset.info.tag2, bset.info.uid], bset.info);
-    
-    this.user.creation += ","+bset.info.uid;
+    for (let i = 0; i < 2; i++){
+      const tagname = (i == 0) ? bset.info.tag1 : bset.info.tag2;
+      const uid = MiscFunc.md5(tagname);
+      
+      if (tagname) {
+
+        //add book info to its tag
+        await this.db.saveData([DbPrefix.TAGBOOKS, langpair, tagname, bset.info.uid], bset.info);
+
+        //new a tag and update counter
+        await this.db.transaction([DbPrefix.TAGLIST, langpair, "list", tagname], (tag: Tag) => {
+          if (!tag) {
+            tag = new Tag();
+            tag.name = tagname;
+          }
+          tag.cnt += 1;
+          return tag;
+        });
+
+        await this.db.transaction([DbPrefix.TAGLIST, langpair, "ver"], (ver: number) => {
+          return Date.now();
+        });
+      }
+    }
+
+    //update user's creations list
+    this.user.bookcnt += 1;
+    this.user.booklist += (this.user.booklist?",":"")+bset.info.uid;
     this.db.saveData([DbPrefix.USERINFO, this.user.uid], this.user);
 
+  }
 
+  async devInitDB() {
+    // if (this.storage) {
+    //   this.storage.clear();
+    //   return;
+    // }
+
+    //clear data
+    this.storage.clear();
+    this.dbapi.clear(["/"]);
+
+    //add default tags
+    Object.keys(deftags).forEach(async langpair => {
+      const tags: Array<string> = deftags[langpair];
+
+      let tag = new TagList();
+      tags.forEach(async tagname => {
+        // const uid = MiscFunc.md5(tagname);
+
+        tag.list[tagname] = new Tag();
+        tag.list[tagname].name = tagname;
+        tag.list[tagname].cnt = Math.round(Math.random()*10);
+      })
+      await this.db.saveData([DbPrefix.TAGLIST, langpair], tag);
+    });
+
+    this.storage.clear();
   }
 
 }
 
-
+import MD5 from "md5.js";
+import { deftags, Tag, TagList } from '../../define/tag';
+import { Subscription } from 'rxjs/Subscription';
 
 // storage -> data <- remoteDB
 class LocalDB{
-  differ = new JsObjDiffer();
+  public differ = new JsObjDiffer();
   constructor(private storage: Storage, private dbapi: IRDBapi) {}
 
   //get data from local and remote and return the fresher one
@@ -204,6 +270,7 @@ class LocalDB{
   public async loadSyncedData(path: string[], fnInitData: Function): Promise<any> {
     let local = await this.storage.get(path.join("/"));
     let remote_ver = await this.dbapi.getDataVer(path);
+    console.log(path.join("/"), local, remote_ver);
 
     let data = local;
     if (local && remote_ver>=0) {
@@ -230,14 +297,14 @@ class LocalDB{
       await this.storage.set(path.join("/"), data);
     }
 
-    this.differ.addPrimevalData(path.join("/"), data)
+    this.differ.addData(path.join("/"), data)
     return data;
   }
 
   //write both local and remote database with new time version.
   public async saveData(path: string[], data: any): Promise<any> {
     const pid = path.join("/");
-    let diff = this.differ.getDiff(pid, data);
+    let diff = this.differ.diffById(pid, data);
     
     if (diff && (diff.changes || diff.adds)) {
       data.ver = Date.now();
@@ -250,14 +317,45 @@ class LocalDB{
       console.log("update changes");
       console.dir(diff.changes)
 
-      this.differ.addPrimevalData(pid, data);
+      this.differ.addData(pid, data);
     }
     else if (!diff) {
       await this.storage.set(pid, data);
       await this.dbapi.setData(path, data);
-      this.differ.addPrimevalData(pid, data);
+      this.differ.addData(pid, data);
     }
   }
+
+  public async transaction(path: string[], fnUpdate: any, fnComplete?: any): Promise<any> {
+    let data;
+
+    await this.dbapi.transaction(path,
+      (currentData) => {
+        let data = fnUpdate(currentData);
+        if (data instanceof Object)
+          data.ver = Date.now();
+        return data;
+      },
+      (error, committed, snapshot) => {
+        if (error) {
+          console.log('Transaction failed abnormally!', error);
+        } else if (!committed) {
+          console.log('We aborted the transaction (?).');
+        } else {
+          // console.log('User ada added!');
+          data = snapshot.val();
+        }
+    });
+
+    if (data) {
+      this.differ.addData(path.join("/"), data);
+      await this.storage.set(path.join("/"), data);
+    }
+    return data;
+  }
+
+  //  abstract transaction(path: string[], fn: any): Promise<any>;
+
 
 
 
@@ -278,4 +376,101 @@ class LocalDB{
     }
   }
 
+}
+
+
+
+
+
+export class Wata{
+  data: any;
+  private mirror: any;
+  private differ = new JsObjDiffer();
+
+  /**
+   * 
+   * @param _retrieve called to 1. init data 2. check remote data 3. fire event
+   * @param _commit called to 1. check data changes 2. fire event
+   */
+  constructor(private _retrieve: () => Promise<any>, private _commit: (diff: DifferResult, action?: any) => Promise<boolean>) {
+  }
+
+  /**
+   * call it when you want to start the data.
+   */
+  public async start() {
+    this.retrieve();    
+  }
+
+  /**
+   * call it when you want to checkout new data.
+   */
+  public async retrieve() {
+    this.data = await this._retrieve();
+    this.mirror = Object.assign({}, this.data);
+    this.fireEvent();    
+  }
+
+  /**
+   * call it after you change the data, to trigger subscription and event.
+   */
+  public async commit(action?:any) {
+    const done = await this._commit(action);
+    if (done) {
+      this.mirror = Object.assign({}, this.data);
+    }
+    this.fireEvent();  
+  }
+
+  public getDiff() {
+    return this.differ.diff(this.data, this.mirror);
+  }
+
+
+  private events: {eventType:string,eventData:any}[] = [];
+  public addEvent(eventType:string,eventData:any) {
+    this.events.push({eventType,eventData});
+  }
+
+  private fireEvent() {
+    
+    this.events.forEach((event, idx) => {
+      this.events.splice(idx, 1);
+      
+      this.onceListener.forEach((listener, idx) => {
+        if (listener.eventType === event.eventType) {
+          listener.resolve(event.eventData);
+          this.onceListener.splice(idx, 1);
+        }
+      });
+
+      this.subject.next({ eventType: event.eventType, eventData: event.eventData });
+
+      //this.subject.complete(); //final
+
+    });
+  }
+
+  private onceListener: { eventType: string, resolve: any, reject: any }[] = [];
+  public once(eventType: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.onceListener.push({ eventType, resolve, reject });
+    });
+  }
+
+  private subject = new Subject();
+  public on(eventType: string, eventCallback: (data: any, subscription:Subscription) => void): Subscription {
+    const subscription = this.subject.subscribe((data: any) => {
+      if (data.eventType === eventType)
+        eventCallback(data.eventData, subscription);
+    });
+    return subscription;
+  }
+
+  /**
+   * call it if data no longer available
+   */
+  public finalize() {
+    this.subject.complete();
+  }
 }
