@@ -60,6 +60,15 @@ export class MiscFunc{
     return new MD5().update(str).digest('hex');
   }
 
+  static async sleep(ms: number, callback?: () => any) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (callback) callback();
+        resolve();
+      }, ms);
+    })
+  }
+
 
   //get Lang by its code
   static getLang(code= ''):Lang {
@@ -82,7 +91,7 @@ export class MiscFunc{
 
   static getBase64ImgUrl(url:string): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (url.startsWith("data:image"))
+      if (!url || url.startsWith("data:image"))
         resolve(url);
 
       var img = new Image();
@@ -157,6 +166,7 @@ export class JsObjDiffer{
 
   private checkChanges(pdata: object, data: object): object {
     if (!data) return;
+    if (!pdata) return;
     let changes;
     Object.keys(pdata).forEach(key => {
       //ignore function and array
@@ -181,6 +191,11 @@ export class JsObjDiffer{
 
   private checkDels(pdata: object, data: object):object {
     let changes;
+    if (!pdata)
+      return changes;  
+    if (!data)
+      return pdata; 
+
     Object.keys(pdata).forEach(key => {
       //ignore function and array      
       if (pdata[key] instanceof Function ||
@@ -226,11 +241,11 @@ export class JsObjDiffer{
    * @param pdata Primeval Data
    * @param data Data
    */
-  public diff(pdata:object, data:object):DifferResult {
+  public diff(pdata: any, data: any): DifferResult {
     let changes = this.checkChanges(pdata,data)
     let dels = this.checkDels(pdata,data)
     let adds = this.checkDels(data,pdata)
-
+    
     return { changes, adds, dels, diff: !(!changes && !adds && !dels) };
   }
 

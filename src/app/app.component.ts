@@ -16,7 +16,7 @@ export class MyApp implements OnDestroy{
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private serv:MyService) {
     platform.ready().then(() => {
 
-      this.serv.ready$().take(1).subscribe(() => {
+      this.serv.ready$.then(() => {
         console.log("everything ready~")
         console.log(platform.url())
         if (platform.url().indexOf("#") <= 0)

@@ -18,8 +18,8 @@ export class HomeSettingsComponent {
 
   set nalang(val: string) {
     this.translate.use(val);
-    this.serv.ucfg.nalang = val;
-    this.serv.setDirty(UserCfg, this.serv.ucfg);
+    this.serv.w_usercfg.data.nalang = val;
+    this.serv.w_usercfg.commit();
   }
   get nalang():string {
     return this.translate.currentLang;

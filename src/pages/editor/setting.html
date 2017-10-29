@@ -19,7 +19,7 @@
     <ion-list padding-top>
       <div ion-text color="primary">&nbsp; {{'BOOKNAME'|translate}}</div>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="setting.title"></ion-input>
+        <ion-input type="text" [(ngModel)]="setting.data[0].title"></ion-input>
       </ion-item>
       <ion-item style="display:none"></ion-item>
             
@@ -31,7 +31,7 @@
         <ion-item>
           <ion-label>{{'NALANG'|translate}}</ion-label>
 
-          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.nalang">
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].nalang">
             <ion-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{misc.getLang(lang).nalang}}</ion-option>
           </ion-select>
         </ion-item>
@@ -39,7 +39,7 @@
         <ion-item>
           <ion-label>{{'TALANG'|translate}}</ion-label>
 
-          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.talang">
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].talang">
             <ion-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{misc.getLang(lang).nalang}}</ion-option>
           </ion-select>
         </ion-item>
@@ -52,13 +52,13 @@
           <ion-item>
               <ion-label stacked>{{'TAG'|translate}}1 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
 
-              <ion-input type="text" [(ngModel)]="setting.tag1"></ion-input>
+              <ion-input type="text" [(ngModel)]="setting.data[0].tag1"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label stacked>{{'TAG'|translate}}2 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
 
-              <ion-input type="text" [(ngModel)]="setting.tag2"></ion-input>
+              <ion-input type="text" [(ngModel)]="setting.data[0].tag2"></ion-input>
             </ion-item>
             <ion-item style="display:none"></ion-item>
           </ion-list>

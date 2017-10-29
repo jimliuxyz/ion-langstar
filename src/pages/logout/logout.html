@@ -20,7 +20,7 @@
   <ion-card>
 
     <ion-card-header>
-          {{serv.user.displayName}}
+          {{serv.w_userinfo.data.displayName}}
     </ion-card-header>
 
 
@@ -28,12 +28,12 @@
       <ion-row>
         <ion-col></ion-col>
         <ion-col></ion-col>
-        <ion-col><img [src]="serv.user.localPhotoURL" /></ion-col>
+        <ion-col><img [src]="serv.w_userinfo.data.localPhotoURL" /></ion-col>
         <ion-col></ion-col>
         <ion-col></ion-col>
       </ion-row>
       <h2>
-        {{serv.user.email}}
+        {{serv.w_userinfo.data.email}}
       </h2>
     </ion-card-content>
   </ion-card>

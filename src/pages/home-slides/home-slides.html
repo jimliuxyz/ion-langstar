@@ -8,7 +8,7 @@
     <ion-buttons end>
 
         <button ion-button icon-only (click)="openModal('login')">
-            <img style='border-radius: 50%;    overflow: hidden;width: 40px;height: 40px;' [src]="serv.user.localPhotoURL">
+            <img style='border-radius: 50%;    overflow: hidden;width: 40px;height: 40px;' [src]="serv.w_userinfo.data.localPhotoURL">
         </button>
 
         <button ion-button icon-only (click)="openModal('settings')">
@@ -31,7 +31,7 @@
 </ion-header>
   
   <ion-content>
-      {{serv.user.displayName}}
+      {{serv.w_userinfo.data.displayName}}
       <ion-slides #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition();" (pan)="updateIndicatorPosition()" [pager]="false" (ionSlideWillChange)="changeSlide()">
       <ng-template #SlideTpl></ng-template>
   

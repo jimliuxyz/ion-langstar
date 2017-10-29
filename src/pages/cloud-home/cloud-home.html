@@ -1,4 +1,36 @@
-<ion-slide>
+<ion-slide *ngIf='serv.w_taglist.data'>
+
+                      
+
+<ion-list *ngFor="let item of serv.w_taglist.data">
+  <!-- <ion-list-header text-left>
+        {{ item.name }}
+  </ion-list-header> -->
+  <div text-left padding-left>
+        {{ item.name }} | {{item.cnt}}
+  </div>
+  <ion-card *ngFor="let x of [1,2,3]">
+
+        <ion-item>
+                <ion-avatar item-start>
+                  <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
+                </ion-avatar>
+                <h2>Marty McFly</h2>
+                <p>November 5, 1955</p>
+              </ion-item>
+</ion-card>
+</ion-list>
+
+
+
+
+
+
+
+
+
+
+              
 
     <ion-fab top right>
         <button ion-fab mini (click)="navTo()"><ion-icon name="add"></ion-icon></button>
@@ -10,10 +42,7 @@
         </ion-fab-list>
       </ion-fab>
 
-      <button (click)='update();'>+</button>
-      <div *ngIf='wata'>
-            {{wata.data.v}}
-      </div>
+
 
       <ion-card>
         <ion-card-header text-left>

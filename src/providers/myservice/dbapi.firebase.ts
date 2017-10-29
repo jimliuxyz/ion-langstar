@@ -21,7 +21,7 @@ export abstract class IRDBapi {
 
   abstract clear(path: string[]): Promise<number>;
   abstract getDataVer(path: string[]): Promise<number>;
-  abstract getData(path: string[]);
+  abstract getData(path: string[], query?:DBQuery);
   abstract setData(path: string[], data: any): Promise<any>;
   abstract updateData(path: string[], data: any): Promise<any>;
   abstract transaction(path: string[], fnUpdate: any, fnComplete?: any): Promise<any>;
@@ -203,9 +203,64 @@ export class DBapiFirebase implements IRDBapi {
   }
 
 
-  getData(path: string[]): Promise<any> {
+  getData(path: string[], query?:DBQuery): Promise<any> {
     return new Promise((resolve, reject) => {
       // let user = firebase.auth().currentUser;
+
+      if (query) {
+        let ref = firebase.database().ref(path.join("/"));
+        let que = ref.orderByChild(query.orderBy);
+
+        if (query.startAt && !query.startAtKey)
+          que = que.startAt(query.startAt);  
+        else if (query.startAt && query.startAtKey)
+          que = que.startAt(query.startAt, query.startAtKey);  
+
+        if (query.endAt && !query.endAtKey)
+          que = que.endAt(query.endAt);  
+        else if (query.endAt && query.endAtKey)
+          que = que.endAt(query.endAt, query.endAtKey);  
+
+        if (query.limitToFirst)
+          que = que.limitToFirst(query.limitToFirst);
+        if (query.limitToLast)
+          que = que.limitToLast(query.limitToLast);
+        
+        // que.orderByPriority
+        
+        que.once('value').then((snapshot) => {
+          let data = snapshot.val();
+          if (data != null)
+            resolve(data);
+          else
+            resolve();  
+        });
+        return;
+      }
+
+
+console.log(path)
+      if (query) {
+        firebase.database().ref(path.join("/"))
+          .orderByChild("views")
+        //begegory75  
+          // .startAt(7, "b68k1ay54d")  
+          // .startAt(6, "begegory75")  
+          // .endAt(7, "hn3jx5hwi3")  
+          
+        .limitToLast(3)
+        // .equalTo("GEPT")  
+        .once('value').then((snapshot) => {
+          console.dir(snapshot)
+          let data = snapshot.val();
+          if (data != null)
+            resolve(data);
+          else
+            resolve();
+        });  
+        return;
+      }
+        
 
       firebase.database().ref(path.join("/")).once('value').then((snapshot) => {
         let data = snapshot.val();
@@ -233,23 +288,18 @@ export class DBapiFirebase implements IRDBapi {
     })
   }
 
-  setData(path: string[], data: any): Promise<any> {
-    if (data.ver==null) console.error("set data without version time!", path.join("/"));
+  async setData(path: string[], data: any) {
 
-    data = Object.assign({}, data);
-    delete data.localdb;
-
-    return firebase.database().ref(path.join("/")).set(data);
+    return await firebase.database().ref(path.join("/")).set(data);
   }
 
-  updateData(path: string[], data: any): Promise<any> {
-    if (data.ver==null) console.error("set data without version time!", path.join("/"));
+  async updateData(path: string[], data: any) {
 
-    return firebase.database().ref(path.join("/")).update(data);
+    return await firebase.database().ref(path.join("/")).update(data);
   }
 
-  async transaction(path: string[], fnUpdate: any, fnComplete: any): Promise<any> {
-    return firebase.database().ref(path.join("/")).transaction(fnUpdate, fnComplete);
+  async transaction(path: string[], fnUpdate: any, fnComplete: any) {
+    return await firebase.database().ref(path.join("/")).transaction(fnUpdate, fnComplete);
   }
 
   async test1(data: any) {
@@ -273,3 +323,12 @@ export class DBapiFirebase implements IRDBapi {
 
 }
 
+export class DBQuery{
+  orderBy: string;
+  startAt?: (number | boolean | string);
+  startAtKey?: string;
+  endAt?: (number | boolean | string);
+  endAtKey?: string;
+  limitToFirst?: number;
+  limitToLast?: number;
+}

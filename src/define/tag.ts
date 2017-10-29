@@ -13,7 +13,7 @@ export class TagList{
 
 export class Tag{
   ver: number = 1;
-  name: string;
+  name: string = "";
   cnt: number = 0;
 }
 

@@ -61,15 +61,16 @@ export class BookInfo{
 }
 
 export class BookData{
-  ver:number = 1;  
-  data: any[];
+  ver : number = 1;  
+  data: any = {};
 }
 
 //Multiple Choice Questions
 export class BookData_MCQ{
+  order: number = 0;
   q: string;
   a: string;
-  cho: string[];
+  cho: object; //key value pair as array
   exp: string;
   tip: string;
 }

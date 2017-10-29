@@ -1,12 +1,13 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController, Content, ViewController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { MyService } from '../../providers/myservice/myservice';
+import { MyService, WataBookInfo, WataBookData } from '../../providers/myservice/myservice';
 import { BookInfo, BookType, BookSet, BookData_MCQ } from '../../define/book';
 import { Mocks } from '../../define/mocks';
 import { Observable, Subject } from 'rxjs';
 import { MiscFunc } from '../../define/misc';
 import { SettingComponent } from './setting';
+import { WataAction } from '../../define/databse';
 
 
 const LEADQ = "##";
@@ -43,51 +44,112 @@ export class EditorPage {
   }
 
   openModal(cmd: string) {
-    let modal = this.modalCtrl.create(SettingComponent, { setting:this.book.info });
+    let modal = this.modalCtrl.create(SettingComponent, { setting:this.w_bookinfo });
     modal.present();
   }
+  
+  w_bookinfo: WataBookInfo;
+  w_bookdata: WataBookData;
+  async ionViewCanEnter() {
 
-  ionViewCanEnter(): Promise<any>{
+    let ready = await this.serv.ready$;
+    let book = await this.serv.newBook(BookType.MCQ);
+
+    this.w_bookinfo = book.bookinfo;
+    this.w_bookdata = book.bookdata;
+
+
+    Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
+    
+    Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
+
+    //use mock data to test
+    const txtarea: (any) = this.tarea.nativeElement;
+    txtarea.value = Mocks.mcqtext;
+    this.data = this.toData();
+    this.tarea.nativeElement.value = this.toTxt(this.data);
+    
+    this.openModal("");
+    this.save();
+
+
+    return true;
+  }
+
+  ionViewCanEnter2(): Promise<any>{
     return new Promise((resolve, reject) => {
-      this.serv.ready$().subscribe(data => {
-        if (data === true) {
-          this.setting.nalang = this.serv.ucfg.nalang;
+      // this.serv.ready$().subscribe(data => {
+      //   if (data === true) {
+      //     this.setting.nalang = this.serv.w_usercfg.data.nalang;
 
-          this.book = this.serv.newBook(BookType.MCQ);
+      //     this.book = this.serv.newBook(BookType.MCQ);
 
-          Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
+      //     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
           
-          Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
+      //     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
 
-          //use mock data to test
-          const txtarea: (any) = this.tarea.nativeElement;
-          txtarea.value = Mocks.mcqtext;
-          this.data = this.toData();
-          this.tarea.nativeElement.value = this.toTxt(this.data);
+      //     //use mock data to test
+      //     const txtarea: (any) = this.tarea.nativeElement;
+      //     txtarea.value = Mocks.mcqtext;
+      //     this.data = this.toData();
+      //     this.tarea.nativeElement.value = this.toTxt(this.data);
           
-          this.openModal("");
-          this.save();
+      //     this.openModal("");
+      //     this.save();
           
-          resolve(true);
-        }
-      });
+      //     resolve(true);
+      //   }
+      // });
     })
   }
+
+  /*
+
+##  star
+==  星星Q
+!=  A
+!=  B
+#=  There are billions of stars in the universe.
+#?  a natural luminous body visible in the sky especially at night
+
+##  test
+==  測試
+#=  test....
+#?  測試1....
+測試2....
+
+##  test2
+==  測試2
+#=  test....
+#?  測試1....
+測試2....
+
+  */
 
   save() {
     console.log('save...')
 
-    this.book.data.data = this.data;
-    this.serv.saveBook(this.book);
+    // this.book.data.data = this.data;
+    // this.serv.saveBook(this.book);
+
+    this.data = this.toData();
+    
+    this.w_bookdata.data.data = this.data;
+    if (!this.w_bookdata.data)
+      this.w_bookdata.commit({ cmd: WataAction.SETBOOKDATA, data: this.data })
+    else
+      this.w_bookdata.commit({ cmd: WataAction.UPDATEBOOKDATA, data: this.data })
+    console.log(this.data)
 
   }
 
-  toData(): any[] {
+  toData(): any {
     let linearr = this.tarea.nativeElement.value.split('\n');
 
-    let data = [];
+    let data = {};
     let item;
     let leadprev = "";
+    let cnt = 0;
     linearr.forEach((line: string) => {
       if (line.match(/^\s*$/g)) return;
       let lead = line.substr(0, 2);
@@ -100,18 +162,22 @@ export class EditorPage {
       for (let i = 0; i < 2; i++){
         switch (i==0?lead:leadprev) {
           case LEADQ:
+            const q = (i == 0 ? "" : item.q) + text;
+            const key = MiscFunc.md5(q);
             if (lead === LEADQ) {
               item = new BookData_MCQ();
-              data.push(item);              
+              data[key] = item;
+              item.order = ++cnt;
             }
-            item.q = (i == 0 ? "" : item.q) + text;
+            item.q = q;
             break;
           case LEADA:
             item.a = (i == 0 ? "" : item.a) + text;
             break;
           case LEADCHO:
-            if (!item.cho) item.cho = [];
-            let idx = (i==0)? item.cho.length : item.cho.length - 1;
+            if (!item.cho) item.cho = {};
+            const len = Object.keys(item.cho).length;
+            let idx = (i==0)? len : len - 1;
             item.cho[idx] = (i == 0 ? "" : item.cho[idx]) + text;
             break;
           case LEADEXP:
@@ -132,31 +198,42 @@ export class EditorPage {
       leadprev = lead;
 
     });
+    
     return data;
   }
 
-  toTxt(data: any[]): string {
-    let arr = [];
+  toTxt(data: any): string {
+    let dataarr = [];
+    let textarr = [];
     
-    data.forEach((item:BookData_MCQ) => {
+    Object.keys(data).forEach((key, idx) => {
+      dataarr.push(data[key])
+    });
+    dataarr.sort(function (a, b) { return a.cnt - b.cnt });
+
+    dataarr.forEach((item:BookData_MCQ) => {
       // console.dir(item)
 
       if (item.q)
-        arr[arr.length] = LEADQ + "  " + item.q;
+        textarr[textarr.length] = LEADQ + "  " + item.q;
       if (item.a)
-        arr[arr.length] = LEADA + "  " + item.a;
+        textarr[textarr.length] = LEADA + "  " + item.a;
       if (item.cho)
-        item.cho.forEach(item => {
-          arr[arr.length] = LEADCHO + "  " + item;
-        })
+        for (let i = 0; i < 10; i++){
+          if (!item.cho[i]) break;
+          textarr[textarr.length] = LEADCHO + "  " + item.cho[i];
+        }  
+        // item.cho.forEach(item => {
+        //   textarr[textarr.length] = LEADCHO + "  " + item;
+        // })
 
       if (item.exp)
-        arr[arr.length] = LEADEXP + "  " + item.exp;
+        textarr[textarr.length] = LEADEXP + "  " + item.exp;
       if (item.tip)
-        arr[arr.length] = LEADTIP + "  " + item.tip;
-      arr[arr.length] = "";
+        textarr[textarr.length] = LEADTIP + "  " + item.tip;
+      textarr[textarr.length] = "";
     });
-    return arr.join('\n');
+    return textarr.join('\n');
   }
 
 

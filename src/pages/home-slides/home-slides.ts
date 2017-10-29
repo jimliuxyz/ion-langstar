@@ -55,13 +55,9 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
 
   }
 
-  ionViewCanEnter(): Promise<any>{
-    return new Promise((resolve, reject) => {
-      this.serv.ready$().subscribe(data => {
-        if (data === true)
-          resolve(true);
-      });
-    })
+  async ionViewCanEnter(): Promise<any>{
+    await this.serv.ready$;
+    return true;
   }
 
   toastMag(msg:string) {

@@ -9,9 +9,9 @@ refreshingSpinner="circles">
 {{tabtitle}}
 <div *ngIf="inited">inited</div>
 
-<div *ngIf="serv.user">{{serv.hasLogin()}}</div>
+<div *ngIf="serv.w_userinfo.data">{{serv.hasLogin()}}</div>
 
-<div translate [translateParams]="{firstname:serv.user.displayName}">SAYHI</div>
+<div translate [translateParams]="{firstname:serv.w_userinfo.data.displayName}">SAYHI</div>
 
 <a href="http://www.google.com">google</a>
 <ion-item navPush="LinkPage">link1</ion-item>
