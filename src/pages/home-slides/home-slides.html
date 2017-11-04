@@ -3,7 +3,7 @@
   <ion-navbar>
 
     <ion-title *ngIf="slides.length>0">
-      {{slides[sidx].title | translate}}
+      {{slides[sidx].title | translate}} {{readytest}}
     </ion-title>
     <ion-buttons end>
 
@@ -31,7 +31,6 @@
 </ion-header>
   
   <ion-content>
-      {{serv.w_userinfo.data.displayName}}
       <ion-slides #SwipedTabsSlider  (ionSlideDrag)="animateIndicator($event)" (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition();" (pan)="updateIndicatorPosition()" [pager]="false" (ionSlideWillChange)="changeSlide()">
       <ng-template #SlideTpl></ng-template>
   

@@ -5,6 +5,7 @@ import {SharedModule} from '../../app/shared.module';
 import {TranslateModule} from '@ngx-translate/core';
 import { EditorPage } from './editorpage';
 import { SettingComponent } from './setting';
+import { IonicPatchModule } from '../../patch/ionic-patch.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SettingComponent } from './setting';
   imports: [
   IonicPageModule.forChild(EditorPage),
     SharedModule,
+    IonicPatchModule,
   ],
   exports: [EditorPage],
   entryComponents: [SettingComponent],

@@ -13,22 +13,18 @@ import { UserInfo, ANONYMOUS, FAKEUSER, UserCfg } from '../../define/userinfo';
 import { IRDBapi, DBQuery } from './dbapi.firebase';
 import { MiscFunc, JsObjDiffer, DifferResult } from '../../define/misc';
 import { DbPrefix, WataEvent, WataAction } from '../../define/databse';
-import { BookSet, BookInfo, BookType, BookData_MCQ, BookData } from '../../define/book';
+import { BookInfo, BookType, BookData_MCQ, BookData } from '../../define/book';
 
 import { deftags, Tag, TagList } from '../../define/tag';
 import { Subscription } from 'rxjs/Subscription';
 import { Mocks } from '../../define/mocks';
+import { VoiceCfg } from '../../define/tts';
 
 
 @Injectable()
 export class MyService {
   private db: LocalDB;
-  
-  // test: BehaviorSubject<UserInfo> = new BehaviorSubject(ANONYMOUS);
 
-  // ready$(): Observable<boolean>{
-  //   return this._ready$.asObservable();
-  // }
   private ready_resolve;
   ready$ = new Promise<boolean>((resolve, reject) => {
     this.ready_resolve = resolve;
@@ -45,7 +41,7 @@ export class MyService {
 
     setTimeout(async _ => {
       await this.devInitDB();
-      // dbapi.loginStateChanged().subscribe(this.loginStateCallback())      
+      dbapi.loginStateChanged().subscribe(this.loginStateCallback())      
     }, 0) //for test network delay
 
   }
@@ -107,9 +103,6 @@ export class MyService {
 
   //----
 
-  // w_userinfo: Wata<UserInfo>;
-  // w_usercfg: Wata<UserCfg>;
-  // w_taglist: Wata<Array<Tag>>;
   w_userinfo: WataUserInfo;
   w_usercfg: WataUserCfg;
   w_taglist: WataTagList;
@@ -117,16 +110,14 @@ export class MyService {
   private async setLoginUser(user: UserInfo) {
 
     if (!this.w_userinfo) {
-      // this.w_userinfo = this.wataUserInfo();
-      // this.w_usercfg = this.wataUserCfg(this.w_userinfo);
-      // this.w_taglist = this.wataTags(this.w_usercfg);
+
       this.w_userinfo = new WataUserInfo(this.db);
       
       this.w_usercfg = new WataUserCfg(this.db, this.translate, this.w_userinfo);
       this.w_taglist = new WataTagList(this.db, this.w_usercfg);
       
       console.log("in")
-      await this.w_userinfo.start({ user });
+      await this.w_userinfo.start({ cmd:WataAction.LOGINUSER,user });
       console.log("ot")
     }
     else
@@ -134,11 +125,10 @@ export class MyService {
   }
 
   async newBook(booktype:BookType) {
-    console.log("newBook2")
     await this.ready$;
 
     let bookuid = MiscFunc.uid(10);
-    let bookinfo = new WataBookInfo(this.db, this.translate, this.w_taglist);
+    let bookinfo = new WataBookInfo(this.db, this.w_taglist);
     await bookinfo.start({
       cmd: WataAction.NEWBOOKINFO,
       bookuid,
@@ -157,115 +147,154 @@ export class MyService {
     return { bookinfo, bookdata };
   }
 
+  async getUserInfo(useruid: string) {
+    await this.ready$;
 
-  async saveBook(bset: BookSet) {
-
-    bset.info.author = this.w_userinfo.data.displayName;
-    bset.info.author_uid = this.w_userinfo.data.uid;
-    bset.info.qnum = bset.data.data.length;
-
-    //save book info and data
-    await this.db.saveData([DbPrefix.BOOKINFO, bset.info.uid], bset.info)
-    await this.db.saveData([DbPrefix.BOOKDATA, bset.info.uid], bset.data)
-
-    //about its tag
-    bset.info.tag1 = bset.info.tag1.trim();
-    bset.info.tag2 = bset.info.tag2.trim();
-    const langpair = MiscFunc.getLangPair(bset.info.nalang, bset.info.talang);
-    for (let i = 0; i < 2; i++){
-      const tagname = (i == 0) ? bset.info.tag1 : bset.info.tag2;
-      const uid = MiscFunc.md5(tagname);
-      
-      if (tagname) {
-
-        //add book info to its tag
-        await this.db.saveData([DbPrefix.TAGBOOKS, langpair, tagname, bset.info.uid], bset.info);
-
-        //new a tag and update counter
-        await this.db.transaction([DbPrefix.TAGLIST, langpair, "list", tagname], (tag: Tag) => {
-          if (!tag) {
-            tag = new Tag();
-            tag.name = tagname;
-          }
-          tag.cnt += 1;
-          return tag;
-        });
-
-        await this.db.transaction([DbPrefix.TAGLIST, langpair, "ver"], (ver: number) => {
-          return Date.now();
-        });
-      }
-    }
-
-    //update user's creations list
-    this.w_userinfo.data.bookcnt += 1;
-    this.w_userinfo.data.booklist += (this.w_userinfo.data.booklist?",":"")+bset.info.uid;
-    this.db.saveData([DbPrefix.USERINFO, this.w_userinfo.data.uid], this.w_userinfo.data);
-
+    let userinfo = new WataUserInfo(this.db);
+    await userinfo.start({
+      cmd: WataAction.GETUSERINFO,
+      useruid,
+    });
+    return userinfo;
   }
 
-  private async testfb(){
-    let data = await this.dbapi.getData([DbPrefix.BOOKINFO, "bytag", "en_us+zh_tw", "英文"]);
-    console.log(data)
+  async getBookInfo(bookuid: string) {
+    await this.ready$;
+
+    let bookinfo = new WataBookInfo(this.db, this.w_taglist);
+    await bookinfo.start({
+      cmd: WataAction.GETBOOKINFO,
+      bookuid,
+    });
+    return bookinfo;
+  }
+
+  async getBookData(bookinfo: WataBookInfo, bookuid: string) {
+    let bookdata = new WataBookData(this.db, bookinfo);
+    await bookdata.start({
+      cmd: WataAction.GETBOOKDATA,
+      bookuid,
+    });
+
+    return bookdata;
+  }
+
+  async getBookInfosByTag(tagname:string, query:DBQuery):Promise<WataBookInfo> {
+    let bookinfo = new WataBookInfo(this.db, this.w_taglist);
+
+    await bookinfo.start({
+      cmd: WataAction.LISTTAGBOOKS,
+      langpair: MiscFunc.getLangPair(this.w_usercfg.data.nalang,this.w_usercfg.data.talang),
+      tagname,
+      query,
+    });
+    return bookinfo;
+  }
+
+  async getBookInfosByUser(tag:Tag) {
     
+  }
+
+  getVoiceCfg(uri: string): VoiceCfg {
+    if (!this.w_usercfg.data.voices_cfg)
+      this.w_usercfg.data.voices_cfg = [];
+    if (!this.w_usercfg.data.voices_cfg[uri]) {
+      this.w_usercfg.data.voices_cfg[uri] = new VoiceCfg();
+      this.w_usercfg.data.voices_cfg[uri].uri = uri;   
+    }
+    return this.w_usercfg.data.voices_cfg[uri];
+  }
+
+  getDefVoiceUri(lang: string): string{
+    if (!this.w_usercfg.data.voices_def)
+      this.w_usercfg.data.voices_def = [];
+    
+    let def = this.w_usercfg.data.voices_def[lang];
+    
+    if (!def) {
+      const vs = MiscFunc.getVoices(lang);
+      if (vs && vs.length>0)
+        def = vs[0].uri;
+    }
+    
+    return (def)?def:"none";
+  }
+
+
+  private async testFirebasePaginate() {
+    const PATH = [DbPrefix.BOOKINFO, "bytag", "en_us+zh_tw", "英文"];
+    
+    let data = await this.dbapi.getData(PATH);
     for (let key in data) {
       let book: BookInfo = data[key];
-      console.log(book.uid + " : " + book.title + " : " + book.views);
+      console.log("  " + book.uid + " : " + book.views + " : " + book.title);
     }
     console.log("----")
 
-    let lastbook:BookInfo;
-    for (let i = 0; i < 10; i++){
+    let lastbook: BookInfo;
+    const ORDER_ASC = !true;
+    const PAGESIZE = 3;
+    const ORDERCOL = "views";
+    const KEYCOL = "uid";
+    
+    let EOP = false;
+    for (let i = 0; !EOP&&i < 10; i++) {
 
-      let query: DBQuery = {
-        orderBy: "views", limitToFirst: 3, startAt: lastbook ? lastbook.views : 0, startAtKey: lastbook ? lastbook.uid : ""
-      };
+      let query: DBQuery;
 
-      query = {
-        orderBy: "views", limitToLast: 3, endAt: lastbook ? lastbook.views : 0, endAtKey: lastbook ? lastbook.uid : ""
-      };
-      
-      let page = await this.dbapi.getData([DbPrefix.BOOKINFO, "bytag", "en_us+zh_tw", "英文"], query);
-
-      
-      let arr = [];
-      for (let key in page) {
-        let book: BookInfo = page[key];
-        arr.push(book);
-        // console.log("  " + book.uid + " : " + book.title + " : " + book.views);
+      if (ORDER_ASC) {
+        query = {
+          orderBy: ORDERCOL, limitToFirst: PAGESIZE, startAt: lastbook ? lastbook[ORDERCOL] : 0, startAtKey: lastbook ? lastbook[KEYCOL] : ""
+        };        
+      }
+      else {
+        query = {
+          orderBy: ORDERCOL, limitToLast: PAGESIZE, endAt: lastbook ? lastbook[ORDERCOL] : 99999999, endAtKey: lastbook ? lastbook[KEYCOL] : ""
+        };        
       }
 
-      // arr.sort(function (a, b) { return a.views - b.views });
-      arr.sort(function (a, b) {
-        if (a.views == b.views)
-          return 1;  
-        return b.views - a.views
-      });
-      for (let book of arr) {
-        console.log(">>" + book.uid + " : " + book.title + " : " + book.views);
+      let page = await this.dbapi.getData(PATH, query);
+      console.log(query);
+
+
+      let arr:BookInfo[] = [];
+      for (let key in page) {
+        arr.push(page[key]);
+      }
+
+      if (ORDER_ASC)
+        arr.sort(function (a, b) { return a[ORDERCOL] - b[ORDERCOL] });
+      else
+        arr.sort(function (a, b) { return (a[ORDERCOL] == b[ORDERCOL]) ? 1 : b[ORDERCOL] - a[ORDERCOL] });
+
+      // if (lastbook && arr.length > 0 && arr[0].uid === lastbook.uid)
+      //   arr.splice(0, 1);
+
+      for (let idx in arr) {
+        const book = arr[idx];
+        if (idx === "0" && lastbook && book.uid === lastbook.uid)
+          continue;
+
+        console.log(">>" + book[KEYCOL] + " : " + book[ORDERCOL] + " : " + book.title);
       }
       console.log("----")
 
-      if (lastbook && lastbook.uid === arr[arr.length - 1].uid)
-        break;
-      if (arr.length < 3)
-        break;  
-      
       lastbook = arr[arr.length - 1];
-
       
-      // break;
-
+      // if (lastbook && lastbook.uid === arr[arr.length - 1].uid)
+      //   break;
+      if (arr.length < PAGESIZE) {
+        EOP = true;
+        break;
+      }
     }
 
-
-    
   }
 
   private async devInitDB() {
     if (this.storage) {
       this.storage.clear();
-      await this.testfb();
+      // await this.testFirebasePaginate();
       return;
     }
 
@@ -276,21 +305,19 @@ export class MyService {
 
     //add default tags
     for (let langpair of Object.keys(deftags)) {
-        
+
       const tags: Array<string> = deftags[langpair];
 
       let tag = new TagList();
       for (let tagname of tags) {
-          
+
         // const uid = MiscFunc.md5(tagname);
 
         tag.list[tagname] = new Tag();
         tag.list[tagname].name = tagname;
-        tag.list[tagname].cnt = Math.round(Math.random() * 10);
-        
-        tag.list[tagname]["order1"] = Math.round(Math.random() * 10);
+        // tag.list[tagname].cnt = Math.round(Math.random() * 10);        
       }
-      await this.db.saveData([DbPrefix.TAGLIST, langpair], tag);
+      await this.db.bothSet([DbPrefix.TAGLIST, langpair], tag);
     };
 
 
@@ -301,8 +328,8 @@ export class MyService {
     for (let username of Mocks.usernames) {
       let user = new UserInfo();
       user.displayName = username;
-      user.uid = MiscFunc.uid();
-
+      user.email = username+"@fake.com";
+      
       let userinfo = new WataUserInfo(this.db);
       userinfos.push(userinfo);
 
@@ -312,18 +339,17 @@ export class MyService {
       if (!taglist)
         taglist = new WataTagList(this.db, usercfg);
       
-      await userinfo.start({ user });
+      await userinfo.start({ cmd:WataAction.LOGINUSER,user });
       console.log(userinfo.data.displayName)
     };
 
 
     let bookinfos:WataBookInfo[] = [];
     for (let bookname of Mocks.booknames) {
-      let bookinfo = new WataBookInfo(this.db, this.translate, taglist);
+      let bookinfo = new WataBookInfo(this.db, taglist);
       bookinfos.push(bookinfo);
 
       let useridx = Math.round(Math.random() * (userinfos.length-1));
-      console.log(useridx,userinfos.length)
       await bookinfo.start({
         cmd: WataAction.NEWBOOKINFO,
         bookuid:MiscFunc.uid(),
@@ -332,6 +358,13 @@ export class MyService {
         user: userinfos[useridx].data,
         usercfg: usercfgs[useridx].data,
       });
+
+      let tag1idx = Math.round(Math.random() * (Mocks.tags.length-1));
+      let tag2idx = Math.round(Math.random() * (Mocks.tags.length-1));
+      
+      bookinfo.data[0].tag1 = Mocks.tags[tag1idx];
+      bookinfo.data[0].tag2 = Mocks.tags[tag2idx];
+      await bookinfo.commit();
     };
 
     this.storage.clear();
@@ -344,6 +377,8 @@ export class MyService {
 // storage -> data <- remoteDB
 /**
  * quick function for local storage and remote database
+ * rules:
+ * 1. Do not pass colned data to ensure the data.ver synced
  */
 class LocalDB{
   public differ = new JsObjDiffer();
@@ -360,8 +395,8 @@ class LocalDB{
    * return data
    * @param path 
    */
-  public async remoteGetData(path: string[]): Promise<any> {
-    return await this.dbapi.getData(path);
+  public async remoteGetData(path: string[], query?:DBQuery): Promise<any> {
+    return await this.dbapi.getData(path, query);
   }
   /**
    * set/reset all data
@@ -379,6 +414,7 @@ class LocalDB{
   public async remoteUpdateData(path: string[], part:any): Promise<any> {
     return await this.dbapi.updateData(path, part);
   }
+  /*
   public async remoteTransaction(path: string[], fnUpdate: any, fnComplete?: any): Promise<any> {
     let data;
 
@@ -400,7 +436,7 @@ class LocalDB{
         }
     });
     return data;
-  }
+  }*/
 
   /**
    * update version
@@ -420,10 +456,15 @@ class LocalDB{
     return await this.storage.set(path.join("/"), data);
   }
 
+  /**
+   * get and sync the data between local and remote.
+   * @param path 
+   * @param fnDefineInit 
+   */
   public async getNsyncData(path: string[], fnDefineInit:()=>any) {
     this.assert_path(path);
     let data;
-
+    
     let remote_ver = await this.remoteGetVersion(path);
     let local = await this.localGetData(path);
     
@@ -452,8 +493,10 @@ class LocalDB{
     }
     else {
       data = fnDefineInit();
-      await this.localSetData(path, data);
-      await this.remoteSetData(path, data);
+      if (data) {
+        await this.localSetData(path, data);
+        await this.remoteSetData(path, data);
+      }  
     }
 
     return data;
@@ -485,89 +528,32 @@ class LocalDB{
   }
 
   public assert_path(path: string[]) {
-    let err = false;
+    let err = !path;
     for (let i = 0; !err && i < path.length; i++){
       if (!path[i]) err = true;
     }
     if (err) {
-      console.error("Error Path '", path.join("/") + "'");
+      console.error("Error Path '", (path?path.join("/"):null) + "'");
       throw new Error();
     }
   }
 
-
-
-
-
-
-
-  //get data from local and remote and return the fresher one
-  //for very first time
-  public async loadSyncedData(path: string[], fnInitData: Function): Promise<any> {
-    let local = await this.storage.get(path.join("/"));
-    let remote_ver = await this.dbapi.getDataVer(path);
-    console.log(path.join("/"), local, remote_ver);
-
-    let data = local;
-    if (local && remote_ver>=0) {
-      if (local.ver > remote_ver) {
-        await this.dbapi.setData(path, local);
-      }
-      if (local.ver < remote_ver) {
-        data = await this.dbapi.getData(path);
-        await this.storage.set(path.join("/"), data);
-      }
-    }
-    else if (remote_ver >= 0) {
-      data = await this.dbapi.getData(path);      
-      await this.storage.set(path.join("/"), data);
-    }
-    else if (local) {
-      //shouldn't happen except in devp
-      console.error("in devp? ")
-      await this.dbapi.setData(path, local);
-    }
-    else {
-      data = fnInitData();
-      await this.dbapi.setData(path, data);        
-      await this.storage.set(path.join("/"), data);
-    }
-
-    this.differ.addData(path.join("/"), data)
-    return data;
-  }
-
-  //write both local and remote database with new time version.
-  public async saveData(path: string[], data: any): Promise<any> {
-    const pid = path.join("/");
-    let diff = this.differ.diffById(pid, data);
-    
-    if (diff && (diff.changes || diff.adds)) {
-      data.ver = Date.now();
-      // diff.changes.ver = data.ver;
-      diff.changes = {...diff.changes,...diff.adds,ver:data.ver};
-      
-      await this.storage.set(pid, data);
-
-      await this.dbapi.updateData(path, diff.changes);
-      console.log("update changes");
-      console.dir(diff.changes)
-
-      this.differ.addData(pid, data);
-    }
-    else if (!diff) {
-      await this.storage.set(pid, data);
-      await this.dbapi.setData(path, data);
-      this.differ.addData(pid, data);
-    }
-  }
-
+  /**
+   * new/set/update date with data protection.
+   * @param path 
+   * @param fnUpdate 
+   * @param fnComplete 
+   */
   public async transaction(path: string[], fnUpdate: (currentData:any)=>any, fnComplete?: (error:Error, committed:boolean)=>any): Promise<any> {
     let data;
 
     await this.dbapi.transaction(path,
       (currentData) => {
-        return fnUpdate(currentData);
+        let data = fnUpdate(currentData);
+        if (data !== currentData && data != null && data.ver) {
+          data.ver = Date.now();
+        }
+        return data;
       },
       (error, committed, snapshot) => {
         if (error) {
@@ -586,28 +572,6 @@ class LocalDB{
       await this.storage.set(path.join("/"), data);
     }
     return data;
-  }
-
-  //  abstract transaction(path: string[], fn: any): Promise<any>;
-
-
-
-
-  //check if remote date version is fresher than current data.
-  public async hasNewerVer(path: string[], data: any): Promise<any> {
-    let remote_ver = await this.dbapi.getDataVer(path);
-    return remote_ver > data.ver
-  }
-
-  //check and update if remote date version is fresher than current data.
-  public async checkRemoteData(path: string[], data: any): Promise<any> {
-    let remote_ver = await this.dbapi.getDataVer(path);
-    if (remote_ver > data.ver) {
-      let remote_data = await this.dbapi.getData(path);
-
-      await this.storage.set(path.join("/"), remote_data);
-      return remote_data;
-    }
   }
 
 }
@@ -768,7 +732,7 @@ export class Wata<T>{
 
 
 
-class WataUserInfo extends Wata<UserInfo>{
+export class WataUserInfo extends Wata<UserInfo>{
   
   constructor(public db: LocalDB) {
     super();
@@ -788,19 +752,52 @@ class WataUserInfo extends Wata<UserInfo>{
   private user:UserInfo;
 
   private async retrieve2(action: any) {
-    if (action && action.user) {
-      this.user = action.user;
-      this.path = [DbPrefix.USERINFO, this.user.uid];
+    if (!action) return;
+    if (action.cmd === WataAction.LOGINUSER) {
+      let user:UserInfo = action.user;
+      console.log("get user " + user.email);
+
+      //get if user existed
+      let user_existed = await this.db.remoteGetData([DbPrefix.USERINFO], {orderBy:"email",equalTo:user.email})
+
+      if (user_existed) {
+        this.user = user_existed[Object.keys(user_existed)[0]];
+      }
+      else {
+        //get empty uid
+        let emptyuid;
+        while (true) {
+          emptyuid = MiscFunc.uid();
+          let taken = await this.db.remoteGetData([DbPrefix.USERINFO, emptyuid, "email"]);
+          if (!taken)
+            break;  
+        }
+        user.uid = emptyuid;
+        this.path = [DbPrefix.USERINFO, user.uid];
+        console.log("create user " + user.email);
+
+        this.user = await this.db.getNsyncData(this.path, () => user);
+      }
+
+      if (this.user) {
+        action.user.uid = this.user.uid;
+        this.path = [DbPrefix.USERINFO, user.uid];
+        
+        if (!this.user.localPhotoURL || !this.user.localPhotoURL.startsWith("data:image"))
+          this.user.localPhotoURL = this.user.photoURL;
+        this.addEvent(WataEvent.USERLOGIN, this.user);
+      }
+
+      return this.user;
     }
-    else return;
+    if (action.cmd == WataAction.GETUSERINFO) {
+      let useruid = action.useruid;
+      this.path = [DbPrefix.USERINFO, useruid];
 
-    let data = await this.db.getNsyncData(this.path, () => this.user);
-
-    if (!data.localPhotoURL || !data.localPhotoURL.startsWith("data:image"))
-      data.localPhotoURL = this.user.photoURL;
-
-    this.addEvent(WataEvent.USERLOGIN, data);
-    return data;
+      let user = await this.db.remoteGetData(this.path);
+      return user;
+    }
+    return;
   }
   
   private async commit2(action: any) {
@@ -820,7 +817,7 @@ class WataUserInfo extends Wata<UserInfo>{
 
 
 
-class WataUserCfg extends Wata<UserCfg>{
+export class WataUserCfg extends Wata<UserCfg>{
   
   constructor(public db: LocalDB, public translate: TranslateService, w_user:Wata<UserInfo>) {
     super();
@@ -850,18 +847,42 @@ class WataUserCfg extends Wata<UserCfg>{
     }
     else return;  
 
-    let data = await this.db.getNsyncData(this.path, UserCfg.getDefault);
+    let data: UserCfg = await this.db.getNsyncData(this.path, UserCfg.getDefault);
+    
+    if (data) {
+      if (!data.book_record) data.book_record = { books: {}};
+      if (!data.book_record.books) data.book_record.books = {};
 
-    this.addEvent(WataEvent.USERCFGUPDATE, data);
+      console.log(data)
+      this.addEvent(WataEvent.USERCFGUPDATE, data);
+    }
+
     return data;
   }
   
   private async commit2(action: any) {
     if (action) {
-      
+      if (action.cmd === WataAction.UPDATEBOOKREC) {
+        const bookuid = action.bookuid;
+        const quizuid = action.quizuid; //or something defined by each type of book, ex: 'cfg'
+
+        if (!this.mirror.book_record.books[bookuid]) {
+          let parts = this.data.book_record.books[bookuid];
+          let diff = this.differ.diff(null, parts)
+          this.db.bothUpdate([...this.path,"book_record","books",bookuid], parts, diff);
+        }
+        else {
+          let parts = this.data.book_record.books[bookuid][quizuid];
+          let mirror = this.mirror.book_record.books[bookuid][quizuid];
+          let diff = this.differ.diff(mirror, parts)
+          this.db.bothUpdate([...this.path,"book_record","books",bookuid,quizuid], parts, diff);
+        }
+      }
     }
     else {
-      let diff = this.getDiff();
+      //update without book_record (book_record will get bigger time after time)
+      let diff = this.differ.diff(this.mirror, this.data, ['book_record']);
+
       if (diff.diff) {
         this.db.bothUpdate(this.path, this.data, diff);
 
@@ -875,7 +896,7 @@ class WataUserCfg extends Wata<UserCfg>{
 
 
 
-class WataTagList extends Wata<Tag[]>{
+export class WataTagList extends Wata<Tag[]>{
   
   constructor(public db: LocalDB, w_cfg:Wata<UserCfg>) {
     super();
@@ -906,10 +927,10 @@ class WataTagList extends Wata<Tag[]>{
       let taglist = <TagList>data;
 
       let arr: Tag[] = [];
-      Object.keys(taglist.list).forEach(async key => {
+      for (let key in taglist.list) {
         if (taglist.list[key] instanceof Object)
           arr.push(taglist.list[key])
-      });
+      };
   
       arr.sort(function (a, b) { return b.cnt - a.cnt });
 
@@ -976,8 +997,6 @@ class WataTagList extends Wata<Tag[]>{
       },
       async (error, committed) => {
         if (doNew) {
-          await this.db.remoteUpdateVer([DbPrefix.TAGLIST, this.langpair]);
-
           if (committed && langpair === this.langpair) {
             this.retrieve({cmd:WataAction.REDO})
           }
@@ -990,77 +1009,21 @@ class WataTagList extends Wata<Tag[]>{
 
 
 
-class WataBookInfos extends Wata<BookInfo[]>{
-  
-  constructor(public db: LocalDB, w_cfg:Wata<UserCfg>) {
-    super();
-    // this.constructor2(this.retrieve2, this.commit2);
-  }
-
-  private path: string[];
-  private langpair: string;
-
-  private async retrieve2(action: any) {
-    if (!action) return;
-    //get by author
-    //get by langpair, sort by book counts
-    // if (action.cmd === ) {
-    //   let ucfg = <UserCfg>action.ucfg;
-    //   this.langpair = MiscFunc.getLangPair(ucfg.nalang, ucfg.talang);
-
-    //   this.path = [DbPrefix.TAGLIST, this.langpair];
-    // }
-    // else if (action.cmd === WataAction.REDO) {}
-    
-    // let data = await this.db.getNsyncData(this.path, () => { return { ver: 1, list: {} } });
-
-    // if (data) {
-    //   let taglist = <TagList>data;
-
-    //   let arr: Tag[] = [];
-    //   Object.keys(taglist.list).forEach(async key => {
-    //     if (taglist.list[key] instanceof Object)
-    //       arr.push(taglist.list[key])
-    //   });
-  
-    //   arr.sort(function (a, b) { return b.cnt - a.cnt });
-
-    //   return arr;
-    // }
-  }
-  
-  private async commit2(action: any) {
-    // if (action) {
-      
-    // }
-    // else {
-    //   let diff = this.getDiff();
-    //   if (diff.diff) {
-    //     this.db.bothUpdate(this.path, this.data, diff);
-
-    //     return true;
-    //   }
-    // }
-  }
-
-  async join() {
-    
-  }
-  async leave() {
-    
-  }
-}
-
 export class WataBookInfo extends Wata<BookInfo[]>{
   
-  constructor(public db: LocalDB, public translate:TranslateService, public w_taglist:WataTagList) {
+  constructor(public db: LocalDB, public w_taglist:WataTagList) {
     super();
     this.constructor2(this.retrieve2, this.commit2);
   }
 
   private BYUID = [DbPrefix.BOOKINFO, "byuid"];  // for bookinfo/byuid
   private BYTAG = [DbPrefix.BOOKINFO, "bytag"];  // for bookinfo/bytag
-
+  
+  private querytag:Tag;
+  private queryuser:UserInfo;
+  private querypath:string[];
+  private querynext:DBQuery;
+  
   private async retrieve2(action: any) {
     if (!action) return this.data;
 
@@ -1069,16 +1032,45 @@ export class WataBookInfo extends Wata<BookInfo[]>{
       return this.newBook(action);
     }
 
-    //list by author
-    if (action.cmd === WataAction.LISTAUTHORBOOKS) {
-      // return this.newBook(action);
-    }
-
     //list by langpair+tag
     if (action.cmd === WataAction.LISTTAGBOOKS) {
-      // return this.newBook(action);
+      this.querypath = [...this.BYTAG,action.langpair,action.tagname];
+      this.querynext = Object.assign({}, action.query);
+      
+      let data = await this.more();
+
+      if (data != null) {
+        if (this.data != null)
+          data = this.data.concat(data);
+        return data;
+      }
+      return this.data;
     }
 
+    //list by author
+    if (action.cmd === WataAction.LISTAUTHORBOOKS) {
+      this.querypath = [...this.BYUID];
+      this.querynext = Object.assign({}, action.query);
+      
+      let data = await this.more();
+
+      if (data != null) {
+        if (this.data != null)
+          data = this.data.concat(data);
+        return data;
+      }
+      return this.data;
+    }
+
+    //get one by uid
+    if (action.cmd === WataAction.GETBOOKINFO) {
+      this.querypath = [...this.BYUID, action.bookuid];
+  
+      let data = await this.db.getNsyncData(this.querypath, () => undefined);
+      
+      return data ? [data] : undefined;
+    }
+    
     else return;
   }
   
@@ -1089,7 +1081,15 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     else {
 
       let changed = false;
-      this.data.forEach((info, idx) => {
+      for (let key in this.data) {
+        const idx = parseInt(key);
+        const info = this.data[idx];
+
+        info.tag1 = info.tag1.trim();
+        info.tag2 = info.tag2.trim();
+        if (info.tag1 && info.tag1 === info.tag2)
+          info.tag2 = "";
+
         let infoFrom = this.mirror[idx];
         let diff = this.differ.diff(infoFrom, info);
         if (diff.diff) {
@@ -1098,12 +1098,71 @@ export class WataBookInfo extends Wata<BookInfo[]>{
           this.db.bothUpdate([...this.BYUID, info.uid], info, diff);
 
           this.updateToTag(infoFrom, info, diff);
-
         }
-      })
+      }
       return changed;
       
     }
+  }
+
+  last: BookInfo;
+  public async more(): Promise<BookInfo[]> {
+    if (!this.querynext) return;
+
+    let EOP = false;
+    const PAGESIZE = (this.querynext.limitToFirst) ? this.querynext.limitToFirst : this.querynext.limitToLast;
+    const ORDER_ASC = (this.querynext.limitToFirst != null);
+    const ORDERCOL = this.querynext.orderBy;
+    const KEYCOL = "uid";
+    if (ORDER_ASC)
+      this.querynext.startAt = 0;
+    else
+      this.querynext.endAt = 999999999;
+
+    if (this.last) {
+      if (ORDER_ASC) {
+        this.querynext.startAt = this.last[ORDERCOL];
+        this.querynext.startAtKey = this.last[KEYCOL];
+      }
+      else {
+        this.querynext.endAt = this.last[ORDERCOL];
+        this.querynext.endAtKey = this.last[KEYCOL];
+      }
+    }
+    // console.log(this.querynext)
+
+    let data = await this.db.remoteGetData(this.querypath, this.querynext);
+    
+    if (data) {
+      let arr:BookInfo[] = [];
+      for (let key in data) {
+        arr.push(data[key]);
+      }
+
+      if (ORDER_ASC)
+        arr.sort(function (a, b) { return a[ORDERCOL] - b[ORDERCOL] });
+      else
+        arr.sort(function (a, b) { return (a[ORDERCOL] == b[ORDERCOL]) ? 1 : b[ORDERCOL] - a[ORDERCOL] });
+
+      EOP = (arr.length < PAGESIZE);
+      if (arr.length > 0) {
+        let first = arr[0];
+        if (this.last != null && this.last[KEYCOL] === first[KEYCOL])
+          arr.splice(0, 1);
+        
+        if (arr.length > 0)
+          this.last = arr[arr.length - 1];
+      }
+
+      // for (let book of arr) {
+      //   console.log(">>" + book[KEYCOL] + " : " + book[ORDERCOL] + " : " + book.title);
+      // }
+      // console.log("----")
+      return arr;
+    }
+      
+      
+    return null;
   }
 
   private async newBook(action) {
@@ -1201,12 +1260,52 @@ export class WataBookData extends Wata<BookData>{
       
       return data;
     }
+    if (action && action.cmd === WataAction.GETBOOKDATA) {
+      this.bookuid = action.bookuid;
+      this.path = [DbPrefix.BOOKDATA, this.bookuid];
+
+      let data = await this.db.getNsyncData(this.path, () => {
+        return null;
+      });
+
+
+      
+      return data;
+    }
+
     else return;  
 
     // let data = await this.db.getNsyncData(this.path, UserCfg.getDefault);
 
     // this.addEvent(WataEvent.USERCFGUPDATE, data);
     // return data;
+  }
+
+  public mapToArray(): any[]{
+    if (!this.data) return [];
+
+    let arr = [];
+    for (let idx in this.data.ordermap) {
+      // console.log(idx + " : " + this.data.ordermap[idx])
+      let uid = this.data.ordermap[idx];
+      arr[parseInt(idx)] = this.data.data[uid];
+    };
+
+    // for (let key in this.data.data) {
+    //     arr.push(this.data.data[key])
+    // };
+
+    // arr.sort(function (a, b) { return a.order - b.order });
+    return arr;
+  }
+
+  private getIdxOfBook():number {
+    for (let idx in this.w_bookinfo.data) {
+      let book = this.w_bookinfo.data[idx];
+      if (book.uid === this.bookuid)
+        return parseInt(idx);  
+    }
+    return -1;
   }
   
   private async commit2(action: any) {
@@ -1218,17 +1317,16 @@ export class WataBookData extends Wata<BookData>{
         let diff = this.differ.diff(infoFrom, item);
         if (diff.diff) {
           changed = true;
-
-
         }
       })
       return changed;
     }
     else if (action.cmd == WataAction.UPDATEBOOKDATA) {
-      this.data.data = action.data;
+      // this.data.data = action.data;
       
       let changed = false;
-      Object.keys(this.data.data).forEach((key, idx) => {
+      //check each item updated
+      for (let key in this.data.data) {
         let item = this.data.data[key];
 
         let itemFrom = this.mirror.data[key];
@@ -1236,27 +1334,39 @@ export class WataBookData extends Wata<BookData>{
         
         if (diff.diff) {
           changed = true;
-          this.db.bothUpdate([...this.path, key], item, diff);
+          this.db.bothUpdate([...this.path, "data", key], item, diff);
         }
-      });
+      };
 
-      Object.keys(this.mirror.data).forEach((key, idx) => {
+      //check each item removed
+      for (let key in this.mirror.data) {
         if (!this.data.data[key]) {
           changed = true;
-          this.db.bothDel([...this.path, key]);  
+          this.db.bothDel([...this.path, "data", key]);  
         }
-      });
+      };
+
+      //check ordermap
+      let diff = this.differ.diff(this.mirror.ordermap, this.data.ordermap);
+      if (diff.diff) {
+        changed = true;
+        this.db.bothSet([...this.path, "ordermap"], this.data.ordermap);
+      }
+      
 
       if (Object.keys(this.mirror.data).length != Object.keys(this.data.data).length) {
-        this.w_bookinfo.data[0].qnum = Object.keys(this.data.data).length;
-        this.w_bookinfo.commit();
+        let bookidx = this.getIdxOfBook();
+        if (bookidx >= 0) {
+          this.w_bookinfo.data[bookidx].qnum = Object.keys(this.data.data).length;
+          this.w_bookinfo.commit();
+        }
       }
       // console.log("...update", changed)
       
       return changed;
     }
     else if (action.cmd == WataAction.SETBOOKDATA) {
-      this.data.data = action.data;
+      // this.data.data = action.data;
       this.db.bothSet(this.path, this.data);
       return true;
     }

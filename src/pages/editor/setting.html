@@ -15,16 +15,34 @@
   </ion-header>
   
   <ion-content>
-  
+
     <ion-list padding-top>
       <div ion-text color="primary">&nbsp; {{'BOOKNAME'|translate}}</div>
       <ion-item>
-        <ion-input type="text" [(ngModel)]="setting.data[0].title"></ion-input>
+        <ion-input text-right type="text" [(ngModel)]="setting.data[0].title"></ion-input>
       </ion-item>
-      <ion-item style="display:none"></ion-item>
+      <ion-item style="display:none" ></ion-item>
             
     </ion-list>
     
+    
+    <ion-list>
+      <div ion-text color="primary">&nbsp; {{'TAG'|translate}}</div>
+
+        <ion-item>
+          <ion-label stacked>{{'TAG'|translate}}1 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
+
+          <ion-input text-right type="text" [(ngModel)]="setting.data[0].tag1"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>{{'TAG'|translate}}2 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
+
+          <ion-input text-right type="text" [(ngModel)]="setting.data[0].tag2"></ion-input>
+        </ion-item>
+      <ion-item style="display:none"></ion-item>
+    </ion-list>
+
     <ion-list>
         <div ion-text color="primary">&nbsp; {{'LANG'|translate}}</div>
   
@@ -44,23 +62,47 @@
           </ion-select>
         </ion-item>
 
+  
+        <ion-item>
+          <ion-label>{{'_MCQ.QUESTION'|translate}}</ion-label>
+
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.q">
+              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
+              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{'_MCQ.ANSWER'|translate}}</ion-label>
+
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.a">
+              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
+              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{'_MCQ.EXAMPLE'|translate}}</ion-label>
+
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.exp">
+              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
+              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>{{'_MCQ.TIP'|translate}}</ion-label>
+
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.tip">
+              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
+              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        
+        <ion-item style="display:none" ></ion-item>
+        
     </ion-list>
 
-    <ion-list>
-          <div ion-text color="primary">&nbsp; {{'TAG'|translate}}</div>
-
-          <ion-item>
-              <ion-label stacked>{{'TAG'|translate}}1 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
-
-              <ion-input type="text" [(ngModel)]="setting.data[0].tag1"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-label stacked>{{'TAG'|translate}}2 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
-
-              <ion-input type="text" [(ngModel)]="setting.data[0].tag2"></ion-input>
-            </ion-item>
-            <ion-item style="display:none"></ion-item>
-          </ion-list>
   </ion-content>
   

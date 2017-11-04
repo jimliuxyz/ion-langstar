@@ -15,6 +15,7 @@ import { LogoutPage } from '../logout/logout';
 import { CreationComponent } from '../creation/creation';
 import { MyService } from '../../providers/myservice/myservice';
 import { CloudHomeComponent } from '../cloud-home/cloud-home';
+import { MiscFunc } from '../../define/misc';
 
 export interface HomeSlidePage{
   title: string,
@@ -41,6 +42,7 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
   @ViewChild('SwipedTabsSlider') SwipedTabsSlider: Slides ;
   @ViewChild('SlideTpl', { read: ViewContainerRef }) SlideTpl: ViewContainerRef;
 
+  readytest = "not ready";
   SwipedTabsIndicator: any = null;
   slides: HomeSlidePage[] = [];
   sidx: number = 0;
@@ -57,6 +59,7 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
 
   async ionViewCanEnter(): Promise<any>{
     await this.serv.ready$;
+    this.readytest = "ready";
     return true;
   }
 

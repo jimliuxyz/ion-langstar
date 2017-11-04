@@ -25,7 +25,6 @@ export abstract class IRDBapi {
   abstract setData(path: string[], data: any): Promise<any>;
   abstract updateData(path: string[], data: any): Promise<any>;
   abstract transaction(path: string[], fnUpdate: any, fnComplete?: any): Promise<any>;
-  abstract getSortData(path: string[]): Promise<any>;
     
   abstract test1(data: any): Promise<any>;
 }
@@ -152,7 +151,7 @@ export class DBapiFirebase implements IRDBapi {
     }
     let userinfo = new UserInfo();
     //do not use firebase uid as uid, because you can't retrieve it once you don't use firebase anymore
-    userinfo.uid = MiscFunc.md5(user.email);
+    userinfo.uid = undefined;
     userinfo.displayName = user.displayName;
     userinfo.email = user.email;
     userinfo.photoURL = user.photoURL;
@@ -188,11 +187,65 @@ export class DBapiFirebase implements IRDBapi {
     return await firebase.database().ref(path.join("/")).remove();
   }  
 
-  getDataVer(path: string[]): Promise<number> {
-    return new Promise((resolve, reject) => {
+  private appendQuery(ref: firebase.database.Reference, query?: DBQuery):firebase.database.Query {
+    if (query) {
+      let que = ref.orderByChild(query.orderBy);
+
+      if (query.equalTo != null) {
+        if (query.equalToKey)
+          que = que.equalTo(query.equalTo, query.equalToKey);
+        else
+          que = que.equalTo(query.equalTo);   
+      }
+      else if (query.startAt != null) {
+        if (query.startAtKey)
+          que = que.startAt(query.startAt, query.startAtKey);
+        else
+          que = que.startAt(query.startAt);      
+      }
+      else if (query.endAt != null) {
+        if (query.endAtKey)
+          que = que.endAt(query.endAt, query.endAtKey);
+        else
+          que = que.endAt(query.endAt);      
+      }
+
+      if (query.limitToFirst!=null)
+        que = que.limitToFirst(query.limitToFirst);
+      if (query.limitToLast!=null)
+        que = que.limitToLast(query.limitToLast);
+
+      return que;
+    }
+    return ref;
+  }
+
+
+  async getData(path: string[], query?:DBQuery): Promise<any> {
+    return new Promise(async (resolve, reject) => {
       // let user = firebase.auth().currentUser;
 
-      firebase.database().ref(path.join("/") + "/ver").once('value').then((snapshot) => {
+      let ref = firebase.database().ref(path.join("/"));
+      let que = this.appendQuery(ref, query);
+      
+      await que.once('value').then((snapshot) => {
+        let data = snapshot.val();
+        if (data != null)
+          resolve(data);
+        else
+          resolve();  
+      });
+    })
+  }
+
+  getDataVer(path: string[], query?:DBQuery): Promise<number> {
+    return new Promise(async (resolve, reject) => {
+      // let user = firebase.auth().currentUser;
+
+      let ref = firebase.database().ref(path.join("/") + "/ver");
+      let que = this.appendQuery(ref, query);
+
+      await que.once('value').then((snapshot) => {
         let data = snapshot.val();
         if (data != null)
           resolve(data);
@@ -203,99 +256,23 @@ export class DBapiFirebase implements IRDBapi {
   }
 
 
-  getData(path: string[], query?:DBQuery): Promise<any> {
-    return new Promise((resolve, reject) => {
-      // let user = firebase.auth().currentUser;
-
-      if (query) {
-        let ref = firebase.database().ref(path.join("/"));
-        let que = ref.orderByChild(query.orderBy);
-
-        if (query.startAt && !query.startAtKey)
-          que = que.startAt(query.startAt);  
-        else if (query.startAt && query.startAtKey)
-          que = que.startAt(query.startAt, query.startAtKey);  
-
-        if (query.endAt && !query.endAtKey)
-          que = que.endAt(query.endAt);  
-        else if (query.endAt && query.endAtKey)
-          que = que.endAt(query.endAt, query.endAtKey);  
-
-        if (query.limitToFirst)
-          que = que.limitToFirst(query.limitToFirst);
-        if (query.limitToLast)
-          que = que.limitToLast(query.limitToLast);
-        
-        // que.orderByPriority
-        
-        que.once('value').then((snapshot) => {
-          let data = snapshot.val();
-          if (data != null)
-            resolve(data);
-          else
-            resolve();  
-        });
-        return;
-      }
-
-
-console.log(path)
-      if (query) {
-        firebase.database().ref(path.join("/"))
-          .orderByChild("views")
-        //begegory75  
-          // .startAt(7, "b68k1ay54d")  
-          // .startAt(6, "begegory75")  
-          // .endAt(7, "hn3jx5hwi3")  
-          
-        .limitToLast(3)
-        // .equalTo("GEPT")  
-        .once('value').then((snapshot) => {
-          console.dir(snapshot)
-          let data = snapshot.val();
-          if (data != null)
-            resolve(data);
-          else
-            resolve();
-        });  
-        return;
-      }
-        
-
-      firebase.database().ref(path.join("/")).once('value').then((snapshot) => {
-        let data = snapshot.val();
-        if (data != null)
-          resolve(data);
-        else
-          resolve();  
-      });
-    })
-  }
-
-  getSortData(path: string[]): Promise<any> {
-    return new Promise((resolve, reject) => {
-      // let user = firebase.auth().currentUser;
-
-      console.log("...", path.join("/"))
-
-      firebase.database().ref(path.join("/")).orderByChild("cnt").once('value').then((snapshot) => {
-        let data = snapshot.val();
-        if (data != null)
-          resolve(data);
-        else
-          resolve();  
-      });
-    })
-  }
-
   async setData(path: string[], data: any) {
 
     return await firebase.database().ref(path.join("/")).set(data);
   }
 
   async updateData(path: string[], data: any) {
+    const path1 = path.join("/");
+    let slot = [];
+    MiscFunc.pathlize(slot, "root", "", data);
 
-    return await firebase.database().ref(path.join("/")).update(data);
+    for (let key in slot) {
+      const path2 = path1+key.replace(/^root/, "");
+      const data2 = slot[key];
+      // console.log(path2, data2);
+      await firebase.database().ref(path2).update(data2);
+    }
+    return true;
   }
 
   async transaction(path: string[], fnUpdate: any, fnComplete: any) {
@@ -325,6 +302,8 @@ console.log(path)
 
 export class DBQuery{
   orderBy: string;
+  equalTo?: (number | boolean | string);
+  equalToKey?: string;
   startAt?: (number | boolean | string);
   startAtKey?: string;
   endAt?: (number | boolean | string);

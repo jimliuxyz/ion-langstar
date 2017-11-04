@@ -23,19 +23,29 @@ export class WataEvent{
 
 export class WataAction{
   static REDO = "REDO";
-  
+
+  //user
+  static LOGINUSER = "LOGINUSER";
+  static GETUSERINFO = "GETUSERINFO";
+
+  //user cfg
+  static UPDATEBOOKREC = "UPDATEBOOKREC";
+
   //book info
   static NEWBOOKINFO = "NEWBOOKINFO";
   static GETBOOKINFO = "GETBOOKINFO";
   static GETTAGBOOKINFO = "GETTAGBOOKINFO";
 
+  //list book info
+  static LISTTAGBOOKS = "LISTTAGBOOKS";
+  static LISTAUTHORBOOKS = "LISTAUTHORBOOKS"; 
+  
+  //book data
   static NEWBOOKDATA = "NEWBOOKDATA";
   static GETBOOKDATA = "GETBOOKDATA";
 
-  static LISTAUTHORBOOKS = "LISTAUTHORBOOKS";
-  static LISTTAGBOOKS = "LISTTAGBOOKS";
-  
   static SETBOOKDATA = "SETBOOKDATA";
   static UPDATEBOOKDATA = "UPDATEBOOKDATA";
-  
+
+
 }

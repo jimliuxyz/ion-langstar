@@ -222,13 +222,13 @@ export class SlideRefresher {
     }
 
     //xyz, get which refresher under active slide,
-    let activeRefresher = this._content._elementRef.nativeElement.querySelector(".swiper-slide-active * "+this.eleref.nativeElement.tagName);
+    let activeRefresher = document.querySelector(".swiper-slide-active * "+this.eleref.nativeElement.tagName);
     if (activeRefresher == null || activeRefresher != this.eleref.nativeElement)
       return;
 
     let scrollHostScrollTop = this._content.getContentDimensions().scrollTop;
     //xyz, use slide as content
-    scrollHostScrollTop = this._content._elementRef.nativeElement.querySelector(".swiper-slide-active > .slide-zoom").scrollTop;
+    scrollHostScrollTop = document.querySelector(".swiper-slide-active > .slide-zoom").scrollTop;
     // if the scrollTop is greater than zero then it's
     // not possible to pull the content down yet
     if (scrollHostScrollTop > 0) {

@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController, Content, ViewController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { MyService, WataBookInfo, WataBookData } from '../../providers/myservice/myservice';
-import { BookInfo, BookType, BookSet, BookData_MCQ } from '../../define/book';
+import { BookInfo, BookType, BookData_MCQ, BookDataCfg_MCQ } from '../../define/book';
 import { Mocks } from '../../define/mocks';
 import { Observable, Subject } from 'rxjs';
 import { MiscFunc } from '../../define/misc';
@@ -28,7 +28,6 @@ export class EditorPage {
   @ViewChild(Content) content: Content;
   @ViewChild('tarea', {read:ElementRef}) tarea: ElementRef;
 
-  book: BookSet;
   data: any[];
   setting: BookInfo = <BookInfo>{};
   dirty = false;
@@ -47,13 +46,21 @@ export class EditorPage {
     let modal = this.modalCtrl.create(SettingComponent, { setting:this.w_bookinfo });
     modal.present();
   }
+  skipfocus(e:Event){
+    e.preventDefault();  
+    e.cancelBubble=true;
+    const txtarea: (any) = this.tarea.nativeElement;
+    txtarea.focus();
+  }
   
   w_bookinfo: WataBookInfo;
   w_bookdata: WataBookData;
   async ionViewCanEnter() {
 
     let ready = await this.serv.ready$;
-    let book = await this.serv.newBook(BookType.MCQ);
+    let book = await this.serv.newBook(BookType.MCQ); 
+    book.bookinfo.data[0].cfg = new BookDataCfg_MCQ();
+    console.log(book.bookinfo.data[0].uid)
 
     this.w_bookinfo = book.bookinfo;
     this.w_bookdata = book.bookdata;
@@ -66,12 +73,11 @@ export class EditorPage {
     //use mock data to test
     const txtarea: (any) = this.tarea.nativeElement;
     txtarea.value = Mocks.mcqtext;
-    this.data = this.toData();
+    this.data = this.toData().data;
     this.tarea.nativeElement.value = this.toTxt(this.data);
     
-    this.openModal("");
+    // this.openModal("");
     this.save();
-
 
     return true;
   }
@@ -132,14 +138,16 @@ export class EditorPage {
     // this.book.data.data = this.data;
     // this.serv.saveBook(this.book);
 
-    this.data = this.toData();
+    let set = this.toData();
     
-    this.w_bookdata.data.data = this.data;
+    this.w_bookdata.data.data = set.data;
+    this.w_bookdata.data.ordermap = set.omap;
+
     if (!this.w_bookdata.data)
-      this.w_bookdata.commit({ cmd: WataAction.SETBOOKDATA, data: this.data })
+      this.w_bookdata.commit({ cmd: WataAction.SETBOOKDATA })
     else
-      this.w_bookdata.commit({ cmd: WataAction.UPDATEBOOKDATA, data: this.data })
-    console.log(this.data)
+      this.w_bookdata.commit({ cmd: WataAction.UPDATEBOOKDATA })
+    console.log(set.data)
 
   }
 
@@ -147,6 +155,7 @@ export class EditorPage {
     let linearr = this.tarea.nativeElement.value.split('\n');
 
     let data = {};
+    let omap = {};
     let item;
     let leadprev = "";
     let cnt = 0;
@@ -163,11 +172,13 @@ export class EditorPage {
         switch (i==0?lead:leadprev) {
           case LEADQ:
             const q = (i == 0 ? "" : item.q) + text;
-            const key = MiscFunc.md5(q);
+            const key = MiscFunc.hash(q);
             if (lead === LEADQ) {
               item = new BookData_MCQ();
+              item.uid = key;
               data[key] = item;
-              item.order = ++cnt;
+              omap[cnt++] = key;
+              // item.order = ++cnt;
             }
             item.q = q;
             break;
@@ -199,10 +210,10 @@ export class EditorPage {
 
     });
     
-    return data;
+    return { data, omap };
   }
 
-  toTxt(data: any): string {
+  toTxt(data: any, omap?:any): string {
     let dataarr = [];
     let textarr = [];
     
@@ -291,14 +302,15 @@ export class EditorPage {
 
     if (rep) {
       txtarea.value = txtarea.value.substring(0, insertpos) + txtpart2;
-      txtarea.focus();
       txtarea.selectionEnd = selend + repoffset;
+      txtarea.focus();
     }
     else {
       txtarea.value = txtarea.value.substring(0, insertpos) + (newline2?"\r\n":"")  + (newline1?"\r\n":"") + appendtext + txtpart2;
       
+      txtarea.selectionEnd = selend + appendtext.length + (newline1 ? 1 : 0) + (newline2 ? 1 : 0);  ;
+      // txtarea.selectionEnd = insertpos + appendtext.length + (newline1 ? 1 : 0) + (newline2 ? 1 : 0);   
       txtarea.focus();
-      txtarea.selectionEnd = insertpos + appendtext.length + (newline1 ? 1 : 0) + (newline2 ? 1 : 0);   
     }
 
     

@@ -36,6 +36,7 @@ import { LogoutPage } from '../pages/logout/logout';
 import { CreationComponent } from '../pages/creation/creation';
 import { EditPageModule } from '../pages/editor/editorpage.module';
 import { CloudHomeComponent } from '../pages/cloud-home/cloud-home';
+import { ViewerPageModule } from '../pages/viewer/viewerpage.module';
 
 
 
@@ -54,8 +55,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
   BrowserModule,
     HttpClientModule,
-    EditPageModule,
-    IonicModule.forRoot(MyApp),
+    EditPageModule,ViewerPageModule,
+    IonicModule.forRoot(MyApp,{mode:'ios'}),
     IonicStorageModule.forRoot(),
     IonicPatchModule,
     SharedModule.forRoot(),

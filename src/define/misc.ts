@@ -1,7 +1,8 @@
 import MD5 from "md5.js";
+import { SpeechVoice } from "./tts";
 
 class Lang{
-  constructor(public code, public lang, public nalang) {
+  constructor(public code:string, public lang:string, public nalang:string) {
   }
 }
 const langlist: Lang[] = [
@@ -54,10 +55,63 @@ const langlist: Lang[] = [
   new Lang("zh_TW","Traditional Chinese","繁體中文"),
 ];
 
+
+let voices:SpeechVoice[] = [];
+
+function loadVoice() {
+  if (!window || !window.speechSynthesis) return;
+
+  const voices_ = window.speechSynthesis.getVoices();
+  if (!voices_ || voices_.length === 0)
+    setTimeout(loadVoice, 100);
+  
+  for (let voice of voices_) {
+    const v = new SpeechVoice(voice.voiceURI, voice.name, voice.lang);
+    voices.push(v);
+  }
+}
+
+//window.speechSynthesis.onvoiceschanged = ...
+setTimeout(loadVoice, 0);
+
+
+
 export class MiscFunc{
+
+  /**
+   * https://github.com/MatthewBarker/hash-string
+   * A string hashing function based on Daniel J. Bernstein's popular 'times 33' hash algorithm.
+   * @param text String to hash
+   * @return Resulting number.
+   */
+  static short_hash(text:string):number {
+    'use strict';
+
+    var hash = 5381,
+        index = text.length;
+
+    while (index) {
+        hash = (hash * 33) ^ text.charCodeAt(--index);
+    }
+
+    return hash >>> 0;
+  }
+
+  /**
+   * default hash function
+   * @param str 
+   */
+  static hash(str: string): string{
+    return this.short_hash(str).toString(35);
+    // return new MD5().update(str).digest('hex');
+  }
 
   static md5(str: string): string{
     return new MD5().update(str).digest('hex');
+  }
+
+  static email2UniID(email:string) {
+    
   }
 
   static async sleep(ms: number, callback?: () => any) {
@@ -77,12 +131,36 @@ export class MiscFunc{
         return true;
     })
   }
+
+  static getVoices(code: string):SpeechVoice[] {
+    const country = MiscFunc.getLangCountryCodeNormalize(code);
+    let arr: SpeechVoice[] = [];
+    for (let voice of voices) {
+      const country2 = MiscFunc.getLangCountryCodeNormalize(voice.lang);
+      if (country === country2)
+        arr.push(voice)  
+    }
+
+    if (arr.length === 0 && code !== "en") {
+      console.error("voice not found for : "+code)
+      return MiscFunc.getVoices("en");      
+    }
+    return arr;
+  }
   
+  static getLangCountryCodeNormalize(code: string): string {
+    return code.toLowerCase().replace(/[^A-Za-z].*/g,"");
+  }    
   static getLangCodeNormalize(code: string): string {
-    code = code.toLowerCase().replace(/[^A-Za-z]/g,"_");
+    let code_ = code.toLowerCase().replace(/[^A-Za-z]/g,"_");
     let lang = langlist.find((lang) => {
-      if (lang.code.toLowerCase() === code)
-        return true;
+      // if (lang.code.toLowerCase() === code)
+      //   return true;
+      return lang.code.toLowerCase().split(",").find((langcode) => {
+        // return false;
+        if (langcode.toLowerCase() === code_)
+          return true;
+      }) ? true : false;
     })
     if (!lang)
       console.error("unknown language : "+code)
@@ -128,6 +206,32 @@ export class MiscFunc{
     const ord2 = (compare < 0) ? lang2 : lang1;
     return (ord1 + "+" + ord2).toLowerCase();
   }
+
+  /**
+   * pathlize a object data.
+   * {a:{b:2,c:3},d:4,e:5}
+   * => slot["root/a"] = {b:2,c:3};
+   * => slot["root"] = {d:4,e:5}
+   * @param slot output paths
+   * @param path root path of current data
+   * @param key key of current data
+   * @param data current data
+   */
+  static pathlize(slot:any[], path:string, key:string, data:any){
+    if (!(data instanceof Object)){
+      if (!slot[path])
+        slot[path] = {}
+      if (slot[path][key])
+        throw new Error("pathlize error, recursive?");
+      slot[path][key] = data
+    }
+    else{
+      for (let key2 in data){
+        const obj = data[key2];
+        MiscFunc.pathlize(slot, path+(key?"/"+key:""), key2, obj)
+      }
+    }
+  }
 }
 
 // export const misc = new MiscFunc();
@@ -136,7 +240,7 @@ export class MiscFunc{
 export class JsObjDiffer{
   
   private pdatas = {}; //Primeval Data
-  constructor(public IGNOREARRAY:boolean=true) {
+  constructor() {
   }
 
   /**
@@ -164,18 +268,30 @@ export class JsObjDiffer{
     delete this.pdatas[id];
   }
 
-  private checkChanges(pdata: object, data: object): object {
+  private igonre(key: string, ignores: string[]): boolean{
+    for (let igkey of ignores) {
+      if (key === igkey)
+        return true;
+    }
+    return false;
+  }
+
+  private checkChanges(pdata: object, data: object, ignores:string[]=[], IGNOREARRAY:boolean=true): object {
     if (!data) return;
     if (!pdata) return;
     let changes;
-    Object.keys(pdata).forEach(key => {
+
+    for (let key in pdata) {
+      if (this.igonre(key, ignores))
+        continue;
+      
       //ignore function and array
       if (pdata[key] instanceof Function ||
-        (this.IGNOREARRAY && pdata[key] instanceof Array)) {
+        (IGNOREARRAY && pdata[key] instanceof Array)) {
         return;
       }
       else if (pdata[key] instanceof Object) {
-        let usbchanges = this.checkChanges(pdata[key], data[key])
+        let usbchanges = this.checkChanges(pdata[key], data[key], ignores, IGNOREARRAY)
         if (usbchanges) {
           if (!changes) changes = {};
           changes[key] = usbchanges;
@@ -185,29 +301,33 @@ export class JsObjDiffer{
         if (!changes) changes = {};
         changes[key] = data[key];         
       }
-    })
+    }
     return changes;
   }
 
-  private checkDels(pdata: object, data: object):object {
+  private checkDels(pdata: object, data: object, ignores:string[]=[], IGNOREARRAY:boolean=true):object {
     let changes;
     if (!pdata)
       return changes;  
     if (!data)
       return pdata; 
 
-    Object.keys(pdata).forEach(key => {
+    for (let key in pdata) {
+      if (this.igonre(key, ignores))
+      continue;
+
       //ignore function and array      
       if (pdata[key] instanceof Function ||
-        (this.IGNOREARRAY && pdata[key] instanceof Array)) {
+        (IGNOREARRAY && pdata[key] instanceof Array)) {
         return;
       }
       else if (pdata[key] instanceof Object) {
         if (!data[key]) {
+          if (!changes) changes = {};
           changes[key] = pdata[key];
         }
         else {
-          let usbchanges = this.checkDels(pdata[key], data[key])
+          let usbchanges = this.checkDels(pdata[key], data[key], ignores, IGNOREARRAY)
           if (usbchanges) {
             if (!changes) changes = {};
             changes[key] = usbchanges;
@@ -218,7 +338,7 @@ export class JsObjDiffer{
         if (!changes) changes = {};
         changes[key] = pdata[key];         
       }
-    })
+    }
     return changes;
   }
 
@@ -226,25 +346,27 @@ export class JsObjDiffer{
    * get diff by Primeval Data ID
    * @param id Id of Primeval Data
    * @param data Data
+   * @param ignores array of keys that will ignore
    */
-  public diffById(id: string, data:object):DifferResult {
+  public diffById(id: string, data:object, ignores:string[]=[], IGNOREARRAY:boolean=false):DifferResult {
     const pdata = this.pdatas[id];
     if (pdata == null) {
       console.error("diff warning: counldn't find ", id);
       return null;
     }
-    return this.diff(pdata, data);
+    return this.diff(pdata, data, ignores, IGNOREARRAY);
   }
 
   /**
    * get diff of two input object
    * @param pdata Primeval Data
    * @param data Data
+   * @param ignores array of keys that will ignore
    */
-  public diff(pdata: any, data: any): DifferResult {
-    let changes = this.checkChanges(pdata,data)
-    let dels = this.checkDels(pdata,data)
-    let adds = this.checkDels(data,pdata)
+  public diff(pdata: any, data: any, ignores:string[]=[], IGNOREARRAY:boolean=false): DifferResult {
+    let changes = this.checkChanges(pdata,data, ignores, IGNOREARRAY)
+    let dels = this.checkDels(pdata,data, ignores, IGNOREARRAY)
+    let adds = this.checkDels(data,pdata, ignores, IGNOREARRAY)
     
     return { changes, adds, dels, diff: !(!changes && !adds && !dels) };
   }

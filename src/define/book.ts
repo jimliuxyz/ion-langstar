@@ -4,34 +4,34 @@ export enum BookType{
 }
 
 
-class Voice{
-  q: string = "";
-  a: string = "";
-  exp: string = "";
-  tip: string = "";   
-}
+// class Voice{
+//   q: string = "";
+//   a: string = "";
+//   exp: string = "";
+//   tip: string = "";   
+// }
 
 
-export class BookReaderCfg{
-  display: {
-    q: true;
-    a: true;
-    exp: true;
-    tip: true;
-  }
-  voice: {
-    q: true;
-    a: true;
-    exp: true;
-    tip: false;    
-  }
-  repeat: {
-    q: 1;
-    a: 1;
-    exp: 1;
-    tip: number;    
-  }
-}
+// export class BookReaderCfg{
+//   display: {
+//     q: true;
+//     a: true;
+//     exp: true;
+//     tip: true;
+//   }
+//   voice: {
+//     q: true;
+//     a: true;
+//     exp: true;
+//     tip: false;    
+//   }
+//   repeat: {
+//     q: 1;
+//     a: 1;
+//     exp: 1;
+//     tip: number;    
+//   }
+// }
 
 export class TagBookInfo{
   title: string;
@@ -58,16 +58,19 @@ export class BookInfo{
   talang: string = "en_US";
   tag1: string = "";
   tag2: string = "";
+  cfg: any; //depends on its BookType
 }
 
 export class BookData{
-  ver : number = 1;  
+  ver: number = 1;
+  ordermap: any = {};
   data: any = {};
 }
 
 //Multiple Choice Questions
 export class BookData_MCQ{
-  order: number = 0;
+  // order: number = 0;
+  uid: string;
   q: string;
   a: string;
   cho: object; //key value pair as array
@@ -75,14 +78,23 @@ export class BookData_MCQ{
   tip: string;
 }
 
+//set by author
+export class BookDataCfg_MCQ{
+  q = "target";
+  a = "native";
+  exp = "target";
+  tip = "native";
+}
+
+
 //Conversation/Lyric/subtitle
 export class BookData_CONV{
   role: string; //role name
-  q: string;
+  text: string;
 }
 
-export class BookSet{
-  info: BookInfo;
-  readercfg: BookReaderCfg;
-  data: BookData;
-}
+// export class BookSet{
+//   info: BookInfo;
+//   readercfg: BookReaderCfg;
+//   data: BookData;
+// }

@@ -1,4 +1,5 @@
 import { MiscFunc } from "./misc";
+import { VoiceCfg } from "./tts";
 
 export class UserInfo{
   ver = 1;
@@ -40,7 +41,19 @@ export class UserCfg{
   talang: string;
 
   favorites: string = ""; //book uid list
-  
+
+  voices_def: string[] = []; //key:lang value:voice_uri
+  voices_cfg: VoiceCfg[] = []; //key:voice_uri
+
+  //config for each book type
+  booktype_cfg: any[] = [];
+
+  //this variable key also use as string in other file(WataUserCfg)!
+  //record/config for each book
+  book_record = {
+    books:{}, // record.books[uid]...
+  }
+
   static getDefault():UserCfg {
     let cfg = new UserCfg();
     cfg.nalang = MiscFunc.getLangCodeNormalize(navigator.language);

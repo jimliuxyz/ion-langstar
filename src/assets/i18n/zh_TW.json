@@ -10,15 +10,33 @@
   "CREDIT":"讚譽",
 
   "NALANG":"母語",
-  "TALANG":"學語",
+  "TALANG":"外語",
   "TAG":"標籤",
   "LANG":"語言",
+  "SPEECHVOICE":"語音",
+  "VOICESPEED":"語速",
   "PUBLISH":"出版",
   "EDIT":"編輯",
   "BOOKNAME": "書名",
   "GENERAL": "一般",
   "MYFIRSTBOOKNAME": "我的第一本書",
 
+  "LEARNING": "學習中",
+  "LEARNED": "已學會",
+
+  "_MCQ":{
+    "QUESTION": "題目",
+    "ANSWER": "答案",
+    "EXAMPLE": "例句",
+    "TIP": "題解"
+  },
+
+  "_BTN": {
+    "BOOKPLAY": "播放",
+    "BOOKTEST": "測驗",
+    "ANSBYSPEAK": "口說答題"
+  },
+  
   "_CLOUD_HOME": {
     "TITLE": "雲書櫃"
   },
@@ -45,4 +63,5 @@
     "TIPS": "題解",
     "STAR": "星星"
   }
+
 }

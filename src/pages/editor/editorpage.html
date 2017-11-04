@@ -5,7 +5,7 @@
     <ion-title>EDITOR</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openModal($event)">
-        <ion-icon name="menu"></ion-icon>
+        <ion-icon name="options"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,9 +14,7 @@
 
 
 <ion-content #content>
-{{setting|json}}
-{{dirty}}
-  <textarea #tarea autofocus style='height:100%;width:100%;padding:10px;border:0px;' placeholder="## {{'_PLACEHOLDER.QUESTION' | translate}}
+  <textarea #tarea autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style='height:100%;width:100%;padding:10px;border:0px;' placeholder="## {{'_PLACEHOLDER.QUESTION' | translate}}
 ==  {{'_PLACEHOLDER.ANSWER' | translate}}
 #=  {{'_PLACEHOLDER.EXAMPLE' | translate}}
 #?  {{'_PLACEHOLDER.TIPS' | translate}}
@@ -30,7 +28,7 @@
 </ion-content>
 
 
-<ion-footer #Shortcut>
+<ion-footer #Shortcut (click)="skipfocus($event);">
 <div #menu class="main-menu" [attr.state]="'full'">
   <span name='menu' class="btn" (click)="menu.attributes.state.value=menu.attributes.state.value?'':'full';contentResize(content)"></span>
   <div class='placeholder'></div>
