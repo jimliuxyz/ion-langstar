@@ -1,5 +1,5 @@
 import { MiscFunc } from "./misc";
-import { VoiceCfg } from "./tts";
+import { VoiceCfg } from "../providers/myservice/tts";
 
 export class UserInfo{
   ver = 1;

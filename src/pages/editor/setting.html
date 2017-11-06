@@ -63,42 +63,32 @@
         </ion-item>
 
   
-        <ion-item>
-          <ion-label>{{'_MCQ.QUESTION'|translate}}</ion-label>
 
-          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.q">
-              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
-              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
-            </ion-select>
-        </ion-item>
 
         <ion-item>
-          <ion-label>{{'_MCQ.ANSWER'|translate}}</ion-label>
-
-          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.a">
-              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
-              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
-            </ion-select>
+            <ion-label>{{'_MCQ.QUESTION'|translate}}</ion-label>
+            
+          <xyzui-btn-yn [text1]="'NALANG'|translate" [text2]="'TALANG'|translate" [value1]="true" [value2]="false" [(value)]="setting.data[0].cfg.q" style="" item-right></xyzui-btn-yn>
         </ion-item>
-
+                
         <ion-item>
-          <ion-label>{{'_MCQ.EXAMPLE'|translate}}</ion-label>
-
-          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.exp">
-              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
-              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
-            </ion-select>
+            <ion-label>{{'_MCQ.ANSWER'|translate}}</ion-label>
+            
+          <xyzui-btn-yn [text1]="'NALANG'|translate" [text2]="'TALANG'|translate" [value1]="true" [value2]="false" [(value)]="setting.data[0].cfg.a" style="" item-right></xyzui-btn-yn>
         </ion-item>
-
+                
         <ion-item>
-          <ion-label>{{'_MCQ.TIP'|translate}}</ion-label>
-
-          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].cfg.tip">
-              <ion-option value="native">{{'NALANG'|translate}}</ion-option>
-              <ion-option value="target">{{'TALANG'|translate}}</ion-option>
-            </ion-select>
+            <ion-label>{{'_MCQ.EXAMPLE'|translate}}</ion-label>
+            
+          <xyzui-btn-yn [text1]="'NALANG'|translate" [text2]="'TALANG'|translate" [value1]="true" [value2]="false" [(value)]="setting.data[0].cfg.exp" style="" item-right></xyzui-btn-yn>
         </ion-item>
-
+                
+        <ion-item>
+            <ion-label>{{'_MCQ.TIP'|translate}}</ion-label>
+            
+          <xyzui-btn-yn [text1]="'NALANG'|translate" [text2]="'TALANG'|translate" [value1]="true" [value2]="false" [(value)]="setting.data[0].cfg.tip" style="" item-right></xyzui-btn-yn>
+        </ion-item>
+                
         
         <ion-item style="display:none" ></ion-item>
         

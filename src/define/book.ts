@@ -80,10 +80,10 @@ export class BookData_MCQ{
 
 //set by author
 export class BookDataCfg_MCQ{
-  q = "target";
-  a = "native";
-  exp = "target";
-  tip = "native";
+  q = false;  // true:native lang ; false:target lang
+  a = true;
+  exp = false;
+  tip = false;
 }
 
 

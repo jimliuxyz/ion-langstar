@@ -1,0 +1,84 @@
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons start>
+            <button ion-button icon-only (click)="dismiss()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+        </ion-buttons>
+
+      <ion-title>
+          {{bookinfo.data[0].title}}
+      </ion-title>
+  
+      <ion-buttons end>
+          <button ion-button icon-only (click)="openModal($event)">
+              <ion-icon name="options"></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+    <div class="wrapper">
+        <div #wordcard class="wordcard" [ngClass]="{'flipped': flipped}" (swipe)="swipeEvent($event)">
+
+                
+            <div *ngFor="let fb of ['front','back']">
+
+                <div [class]="fb" style="height:100%" *ngIf="!quizf && !quizb">
+                    <div class="out-of-quiz">{{'_MCQ.OUTOFQUIZ'|translate}}</div>
+                </div>
+                        
+                <div [class]="fb" *ngIf="(fb=='front'?quizf:quizb); let quiz">
+
+                
+                
+
+                <div style="float:right;">
+                    <button ion-button icon-only (click)="toggleLearned(quiz);">{{root.listtype==='learning'?'－':'＋'}}
+                    </button>
+                </div>
+
+                <h1 *ngIf="cfgrec.qshow" [ngClass]="{'onVoice': getOnVoiceType()=='q'}" (click)="speakOnce($event, 'q')">{{quiz.q}}</h1>
+
+                <hr>
+
+                <p *ngIf="cfgrec.ashow" [ngClass]="{'onVoice': getOnVoiceType()=='a'}" (click)="speakOnce($event, 'a')">{{quiz.a}}</p>
+
+                <p *ngIf="cfgrec.expshow" [ngClass]="{'onVoice': getOnVoiceType()=='exp'}" (click)="speakOnce($event, 'exp')">{{quiz.exp}}</p>
+
+                <p *ngIf="cfgrec.tipshow" [ngClass]="{'onVoice': getOnVoiceType()=='tip'}" (click)="speakOnce($event, 'tip')">{{quiz.tip}}</p>
+
+                <!-- <hr>
+                <p>paused : {{tts.paused}}</p>
+                <p>pending : {{tts.pending}}</p>
+                <p>speaking : {{tts.speaking}}</p> -->
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+  </ion-content>
+  
+<ion-footer>
+    <ion-range [(ngModel)]="mapidx" [min]="1" [max]="_cmap.length" pin="true" color="primary">
+    </ion-range>
+
+    <div class="player_wrap">
+        <div class="btn btnplay" (click)="togglePlayPause()">
+            <ion-icon [name]="(playstatus=='play')?'pause':'play'"></ion-icon>
+        </div>
+        <div class="btn btnnext" (click)="nextCard(1)">
+            <ion-icon name="skip-forward"></ion-icon>
+        </div>
+    </div>
+
+</ion-footer>

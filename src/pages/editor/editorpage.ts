@@ -143,10 +143,7 @@ export class EditorPage {
     this.w_bookdata.data.data = set.data;
     this.w_bookdata.data.ordermap = set.omap;
 
-    if (!this.w_bookdata.data)
-      this.w_bookdata.commit({ cmd: WataAction.SETBOOKDATA })
-    else
-      this.w_bookdata.commit({ cmd: WataAction.UPDATEBOOKDATA })
+    this.w_bookdata.commit();
     console.log(set.data)
 
   }

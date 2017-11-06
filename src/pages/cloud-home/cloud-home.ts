@@ -19,16 +19,24 @@ export class CloudHomeComponent implements HomeSlidePage {
   readytest = "not ready";
   
   constructor(public navCtrl: NavController, public serv:MyService) {
-    // setTimeout(this.ionViewCanEnter, 0);
-
   }
 
-  navTo() {
-    this.navCtrl.push('EditorPage');
-  }
+  private allownav = true;
 
-  navToViewer() {
-    this.navCtrl.push('ViewerPage');
+  navTo(where:string, data?:any) {
+    if (where === 'editor')
+      where = 'EditorPage';
+    else if (where === 'viewer')
+      where = 'ViewerPage';
+    else
+      return;
+
+    if (!this.allownav) return;
+
+    this.allownav = false;
+    this.navCtrl.push(where, null, null, (okay) => {
+      this.allownav = true;
+    });
   }
 
   async ionViewCanEnter() {

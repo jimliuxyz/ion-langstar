@@ -25,16 +25,16 @@
   "LEARNED": "已學會",
 
   "_MCQ":{
+    "MODEPLAY": "播放",
+    "MODESPEAK": "口說練習",
+    "MODETEST": "測驗",
+    "SHOWNSPEAK": "顯示與朗讀次數",
+    "RANDOM": "隨機",
     "QUESTION": "題目",
     "ANSWER": "答案",
     "EXAMPLE": "例句",
-    "TIP": "題解"
-  },
-
-  "_BTN": {
-    "BOOKPLAY": "播放",
-    "BOOKTEST": "測驗",
-    "ANSBYSPEAK": "口說答題"
+    "TIP": "題解",
+    "OUTOFQUIZ": "沒有題目了"
   },
   
   "_CLOUD_HOME": {

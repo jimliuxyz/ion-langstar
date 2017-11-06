@@ -1,4 +1,4 @@
-import { NgModule,ModuleWithProviders } from '@angular/core';
+import { NgModule,ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import {TranslateModule} from '@ngx-translate/core';
 import { AngularSocialAuthModule } from 'angular-social-auth';
@@ -19,14 +19,18 @@ let config = new AuthServiceConfig([
 
 import { MyService } from '../providers/myservice/myservice';
 import { IRDBapi,DBapiFirebase } from '../providers/myservice/dbapi.firebase';
+import { XyzuiBtnNpComponent } from '../components/xyzui-btn-np/xyzui-btn-np';
+import { CommonModule } from '@angular/common';
+import { XyzuiBtnYnComponent } from '../components/xyzui-btn-yn/xyzui-btn-yn';
 
 
 @NgModule({
-  imports: [
+  imports: [CommonModule,
   AngularSocialAuthModule,
     SocialLoginModule.initialize(config)],
-  declarations: [],
-  exports: [TranslateModule],
+  declarations: [XyzuiBtnNpComponent,XyzuiBtnYnComponent],
+  exports: [TranslateModule, XyzuiBtnNpComponent, XyzuiBtnYnComponent],
+  entryComponents: [],
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

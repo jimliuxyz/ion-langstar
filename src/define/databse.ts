@@ -25,11 +25,11 @@ export class WataAction{
   static REDO = "REDO";
 
   //user
-  static LOGINUSER = "LOGINUSER";
-  static GETUSERINFO = "GETUSERINFO";
+  // static LOGINUSER = "LOGINUSER";
+  // static GETUSERINFO = "GETUSERINFO";
 
-  //user cfg
-  static UPDATEBOOKREC = "UPDATEBOOKREC";
+  // //user cfg
+  // static UPDATEBOOKREC_XXX = "UPDATEBOOKREC";
 
   //book info
   static NEWBOOKINFO = "NEWBOOKINFO";

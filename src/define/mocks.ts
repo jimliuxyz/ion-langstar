@@ -3,17 +3,31 @@ export class Mocks{
 
   static mcqtext = 
 `##  star
-==  星星
+==  1.星星
 != A
 != B
 #=  There are billions of stars in the universe.
 #?  a natural luminous body visible in the sky especially at night
 
-##  test
-==  測試
-#=  test....
-#?  測試1....
-測試2....
+##  apple
+==  2.蘋果
+#=  Apples grow on apple trees.
+#?  a hard round fruit that is white inside and has a smooth green, yellow, or red skin,
+
+##  people
+==  3.人們
+#=  People tend to think that doctors know everything.
+#?  the plural of person
+
+##  sun
+==  4.太陽
+#=  the light and warmth that you feel from the sun
+#?  the Sun or the sun the star in the sky that provides light and warmth to the Earth
+
+##  flower
+==  5.花
+#=  a plant that is grown because its flowers are attractive
+#?  the coloured part of a plant from which the plant’s fruit develops. A flower is often made up of many petals
 
 
 `;
