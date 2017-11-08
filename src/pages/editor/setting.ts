@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams,ModalController, ViewController } from 'ionic-angular';
+import { NavParams,ModalController, ViewController, AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { MyService, WataBookInfo } from '../../providers/myservice/myservice';
 import { BookInfo, BookType, BookData_MCQ } from '../../define/book';
@@ -12,36 +12,62 @@ import { Toggle2 } from '../../patch/toggle/toggle';
 })
 export class SettingComponent {
   misc = MiscFunc;
-  gender: string;
-  // x:Toggle
-  
   setting: WataBookInfo;
-  constructor(public params: NavParams, public viewCtrl: ViewController, public translate: TranslateService, public serv: MyService) {
+  
+  constructor(public params: NavParams, public viewCtrl: ViewController, public translate: TranslateService, public serv: MyService,private alertCtrl: AlertController) {
     this.setting = params.get('setting');
   }
 
   dismiss() {
     this.viewCtrl.dismiss();
-    console.log(this.setting.data[0].cfg)
     this.setting.commit();
   }
 
-  che_ = false;
-  get che() {
-    // console.log("get...")
-    return this.che_;
-  }
+  async addNewTag(idx: number) {
+    console.log("addNewTag")
 
-  set che(v: boolean) {
-    console.log("set...")
-    this.che_=v;
-  }
+    const title = await this.translate.get("TAG").toPromise() + idx;
 
-  test(e) {
-    let el = document.createElement("span");
-    el.innerHTML = "123";
-    e.target.appendChild(el);
+    const cancelText = await this.translate.get("CANCEL").toPromise();
+    const okayText = await this.translate.get("OKAY").toPromise();
     
-    // console.log(e)
+    let alert = this.alertCtrl.create({
+      title,
+      inputs: [
+        {
+          name: 'tag',
+          value: (idx===1)?this.setting.data[0].tag1:this.setting.data[0].tag2,
+          id: 'autofocu',
+        },
+      ],
+      buttons: [
+        {
+          text: cancelText,
+          role: 'cancel',
+          handler: data => {
+          }
+        },
+        {
+          text: okayText,
+          handler: data => {
+
+            if (data.tag && data.tag.trim()) {
+              this.serv.w_taglist.addTempTag(data.tag);
+
+              if (idx === 1)
+                this.setting.data[0].tag1 = data.tag;  
+              if (idx === 2)
+                this.setting.data[0].tag2 = data.tag;
+
+              return true;
+            }
+            return false;
+          }
+        }
+      ]
+    });
+    alert.present().then(() => {
+      document.getElementById('autofocu').focus();
+    })
   }
 }

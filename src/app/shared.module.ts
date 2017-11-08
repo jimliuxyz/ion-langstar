@@ -19,17 +19,26 @@ let config = new AuthServiceConfig([
 
 import { MyService } from '../providers/myservice/myservice';
 import { IRDBapi,DBapiFirebase } from '../providers/myservice/dbapi.firebase';
-import { XyzuiBtnNpComponent } from '../components/xyzui-btn-np/xyzui-btn-np';
+import { XyzuiBtnNp } from '../components/xyzui-btn-np/xyzui-btn-np';
 import { CommonModule } from '@angular/common';
-import { XyzuiBtnYnComponent } from '../components/xyzui-btn-yn/xyzui-btn-yn';
+import { XyzuiBtnYn } from '../components/xyzui-btn-yn/xyzui-btn-yn';
+import { XyzuiBookCard } from '../components/xyzui-book-card/xyzui-book-card';
+import { IonicModule } from 'ionic-angular';
+import { XyzuiTagHeader } from '../components/xyzui-tag-header/xyzui-tag-header';
 
 
 @NgModule({
   imports: [CommonModule,
-  AngularSocialAuthModule,
+    IonicModule,
+    AngularSocialAuthModule,
     SocialLoginModule.initialize(config)],
-  declarations: [XyzuiBtnNpComponent,XyzuiBtnYnComponent],
-  exports: [TranslateModule, XyzuiBtnNpComponent, XyzuiBtnYnComponent],
+  declarations: [
+    XyzuiBtnNp, XyzuiBtnYn, XyzuiBookCard, XyzuiTagHeader
+  ],
+  exports: [
+    TranslateModule,
+    XyzuiBtnNp, XyzuiBtnYn, XyzuiBookCard, XyzuiTagHeader
+  ],
   entryComponents: [],
 })
 export class SharedModule {

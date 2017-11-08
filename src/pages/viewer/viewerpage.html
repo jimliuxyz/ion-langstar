@@ -1,12 +1,22 @@
 
 <ion-header>
-
+        
   <ion-navbar>
-    <ion-title>{{title}}{{readytest}}</ion-title>
+    <ion-title>{{title}}{{readystate}}</ion-title>
     <ion-buttons end>
+
+      <button *ngIf="true" ion-button icon-only (click)="navTo('editor', bookinfo.data[0].uid)">
+        <ion-icon name="ios-heart"></ion-icon>
+      </button>
+
+      <button *ngIf="isEditable()" ion-button icon-only (click)="navTo('editor', bookinfo.data[0].uid)">
+            <ion-icon name="ios-create-outline"></ion-icon>
+          </button>
+    
       <button ion-button icon-only (click)="openModal($event)">
         <ion-icon name="options"></ion-icon>
       </button>
+
     </ion-buttons>
   </ion-navbar>
 
@@ -14,18 +24,19 @@
 
 
 <ion-content>
-    
-<ng-template [ngIf]="bookinfo.data && bookinfo.data.length>0">
+    <ng-template [ngIf]="bookinfo.data && bookinfo.data.length>0">
 
-    <span style="display: inline-flex;padding-top:10px" (click)="openModal('login')">
-        <img style='border-radius: 50%;    overflow: hidden;width: 20px;height: 20px;' [src]="author.data.localPhotoURL"> {{author.data.displayName}}
+    <span style="display: inline-flex;padding:10px 10px 0px 10px" (click)="serv.navTo('list', {byauthor:bookinfo.data[0].author_uid})">
+        <img style='border-radius: 50%;    overflow: hidden;width: 20px;height: 20px;' [src]="author.data.localPhotoURL">
+        &nbsp;{{author.data.displayName}}
+        
     </span>
     
     <ion-grid>
       <ion-row>
-          <ion-col class='modebtn' (click)="linkToMode('play')">{{'_MCQ.MODEPLAY'|translate}}</ion-col>
-          <ion-col class='modebtn'>{{'_MCQ.MODESPEAK'|translate}}</ion-col>
-          <ion-col class='modebtn'>{{'_MCQ.MODETEST'|translate}}</ion-col>
+          <ion-col class='blockbtn' (click)="linkToMode('play')">{{'_MCQ.MODEPLAY'|translate}}</ion-col>
+          <ion-col class='blockbtn'>{{'_MCQ.MODESPEAK'|translate}}</ion-col>
+          <ion-col class='blockbtn'>{{'_MCQ.MODETEST'|translate}}</ion-col>
         </ion-row>
     </ion-grid>
     

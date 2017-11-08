@@ -192,10 +192,20 @@ export class DBapiFirebase implements IRDBapi {
       let que = ref.orderByChild(query.orderBy);
 
       if (query.equalTo != null) {
-        if (query.equalToKey)
-          que = que.equalTo(query.equalTo, query.equalToKey);
+        if (query.equalToKey) {
+          // que = que.equalTo(query.equalTo, query.equalToKey);     
+
+          if (query.limitToFirst) {
+            que = que.startAt(query.equalTo, query.equalToKey);      
+            que = que.endAt(query.equalTo);
+          }
+          else if (query.limitToLast) {
+            que = que.endAt(query.equalTo, query.equalToKey);      
+            que = que.startAt(query.equalTo);
+          }
+        }
         else
-          que = que.equalTo(query.equalTo);   
+          que = que.equalTo(query.equalTo)
       }
       else if (query.startAt != null) {
         if (query.startAtKey)
@@ -281,7 +291,7 @@ export class DBapiFirebase implements IRDBapi {
 
   async test1(data: any) {
     // console.log("test")
-    // let ref = firebase.database().ref("/test");
+    let ref = firebase.database().ref("/test");
     // ref.on()
 
     // await ref.set({ ver: 999 });

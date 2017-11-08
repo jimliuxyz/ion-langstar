@@ -104,6 +104,22 @@ export class MiscFunc{
     })
   }
 
+  static getUrlParams(url?:string){
+    let params = {};
+
+    if (!url)
+      url = location.href;
+
+    //parse parameter from url
+    const queryparams = url.split('?')[1];
+    const arr = queryparams?queryparams.split('&'):[];
+    arr.forEach(function(pair) {
+      const arr = pair.split('=');
+      if (arr.length > 1)
+        params[arr[0]] = arr[1];
+    });
+    return params;
+  }
 
   //get Lang by its code
   static getLang(code= ''):Lang {
@@ -166,9 +182,15 @@ export class MiscFunc{
     });
   }
 
+  /**
+   * total length = 6 chars for datetime + len chars
+   * @param len default is 6
+   */
   static uid(len?:number) {
-    len = len || 10;
-    return Math.random().toString(35).substr(2, len);
+    len = len || 6;
+    const time = Math.round(Date.now()/1000);
+
+    return time.toString(36) + Math.random().toString(36).substr(2, len);
   }
 
   static getLangPair(nalang: string, talang: string): string {

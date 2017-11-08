@@ -8,7 +8,8 @@
   "CANCEL":"取消",
   "CLOSE":"關閉",
   "CREDIT":"讚譽",
-
+  "SAVE":"儲存",
+  
   "NALANG":"母語",
   "TALANG":"外語",
   "TAG":"標籤",
@@ -25,6 +26,7 @@
   "LEARNED": "已學會",
 
   "_MCQ":{
+    "NAME": "題卡",
     "MODEPLAY": "播放",
     "MODESPEAK": "口說練習",
     "MODETEST": "測驗",
@@ -36,13 +38,19 @@
     "TIP": "題解",
     "OUTOFQUIZ": "沒有題目了"
   },
-  
+  "_CONQ":{
+    "NAME": "對話"
+  },
+
   "_CLOUD_HOME": {
     "TITLE": "雲書櫃"
   },
 
   "_BOOKSETTING": {
     "TITLE": "書本設定"
+  },
+  "_READERSETTING": {
+    "TITLE": "閱讀設定"
   },
   "_SETTINGS": {
     "TITLE": "設定"

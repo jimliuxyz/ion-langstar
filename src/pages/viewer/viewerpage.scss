@@ -8,28 +8,6 @@ ion-range {
 }
 
 page-viewerpage {
-  .modebtn{
-    min-width:80px !important;
-    margin: 2px !important;
-    padding: 12px !important;
-    border: 1px solid gray;
-    cursor: pointer;
-    text-align: center !important;
-    border-radius: 3px;
-    font-size: 2rem !important;
-    font-weight: 600;
-    border-bottom: 5px solid gray;
-
-    // background: linear-gradient(to bottom, rgba($mono09,1), rgba($mono07,1));
-    
-    &:hover{
-      border-bottom: 5px solid map-get($colors,primary);    
-    }
-
-
-    
-  }
-
 
   .gofade{
     max-height:0px !important;
@@ -57,7 +35,10 @@ page-viewerpage {
 
       color: map-get($colors,primary) !important;
       font-weight: 900 !important;
-      font-size: 2.5rem !important;
+      font-size: 2.0rem !important;
+      padding: 8px 0px !important;
+      height: 2.0rem !important;
+      line-height: unset !important;
     }
   }
 
@@ -85,21 +66,16 @@ mode-play{
       height: calc(1px + 9px) !important;
       top: -2px !important;
     }
+    .range-knob-handle{
+      height: 0px !important;
+    }
 
     .range-knob {
       left: calc(7px + 18px/2) !important;
       top: calc(7px - 19px) !important;
       
-      // left: 7px;
-      // top: 7px;
       border-radius: 2px !important;
-      // position: absolute;
       width: calc(28px - 18px) !important;
-      // height: 28px;
-      // background: #fff;
-      // -webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02);
-      // box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.13), 0 0 0 1px rgba(0, 0, 0, 0.02);
-      // pointer-events: none;
     }
     .range-pin{
       top: -35px !important;

@@ -15,6 +15,7 @@ export class MyApp implements OnDestroy{
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private serv:MyService) {
     platform.ready().then(() => {
+      this.serv.setNav(this.nav);
 
       this.serv.ready$.then(() => {
         console.log("everything ready~")

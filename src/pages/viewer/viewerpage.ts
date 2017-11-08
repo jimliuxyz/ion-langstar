@@ -21,29 +21,19 @@ import { ModePlay } from './mode-play';
   templateUrl: 'viewerpage.html',
 })
 export class ViewerPage {
-  private readytest = "not ready";
+  private readystate = "not ready";
   private title: string;
   readonly listtype = "learning";
   readonly bookuid: string;
 
   constructor(public platform:Platform, public modalCtrl: ModalController, public serv: MyService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
 
-    let params = {};
+    let urlParams = MiscFunc.getUrlParams();
+    urlParams["bookuid"] = "6ya3vswt56";
 
-    //parse parameter from url
-    const queryparams = location.href.split('?')[1];
-    const arr = queryparams?queryparams.split('&'):[];
-    arr.forEach(function(pair) {
-      const arr = pair.split('=');
-      if (arr.length > 1)
-        params[arr[0]] = arr[1];
-    });
-
-    params["bookuid"] = "6ya3vswt56";
-
-    this.bookuid = params["bookuid"];
-
-    console.log(params)
+    this.bookuid = navParams.get('bookuid');
+    if (!this.bookuid)
+      this.bookuid = urlParams["bookuid"];
   }
 
   private openModal(cmd: string) {
@@ -62,9 +52,27 @@ export class ViewerPage {
     let modal = this.navCtrl.push(ModePlay, {
       root: this
     });
-    // modal.present();
   }
 
+  private allownav = true;
+  navTo(where: string, data?: any) {
+    let params;
+    if (where === 'editor') {
+      where = 'EditorPage';
+      params = {
+        bookuid: data,
+      }
+    }
+    else
+      return;
+
+    if (!this.allownav) return;
+    this.allownav = false;
+    this.navCtrl.push(where, params, null, (okay) => {
+      this.allownav = true;
+    });
+  }
+  
   async ionViewCanEnter() {
     let ready = await this.serv.ready$;
     // if (ready) return false;
@@ -75,6 +83,7 @@ export class ViewerPage {
       this.title = this.bookinfo.data[0].title;
 
       this.author = await this.serv.getUserInfo(this.bookinfo.data[0].author_uid);
+      console.log(this.author);
 
       await this.loadBook();
       // this.linkToMode("");
@@ -84,8 +93,13 @@ export class ViewerPage {
       console.error("book not found ", this.bookuid)
     }
 
-    this.readytest = "";
+    this.readystate = "";
     return true;
+  }
+
+  isEditable() {
+    return this.serv.w_userinfo.data.uid ===
+    this.author.data.uid;
   }
 
   author: WataUserInfo;

@@ -1,42 +1,17 @@
 <ion-slide>
     <ion-content>
+        
+        <ion-grid>
+            <ion-row>
 
-        <ion-fab top right>
-            <button ion-fab mini (click)="navTo()"><ion-icon name="add"></ion-icon></button>
-            <ion-fab-list>
-            <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-            </ion-fab-list>
-        </ion-fab>
+                <ion-col class='blockbtn'  (click)="navTo('MCQ')">＋{{'_MCQ.NAME'|translate}}</ion-col>
 
-        <ion-card>
-            <ion-card-header text-left>
-                example /ɪɡ'zæmpəl/ 
-            </ion-card-header>
-            <ion-card-content text-left>
-                <ion-row>
-                a representative form or pattern.
-                </ion-row>
-                <ion-row>
-                I profited from his example.
-                </ion-row>
-            </ion-card-content>
-        </ion-card>
+                <ion-col class='blockbtn'>＋{{'_CONQ.NAME'|translate}}</ion-col>
 
-        <ion-card>
-          <ion-card-header text-left>
-              apple /'æpəl/ 
-          </ion-card-header>
-          <ion-card-content text-left>
-              <ion-row>
-                  fruit with red or yellow or green skin and sweet to tart crisp whitish fles.
               </ion-row>
-              <ion-row>
-  
-              </ion-row>
-          </ion-card-content>
-        </ion-card>
+          </ion-grid>
+
+          
+          
     </ion-content>
 </ion-slide>

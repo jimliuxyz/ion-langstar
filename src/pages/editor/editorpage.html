@@ -2,8 +2,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EDITOR</ion-title>
+    <ion-title *ngIf="w_bookinfo">{{w_bookinfo.data[0].title}}</ion-title>
     <ion-buttons end>
+
+        <button [disabled]="!dirty" (click)="save()" outline ion-button class="save-btn">
+            {{'SAVE'|translate}}
+        </button>
+
       <button ion-button icon-only (click)="openModal($event)">
         <ion-icon name="options"></ion-icon>
       </button>

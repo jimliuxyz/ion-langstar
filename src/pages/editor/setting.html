@@ -13,7 +13,7 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content>
 
     <ion-list padding-top>
@@ -22,24 +22,28 @@
         <ion-input text-right type="text" [(ngModel)]="setting.data[0].title"></ion-input>
       </ion-item>
       <ion-item style="display:none" ></ion-item>
+
+        <ion-item>
+          <ion-label>{{'TAG'|translate}}1</ion-label>
+          
+          <ion-icon item-left name="ios-add-circle-outline" style="z-index:10" (click)="addNewTag(1)"></ion-icon>
+
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].tag1">
+              <ion-option *ngFor="let tag of serv.w_taglist.list" [value]="tag">{{tag}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label>{{'TAG'|translate}}2</ion-label>
             
-    </ion-list>
-    
-    
-    <ion-list>
-      <div ion-text color="primary">&nbsp; {{'TAG'|translate}}</div>
+            <ion-icon item-left name="ios-add-circle-outline" style="z-index:10" (click)="addNewTag(2)"></ion-icon>
+  
+            <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="setting.data[0].tag2">
+                <ion-option *ngFor="let tag of serv.w_taglist.list" [value]="tag">{{tag}}</ion-option>
+              </ion-select>
+          </ion-item>
 
-        <ion-item>
-          <ion-label stacked>{{'TAG'|translate}}1 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
-
-          <ion-input text-right type="text" [(ngModel)]="setting.data[0].tag1"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label stacked>{{'TAG'|translate}}2 &nbsp;<button mini><ion-icon name="add"></ion-icon></button></ion-label>
-
-          <ion-input text-right type="text" [(ngModel)]="setting.data[0].tag2"></ion-input>
-        </ion-item>
       <ion-item style="display:none"></ion-item>
     </ion-list>
 

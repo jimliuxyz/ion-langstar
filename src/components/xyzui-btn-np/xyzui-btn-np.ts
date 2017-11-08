@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'xyzui-btn-np',
   templateUrl: 'xyzui-btn-np.html'
 })  
-export class XyzuiBtnNpComponent {
+export class XyzuiBtnNp {
 
   text: string;
 

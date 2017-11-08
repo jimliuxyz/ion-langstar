@@ -37,6 +37,7 @@ import { CreationComponent } from '../pages/creation/creation';
 import { EditPageModule } from '../pages/editor/editorpage.module';
 import { CloudHomeComponent } from '../pages/cloud-home/cloud-home';
 import { ViewerPageModule } from '../pages/viewer/viewerpage.module';
+import { BookListPage } from '../pages/book-list/book-list';
 
 
 
@@ -49,14 +50,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     HomeSettingsComponent,
     NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,
-    LoginPage,LogoutPage
+    LoginPage, LogoutPage,
     // NewpagePage
   ],
   imports: [
   BrowserModule,
     HttpClientModule,
     EditPageModule,ViewerPageModule,
-    IonicModule.forRoot(MyApp,{mode:'ios'}),
+    IonicModule.forRoot(MyApp,{mode:'ios',pageTransition:'md-transition'}),
     IonicStorageModule.forRoot(),
     IonicPatchModule,
     SharedModule.forRoot(),
@@ -77,7 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeSettingsComponent,
     NewsComponent, CreditComponent, CreationComponent,
     CloudHomeComponent,
-    LoginPage,LogoutPage
+    LoginPage, LogoutPage,
     // NewpagePage
   ],
   providers: [

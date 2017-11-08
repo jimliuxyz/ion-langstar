@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Platform, LoadingController } from 'ionic-angular';
+import { Platform, LoadingController, NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
 import { Subject, BehaviorSubject } from 'rxjs';
@@ -48,6 +48,33 @@ export class MyService {
 
   }
 
+  private navCtrl: NavController;
+  setNav(navCtrl) {
+    this.navCtrl = navCtrl;
+  }
+
+  private allownav = true;
+  navTo(where: string, params?: any) {
+    if (!where) return;
+
+    console.log("nav to ... " + where, params)
+    if (where === 'editor')
+      where = 'EditorPage';
+    else if (where === 'viewbook') {
+      where = 'ViewerPage';
+    }
+    else if (where === 'list') {
+      where = 'BookListPage';
+    }  
+    else
+      return;
+
+    if (!this.allownav) return;
+    this.allownav = false;
+    this.navCtrl.push(where, params, null, (okay) => {
+      this.allownav = true;
+    });
+  }
 
   private loginStateCallback() {
     let bootlogin = true;
@@ -164,10 +191,10 @@ export class MyService {
     return bookdata;
   }
 
-  async getBookInfosByTag(tagname:string, query:DBQuery):Promise<WataBookInfo> {
+  async queryBookInfosFromTag(tagname:string, query:DBQuery):Promise<WataBookInfo> {
     let bookinfo = new WataBookInfo(this.db, this.w_taglist);
 
-    await bookinfo.listByTag(
+    await bookinfo.listFromByTag(
       MiscFunc.getLangPair(this.w_usercfg.data.nalang,this.w_usercfg.data.talang),
       tagname,
       query
@@ -175,8 +202,11 @@ export class MyService {
     return bookinfo;
   }
 
-  async getBookInfosByUser(tag:Tag) {
+  async queryBookInfosFromUid(query:DBQuery) {
+    let bookinfo = new WataBookInfo(this.db, this.w_taglist);
     
+    await bookinfo.listFromByUid(query);
+    return bookinfo;
   }
 
   getVoiceCfg(uri: string): VoiceCfg {
@@ -402,9 +432,9 @@ class LocalDB{
    * @param path 
    * @param part 
    */
-  public async remoteUpdateVer(path: string[]): Promise<any> {
-    return await this.dbapi.updateData(path, {ver:Date.now()});
-  }
+  // public async remoteUpdateVer(path: string[], ver:number): Promise<any> {
+  //   return await this.dbapi.updateData(path, {ver});
+  // }
 
   public async localGetData(path: string[]): Promise<any> {
     this.assert_path(path);
@@ -477,6 +507,15 @@ class LocalDB{
 
     await this.localSetData(path, data);
     await this.remoteUpdateData(path, parts);
+  }
+
+  public async bothUpdateVer(path: string[], data) {
+    this.assert_path(path);
+    if (data.ver) data.ver = Date.now();
+    else throw new Error("bothUpdateVer error");
+
+    await this.localSetData(path, data); //this may cost a lot
+    await this.remoteUpdateData(path, { ver: data.ver });
   }
 
   public async bothDel(path: string[]) {
@@ -800,6 +839,10 @@ export class WataUserCfg extends Wata<UserCfg>{
       
       this._mirrorParts(this.mirror.book_record.books[bookuid], itemkey, parts);
     }
+
+    //must update version by yourself, after only updated parts of data.
+    this.db.bothUpdateVer(this.path, this.data);
+    this._mirrorParts(this.mirror, ["ver"], this.data.ver);
   }
 
   /**
@@ -836,6 +879,7 @@ export class WataTagList extends Wata<Tag[]>{
 
   private path: string[];
   private langpair: string;
+  list: string[] = [];
 
   private async init(ucfg: UserCfg) {
     if (ucfg) {
@@ -855,6 +899,10 @@ export class WataTagList extends Wata<Tag[]>{
       };
   
       arr.sort(function (a, b) { return b.cnt - a.cnt });
+      this.list = [];
+      for (let tag of arr) {
+        this.list.push(tag.name);
+      }      
       this._mirror(arr);
     }
     else
@@ -868,6 +916,13 @@ export class WataTagList extends Wata<Tag[]>{
       this._mirror();
     }
     return true;
+  }
+
+  public addTempTag(newtag:string) {
+    for (let tag of this.list) {
+      if (tag === newtag) return;
+    }
+    this.list.push(newtag);
   }
 
   public async leaveTagCnt(langpair: string, tagname: string) {
@@ -928,6 +983,8 @@ export class WataBookInfo extends Wata<BookInfo[]>{
   private querypath:string[];
   private querynext:DBQuery;
   private last: BookInfo;
+  private lastkey: string;
+  private hasmore: boolean = false;
 
   /**
    * retrieve from 'bytag/langpair/tagname'
@@ -935,12 +992,12 @@ export class WataBookInfo extends Wata<BookInfo[]>{
    * @param tagname 
    * @param query 
    */
-  public async listByTag(langpair: string, tagname: string, query:DBQuery) {
+  public async listFromByTag(langpair: string, tagname: string, query:DBQuery) {
     this.querypath = [...this.BYTAG, langpair, tagname];
     this.querynext = Object.assign({}, query);
     this.last = null;
 
-    let data = await this.more();
+    let data = await this._more();
 
     if (data != null) {
       if (this.data != null)
@@ -955,14 +1012,14 @@ export class WataBookInfo extends Wata<BookInfo[]>{
    * retrieve from 'byuid'
    * @param query 
    */
-  public async listByBookUid(query:DBQuery) {
+  public async listFromByUid(query:DBQuery) {
     this.querypath = [...this.BYUID];
     this.querynext = Object.assign({}, query);
     // this.querynext.orderBy = "author_uid";
     // this.querynext.equalTo = useruid;
     this.last = null;
 
-    let data = await this.more();
+    let data = await this._more();
 
     if (data != null) {
       if (this.data != null)
@@ -1011,9 +1068,29 @@ export class WataBookInfo extends Wata<BookInfo[]>{
   }
 
   /**
+   * retrieve more bookinfo of its query, can append to its data
+   */
+  public async more() {
+    let data = await this._more();
+    console.log("+" + data.length)
+
+    if (data != null) {
+      if (this.data != null)
+        data = this.data.concat(data);
+      this._mirror(data);
+    }
+    else
+      this._mirror([]);
+  }
+
+  public hasMore():boolean {
+    return this.hasmore;
+  }
+
+  /**
    * retrieve more bookinfo of its query
    */
-  public async more(): Promise<BookInfo[]> {
+  private async _more(): Promise<BookInfo[]> {
     if (!this.querynext) return;
 
     let EOP = false;
@@ -1021,28 +1098,46 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     const ORDER_ASC = (this.querynext.limitToFirst != null);
     const ORDERCOL = this.querynext.orderBy;
     const KEYCOL = "uid";
-    if (ORDER_ASC)
-      this.querynext.startAt = 0;
-    else
-      this.querynext.endAt = 999999999;
+    // if (ORDER_ASC)
+    //   this.querynext.startAt = 0;
+    // else
+    //   this.querynext.endAt = 999999999;
 
-    if (this.last) {
-      if (ORDER_ASC) {
-        this.querynext.startAt = this.last[ORDERCOL];
-        this.querynext.startAtKey = this.last[KEYCOL];
-      }
-      else {
-        this.querynext.endAt = this.last[ORDERCOL];
-        this.querynext.endAtKey = this.last[KEYCOL];
-      }
+    // if (this.last) {
+    //   if (ORDER_ASC) {
+    //     this.querynext.startAt = this.last[ORDERCOL];
+    //     this.querynext.startAtKey = this.last[KEYCOL];
+    //   }
+    //   else {
+    //     this.querynext.endAt = this.last[ORDERCOL];
+    //     this.querynext.endAtKey = this.last[KEYCOL];
+    //   }
+    // }
+
+    // if (this.lastkey) {
+    //   if (ORDER_ASC) {
+    //     this.querynext.startAt = this.last[ORDERCOL];
+    //     this.querynext.startAtKey = this.lastkey;
+    //   }
+    //   else {
+    //     this.querynext.endAt = this.last[ORDERCOL];
+    //     this.querynext.endAtKey = this.lastkey;
+    //   }
+    // }
+    if (this.lastkey) {
+      this.querynext.equalTo = this.last[ORDERCOL];
+      this.querynext.equalToKey = this.lastkey;
+  
     }
-    // console.log(this.querynext)
+
+    console.log(this.querynext)
 
     let data = await this.db.remoteGetData(this.querypath, this.querynext);
     
     if (data) {
       let arr:BookInfo[] = [];
       for (let key in data) {
+        data[key]["__key__"] = key;
         arr.push(data[key]);
       }
 
@@ -1051,7 +1146,14 @@ export class WataBookInfo extends Wata<BookInfo[]>{
       else
         arr.sort(function (a, b) { return (a[ORDERCOL] == b[ORDERCOL]) ? 1 : b[ORDERCOL] - a[ORDERCOL] });
 
+      this.lastkey = arr[arr.length - 1]["__key__"];
+      console.log("lastkey " + this.lastkey)
+      for (let item of arr) {
+        delete item["__key__"];
+      }
+      
       EOP = (arr.length < PAGESIZE);
+      this.hasmore = !EOP;
       if (arr.length > 0) {
         let first = arr[0];
         if (this.last != null && this.last[KEYCOL] === first[KEYCOL])
@@ -1061,14 +1163,14 @@ export class WataBookInfo extends Wata<BookInfo[]>{
           this.last = arr[arr.length - 1];
       }
 
-      // for (let book of arr) {
-      //   console.log(">>" + book[KEYCOL] + " : " + book[ORDERCOL] + " : " + book.title);
-      // }
-      // console.log("----")
+      for (let book of arr) {
+        console.log(">>" + book[KEYCOL] + " : " + book[ORDERCOL] + " : " + book.title);
+      }
+      console.log("----")
       return arr;
     }
-      
-      
+
+    this.hasmore = false;
     return null;
   }
 
@@ -1241,8 +1343,11 @@ export class WataBookData extends Wata<BookData>{
       }
     }
 
-    // if (changed)
-    //   this._mirror();
+    //must update version by yourself, after only updated parts of data.
+    if (changed) {
+      this.db.bothUpdateVer(this.path, this.data);
+      this._mirrorParts(this.mirror, ["ver"], this.data.ver);
+    }
   }
 
   /**

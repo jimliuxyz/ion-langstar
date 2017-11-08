@@ -49,15 +49,10 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public cfr: ComponentFactoryResolver, private platform: Platform, public toastCtrl: ToastController, private googlePlus: GooglePlus, private _zone: NgZone,public serv:MyService) {
     console.log("Hello HomeSlidesPage!")
-    this._zone.runOutsideAngular(()=>{
-      window.onunload = function(){
-        alert('qe');
-      }      
-    })
-
   }
 
   async ionViewCanEnter(): Promise<any>{
+    
     await this.serv.ready$;
     this.readytest = "ready";
     return true;
@@ -106,6 +101,8 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
   }
 
   updateIndicatorPosition() {
+    // console.dir('updateIndicatorPosition')
+    
     if( this.SwipedTabsSlider.length()>this.SwipedTabsSlider.getActiveIndex())
     {
       this.SwipedTabsIndicator.style.transitionDuration = "0.1s";
@@ -114,8 +111,10 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
   }
 
   animateIndicator($event) {
+    // console.log('animateIndicator ? ')
+    
     // if (!this.SwipedTabsIndicator) return;
-
+    
     this.SwipedTabsIndicator.style.transitionDuration = "";
     this.SwipedTabsIndicator.style.webkitTransform = 'translate3d(' + (($event.progress* (this.SwipedTabsSlider.length()-1))*100) + '%,0,0)';
   }

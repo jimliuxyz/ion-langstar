@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'xyzui-btn-yn',
   templateUrl: 'xyzui-btn-yn.html'
 })  
-export class XyzuiBtnYnComponent {
+export class XyzuiBtnYn {
 
   @Input() value: number = 0;
   @Output() valueChange = new EventEmitter<any>();

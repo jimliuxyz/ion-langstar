@@ -1,0 +1,44 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+      <!-- <ng-template [ngIf]="bytag"> -->
+        <ion-list *ngIf="wata && wata.data">
+
+          <xyzui-tag-header text-left [tagname]="bytag" [desc]="" [nolink]="true">
+          </xyzui-tag-header>
+
+          <!-- (lazyTrigger)="onTagDisplay($event)" [payload]="tag" -->
+
+
+            <xyzui-book-card *ngFor="let book of wata.data" [bookinfo]="book">
+            </xyzui-book-card>
+            
+        
+        </ion-list>
+      <!-- </ng-template> -->
+
+      <!-- <div (lazyTrigger)="onTagDisplay()" [payload]="false">123
+        </div> -->
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+          </ion-infinite-scroll>  
+  </ion-content>
+
+<!-- <ion-content>
+
+    <ion-list>
+        <ion-item *ngFor="let i of items">{{i}}</ion-item>
+      </ion-list>
+     
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+         <ion-infinite-scroll-content></ion-infinite-scroll-content>
+       </ion-infinite-scroll>  
+      
+</ion-content> -->

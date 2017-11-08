@@ -13,10 +13,7 @@ export class CreationComponent implements HomeSlidePage {
   inited = false;
 
   constructor(public navCtrl: NavController) {
-  }
-
-  navTo() {
-    this.navCtrl.push('EditorPage');
+    console.log('CreationComponent');
   }
 
   doRefresh(refresher) {
@@ -28,6 +25,21 @@ export class CreationComponent implements HomeSlidePage {
 
   selected() {
     this.inited=true;
+  }
+
+  private allownav = true;
+  navTo(where:string, data?:any) {
+    let params;
+    if (where === 'MCQ')
+      where = 'EditorPage';
+    else
+      return;
+
+    if (!this.allownav) return;
+    this.allownav = false;
+    this.navCtrl.push(where, params, null, (okay) => {
+      this.allownav = true;
+    });
   }
 
 }

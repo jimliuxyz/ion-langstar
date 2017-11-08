@@ -1,46 +1,27 @@
 <ion-slide *ngIf='serv.w_taglist.data'>
-    <ion-content>
-  <ion-fab top right>
-    <button ion-fab mini (click)="navTo('editor')"><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list>
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
+  <ion-content>
+
+    <div *ngFor="let tag of serv.w_taglist.data">
+      <ng-template [ngIf]="tag.cnt>0">
+        <ion-list>
+
+          <xyzui-tag-header text-left (lazyTrigger)="onTagDisplay($event)" [payload]="tag" [tagname]="tag.name" [desc]="tag.cnt">
+
+          </xyzui-tag-header>
 
 
-  <div padding-top *ngFor="let tag of serv.w_taglist.data">
-    <ng-template [ngIf]="tag.cnt>0">
-      <ion-list>
+          <div [ngIf]="books[tag.name]">
 
-        <div text-left padding-left (lazyTrigger)="onTagDisplay($event)" [payload]="tag">
-              {{ tag.name }} | {{tag.cnt}}
-        </div>
-        <div [ngIf]="books[tag.name]">
-
+            <xyzui-book-card *ngFor="let book of books[tag.name]" [bookinfo]="book">
+            </xyzui-book-card>
             
-          <ion-card *ngFor="let book of books[tag.name]" (click)="navTo('viewer', book)" tappable>
-                <ion-item>
-                  <ion-avatar item-start>
-                    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
-                  </ion-avatar>
-                  <h2>{{book.title}}</h2>
-                  <p>{{book.author}}</p>
-                </ion-item>
-          </ion-card>
-          
-        </div>
-      
-      </ion-list>
-    </ng-template>
-  </div>
+          </div>
+        
+        </ion-list>
+      </ng-template>
+    </div>
+
   </ion-content>
-              
-
-
-
 </ion-slide>
 
 <!-- 

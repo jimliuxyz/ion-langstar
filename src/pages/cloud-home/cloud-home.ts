@@ -11,7 +11,7 @@ import { MiscFunc } from '../../define/misc';
 @Component({
   selector: 'cloud-home',
   templateUrl: 'cloud-home.html'
-})
+})  
 export class CloudHomeComponent implements HomeSlidePage {
   title: string = "_CLOUD_HOME.TITLE";
   tabtitle: string = "_CLOUD_HOME.TITLE";
@@ -22,8 +22,8 @@ export class CloudHomeComponent implements HomeSlidePage {
   }
 
   private allownav = true;
-
   navTo(where:string, data?:any) {
+    let params;
     if (where === 'editor')
       where = 'EditorPage';
     else if (where === 'viewer')
@@ -32,9 +32,8 @@ export class CloudHomeComponent implements HomeSlidePage {
       return;
 
     if (!this.allownav) return;
-
     this.allownav = false;
-    this.navCtrl.push(where, null, null, (okay) => {
+    this.navCtrl.push(where, params, null, (okay) => {
       this.allownav = true;
     });
   }
@@ -91,7 +90,7 @@ export class CloudHomeComponent implements HomeSlidePage {
       orderBy: "views", limitToLast: 5
     };
 
-    let wata = await this.serv.getBookInfosByTag(tag.name, query);
+    let wata = await this.serv.queryBookInfosFromTag(tag.name, query);
     this.books[tag.name] = wata.data;
     return this.books[tag.name];
   }

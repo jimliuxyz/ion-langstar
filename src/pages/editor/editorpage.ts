@@ -28,18 +28,27 @@ export class EditorPage {
   @ViewChild(Content) content: Content;
   @ViewChild('tarea', {read:ElementRef}) tarea: ElementRef;
 
+  private bookuid: string;
+  private errmsg: string = "";
+
   data: any[];
   setting: BookInfo = <BookInfo>{};
   dirty = false;
 
   btnarr: string[][] = [
     [LEADQ, LEADA, LEADCHO, LEADEXP, LEADTIP],
-    ['5']
+    []
   ];
   btnevent = new Subject();
 
   constructor(public modalCtrl: ModalController, public serv: MyService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
+    let urlParams = MiscFunc.getUrlParams();
 
+    this.bookuid = navParams.get('bookuid');
+    if (!this.bookuid)
+      this.bookuid = urlParams["bookuid"];
+
+    this.bookuid = "6ya3vswt56";
   }
 
   openModal(cmd: string) {
@@ -52,87 +61,73 @@ export class EditorPage {
     const txtarea: (any) = this.tarea.nativeElement;
     txtarea.focus();
   }
+
+  private inited = false;
+  async ionViewCanEnter() {
+    if (!this.inited) {
+      this.inited = await this.serv.ready$;
+      if (this.inited) this.loadBook();
+    }
+    return this.inited;
+  }
   
   w_bookinfo: WataBookInfo;
   w_bookdata: WataBookData;
-  async ionViewCanEnter() {
+  async loadBook() {
+    //load book by its uid
+    if (this.bookuid) {
+      this.w_bookinfo = await this.serv.getBookInfo(this.bookuid);
 
-    let ready = await this.serv.ready$;
-    let book = await this.serv.newBook(BookType.MCQ); 
-    book.bookinfo.data[0].cfg = new BookDataCfg_MCQ();
-    console.log(book.bookinfo.data[0].uid)
+      if (this.w_bookinfo.data.length==0) {
+        this.errmsg = "book not found";
+        return;
+      }
+      if (this.serv.w_userinfo.data.uid !== this.w_bookinfo.data[0].author_uid) {
+        this.errmsg = "no permission";
+        return;
+      }
 
-    this.w_bookinfo = book.bookinfo;
-    this.w_bookdata = book.bookdata;
+      this.w_bookdata = await this.serv.getBookData(this.w_bookinfo, this.bookuid);
 
+      const data = this.w_bookdata.data.data;
+      this.tarea.nativeElement.value = this.toTxt(data);
+
+      console.log("load book " + this.bookuid);
+    }
+    //create a new book
+    else {
+      let set = await this.serv.newBook(BookType.MCQ); 
+
+      this.bookuid = set.bookinfo.data[0].uid;
+      this.w_bookinfo = set.bookinfo;
+      this.w_bookdata = set.bookdata;
+
+      //use mock data to test
+      const txtarea: (any) = this.tarea.nativeElement;
+      txtarea.value = Mocks.mcqtext;
+      // this.data = this.toData().data;
+      
+      console.log("create new book " + this.bookuid);
+    }
+
+    if (!this.w_bookinfo.data[0].cfg)
+      this.w_bookinfo.data[0].cfg = new BookDataCfg_MCQ();
 
     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
-    
+
     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
 
-    //use mock data to test
-    const txtarea: (any) = this.tarea.nativeElement;
-    txtarea.value = Mocks.mcqtext;
-    this.data = this.toData().data;
-    this.tarea.nativeElement.value = this.toTxt(this.data);
-    
+
+
     // this.openModal("");
-    this.save();
+    //this.save();
 
     return true;
   }
 
-  ionViewCanEnter2(): Promise<any>{
-    return new Promise((resolve, reject) => {
-      // this.serv.ready$().subscribe(data => {
-      //   if (data === true) {
-      //     this.setting.nalang = this.serv.w_usercfg.data.nalang;
-
-      //     this.book = this.serv.newBook(BookType.MCQ);
-
-      //     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
-          
-      //     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
-
-      //     //use mock data to test
-      //     const txtarea: (any) = this.tarea.nativeElement;
-      //     txtarea.value = Mocks.mcqtext;
-      //     this.data = this.toData();
-      //     this.tarea.nativeElement.value = this.toTxt(this.data);
-          
-      //     this.openModal("");
-      //     this.save();
-          
-      //     resolve(true);
-      //   }
-      // });
-    })
-  }
-
-  /*
-
-##  star
-==  星星Q
-!=  A
-!=  B
-#=  There are billions of stars in the universe.
-#?  a natural luminous body visible in the sky especially at night
-
-##  test
-==  測試
-#=  test....
-#?  測試1....
-測試2....
-
-##  test2
-==  測試2
-#=  test....
-#?  測試1....
-測試2....
-
-  */
 
   save() {
+    if (!this.dirty) return;
     console.log('save...')
 
     // this.book.data.data = this.data;
@@ -145,7 +140,7 @@ export class EditorPage {
 
     this.w_bookdata.commit();
     console.log(set.data)
-
+    this.dirty=false;
   }
 
   toData(): any {

@@ -6,6 +6,11 @@ $slidemenu-Hmax:150px;
 
 page-editpage {
 
+  .save-btn{
+    font-size: 1.4rem;
+    // border: 1px solid red;
+  }
+
   .main-menu {
     position: relative;
     // background: gray;
@@ -13,7 +18,12 @@ page-editpage {
     height: $slidemenu-Hmin;
     overflow: hidden;
     transition: height .2s linear;
+    .grid{
+      padding: 0px;
+      padding-bottom: 25px;
+    }
     .btn{
+      visibility: hidden;
       position: absolute;
       right: 10px;
       background: $slidemenu-bgcolor;
@@ -26,12 +36,12 @@ page-editpage {
     }
     .placeholder{
       display: block;
-      height:8px;
+      height:0px;
     }
     .content{
       .placeholder{
         display: block;
-        height:5px;
+        height:0px;
       }
       background: $slidemenu-bgcolor;
       width:100%;
@@ -40,16 +50,16 @@ page-editpage {
     }
     ion-col{
       margin: 2px;
-      padding: 2px;
+      padding: 15px;
       border: 1px solid $slidemenu-bdcolor;
       cursor: pointer;
     }
   }
   .main-menu[state=hidden] {
-    height: 0px;
+    // height: 0px;
   }
   .main-menu[state=full] {
-    height: $slidemenu-Hmax;
+    // height: $slidemenu-Hmax;
   }
 }
 
