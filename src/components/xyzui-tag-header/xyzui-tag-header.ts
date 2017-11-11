@@ -1,12 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MyService } from '../../providers/myservice/myservice';
+import { BookListPage } from '../../pages/book-list/book-list';
 
-/**
- * Generated class for the XyzuiTagHeaderComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'xyzui-tag-header',
   templateUrl: 'xyzui-tag-header.html'
@@ -20,6 +15,9 @@ export class XyzuiTagHeader {
   constructor(public serv:MyService) {
   }
 
-
+  navToListByTag() {
+    if (!this.nolink)
+      this.serv.navTo(BookListPage, {bytag:this.tagname})
+  }
 
 }

@@ -9,7 +9,8 @@
   "CLOSE":"關閉",
   "CREDIT":"讚譽",
   "SAVE":"儲存",
-  
+  "DELETE":"刪除",
+
   "NALANG":"母語",
   "TALANG":"外語",
   "TAG":"標籤",
@@ -24,6 +25,18 @@
 
   "LEARNING": "學習中",
   "LEARNED": "已學會",
+
+
+  "_SETTINGS": {
+    "TITLE":"設定",
+    "LANG":"語言",
+    "NALANG":"母語",
+    "TALANG":"學習外語"
+  },
+  
+  "_ALERT":{
+    "DELBOOK": "確定要刪除這本書？"
+  },
 
   "_MCQ":{
     "NAME": "題卡",
@@ -51,9 +64,6 @@
   },
   "_READERSETTING": {
     "TITLE": "閱讀設定"
-  },
-  "_SETTINGS": {
-    "TITLE": "設定"
   },
   "_NEWS": {
     "TITLE": "新聞"

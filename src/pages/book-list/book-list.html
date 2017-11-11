@@ -8,9 +8,9 @@
 <ion-content>
 
       <!-- <ng-template [ngIf]="bytag"> -->
-        <ion-list *ngIf="wata && wata.data">
+        <ion-list *ngIf="!errstate && wata && wata.data">
 
-          <xyzui-tag-header text-left [tagname]="bytag" [desc]="" [nolink]="true">
+          <xyzui-tag-header *ngIf="bytag" text-left [tagname]="bytag" [desc]="" [nolink]="true">
           </xyzui-tag-header>
 
           <!-- (lazyTrigger)="onTagDisplay($event)" [payload]="tag" -->

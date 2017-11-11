@@ -13,13 +13,12 @@ export class HomeSettingsComponent {
   misc = MiscFunc;
   gender: string;
 
-  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private translate: TranslateService, public serv: MyService) {
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, public translate: TranslateService, public serv: MyService) {
   }
 
   set nalang(val: string) {
     this.translate.use(val);
     this.serv.w_usercfg.data.nalang = val;
-    this.serv.w_usercfg.commit();
   }
   get nalang():string {
     return this.translate.currentLang;
@@ -27,5 +26,6 @@ export class HomeSettingsComponent {
 
   dismiss() {
     this.viewCtrl.dismiss();
+    this.serv.w_usercfg.commit();
   }
 }

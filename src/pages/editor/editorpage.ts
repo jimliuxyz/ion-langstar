@@ -25,11 +25,11 @@ const LEADTIP = "#?";
   templateUrl: 'editorpage.html',
 })
 export class EditorPage {
+  errstate: string = "not ready";
   @ViewChild(Content) content: Content;
   @ViewChild('tarea', {read:ElementRef}) tarea: ElementRef;
 
   private bookuid: string;
-  private errmsg: string = "";
 
   data: any[];
   setting: BookInfo = <BookInfo>{};
@@ -48,7 +48,8 @@ export class EditorPage {
     if (!this.bookuid)
       this.bookuid = urlParams["bookuid"];
 
-    this.bookuid = "6ya3vswt56";
+    // this.bookuid = "6ya3vswt56";
+    console.log(navParams)
   }
 
   openModal(cmd: string) {
@@ -66,7 +67,7 @@ export class EditorPage {
   async ionViewCanEnter() {
     if (!this.inited) {
       this.inited = await this.serv.ready$;
-      if (this.inited) this.loadBook();
+      if (this.inited) await this.loadBook();
     }
     return this.inited;
   }
@@ -74,57 +75,62 @@ export class EditorPage {
   w_bookinfo: WataBookInfo;
   w_bookdata: WataBookData;
   async loadBook() {
+    
     //load book by its uid
     if (this.bookuid) {
+      console.log("load book " + this.bookuid);
+      
       this.w_bookinfo = await this.serv.getBookInfo(this.bookuid);
 
       if (this.w_bookinfo.data.length==0) {
-        this.errmsg = "book not found";
-        return;
+        return this.errGoBack("book not found");;
       }
       if (this.serv.w_userinfo.data.uid !== this.w_bookinfo.data[0].author_uid) {
-        this.errmsg = "no permission";
-        return;
+        return this.errGoBack("no permission!");;
       }
-
+      console.log(1)
+      
       this.w_bookdata = await this.serv.getBookData(this.w_bookinfo, this.bookuid);
+      console.log(2)
 
-      const data = this.w_bookdata.data.data;
-      this.tarea.nativeElement.value = this.toTxt(data);
-
-      console.log("load book " + this.bookuid);
     }
-    //create a new book
-    else {
-      let set = await this.serv.newBook(BookType.MCQ); 
+    //from a new book
+    else if (this.navParams.get('bookset')) {
+      const set = this.navParams.get('bookset');
 
       this.bookuid = set.bookinfo.data[0].uid;
       this.w_bookinfo = set.bookinfo;
       this.w_bookdata = set.bookdata;
-
-      //use mock data to test
-      const txtarea: (any) = this.tarea.nativeElement;
-      txtarea.value = Mocks.mcqtext;
-      // this.data = this.toData().data;
       
-      console.log("create new book " + this.bookuid);
+      //use mock data to test
+      // const txtarea: (any) = this.tarea.nativeElement;
+      // txtarea.value = Mocks.mcqtext;
     }
-
+    else {
+      return this.errGoBack("exception!");;
+    }
+    
     if (!this.w_bookinfo.data[0].cfg)
       this.w_bookinfo.data[0].cfg = new BookDataCfg_MCQ();
+    
+    this.tarea.nativeElement.value = this.toTxt(this.w_bookdata.data.data, this.w_bookdata.data.ordermap);
 
     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
-
+    
     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
-
-
 
     // this.openModal("");
     //this.save();
-
+    this.errstate = "";
     return true;
   }
 
+  errGoBack(err:string):boolean {
+    this.errstate = err;
+    console.error(err);
+    this.navCtrl.pop();
+    return true;
+  }
 
   save() {
     if (!this.dirty) return;
@@ -134,7 +140,7 @@ export class EditorPage {
     // this.serv.saveBook(this.book);
 
     let set = this.toData();
-    
+
     this.w_bookdata.data.data = set.data;
     this.w_bookdata.data.ordermap = set.omap;
 
@@ -208,7 +214,9 @@ export class EditorPage {
   toTxt(data: any, omap?:any): string {
     let dataarr = [];
     let textarr = [];
-    
+    if (!data)
+      return "";  
+
     Object.keys(data).forEach((key, idx) => {
       dataarr.push(data[key])
     });

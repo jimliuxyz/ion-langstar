@@ -11,6 +11,8 @@ import { WataAction } from '../../define/databse';
 import { UserCfg } from '../../define/userinfo';
 import { TTS } from '../../providers/myservice/tts';
 import { ModePlay } from './mode-play';
+import { EditorPage } from '../editor/editorpage';
+import { BookListPage } from '../book-list/book-list';
 
 @IonicPage({
   segment:'viewer',
@@ -21,7 +23,7 @@ import { ModePlay } from './mode-play';
   templateUrl: 'viewerpage.html',
 })
 export class ViewerPage {
-  private readystate = "not ready";
+  private errstate = "not ready";
   private title: string;
   readonly listtype = "learning";
   readonly bookuid: string;
@@ -29,11 +31,13 @@ export class ViewerPage {
   constructor(public platform:Platform, public modalCtrl: ModalController, public serv: MyService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
 
     let urlParams = MiscFunc.getUrlParams();
-    urlParams["bookuid"] = "6ya3vswt56";
+    // urlParams["bookuid"] = "6ya3vswt56";
 
     this.bookuid = navParams.get('bookuid');
     if (!this.bookuid)
       this.bookuid = urlParams["bookuid"];
+    
+    console.log("view : ", this.bookuid);
   }
 
   private openModal(cmd: string) {
@@ -54,34 +58,27 @@ export class ViewerPage {
     });
   }
 
-  private allownav = true;
-  navTo(where: string, data?: any) {
-    let params;
-    if (where === 'editor') {
-      where = 'EditorPage';
-      params = {
-        bookuid: data,
-      }
-    }
-    else
-      return;
-
-    if (!this.allownav) return;
-    this.allownav = false;
-    this.navCtrl.push(where, params, null, (okay) => {
-      this.allownav = true;
-    });
+  navToEditor() {
+    this.serv.navTo(EditorPage, { bookuid: this.bookinfo.data[0].uid });
   }
-  
+
+  navToListByAuthor() {
+    this.serv.navTo(BookListPage, {byauthor:this.bookinfo.data[0].author_uid})
+  }
+
   async ionViewCanEnter() {
     let ready = await this.serv.ready$;
+    // if (!this.bookuid) {
+    // this.navCtrl.pop()
+    //   return;      
+    // }
     // if (ready) return false;
 
     this.bookinfo = await this.serv.getBookInfo(this.bookuid);
-    if (this.bookinfo.data) {
+    if (this.bookinfo.data && this.bookinfo.data.length>0) {
       this.bookcfg = this.bookinfo.data[0].cfg;
       this.title = this.bookinfo.data[0].title;
-
+      
       this.author = await this.serv.getUserInfo(this.bookinfo.data[0].author_uid);
       console.log(this.author);
 
@@ -90,10 +87,14 @@ export class ViewerPage {
       // this.openModal("");
     }
     else {
-      console.error("book not found ", this.bookuid)
+      this.errstate = "book not found " + this.bookuid;
+      console.error(this.errstate)
+      this.navCtrl.pop();
+      return true;
+      // this.serv.navTo('home');
     }
 
-    this.readystate = "";
+    this.errstate = "";
     return true;
   }
 

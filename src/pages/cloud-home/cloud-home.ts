@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { HomeSlidePage } from '../home-slides/home-slides';
 import { MyService, Wata } from '../../providers/myservice/myservice';
 import { BookInfo } from '../../define/book';
@@ -16,83 +16,73 @@ export class CloudHomeComponent implements HomeSlidePage {
   title: string = "_CLOUD_HOME.TITLE";
   tabtitle: string = "_CLOUD_HOME.TITLE";
   inited = false;
-  readytest = "not ready";
+  errstate = "not ready";
   
-  constructor(public navCtrl: NavController, public serv:MyService) {
-  }
-
-  private allownav = true;
-  navTo(where:string, data?:any) {
-    let params;
-    if (where === 'editor')
-      where = 'EditorPage';
-    else if (where === 'viewer')
-      where = 'ViewerPage';
-    else
-      return;
-
-    if (!this.allownav) return;
-    this.allownav = false;
-    this.navCtrl.push(where, params, null, (okay) => {
-      this.allownav = true;
-    });
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public serv:MyService) {
   }
 
   async ionViewCanEnter() {
-    let ready = await this.serv.ready$;
+    if (!this.inited) {
+      let loading = this.loadingCtrl.create({
+        spinner: 'circles',
+        content: 'Please wait...'
+      });
+      loading.present();
 
-    await this.reload();
-    this.readytest = "";
-    
+      setTimeout(async () => {
+        let ready = await this.serv.ready$;
+        this.books = await this.reload();
+        this.errstate = "";
+        loading.dismiss();
+      }, 0);
+    }
+    this.inited = true;
     return true;
   }
 
-  PRELOAD_BOOKS = 20;
-  async reload() {
-    this.books = [];
-
-    //load some content before first view
-    //todo : remove empty tag
-    //todo : favorites on top
-    //todo : reload when w_taglist update / user refresh
-
-
-    let tags = this.serv.w_taglist.data;
-    let cnt = 0;
-    for (let tag of tags) {
-      await this.onTagDisplay({ payload: tag });
-      cnt += this.books[tag.name] ? this.books[tag.name].length : 0;
-      if (cnt >= this.PRELOAD_BOOKS) break;  
-    }
-  }
-  
-
   doRefresh(refresher) {
-    setTimeout(() => {
-      console.log('Async operation has ended');
+    setTimeout(async () => {
+      this.books = await this.reload();
       refresher.complete();
-    }, 2000);
+    }, 0);
   }
 
   selected() {
     this.ionViewCanEnter();
-    this.inited=true;
   }
 
-  books: BookInfo[][]=[];
-  async onTagDisplay(event:any) {
+  readonly PRELOAD_BOOKS = 20;
+  books: BookInfo[][] = [];
+
+  async reload():Promise<BookInfo[][]> {
+    let books: BookInfo[][] = [];
+
+    let tags = this.serv.w_taglist.data;
+    let cnt = 0;
+    for (let tag of tags) {
+      await this.onTagDisplay({ payload: tag }, books);
+      cnt += books[tag.name] ? books[tag.name].length : 0;
+      if (cnt >= this.PRELOAD_BOOKS) break;  
+    }
+    return books;
+  }
+
+  async onTagDisplay(event: any, books?: BookInfo[][]) {
+    if (!books)
+      books = this.books;
+    
     let tag: Tag = event.payload;
-    if (this.books[tag.name])
+    if (books[tag.name])
       return;  
-    // console.log("got", event.payload);
-      
+    console.log("got", event.payload);
+
     let query:DBQuery = {
       orderBy: "views", limitToLast: 5
     };
 
     let wata = await this.serv.queryBookInfosFromTag(tag.name, query);
-    this.books[tag.name] = wata.data;
-    return this.books[tag.name];
+    books[tag.name] = wata.data;
+    return books[tag.name];
   }
 
 }

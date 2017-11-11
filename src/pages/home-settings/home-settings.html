@@ -28,6 +28,14 @@
         </ion-select>
       </ion-item>
 
+      <ion-item>
+        <ion-label>{{'TALANG'|translate}}</ion-label>
+
+        <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="serv.w_usercfg.data.talang">
+          <ion-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{misc.getLang(lang).nalang}}</ion-option>
+        </ion-select>
+      </ion-item>
+
       
   </ion-list>
 

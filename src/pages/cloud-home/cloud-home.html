@@ -1,11 +1,17 @@
-<ion-slide *ngIf='serv.w_taglist.data'>
-  <ion-content>
+<ion-slide>
+  <ion-content *ngIf='!errstate && serv.w_taglist.data'>
+    <slide-refresher (ionRefresh)="doRefresh($event)" pullMin=120 pullMax=360><slide-refresher-content
+      pullingIcon="refresh-circle"
+      refreshingSpinner="circles">
+      </slide-refresher-content>
+    </slide-refresher>
+
 
     <div *ngFor="let tag of serv.w_taglist.data">
       <ng-template [ngIf]="tag.cnt>0">
         <ion-list>
 
-          <xyzui-tag-header text-left (lazyTrigger)="onTagDisplay($event)" [payload]="tag" [tagname]="tag.name" [desc]="tag.cnt">
+          <xyzui-tag-header text-left (lazyTrigger)="onTagDisplay($event)" [repeat]="true" [payload]="tag" [tagname]="tag.name" [desc]="tag.cnt">
 
           </xyzui-tag-header>
 

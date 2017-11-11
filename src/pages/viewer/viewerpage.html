@@ -2,14 +2,14 @@
 <ion-header>
         
   <ion-navbar>
-    <ion-title>{{title}}{{readystate}}</ion-title>
-    <ion-buttons end>
+    <ion-title>{{title}}{{errstate}}</ion-title>
+    <ion-buttons *ngIf="!errstate" end>
 
-      <button *ngIf="true" ion-button icon-only (click)="navTo('editor', bookinfo.data[0].uid)">
+      <button *ngIf="true" ion-button icon-only (click)="navToEditor()">
         <ion-icon name="ios-heart"></ion-icon>
       </button>
 
-      <button *ngIf="isEditable()" ion-button icon-only (click)="navTo('editor', bookinfo.data[0].uid)">
+      <button *ngIf="isEditable()" ion-button icon-only (click)="navToEditor()">
             <ion-icon name="ios-create-outline"></ion-icon>
           </button>
     
@@ -23,10 +23,10 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content *ngIf="!errstate">
     <ng-template [ngIf]="bookinfo.data && bookinfo.data.length>0">
 
-    <span style="display: inline-flex;padding:10px 10px 0px 10px" (click)="serv.navTo('list', {byauthor:bookinfo.data[0].author_uid})">
+    <span style="display: inline-flex;padding:10px 10px 0px 10px" (click)="navToListByAuthor()">
         <img style='border-radius: 50%;    overflow: hidden;width: 20px;height: 20px;' [src]="author.data.localPhotoURL">
         &nbsp;{{author.data.displayName}}
         

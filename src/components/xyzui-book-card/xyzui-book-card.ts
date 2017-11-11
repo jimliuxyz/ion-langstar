@@ -3,13 +3,8 @@ import { BookInfo } from '../../define/book';
 import { UserInfo } from '../../define/userinfo';
 import { NavController } from 'ionic-angular';
 import { MyService } from '../../providers/myservice/myservice';
+import { ViewerPage } from '../../pages/viewer/viewerpage';
 
-/**
- * Generated class for the XyzuiBookCardComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'xyzui-book-card',
   templateUrl: 'xyzui-book-card.html'
@@ -24,5 +19,8 @@ export class XyzuiBookCard {
 
   }
 
+  navTo() {
+    this.serv.navTo(ViewerPage, {bookuid:this.bookinfo.uid})
+  }
 
 }

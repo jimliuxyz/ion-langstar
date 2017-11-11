@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Platform, LoadingController, NavController } from 'ionic-angular';
+import { Platform, LoadingController, NavController, NavOptions } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
 import { Subject, BehaviorSubject } from 'rxjs';
@@ -20,6 +20,7 @@ import { deftags, Tag, TagList } from '../../define/tag';
 import { Subscription } from 'rxjs/Subscription';
 import { Mocks } from '../../define/mocks';
 import { VoiceCfg, TTS } from './tts';
+import { Page, TransitionDoneFn } from 'ionic-angular/navigation/nav-util';
 
 
 @Injectable()
@@ -53,27 +54,28 @@ export class MyService {
     this.navCtrl = navCtrl;
   }
 
+  /**
+   * override ionic push for debounce the push request
+   */
   private allownav = true;
-  navTo(where: string, params?: any) {
-    if (!where) return;
+  navTo(where: Page, params?: any, opts?:NavOptions,doneFn?:TransitionDoneFn ): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      if (!where) return resolve(false);
 
-    console.log("nav to ... " + where, params)
-    if (where === 'editor')
-      where = 'EditorPage';
-    else if (where === 'viewbook') {
-      where = 'ViewerPage';
-    }
-    else if (where === 'list') {
-      where = 'BookListPage';
-    }  
-    else
-      return;
+      //it must be a string, otherwise the url will not work together.
+      if (where && where.name)
+        where = <any>where.name;  
+      console.dir((this.allownav?"allow":"not allow") + " nav to ... " + where, params)
 
-    if (!this.allownav) return;
-    this.allownav = false;
-    this.navCtrl.push(where, params, null, (okay) => {
-      this.allownav = true;
-    });
+      if (!this.allownav) return;
+      this.allownav = false;
+      return resolve(await this.navCtrl.push(where, params, null, (hasCompleted: boolean, requiresTransition: boolean, enteringName?: string, leavingName?: string, direction?: string) => {
+        // console.log("? " + okay);
+        this.allownav = true;
+        if (doneFn)
+          doneFn(hasCompleted, requiresTransition, enteringName, leavingName, direction);  
+      }));      
+    })
   }
 
   private loginStateCallback() {
@@ -161,7 +163,7 @@ export class MyService {
       this.w_userinfo.data,
       this.w_usercfg.data,
     );
-    
+
     let bookdata = new WataBookData(this.db, bookinfo);
     await bookdata.newBookData(bookinfo.data[0].uid);
     
@@ -592,9 +594,9 @@ export abstract class Wata<T>{
    * synchronize mirror data
    * @param data brand new data
    */
-  protected async _mirror(data?: any) {
-    this.data = data ? data : this.data;
-    this.mirror = this.data ? this.clone(this.data) : this.data;
+  protected async _mirror(data: any) {
+    this.data = data;
+    this.mirror = this.clone(this.data);
   }
 
   /**
@@ -709,7 +711,7 @@ export class WataUserInfo extends Wata<UserInfo>{
     let diff = this.testDiff();
     if (diff.diff) {
       await this.db.bothUpdate(this.path, this.data, diff);
-      this._mirror();
+      this._mirror(this.data);
     }
     return true;
   }
@@ -766,8 +768,10 @@ export class WataUserInfo extends Wata<UserInfo>{
     this.path = [DbPrefix.USERINFO, useruid];
 
     this.user = await this.db.remoteGetData(this.path);
-    this._mirror(this.user);
-    this.updatePhoto();
+    if (this.user) {
+      this._mirror(this.user);
+      this.updatePhoto(); 
+    }
   }
 }
 
@@ -827,7 +831,7 @@ export class WataUserCfg extends Wata<UserCfg>{
       let parts = this.data.book_record.books[bookuid];
       let diff = this.differ.test(null, parts)
       this.db.bothUpdate([...this.path, "book_record", "books", bookuid], parts, diff);
-      this._mirror();
+      this._mirror(this.data);
 
       this._mirrorParts(this.mirror.book_record.books, bookuid, parts);      
     }
@@ -856,7 +860,7 @@ export class WataUserCfg extends Wata<UserCfg>{
     if (diff.diff) {
       this.db.bothUpdate(this.path, this.data, diff);
 
-      this._mirror();
+      this._mirror(this.data);
       await this._fireEvent(WataEvent.USERCFGUPDATE, this.data);
       return true;
     }
@@ -913,7 +917,7 @@ export class WataTagList extends Wata<Tag[]>{
     let diff = this.testDiff();
     if (diff.diff) {
       await this.db.bothUpdate(this.path, this.data, diff);
-      this._mirror();
+      this._mirror(this.data);
     }
     return true;
   }
@@ -953,6 +957,10 @@ export class WataTagList extends Wata<Tag[]>{
           return null;
         
         currentData.cnt += inc;
+        if (currentData.cnt < 0) {
+          console.warn("joleTag transaction failure!");  
+          currentData.cnt = 0;
+        }
         return currentData;
       },
       async (error, committed) => {
@@ -1037,7 +1045,7 @@ export class WataBookInfo extends Wata<BookInfo[]>{
   public async initByBookUid(bookuid: string) {
     this.querypath = [...this.BYUID, bookuid];
 
-    let data = await this.db.getNsyncData(this.querypath, () => undefined);
+    let data = bookuid ? await this.db.getNsyncData(this.querypath, () => undefined) : undefined;
 
     this._mirror(data ? [data] : []);
   }
@@ -1064,7 +1072,7 @@ export class WataBookInfo extends Wata<BookInfo[]>{
       }
     }
     if (changed)
-      this._mirror();
+      this._mirror(this.data);
   }
 
   /**
@@ -1097,40 +1105,23 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     const PAGESIZE = (this.querynext.limitToFirst) ? this.querynext.limitToFirst : this.querynext.limitToLast;
     const ORDER_ASC = (this.querynext.limitToFirst != null);
     const ORDERCOL = this.querynext.orderBy;
-    const KEYCOL = "uid";
-    // if (ORDER_ASC)
-    //   this.querynext.startAt = 0;
-    // else
-    //   this.querynext.endAt = 999999999;
 
-    // if (this.last) {
-    //   if (ORDER_ASC) {
-    //     this.querynext.startAt = this.last[ORDERCOL];
-    //     this.querynext.startAtKey = this.last[KEYCOL];
-    //   }
-    //   else {
-    //     this.querynext.endAt = this.last[ORDERCOL];
-    //     this.querynext.endAtKey = this.last[KEYCOL];
-    //   }
-    // }
-
-    // if (this.lastkey) {
-    //   if (ORDER_ASC) {
-    //     this.querynext.startAt = this.last[ORDERCOL];
-    //     this.querynext.startAtKey = this.lastkey;
-    //   }
-    //   else {
-    //     this.querynext.endAt = this.last[ORDERCOL];
-    //     this.querynext.endAtKey = this.lastkey;
-    //   }
-    // }
     if (this.lastkey) {
-      this.querynext.equalTo = this.last[ORDERCOL];
-      this.querynext.equalToKey = this.lastkey;
-  
+      if (this.querynext.equalTo) {
+        this.querynext.equalTo = this.last[ORDERCOL];
+        this.querynext.equalToKey = this.lastkey;
+      }
+      else if (ORDER_ASC) {
+        this.querynext.startAt = this.last[ORDERCOL];
+        this.querynext.startAtKey = this.lastkey;
+      }
+      else {
+        this.querynext.endAt = this.last[ORDERCOL];
+        this.querynext.endAtKey = this.lastkey;
+      }
     }
 
-    console.log(this.querynext)
+    // console.log(this.querynext)
 
     let data = await this.db.remoteGetData(this.querypath, this.querynext);
     
@@ -1141,32 +1132,35 @@ export class WataBookInfo extends Wata<BookInfo[]>{
         arr.push(data[key]);
       }
 
+      EOP = (arr.length < PAGESIZE);
+      this.hasmore = !EOP;
+
+      //sort
       if (ORDER_ASC)
         arr.sort(function (a, b) { return a[ORDERCOL] - b[ORDERCOL] });
       else
         arr.sort(function (a, b) { return (a[ORDERCOL] == b[ORDERCOL]) ? 1 : b[ORDERCOL] - a[ORDERCOL] });
 
-      this.lastkey = arr[arr.length - 1]["__key__"];
-      console.log("lastkey " + this.lastkey)
+      //remove the first if it repeated
+      if (this.lastkey === arr[0]["__key__"])
+        arr.splice(0, 1);
+
+      //re-define last key
+      if (arr.length > 0) {
+        this.last = arr[arr.length - 1];
+        this.lastkey = arr[arr.length - 1]["__key__"];
+      }
+
+      //remove __key__
       for (let item of arr) {
         delete item["__key__"];
       }
-      
-      EOP = (arr.length < PAGESIZE);
-      this.hasmore = !EOP;
-      if (arr.length > 0) {
-        let first = arr[0];
-        if (this.last != null && this.last[KEYCOL] === first[KEYCOL])
-          arr.splice(0, 1);
-        
-        if (arr.length > 0)
-          this.last = arr[arr.length - 1];
-      }
 
-      for (let book of arr) {
-        console.log(">>" + book[KEYCOL] + " : " + book[ORDERCOL] + " : " + book.title);
-      }
-      console.log("----")
+      // for (let book of arr) {
+      //   console.log(">>" + book[KEYCOL] + " : " + book[ORDERCOL] + " : " + book.title);
+      // }
+      // console.log("----")
+      // console.log("lastkey " + this.lastkey)
       return arr;
     }
 
@@ -1241,6 +1235,42 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     }
   }
 
+  private getIdxByBookUID(bookuid: string):number {
+    for (let key in this.data) {
+      const book = this.data[key];
+      if (book.uid === bookuid)
+        return parseInt(key);
+    }
+    return -1;
+  }
+
+  delBook(bookuid: string) {
+    const idx = this.getIdxByBookUID(bookuid);
+    if (idx >= 0) {
+      const book = this.data[idx];
+      this.data.splice(idx, 1);
+
+      const langpair = MiscFunc.getLangPair(book.nalang, book.talang);
+
+      if (book.tag1) {
+        this.db.bothDel([...this.BYTAG, langpair, book.tag1, book.uid]);
+        this.w_taglist.leaveTagCnt(langpair, book.tag1);
+      }
+
+      if (book.tag2) {
+        this.db.bothDel([...this.BYTAG, langpair, book.tag2, book.uid]);
+        this.w_taglist.leaveTagCnt(langpair, book.tag2);
+      }
+      
+      this.db.bothDel([...this.BYUID, book.uid]);
+      this.db.bothDel([DbPrefix.BOOKDATA, book.uid]);
+      
+      this.commit();
+    }
+    
+    
+  }
+
 }
 
 export class WataBookData extends Wata<BookData>{
@@ -1268,6 +1298,8 @@ export class WataBookData extends Wata<BookData>{
     let data = await this.db.getNsyncData(this.path, () => {
       return null;
     });
+    if (!data)
+      data = new BookData();
     this._mirror(data);
   }
 
@@ -1335,7 +1367,7 @@ export class WataBookData extends Wata<BookData>{
       this._mirrorParts(this.mirror, ["ordermap"], this.data.ordermap);
     }
     
-    if (Object.keys(this.mirror.data).length != Object.keys(this.data.data).length) {
+    if (this.mirror.data && Object.keys(this.mirror.data).length != Object.keys(this.data.data).length) {
       let bookidx = this.getIdxOfBook();
       if (bookidx >= 0) {
         this.w_bookinfo.data[bookidx].qnum = Object.keys(this.data.data).length;
@@ -1355,7 +1387,7 @@ export class WataBookData extends Wata<BookData>{
    */
   public async commitAll() {
     this.db.bothSet(this.path, this.data);
-    this._mirror();
+    this._mirror(this.data);
   }
 
 

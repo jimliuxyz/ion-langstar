@@ -51,6 +51,7 @@ export class DBapiFirebase implements IRDBapi {
           this.loginstatechanged$.next(null);
         }
         bootlogin = false;
+        // firebase.database().goOffline();
       });
   }
 
