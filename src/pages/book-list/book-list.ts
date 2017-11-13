@@ -44,7 +44,7 @@ export class BookListPage {
       this.byauthor = "iuymh6i9e9";
 
     // this.title = this.bytag ? this.bytag : this.byauthor;
-    console.log("by... : " +  this.title);
+    console.log("by... : " + this.bytag + " or " + this.byauthor);
   }
   
   async ionViewCanEnter() {

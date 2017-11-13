@@ -68,33 +68,33 @@ export class ViewerPage {
 
   async ionViewCanEnter() {
     let ready = await this.serv.ready$;
-    // if (!this.bookuid) {
-    // this.navCtrl.pop()
-    //   return;      
-    // }
-    // if (ready) return false;
 
     this.bookinfo = await this.serv.getBookInfo(this.bookuid);
     if (this.bookinfo.data && this.bookinfo.data.length>0) {
-      this.bookcfg = this.bookinfo.data[0].cfg;
-      this.title = this.bookinfo.data[0].title;
+      const info = this.bookinfo.data[0];
+      this.bookcfg = info.cfg;
+      this.title = info.title;
       
-      this.author = await this.serv.getUserInfo(this.bookinfo.data[0].author_uid);
+      this.author = await this.serv.getUserInfo(info.author_uid);
       console.log(this.author);
+      if (!this.author.data)
+        return this.errGoBack("author not found " + info.author_uid);
 
       await this.loadBook();
       // this.linkToMode("");
       // this.openModal("");
     }
-    else {
-      this.errstate = "book not found " + this.bookuid;
-      console.error(this.errstate)
-      this.navCtrl.pop();
-      return true;
-      // this.serv.navTo('home');
-    }
+    else
+      return this.errGoBack("book not found " + this.bookuid);
 
     this.errstate = "";
+    return true;
+  }
+
+  private errGoBack(err:string):boolean {
+    this.errstate = err;
+    console.error(err);
+    this.navCtrl.pop();
     return true;
   }
 

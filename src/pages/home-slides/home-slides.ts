@@ -16,6 +16,7 @@ import { CreationComponent } from '../creation/creation';
 import { MyService } from '../../providers/myservice/myservice';
 import { CloudHomeComponent } from '../cloud-home/cloud-home';
 import { MiscFunc } from '../../define/misc';
+import { LocaldbViewer } from '../localdb-viewer/localdb-viewer';
 
 export interface HomeSlidePage{
   title: string,
@@ -23,8 +24,9 @@ export interface HomeSlidePage{
   selected(),
 }
 
-const SLIDECLS:any[] = [
+const SLIDECLS: any[] = [
   [CloudHomeComponent, null],
+  [LocaldbViewer, null],
   [CreationComponent, null],
   [NewsComponent, null],
   [CreditComponent, null],

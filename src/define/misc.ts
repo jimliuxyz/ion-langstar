@@ -1,5 +1,6 @@
 import MD5 from "md5.js";
 import { SpeechVoice } from "../providers/myservice/tts";
+import { Platform } from "ionic-angular";
 
 class Lang{
   constructor(public code:string, public lang:string, public nalang:string) {
@@ -58,6 +59,11 @@ const langlist: Lang[] = [
 
 
 export class MiscFunc{
+
+  static platform: Platform;
+  static init(platform: Platform) {
+    MiscFunc.platform = platform;
+  }
 
   /**
    * https://github.com/MatthewBarker/hash-string
@@ -232,4 +238,5 @@ export class MiscFunc{
       }
     }
   }
+
 }

@@ -38,6 +38,8 @@ import { EditPageModule } from '../pages/editor/editorpage.module';
 import { CloudHomeComponent } from '../pages/cloud-home/cloud-home';
 import { ViewerPageModule } from '../pages/viewer/viewerpage.module';
 import { BookListPage } from '../pages/book-list/book-list';
+import { Network } from '@ionic-native/network';
+import { LocaldbViewer } from '../pages/localdb-viewer/localdb-viewer';
 
 
 
@@ -49,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     MyApp,
     HomeSettingsComponent,
-    NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,
+    NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,LocaldbViewer,
     LoginPage, LogoutPage,
     // NewpagePage
   ],
@@ -58,7 +60,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     EditPageModule,ViewerPageModule,
     IonicModule.forRoot(MyApp,{mode:'ios',pageTransition:'md-transition'}),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__langstar',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     IonicPatchModule,
     SharedModule.forRoot(),
     TranslateModule.forRoot({
@@ -77,11 +82,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     HomeSettingsComponent,
     NewsComponent, CreditComponent, CreationComponent,
-    CloudHomeComponent,
+    CloudHomeComponent,LocaldbViewer,
     LoginPage, LogoutPage,
     // NewpagePage
   ],
   providers: [
+    Network,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

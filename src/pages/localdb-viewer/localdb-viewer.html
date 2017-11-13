@@ -1,0 +1,15 @@
+<ion-slide padding-top>
+    <ion-content>
+
+    <ion-card style="text-align: left;" *ngFor="let key of keys">
+        <button ion-button icon-only color="danger" small (click)="del(key)">
+            <ion-icon name="close"></ion-icon>
+        </button> 
+               {{key}}
+        <pre style="text-align: left;" *ngIf="data[key]">{{data[key]}}</pre>
+
+
+    </ion-card>
+
+    </ion-content>
+</ion-slide>

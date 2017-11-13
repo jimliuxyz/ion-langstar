@@ -5,6 +5,7 @@ import { MyService, WataBookInfo } from '../../providers/myservice/myservice';
 import { BookInfo, BookType } from '../../define/book';
 import { EditorPage } from '../editor/editorpage';
 import { TranslateService } from '@ngx-translate/core';
+import { LoginPage } from '../login/login';
 
 
 @Component({
@@ -58,7 +59,12 @@ export class CreationComponent implements HomeSlidePage {
     }, 200);
   }
 
-  async newBook(type:BookType) {
+  async newBook(type: BookType) {
+    if (this.serv.isAnonymous()) {
+      this.serv.openModal(LoginPage);
+      return;
+    }
+    
     let set = await this.serv.newBook(BookType.MCQ);
 
     await this.serv.navTo(EditorPage, { bookset: set });

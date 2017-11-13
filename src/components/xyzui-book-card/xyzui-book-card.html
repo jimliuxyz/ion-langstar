@@ -1,12 +1,17 @@
 
-<ion-card *ngIf="bookinfo" (click)="navTo()">
+<ion-card *ngIf="ready" (click)="navTo()">
     <ion-item>
-      <!-- <ion-avatar item-start>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
-      </ion-avatar> -->
       <h1>{{bookinfo.title}}</h1>
-      <p><img class="author-icon" src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">{{bookinfo.author}}{{bookinfo.uid}}</p>
 
+      <ng-template [ngIf]="author && author.data">
+        <p><img class="author-icon" [src]="author.cachedPhoto">{{author.data.displayName}}</p>
+      </ng-template>
+
+      <!-- <p>
+        <img class="author-icon" [src]="author.cachedPhoto">
+        <span>{{author.data.displayName}}</span>
+      </p> -->
+      
       <!-- <ion-icon item-right name="close"></ion-icon> -->
       <ng-content item-right></ng-content>
 

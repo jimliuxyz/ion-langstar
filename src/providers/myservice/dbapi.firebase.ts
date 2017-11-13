@@ -11,6 +11,8 @@ import * as firebase from 'firebase/app';
 
 import { UserInfo, ANONYMOUS, UserCfg } from '../../define/userinfo';
 import { MiscFunc } from '../../define/misc';
+import { Network } from '@ionic-native/network';
+import { DifferResult } from '../../define/JsObjDiffer';
 
 
 export abstract class IRDBapi {
@@ -20,29 +22,52 @@ export abstract class IRDBapi {
   abstract loginStateChanged(): Observable<UserInfo | number>;
 
   abstract clear(path: string[]): Promise<number>;
-  abstract getDataVer(path: string[]): Promise<number>;
-  abstract getData(path: string[], query?:DBQuery);
-  abstract setData(path: string[], data: any): Promise<any>;
-  abstract updateData(path: string[], data: any): Promise<any>;
   abstract transaction(path: string[], fnUpdate: any, fnComplete?: any): Promise<any>;
     
   abstract test1(data: any): Promise<any>;
+
+//---
+
+  abstract getDataVer(path: string[]): Promise<DBResult>;
+  abstract getData(path: string[], query?: DBQuery): Promise<DBResult>;
+  abstract setData(path: string[], data: any): Promise<DBResult>;
+  
+  abstract updateData(path: string[], data: any): Promise<DBResult>;
+  abstract updateDiff(path: string[], data: any, diff: DifferResult): Promise<DBResult>;
+    
 }
 
 const _USERCFG = "usercfg/";
-
+const TIMEOUTMS = 10000;
 
 @Injectable()
 export class DBapiFirebase implements IRDBapi {
-  PROVIDERID = "firebase";
-  anonymous_email = "anonymous@anonymous.com";
-  anonymous_pwd = "sdfncvf913";
+  private PROVIDERID = "firebase";
+  private anonymous_email = ANONYMOUS.email;
+  private anonymous_pwd = "sdfncvf913";
+
+  private online = navigator ? navigator.onLine : (<any>Network).connection;
 
   constructor(
     private platform: Platform,
+    private network: Network, 
     private afDB: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     private googleplus: GooglePlus) {
+    
+      // this.online = false;
+      this.online ? firebase.database().goOnline() : firebase.database().goOffline();
+      console.log("online =? " + this.online)
+    
+      this.network.onDisconnect().subscribe(() => {
+        console.log('network was disconnected!');
+        this.online = false;
+      });
+      this.network.onConnect().subscribe(() => {
+        console.log('network connected!');
+        this.online = true;
+      });
+    
       let bootlogin = true;
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -182,8 +207,47 @@ export class DBapiFirebase implements IRDBapi {
 
 //-----
 
-    // this.dbapi.clear(["bookinfo"]);
-    // this.dbapi.clear(["/"]);  
+
+  /**
+   * catch promise timeout / network offline.
+   * @param promise 
+   */
+  async raceTO(promise:Promise<any>, timeoutms:number) {
+    let result = new DBResult();
+
+    if (!this.online)
+      return new DBResult("network offline");
+
+    await new Promise((resolve) => {
+      let done = false;
+      promise.then((data) => {
+        if (!done) {
+          done = true;
+          result = new DBResult(null, data);
+          resolve();
+        }          
+      }).catch((err) => {
+        if (!done) {
+          done = true;
+          result = new DBResult(err ? err.message : "unknown error!");
+          resolve();
+        }          
+      });
+
+      setTimeout(() => {
+        if (!done) {
+          done = true;
+          result = new DBResult("timeout");
+          resolve();          
+        }
+      }, timeoutms);
+    })
+
+    return result;
+  }  
+
+//---  
+
   async clear(path: string[]): Promise<number> {
     return await firebase.database().ref(path.join("/")).remove();
   }  
@@ -232,58 +296,85 @@ export class DBapiFirebase implements IRDBapi {
   }
 
 
-  async getData(path: string[], query?:DBQuery): Promise<any> {
-    return new Promise(async (resolve, reject) => {
-      // let user = firebase.auth().currentUser;
+  async getData(path: string[], query?:DBQuery): Promise<DBResult> {
+    let ref = firebase.database().ref(path.join("/"));
+    let que = this.appendQuery(ref, query);
+    
+    const result = await this.raceTO(que.once('value'), TIMEOUTMS);
 
-      let ref = firebase.database().ref(path.join("/"));
-      let que = this.appendQuery(ref, query);
-      
-      await que.once('value').then((snapshot) => {
-        let data = snapshot.val();
-        if (data != null)
-          resolve(data);
-        else
-          resolve();  
-      });
-    })
+    if (result.data)
+      result.data = result.data.val();
+    return result;
   }
 
-  getDataVer(path: string[], query?:DBQuery): Promise<number> {
-    return new Promise(async (resolve, reject) => {
-      // let user = firebase.auth().currentUser;
+  async getDataVer(path: string[]): Promise<DBResult> {
+    // return new Promise(async (resolve, reject) => {
+    //   // let user = firebase.auth().currentUser;
 
-      let ref = firebase.database().ref(path.join("/") + "/ver");
-      let que = this.appendQuery(ref, query);
+    //   let ref = firebase.database().ref(path.join("/") + "/ver");
+    //   let que = this.appendQuery(ref, query);
 
-      await que.once('value').then((snapshot) => {
-        let data = snapshot.val();
-        if (data != null)
-          resolve(data);
-        else
-          resolve(-1);  
-      });
-    })
+    //   await que.once('value').then((snapshot) => {
+    //     let data = snapshot.val();
+    //     if (data != null)
+    //       resolve(data);
+    //     else
+    //       resolve(-1);  
+    //   });
+    // })
+
+    let ref = firebase.database().ref(path.join("/") + "/ver");
+    
+    const result = await this.raceTO(ref.once('value'), TIMEOUTMS);
+
+    if (result.data)
+      result.data = result.data.val();
+    
+    // if (query && query.orderBy == "email")
+    //   console.log(path, query, result);
+    
+    return result;
   }
-
 
   async setData(path: string[], data: any) {
+    let ref = firebase.database().ref(path.join("/"));
 
-    return await firebase.database().ref(path.join("/")).set(data);
+    const result = await this.raceTO(ref.set(data), TIMEOUTMS);
+
+    return result;
   }
 
-  async updateData(path: string[], data: any) {
+
+  async updateData(path: string[], data: any): Promise<DBResult> {
     const path1 = path.join("/");
     let slot = [];
     MiscFunc.pathlize(slot, "root", "", data);
 
+    let final_err;
     for (let key in slot) {
       const path2 = path1+key.replace(/^root/, "");
       const data2 = slot[key];
       // console.log(path2, data2);
-      await firebase.database().ref(path2).update(data2);
+      const ref = firebase.database().ref(path2);
+      //await ref.update(data2);
+      const result = await this.raceTO(ref.update(data2), TIMEOUTMS);
+      if (result.err)
+        final_err = result.err;
     }
-    return true;
+    return new DBResult(final_err);
+  }
+
+  /**
+   * update the difference and its ver
+   * @param path 
+   * @param data 
+   * @param diff 
+   */
+  async updateDiff(path: string[], data:any, diff:DifferResult): Promise<DBResult> {
+
+    const parts = (data.ver) ? { ...diff.changes, ...diff.adds, ver: data.ver } : { ...diff.changes, ...diff.adds };
+
+    return await this.updateData(path, parts);
   }
 
   async transaction(path: string[], fnUpdate: any, fnComplete: any) {
@@ -309,6 +400,23 @@ export class DBapiFirebase implements IRDBapi {
 
   }
 
+  public assert_path(path: string[]) {
+    let err = !path;
+    for (let i = 0; !err && i < path.length; i++){
+      if (!path[i]) err = true;
+    }
+    if (err) {
+      console.error("Error Path '", (path?path.join("/"):null) + "'");
+      throw new Error();
+    }
+  }
+  
+}
+
+export class DBResult{
+  // err = "not ready";
+  // data: any;
+  constructor(public err = "not ready", public data = null) { }
 }
 
 export class DBQuery{

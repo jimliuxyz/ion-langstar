@@ -79,7 +79,7 @@ export class SettingComponent {
     // must before commit all
     this.serv.w_usercfg.commitBookRec(this.bookinfo.data[0].uid, "cfg");
 
-    this.serv.w_usercfg.commit();
+    this.serv.w_usercfg.commitCfg();
   }
 }
 // console.log(speechSynthesis)

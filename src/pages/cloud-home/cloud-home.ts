@@ -6,6 +6,7 @@ import { BookInfo } from '../../define/book';
 import { Tag } from '../../define/tag';
 import { DBQuery } from '../../providers/myservice/dbapi.firebase';
 import { MiscFunc } from '../../define/misc';
+import { Observable, Observer } from 'rxjs';
 
 
 @Component({
@@ -74,7 +75,7 @@ export class CloudHomeComponent implements HomeSlidePage {
     let tag: Tag = event.payload;
     if (books[tag.name])
       return;  
-    console.log("got", event.payload);
+    // console.log("got", event.payload);
 
     let query:DBQuery = {
       orderBy: "views", limitToLast: 5

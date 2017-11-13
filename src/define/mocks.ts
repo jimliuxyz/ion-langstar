@@ -46,14 +46,53 @@ export class Mocks{
 */
   static tags = ["國小", "國中", "高中", "GEPT", "TOEFL", "TOEIC", "IELTS", "Movie", "Song"];
 
-  static usernames = ["黃享生", "邱維雪",
-    "彭主安", "陳小梅", "林家駿", "劉庠志",
-    "許永良", "劉承俊", /*"洪偉倫", "李昆霖",
-    "莊月娥", "李裴能", "楊昌銘", "詹益炫",
-    "張明陽", "卓本", "蔡樂章", "葉瑞岐",
-    "葛志隆", "高力行", "胡志鴻", "黃聖閔",
-    "陳政宏", "蔡永迪", "金國棟", "梁萱萱",
-"張榮哲", "潘易賢"*/];
+  static userphoto = [
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-woody.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-buzz.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-jessie.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-potatohead.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-hamm.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-slinky.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-rex.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-bullseye.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-barbie.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-squeeze.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-sarge.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ts-bopeep.png",
+    
+    
+
+    "https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/sarah-avatar.png.jpeg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/ian-avatar.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-finn.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-han.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-rey.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-luke.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-poe.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-ben.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-leia.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/avatar-yoda.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/venkman.jpg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/spengler.jpg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/stantz.jpg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/winston.jpg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/tully.jpg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/barrett.jpg",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/gozer.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/marshmallow-man.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/slimer.jpg",
+
+    
+    
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-rotla.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-ghostbusters.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-batman.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-bttf.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-esb.png",
+    "https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-terminator.png",
+  ];  
 
   static booknames = [
     "大江大海一九四九",

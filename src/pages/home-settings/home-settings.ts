@@ -26,6 +26,6 @@ export class HomeSettingsComponent {
 
   dismiss() {
     this.viewCtrl.dismiss();
-    this.serv.w_usercfg.commit();
+    this.serv.w_usercfg.commitCfg();
   }
 }

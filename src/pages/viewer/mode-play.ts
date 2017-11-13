@@ -110,7 +110,7 @@ export class ModePlay implements AfterViewInit, OnDestroy {
 
   dismiss() {
     this.viewCtrl.dismiss();
-    this.serv.w_usercfg.commit();
+    this.serv.w_usercfg.commitCfg();
   }
 
   _remaincnt = 0;

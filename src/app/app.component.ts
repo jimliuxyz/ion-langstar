@@ -1,10 +1,11 @@
 import { Component, ViewChild, OnDestroy,OnInit } from '@angular/core';
-import { Platform, NavController,Nav } from 'ionic-angular';
+import { Platform, NavController,Nav, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomeSlidesPage } from '../pages/home-slides/home-slides';
 import { MyService } from '../providers/myservice/myservice';
+import { MiscFunc } from '../define/misc';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,9 +14,11 @@ export class MyApp implements OnDestroy{
   rootPage: any;
   @ViewChild('mynav') nav: NavController;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private serv:MyService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public modalCtrl: ModalController, private serv: MyService) {
+    console.log("platforms : ", platform.platforms());
     platform.ready().then(() => {
-      this.serv.setNav(this.nav);
+      MiscFunc.init(platform);
+      this.serv.setNav(this.nav, modalCtrl);
 
       this.serv.ready$.then(() => {
         console.log("everything ready~")

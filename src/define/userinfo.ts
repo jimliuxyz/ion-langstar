@@ -22,9 +22,9 @@ export class UserInfo{
 }
 
 
-
 export const ANONYMOUS = new UserInfo();
 ANONYMOUS.uid = "ANONYMOUS";
+ANONYMOUS.email = "anonymous@anonymous.com";
 ANONYMOUS.displayName = "guest";
 ANONYMOUS.photoURL = "./assets/img/guest.png";
 

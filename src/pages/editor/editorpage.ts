@@ -125,7 +125,7 @@ export class EditorPage {
     return true;
   }
 
-  errGoBack(err:string):boolean {
+  private errGoBack(err:string):boolean {
     this.errstate = err;
     console.error(err);
     this.navCtrl.pop();
