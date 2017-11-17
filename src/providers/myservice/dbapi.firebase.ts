@@ -14,7 +14,6 @@ import { MiscFunc } from '../../define/misc';
 import { Network } from '@ionic-native/network';
 import { DifferResult } from '../../define/JsObjDiffer';
 
-
 export abstract class IRDBapi {
   abstract login(socialtype:string): Promise<UserInfo>;
   abstract logout(user: UserInfo): Promise<any>;
