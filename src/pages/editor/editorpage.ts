@@ -7,7 +7,6 @@ import { Mocks } from '../../define/mocks';
 import { Observable, Subject } from 'rxjs';
 import { MiscFunc } from '../../define/misc';
 import { SettingComponent } from './setting';
-import { WataAction } from '../../define/databse';
 
 
 const LEADQ = "##";
@@ -132,6 +131,9 @@ export class EditorPage {
     return true;
   }
 
+  /**
+   * the save action must confirmed by user
+   */
   save() {
     if (!this.dirty) return;
     console.log('save...')
@@ -144,7 +146,7 @@ export class EditorPage {
     this.w_bookdata.data.data = set.data;
     this.w_bookdata.data.ordermap = set.omap;
 
-    this.w_bookdata.commit();
+    this.w_bookdata.commitAll();
     console.log(set.data)
     this.dirty=false;
   }

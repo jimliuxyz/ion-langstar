@@ -9,14 +9,14 @@ import { LoginPage } from '../login/login';
 
 
 @Component({
-  selector: 'creation',
-  templateUrl: 'creation.html'
+  selector: 'collection',
+  templateUrl: 'collection.html'
 })
-export class CreationComponent implements HomeSlidePage {
-  title: string = "_CREATION.TITLE";
-  tabtitle: string = "_CREATION.TITLE";
+export class CollectionComponent implements HomeSlidePage {
+  title: string = "_COLLECTION.TITLE";
+  tabtitle: string = "_COLLECTION.TITLE";
   inited = false;
-  readonly PRELOAD_BOOKS = 99999;
+  readonly PRELOAD_BOOKS = 20;
   wata: WataBookInfo;
   
   constructor(public navCtrl: NavController, private alertCtrl: AlertController, private translate:TranslateService, public serv: MyService) {
@@ -46,7 +46,7 @@ export class CreationComponent implements HomeSlidePage {
       orderBy: "author_uid", equalTo: this.serv.w_userinfo.data.uid, limitToLast: this.PRELOAD_BOOKS
     };
 
-    this.wata = await this.serv.queryBookInfosFromUid(query);
+    this.wata = await this.serv.queryBookInfosFromCollection(this.PRELOAD_BOOKS);
   }
 
   doInfinite(infiniteScroll) {
@@ -58,45 +58,7 @@ export class CreationComponent implements HomeSlidePage {
     }, 100);
   }
 
-  async newBook(type: BookType) {
-    if (this.serv.isAnonymous()) {
-      this.serv.openModal(LoginPage);
-      return;
-    }
+  async delBook(e: Event, bookinfo: BookInfo) {
     
-    let set = await this.serv.newBook(BookType.MCQ);
-
-    await this.serv.navTo(EditorPage, { bookset: set });
-  }
-
-  async delBook(e:Event, bookinfo: BookInfo) {
-    e.preventDefault;
-    e.cancelBubble = true;
-
-    const alertText = await this.translate.get("_ALERT.DELBOOK").toPromise();
-    const cancelText = await this.translate.get("CANCEL").toPromise();
-    const deleteText = await this.translate.get("DELETE").toPromise();
-    
-    let alert = this.alertCtrl.create({
-      title: alertText,
-      message: bookinfo.title,
-      buttons: [
-        {
-          text: cancelText,
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: deleteText,
-          handler: () => {
-            console.log("del ", bookinfo);
-            this.wata.delBook(bookinfo.uid);
-          }
-        }
-      ]
-    });
-    alert.present();
   }
 }

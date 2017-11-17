@@ -7,6 +7,7 @@ import { Tag } from '../../define/tag';
 import { DBQuery } from '../../providers/myservice/dbapi.firebase';
 import { MiscFunc } from '../../define/misc';
 import { Observable, Observer } from 'rxjs';
+import { WataEvent } from '../../define/databse';
 
 
 @Component({
@@ -18,8 +19,12 @@ export class CloudHomeComponent implements HomeSlidePage {
   tabtitle: string = "_CLOUD_HOME.TITLE";
   inited = false;
   errstate = "not ready";
-  
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public serv:MyService) {
+
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public serv: MyService) {
+    serv.w_taglist.on(WataEvent.TAGCHANGED, async () => {
+      console.log("cloud-home reload ")
+      this.books = await this.reload();
+    }, false)
   }
 
   async ionViewCanEnter() {
@@ -53,6 +58,7 @@ export class CloudHomeComponent implements HomeSlidePage {
   }
 
   readonly PRELOAD_BOOKS = 20;
+  readonly EACHTAG_BOOKS = 5;
   books: BookInfo[][] = [];
 
   async reload():Promise<BookInfo[][]> {
@@ -78,7 +84,7 @@ export class CloudHomeComponent implements HomeSlidePage {
     // console.log("got", event.payload);
 
     let query:DBQuery = {
-      orderBy: "views", limitToLast: 5
+      orderBy: "views", limitToLast: this.EACHTAG_BOOKS
     };
 
     let wata = await this.serv.queryBookInfosFromTag(tag.name, query);

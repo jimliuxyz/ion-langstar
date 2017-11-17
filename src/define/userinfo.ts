@@ -40,20 +40,20 @@ export class UserCfg{
   nalang: string;
   talang: string;
 
-  favorites: string = ""; //book uid list
-
-  voices_def: string[] = []; //key:lang value:voice_uri
-  voices_cfg: VoiceCfg[] = []; //key:voice_uri
-
+  // favorites: string[] = []; //book uid list
+  favorites: { [key: string]: number } = {}; //book uid list
+  
+  voices_def: { [key: string]: string } = {}; //key:lang value:voice_uri
+  
+  voices_cfg: { [key: string]: VoiceCfg } = {}; //key:voice_uri
+  
   //config for each book type
-  booktype_cfg: any[] = [];
+  booktype_cfg: { [key: string]: any } = {}; //key:book uid
 
   //this variable key also use as string in other file(WataUserCfg)!
   //record/config for each book
-  book_record = {
-    books:{}, // record.books[uid]...
-  }
-
+  book_record: { [key: string]: any } = {}; //key:book uid
+  
   static getDefault():UserCfg {
     let cfg = new UserCfg();
     cfg.nalang = MiscFunc.getLangCodeNormalize(navigator.language);

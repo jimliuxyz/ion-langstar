@@ -7,7 +7,6 @@ import { Mocks } from '../../define/mocks';
 import { Observable, Subject } from 'rxjs';
 import { MiscFunc } from '../../define/misc';
 import { SettingComponent } from './setting';
-import { WataAction } from '../../define/databse';
 import { UserCfg } from '../../define/userinfo';
 import { TTS } from '../../providers/myservice/tts';
 import { ModePlay } from './mode-play';
@@ -74,7 +73,10 @@ export class ViewerPage {
       const info = this.bookinfo.data[0];
       this.bookcfg = info.cfg;
       this.title = info.title;
-      
+
+      this.serv.w_usercfg.viewBook(info.uid);
+      await this.bookinfo.viewBook(info.uid);
+
       this.author = await this.serv.getUserInfo(info.author_uid);
       console.log(this.author);
       if (!this.author.data)
@@ -119,9 +121,9 @@ export class ViewerPage {
       this.quizs = wata.mapToArray();
     
       //load user reading rec/cfg
-      if (!this.serv.w_usercfg.data.book_record.books[this.bookuid])
-        this.serv.w_usercfg.data.book_record.books[this.bookuid] = {}  
-      this.bookrec = this.serv.w_usercfg.data.book_record.books[this.bookuid];
+      if (!this.serv.w_usercfg.data.book_record[this.bookuid])
+        this.serv.w_usercfg.data.book_record[this.bookuid] = {}  
+      this.bookrec = this.serv.w_usercfg.data.book_record[this.bookuid];
         
       if (!this.bookrec['cfg']) {
         let cfg = new CFGREC();

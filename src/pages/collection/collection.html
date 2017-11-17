@@ -6,23 +6,12 @@
             </slide-refresher-content>
         </slide-refresher>
 
-        <ion-grid>
-            <ion-row>
-
-                <ion-col class='blockbtn'  (click)="newBook('MCQ')">＋{{'_MCQ.NAME'|translate}}</ion-col>
-
-                <ion-col class='blockbtn'>＋{{'_CONQ.NAME'|translate}}</ion-col>
-
-              </ion-row>
-          </ion-grid>
-
-          <hr>
           
           <ion-list *ngIf="wata && wata.data">
 
             <xyzui-book-card *ngFor="let book of wata.data" [bookinfo]="book">
                 <!-- <button ion-button small icon-only> -->
-                    <ion-icon class="del-btn" color="danger" name="close" item-right (click)="delBook($event, book)"></ion-icon> 
+                    <ion-icon [name]="serv.w_usercfg.isFavorite(book.uid)?'md-heart':'md-heart-outline'" color="danger" item-right (click)="serv.w_usercfg.toggleFavorite(book.uid)"></ion-icon> 
                 <!-- </button> -->
                 
             </xyzui-book-card>

@@ -16,36 +16,23 @@ export class DbPrefix{
   
 }
 
-export class WataEvent{
-  static USERLOGIN = "userlogin";
-  static USERCFGUPDATE = "USERCFGUPDATE";
-}
+export enum WataEvent{
+  // ANY = <any>"*",
+  // USERLOGIN = <any>"USERLOGIN",
+  // USERCFGUPDATE = <any>"USERCFGUPDATE",
+  // TAGCHANGED = <any>"TAGCHANGED",
 
-export class WataAction{
-  static REDO = "REDO";
+  // NOTICEBOOKINFOCHANGED = <any>"NOTICEBOOKINFOCHANGED",
+  ANY,
+  USERLOGIN,
+  USERCFGUPDATE,
+  TAGCHANGED,
 
-  //user
-  // static LOGINUSER = "LOGINUSER";
-  // static GETUSERINFO = "GETUSERINFO";
+  BOOKINFO_CREATE,
+  BOOKINFO_CHANGED,
+  BOOKINFO_DELETED,
 
-  // //user cfg
-  // static UPDATEBOOKREC_XXX = "UPDATEBOOKREC";
-
-  //book info
-  static NEWBOOKINFO = "NEWBOOKINFO";
-  static GETBOOKINFO = "GETBOOKINFO";
-  static GETTAGBOOKINFO = "GETTAGBOOKINFO";
-
-  //list book info
-  static LISTTAGBOOKS = "LISTTAGBOOKS";
-  static LISTAUTHORBOOKS = "LISTAUTHORBOOKS"; 
+  TOGGLE_FAVOR,
   
-  //book data
-  static NEWBOOKDATA = "NEWBOOKDATA";
-  static GETBOOKDATA = "GETBOOKDATA";
-
-  static SETBOOKDATA = "SETBOOKDATA";
-  static UPDATEBOOKDATA = "UPDATEBOOKDATA";
-
-
 }
+

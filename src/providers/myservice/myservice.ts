@@ -14,7 +14,7 @@ import { UserInfo, ANONYMOUS, FAKEUSER, UserCfg } from '../../define/userinfo';
 import { IRDBapi, DBQuery, DBResult } from './dbapi.firebase';
 import { MiscFunc } from '../../define/misc';
 import { JsObjDiffer, DifferResult } from '../../define/JsObjDiffer';
-import { DbPrefix, WataEvent, WataAction } from '../../define/databse';
+import { DbPrefix, WataEvent } from '../../define/databse';
 import { BookInfo, BookType, BookData_MCQ, BookData } from '../../define/book';
 
 import { deftags, Tag, TagList } from '../../define/tag';
@@ -42,6 +42,7 @@ export class MyService {
     private rdb: IRDBapi) {
     console.log("hello my service...");
     this.db = new LocalDB(storage, rdb);
+    Wata.init(this.db, rdb);
     this.translate.addLangs(["en_US", "zh_TW", "ja", "ko"]);
     this.translate.setDefaultLang('en_US');
 /**/
@@ -158,10 +159,10 @@ export class MyService {
 
     if (!this.w_userinfo) {
 
-      this.w_userinfo = new WataUserInfo(this.db, this.rdb);
+      this.w_userinfo = new WataUserInfo();
       
-      this.w_usercfg = new WataUserCfg(this.db, this.rdb, this.translate, this.w_userinfo);
-      this.w_taglist = new WataTagList(this.db, this.rdb, this.w_usercfg);
+      this.w_usercfg = new WataUserCfg(this.translate, this.w_userinfo);
+      this.w_taglist = new WataTagList(this.w_usercfg);
     }
 
     console.log("in")
@@ -179,7 +180,7 @@ export class MyService {
     if (this.isAnonymous())
       return;  
 
-    let bookinfo = new WataBookInfo(this.db, this.rdb, this.w_taglist);
+    let bookinfo = new WataBookInfo(this.w_taglist);
     await bookinfo.newBook(
       await this.translate.get("MYFIRSTBOOKNAME").toPromise(),
       booktype,
@@ -187,7 +188,7 @@ export class MyService {
       this.w_usercfg.data,
     );
 
-    let bookdata = new WataBookData(this.db, this.rdb, bookinfo);
+    let bookdata = new WataBookData(bookinfo);
     await bookdata.newBookData(bookinfo.data[0].uid);
     
     return { bookinfo, bookdata };
@@ -199,7 +200,7 @@ export class MyService {
       return this.cacheUserInfo[useruid];  
     await this.ready$;
 
-    let userinfo = new WataUserInfo(this.db, this.rdb);
+    let userinfo = new WataUserInfo();
     await userinfo.initByUid(useruid);
 
     this.cacheUserInfo[useruid] = userinfo;
@@ -209,20 +210,20 @@ export class MyService {
   async getBookInfo(bookuid: string) {
     await this.ready$;
 
-    let bookinfo = new WataBookInfo(this.db, this.rdb, this.w_taglist);
+    let bookinfo = new WataBookInfo(this.w_taglist);
     await bookinfo.initByBookUid(bookuid);
     return bookinfo;
   }
 
   async getBookData(bookinfo: WataBookInfo, bookuid: string) {
-    let bookdata = new WataBookData(this.db, this.rdb, bookinfo);
+    let bookdata = new WataBookData(bookinfo);
     await bookdata.getByUid(bookuid);
 
     return bookdata;
   }
 
   async queryBookInfosFromTag(tagname:string, query:DBQuery):Promise<WataBookInfo> {
-    let bookinfo = new WataBookInfo(this.db, this.rdb, this.w_taglist);
+    let bookinfo = new WataBookInfo(this.w_taglist);
 
     await bookinfo.listFromByTag(
       MiscFunc.getLangPair(this.w_usercfg.data.nalang,this.w_usercfg.data.talang),
@@ -233,15 +234,22 @@ export class MyService {
   }
 
   async queryBookInfosFromUid(query:DBQuery) {
-    let bookinfo = new WataBookInfo(this.db, this.rdb, this.w_taglist);
+    let bookinfo = new WataBookInfo(this.w_taglist);
     
     await bookinfo.listFromByUid(query);
     return bookinfo;
   }
 
+  async queryBookInfosFromCollection(limit:number) {
+    let bookinfo = new WataBookInfo(this.w_taglist);
+    
+    await bookinfo.listFromCollection(this.w_usercfg, limit);
+    return bookinfo;
+  }
+
   getVoiceCfg(uri: string): VoiceCfg {
-    if (!this.w_usercfg.data.voices_cfg)
-      this.w_usercfg.data.voices_cfg = [];
+    // if (!this.w_usercfg.data.voices_cfg)
+    //   this.w_usercfg.data.voices_cfg = {};
     if (!this.w_usercfg.data.voices_cfg[uri]) {
       this.w_usercfg.data.voices_cfg[uri] = new VoiceCfg();
       this.w_usercfg.data.voices_cfg[uri].uri = uri;   
@@ -250,8 +258,8 @@ export class MyService {
   }
 
   getDefVoiceUri(lang: string): string{
-    if (!this.w_usercfg.data.voices_def)
-      this.w_usercfg.data.voices_def = [];
+    // if (!this.w_usercfg.data.voices_def)
+    //   this.w_usercfg.data.voices_def = {};
     
     let def = this.w_usercfg.data.voices_def[lang];
     
@@ -313,14 +321,14 @@ export class MyService {
       user.email = username + "@fake.com";
       user.photoURL = userphoto;
       
-      let userinfo = new WataUserInfo(this.db, this.rdb);
+      let userinfo = new WataUserInfo();
       userinfos.push(userinfo);
 
-      let usercfg = new WataUserCfg(this.db, this.rdb, this.translate, userinfo);
+      let usercfg = new WataUserCfg(this.translate, userinfo);
       usercfgs.push(usercfg);
 
       if (!taglist)
-        taglist = new WataTagList(this.db, this.rdb, usercfg);
+        taglist = new WataTagList(usercfg);
       
       await userinfo.initByUserLogin(user);
       console.log(userinfo.data.displayName);
@@ -332,14 +340,14 @@ export class MyService {
     //   user.displayName = username;
     //   user.email = username + "@fake.com";
       
-    //   let userinfo = new WataUserInfo(this.db, this.rdb);
+    //   let userinfo = new WataUserInfo();
     //   userinfos.push(userinfo);
 
-    //   let usercfg = new WataUserCfg(this.db, this.rdb, this.translate, userinfo);
+    //   let usercfg = new WataUserCfg(, this.translate, userinfo);
     //   usercfgs.push(usercfg);
 
     //   if (!taglist)
-    //     taglist = new WataTagList(this.db, this.rdb, usercfg);
+    //     taglist = new WataTagList(, usercfg);
       
     //   await userinfo.initByUserLogin(user);
     //   console.log(userinfo.data.displayName)
@@ -348,7 +356,7 @@ export class MyService {
 
     let bookinfos:WataBookInfo[] = [];
     for (let bookname of Mocks.booknames) {
-      let bookinfo = new WataBookInfo(this.db, this.rdb, taglist);
+      let bookinfo = new WataBookInfo(taglist);
       bookinfos.push(bookinfo);
 
       let useridx = Math.round(Math.random() * (userinfos.length-1));
@@ -422,14 +430,6 @@ class LocalDB{
     }
   }
 
-  // async getUserPhoto(useruid:string) {
-  //   return await this.storage.get("userphoto/" + useruid);
-  // }
-
-  // async setUserPhoto(userinfo:UserInfo) {
-  //   await this.storage.set("userphoto/" + userinfo.uid, userinfo.photoURL);
-  // }
-
   async loadUserCfg(useruid:string):Promise<UserCfg> {
     return await this.storage.get("usercfg/" + useruid);
   }
@@ -471,7 +471,7 @@ class LocalDB{
     await this.storage.remove("bookdata/" + bookuid);
   }
 
-  
+
 
   async getCache(key:string) {
     return await this.storage.get(key);
@@ -481,59 +481,6 @@ class LocalDB{
     await this.storage.set(key, data);
   }
 
-
-  async helperSyncVerData(localData: any, remotePath: string[], query:DBQuery, FnCreate: () => any, FnDownload: (remoteData: any) => void, FnUpload: (localData: any) => void, FnTimeout?: (res: DBResult) => void, FnFail?: (res: DBResult) => void) {
-    
-    const locVer:number = (localData && localData.ver) ? localData.ver : undefined;
-
-    let res, remVer:number;
-    
-    if (query) {
-      res = await this.RDB.getData(remotePath, query);
-      if ((!res.err && res.data && Object.keys(res.data).length > 0)) {
-        remVer = res.data[Object.keys(res.data)[0]].ver;
-      }
-    }
-    else {
-      res = await this.RDB.getDataVer(remotePath);
-      remVer = (!res.err) ? res.data : undefined;
-    }
-
-
-    const exception_handle = async(res: DBResult) => {
-      const timeout = res.err && res.err.toLocaleLowerCase().indexOf("timeout") >= 0;
-
-      if (timeout) {
-        console.warn(res.err);
-        if (FnTimeout) await FnTimeout(res);  
-      }
-      else {
-        console.warn(res.err);
-        if (FnFail) await FnFail(res);  
-      }
-    }
-
-    if (res.err) {
-      await exception_handle(res);
-    }
-    else if (!locVer && !remVer) {
-      await FnCreate();
-    }
-    //download from remote
-    else if (remVer && (!locVer || locVer < remVer)) {
-      const datares = (query) ? res : await this.RDB.getData(remotePath, query);
-
-      if (!datares.err)
-        await FnDownload(datares.data);
-      else {
-        await exception_handle(datares);
-      }
-    }
-    //upload from local
-    else if (locVer && (!remVer || remVer < locVer)) {
-      await FnUpload(localData);
-    }
-  }
 }
 
 
@@ -547,7 +494,24 @@ export abstract class Wata<T>{
   protected mirror: T;
   protected differ = new JsObjDiffer();
 
+  private static _LDB: LocalDB;
+  private static _RDB: IRDBapi;
+  static init(LDB: LocalDB, RDB: IRDBapi) {
+    Wata._LDB = LDB;
+    Wata._RDB = RDB;
+  }
+
+  protected LDB: LocalDB;
+  protected RDB: IRDBapi;
+
+  private uid;
+  private static insts: Wata<any>[] = [];
   constructor() {
+    this.uid = MiscFunc.uid();
+    Wata.insts[this.uid] = this;
+
+    this.LDB = Wata._LDB;
+    this.RDB = Wata._RDB;
   }
 
   /**
@@ -574,11 +538,11 @@ export abstract class Wata<T>{
    * @param eventType 
    * @param eventData 
    */
-  protected async _fireEvent(eventType:string, eventData?:any) {
+  protected async _fireEvent(eventType:WataEvent, eventData?:any) {
     for (let idx in this.eventListener) {
       let listener = this.eventListener[idx];
 
-      if (listener.eventType === "*" || listener.eventType === eventType) {
+      if (listener.eventType === WataEvent.ANY || listener.eventType === eventType) {
         if (listener.once)
           this.eventListener.splice(parseInt(idx), 1);
         
@@ -588,6 +552,22 @@ export abstract class Wata<T>{
           listener.eventCallback(eventData);
       }
     };
+  }
+
+
+  /**
+   * fire event to all data model.
+   * @param eventType 
+   * @param eventData 
+   */
+  protected static async _fireGlobalEvent(eventType:WataEvent, eventData?:any) {
+    for (let key in Wata.insts) {
+      const inst:Wata<any> = Wata.insts[key];
+      await inst.onGlobalEvent(eventType, eventData);
+    };
+  }
+
+  public async onGlobalEvent(eventType:WataEvent, eventData?:any){
   }
 
   public clone(data): any {
@@ -613,7 +593,7 @@ export abstract class Wata<T>{
    * @param sync make the event dispatcher await this callback
 (allow wildcard)
    */
-  public once(eventType: string, eventCallback: (data:any) => any, sync?: boolean): Subscription {
+  public once(eventType: WataEvent, eventCallback: (data:any) => any, sync?: boolean): Subscription {
     return this.addListener(eventType, eventCallback, sync, true);
   }
 
@@ -623,13 +603,13 @@ export abstract class Wata<T>{
    * @param eventCallback 
    * @param sync make the event dispatcher await this callback
    */
-  public on(eventType: string, eventCallback: (data:any) => any, sync?: boolean): Subscription {
+  public on(eventType: WataEvent, eventCallback: (data:any) => any, sync?: boolean): Subscription {
     return this.addListener(eventType, eventCallback, sync, false);
   }
 
-  private eventListener: { eventType: string, eventCallback: (data:any)=>Promise<any>, sync:boolean, id:string, once:boolean }[] = [];
+  private eventListener: { eventType: WataEvent, eventCallback: (data:any)=>Promise<any>, sync:boolean, id:string, once:boolean }[] = [];
 
-  private addListener(eventType: string, eventCallback: (data: any) => Promise<any>, sync: boolean, once: boolean): Subscription {
+  private addListener(eventType: WataEvent, eventCallback: (data: any) => Promise<any>, sync: boolean, once: boolean): Subscription {
 
     let id = MiscFunc.uid();
 
@@ -647,11 +627,75 @@ export abstract class Wata<T>{
   }
 
   /**
-   * call it if data no longer available
+   * call it if data no longer needed
    */
   public finalize() {
+    delete Wata.insts[this.uid];
     this.eventListener = null;
   }
+
+
+  //---helper
+
+  async helperSyncVerData(localData: any, remotePath: string[], query:DBQuery, FnRemoteNull: () => any, FnDownload: (remoteData: any) => void, FnUpload: (localData: any) => void, FnFail: (res: DBResult) => void, alwaysDownload=false) {
+
+    const locVer:number = (localData && localData.ver) ? localData.ver : undefined;
+
+    let res, remVer:number;
+
+    if (query) {
+      res = await this.RDB.getData(remotePath, query);
+      if ((!res.err && res.data && Object.keys(res.data).length > 0)) {
+        remVer = res.data[Object.keys(res.data)[0]].ver;
+      }
+    }
+    else {
+      if (alwaysDownload)
+        res = await this.RDB.getData(remotePath);
+      else
+        res = await this.RDB.getDataVer(remotePath);
+      remVer = (!res.err) ? res.data : undefined;
+    }
+
+
+    const exception_handle = async(res: DBResult) => {
+      // const timeout = res.err && res.err.toLocaleLowerCase().indexOf("timeout") >= 0;
+
+      console.warn(res.err);
+      if (FnFail) await FnFail(res);
+    }
+
+    if (res.err) {
+      await exception_handle(res);
+    }
+    else if (alwaysDownload) {
+      if (res.data) {
+        if (FnDownload) await FnDownload(res.data);
+      }
+      else {
+        if (FnRemoteNull) await FnRemoteNull();
+      }
+    }
+    else if (!remVer) {
+      if (FnRemoteNull) await FnRemoteNull();
+    }
+    //download from remote
+    else if (remVer && (!locVer || locVer < remVer)) {
+      const datares = (query) ? res : await this.RDB.getData(remotePath, query);
+
+      if (!datares.err) {
+        if (FnDownload) await FnDownload(datares.data);
+      }
+      else {
+        await exception_handle(datares);
+      }
+    }
+    //upload from local
+    else if (locVer && (!remVer || remVer < locVer)) {
+      if (FnUpload) await FnUpload(localData);
+    }
+  }
+
 }
 
 
@@ -660,7 +704,7 @@ export abstract class Wata<T>{
 
 export class WataUserInfo extends Wata<UserInfo>{
 
-  constructor(public LDB: LocalDB, public RDB: IRDBapi) {
+  constructor() {
     super();
   }
 
@@ -728,7 +772,7 @@ export class WataUserInfo extends Wata<UserInfo>{
     //load from local
     let data = await this.LDB.loadLoginUser(user_.email);
 
-    const fnCreate = async () => {
+    const FnRemoteNull = async () => {
       //get empty uid
       let emptyuid;
       while (true) {
@@ -760,14 +804,10 @@ export class WataUserInfo extends Wata<UserInfo>{
         this.LDB.savaLoginUser(data);
       }
     }
-    const fnUpload = (localData) => {
-      // this should not happen
-      // data = localData;
-      // this.RDB.setData([DbPrefix.USERINFO, data.uid], data);
-    }
+
     //get fresh data
     if (!isAnonymous) {
-      await this.LDB.helperSyncVerData(data, [DbPrefix.USERINFO], { orderBy: "email", equalTo: user_.email }, fnCreate, fnDownload, fnUpload);
+      await this.helperSyncVerData(data, [DbPrefix.USERINFO], { orderBy: "email", equalTo: user_.email }, FnRemoteNull, fnDownload, null, null, true);
     }
     else {
       if (!data) {
@@ -813,19 +853,18 @@ export class WataUserInfo extends Wata<UserInfo>{
 
     //load from local
     let data = await this.LDB.loadUser(useruid);
-    
-    const fnCreate = () => {
+
+    const FnRemoteNull = () => {
+      data = null;
     }
     const fnDownload = (remoteData: any) => {
       data = remoteData;
       this.LDB.saveUser(data);
     }
-    const fnUpload = (localData) => {
-    }
     const fnFail = (res:DBResult) => {
     }
     //get fresh data
-    await this.LDB.helperSyncVerData(data, this.path, null, fnCreate, fnDownload, fnUpload, fnFail, fnFail);
+    await this.helperSyncVerData(data, this.path, null, FnRemoteNull, fnDownload, null, fnFail, true);
 
     if (data) {
       this._mirror(data);
@@ -839,7 +878,7 @@ export class WataUserInfo extends Wata<UserInfo>{
 
 export class WataUserCfg extends Wata<UserCfg>{
   
-  constructor(public LDB: LocalDB, public RDB: IRDBapi, public translate: TranslateService, public w_user:Wata<UserInfo>) {
+  constructor(public translate: TranslateService, public w_user:Wata<UserInfo>) {
     super();
 
     w_user.on(WataEvent.USERLOGIN, async (data) => {
@@ -862,14 +901,17 @@ export class WataUserCfg extends Wata<UserCfg>{
 
   private fixUndefined(ucfg: UserCfg) {
     if (ucfg) {
-      if (!ucfg.book_record) ucfg.book_record = { books: {}};
-      if (!ucfg.book_record.books) ucfg.book_record.books = {};
+      if (!ucfg.book_record) ucfg.book_record = {};
 
-      if (!ucfg.voices_def) ucfg.voices_def = [];
-      if (!ucfg.voices_cfg) ucfg.voices_cfg = [];
-      if (!ucfg.booktype_cfg) ucfg.booktype_cfg = [];
+      if (!ucfg.favorites) ucfg.favorites = {};
+      if (!ucfg.voices_def) ucfg.voices_def = {};
+      if (!ucfg.voices_cfg) ucfg.voices_cfg = {};
+      if (!ucfg.booktype_cfg) ucfg.booktype_cfg = {};
     }
   }
+
+  //true: means data synced at initial phase, and not anonymous
+  private synced = false;
 
   /**
    * user config is init by user login event, so it's a private call.
@@ -881,36 +923,79 @@ export class WataUserCfg extends Wata<UserCfg>{
 
     //load from local
     let data = await this.LDB.loadUserCfg(user_.uid);
+    this.synced = false;
 
-    const fnCreate = () => {
+    //never upload local version to remote for keeping easy, although a bit weird when network get online from offline.
+    const FnRemoteNull = async () => {
       data = UserCfg.getDefault();
       this.LDB.saveUserCfg(user_.uid, data);
-      if (!this.isAnonymous)
-        this.RDB.setData(this.path, data);
+      if (!this.isAnonymous) {
+        const res = await this.RDB.setData(this.path, data);
+        this.synced = res.err ? false : true;
+      }
     }
     const fnDownload = (remoteData: any) => {
+      if (this.isAnonymous) {
+        console.error("anonymous downloaded?");
+        FnRemoteNull();
+        return;
+      }
       data = remoteData;
       this.LDB.saveUserCfg(user_.uid, data);
-    }
-    const fnUpload = (localData) => {
-      data = localData;
-      if (!this.isAnonymous)
-        this.RDB.setData(this.path, data);
+      this.synced = true;
     }
     const fnFail = (res:DBResult) => {
       if (!data)
-        fnCreate();
+        data = UserCfg.getDefault();
     }
     //get fresh data
-    await this.LDB.helperSyncVerData(data, this.path, null, fnCreate, fnDownload, fnUpload, fnFail, fnFail);
+    await this.helperSyncVerData(data, this.path, null, FnRemoteNull, fnDownload, null, fnFail, true);
 
     let ucfg = data;
-    this._mirror(ucfg);
 
     if (ucfg) {
       this.fixUndefined(ucfg);
+      this._mirror(ucfg);
       await this._fireEvent(WataEvent.USERCFGUPDATE, ucfg);
     }
+  }
+
+  public viewBook(bookuid: string) {
+    if (this.isFavorite(bookuid)) {
+      this.data.favorites[bookuid] = Date.now();
+      this.mirror.favorites[bookuid] = this.data.favorites[bookuid];
+
+      let parts = {bookuid:this.data.favorites[bookuid] ? this.data.favorites[bookuid] : null};
+
+      if (!this.isAnonymous && this.synced)
+        this.RDB.updateParts([...this.path, "favorites"], parts);
+      this.LDB.saveUserCfg(this.w_user.data.uid, this.data);
+    }
+  }
+  
+  public isFavorite(bookuid: string) {
+    return this.data.favorites[bookuid] ? true : false;
+  }
+
+  public toggleFavorite(bookuid: string) {
+    if (!bookuid) return;
+
+    this.data.favorites[bookuid] = this.data.favorites[bookuid]? undefined : Date.now();
+    this.mirror.favorites[bookuid] = this.data.favorites[bookuid];
+
+    if (!this.data.favorites[bookuid]) {
+      delete this.data.favorites[bookuid];
+      delete this.mirror.favorites[bookuid];
+    }
+    // console.log(this.data.favorites)
+
+    let parts = {bookuid:this.data.favorites[bookuid] ? this.data.favorites[bookuid] : null};
+
+    if (!this.isAnonymous && this.synced)
+      this.RDB.updateParts([...this.path, "favorites"], parts);
+    this.LDB.saveUserCfg(this.w_user.data.uid, this.data);
+
+    Wata._fireGlobalEvent(WataEvent.TOGGLE_FAVOR, {bookuid,favor:this.data.favorites[bookuid]})
   }
 
   /**
@@ -919,25 +1004,25 @@ export class WataUserCfg extends Wata<UserCfg>{
    * @param itemkey quiz uid or anything defined by book itself.
    */
   public async commitBookRec(bookuid:string, itemkey?:string) {
-    if (!this.mirror.book_record.books[bookuid]) {
-      let parts = this.data.book_record.books[bookuid];
+    if (!this.mirror.book_record[bookuid]) {
+      let parts = this.data.book_record[bookuid];
       let diff = this.differ.test(null, parts)
 
-      if (!this.isAnonymous)
-        this.RDB.updateDiff([...this.path, "book_record", "books", bookuid], parts, diff);
+      if (!this.isAnonymous && this.synced)
+        this.RDB.updateDiff([...this.path, "book_record", bookuid], parts, diff);
 
       // this._mirror(this.data);
-      this._mirrorParts(this.mirror.book_record.books, bookuid, parts);      
+      this._mirrorParts(this.mirror.book_record, bookuid, parts);      
     }
     else {
-      let parts = this.data.book_record.books[bookuid][itemkey];
-      let mirror = this.mirror.book_record.books[bookuid][itemkey];
+      let parts = this.data.book_record[bookuid][itemkey];
+      let mirror = this.mirror.book_record[bookuid][itemkey];
       let diff = this.differ.test(mirror, parts)
       
-      if (!this.isAnonymous)
-        this.RDB.updateDiff([...this.path, "book_record", "books", bookuid, itemkey], parts, diff);
+      if (!this.isAnonymous && this.synced)
+        this.RDB.updateDiff([...this.path, "book_record", bookuid, itemkey], parts, diff);
       
-      this._mirrorParts(this.mirror.book_record.books[bookuid], itemkey, parts);
+      this._mirrorParts(this.mirror.book_record[bookuid], itemkey, parts);
     }
 
     //update version part
@@ -945,8 +1030,8 @@ export class WataUserCfg extends Wata<UserCfg>{
     this._mirrorParts(this.mirror, ["ver"], this.data.ver);
 
     this.LDB.saveUserCfg(this.w_user.data.uid, this.data);
-    if (!this.isAnonymous)
-      this.RDB.updateData(this.path, { ver: this.data.ver });
+    if (!this.isAnonymous && this.synced)
+      this.RDB.updateParts(this.path, { ver: this.data.ver });
   }
 
   /**
@@ -964,7 +1049,7 @@ export class WataUserCfg extends Wata<UserCfg>{
       //save to local
       this.LDB.saveUserCfg(this.w_user.data.uid, this.data);
       //upload to remote
-      if (!this.isAnonymous)
+      if (!this.isAnonymous && this.synced)
         this.RDB.updateDiff(this.path, this.data, diff);
 
       await this._fireEvent(WataEvent.USERCFGUPDATE, this.data);
@@ -976,7 +1061,7 @@ export class WataUserCfg extends Wata<UserCfg>{
 
 export class WataTagList extends Wata<Tag[]>{
   
-  constructor(public LDB: LocalDB, public RDB: IRDBapi, w_cfg:Wata<UserCfg>) {
+  constructor(w_cfg:Wata<UserCfg>) {
     super();
 
     w_cfg.on(WataEvent.USERCFGUPDATE, async (data) => {
@@ -999,26 +1084,19 @@ export class WataTagList extends Wata<Tag[]>{
     //load from local
     let data: TagList = (ucfg) ? await this.LDB.loadTagList(this.langpair) : null;
 
-    const fnCreate = () => {
-      data = new TagList();
-      this.LDB.saveTagList(this.langpair, data);
-      this.RDB.setData(this.path, data);
-    }
     const fnDownload = (remoteData: any) => {
       data = remoteData;
       this.LDB.saveTagList(this.langpair, data);
-    }
-    const fnUpload = (localData) => {
-      data = localData;
-      this.RDB.setData(this.path, data);
     }
     const fnFail = (res:DBResult) => {
       throw new Error(res.err);
     }
     //get fresh data
-    await this.LDB.helperSyncVerData(data, this.path, null, fnCreate, fnDownload, fnUpload, fnFail);
+    await this.helperSyncVerData(data, this.path, null, null, fnDownload, null, fnFail);
 
-    //
+    if (!data)
+      data = new TagList();
+
     let arr: Tag[] = [];
     if (data) {
       //make key list to array
@@ -1036,7 +1114,7 @@ export class WataTagList extends Wata<Tag[]>{
       this.list.push(tag.name);
     }
     this._mirror(arr);
-    this._mirror(arr);
+    await this._fireEvent(WataEvent.TAGCHANGED);
   }
 
   // public async commit() {
@@ -1081,7 +1159,8 @@ export class WataTagList extends Wata<Tag[]>{
 
         newone = false;
         if (currentData.cnt+inc == 0)
-          return null;  //for delete
+          // return null;  //delete, not a good idea for this unstable design...
+          return currentData;  //do nothing, 
 
         currentData.cnt += inc; //for update
         currentData.ver = Date.now();
@@ -1089,7 +1168,7 @@ export class WataTagList extends Wata<Tag[]>{
       },
       async (error, committed) => {
         if (committed) {
-          await this.RDB.updateData([DbPrefix.TAGLIST, langpair], { ver: Date.now() });
+          await this.RDB.updateParts([DbPrefix.TAGLIST, langpair], { ver: Date.now() });
           if (committed && langpair === this.langpair) {
             //reload all taglist...
             this.init(null);
@@ -1104,21 +1183,83 @@ export class WataTagList extends Wata<Tag[]>{
 
 export class WataBookInfo extends Wata<BookInfo[]>{
   
-  constructor(public LDB: LocalDB, public RDB: IRDBapi, public w_taglist:WataTagList) {
+  constructor(public w_taglist: WataTagList) {
     super();
   }
 
   private BYUID = [DbPrefix.BOOKINFO, "byuid"];  // for bookinfo/byuid
   private BYTAG = [DbPrefix.BOOKINFO, "bytag"];  // for bookinfo/bytag
   
-  private querytag:Tag;
-  private queryuser:UserInfo;
-  private querypath:string[];
-  private querynext:DBQuery;
+  private querypath: string[];
+  private querynext: DBQuery;
   private last: BookInfo;
   private lastkey: string;
   private hasmore: boolean = false;
   private localcacheidx: number = 0;
+
+  private bylangpair;
+  private bytagname;
+  private byuseruid;
+  private bybookuid;
+  private synced = false; // used when bybookuid
+  
+  public async newBook(booktitle: string, booktype: BookType, user: UserInfo, usercfg: UserCfg) {
+    let bookuid = MiscFunc.uid();
+    this.bybookuid = bookuid;
+    
+    let info = new BookInfo();
+    info.uid = bookuid;
+    info.author = user.displayName;
+    info.author_uid = user.uid;
+    info.nalang = usercfg.nalang;
+    info.talang = usercfg.talang;
+    info.type = booktype;
+
+    info.title = booktitle;
+
+    info.tag1 = "英文";
+    info.tag2 = "";
+    info.views = Math.round(Math.random() * 10);
+
+    const langpair = MiscFunc.getLangPair(info.nalang, info.talang);
+
+    const res = await this.RDB.setData([...this.BYUID, info.uid], info);
+    if (!res.err) {
+      this.synced = true;
+      this.LDB.saveBookInfo(info);
+
+      await this.updateToTag(new BookInfo(), info, this.differ.test(new BookInfo(), info));
+
+      this._mirror([info]);
+      Wata._fireGlobalEvent(WataEvent.BOOKINFO_CREATE, info)
+    }
+  }
+
+  /**
+   * init by a book uid (this is different part from listFromByTag/listFromByUid)
+   * @param bookuid 
+   */
+  public async initByBookUid(bookuid: string) {
+    this.bybookuid = bookuid;
+    this.querypath = [...this.BYUID, bookuid];
+
+    //load from local
+    let data: BookInfo = await this.LDB.loadBookInfo(bookuid);
+    this.synced = false;
+
+    const fnDownload = (remoteData: any) => {
+      data = remoteData;
+      this.LDB.saveBookInfo(data);
+      this.synced = true;
+    }
+    const fnFail = (res: DBResult) => {
+      throw new Error(res.err);
+    }
+    //get fresh data
+    await this.helperSyncVerData(data, this.querypath, null, null, fnDownload, null, fnFail, true);
+  
+    this._mirror(data ? [data] : []);
+  }
 
   /**
    * retrieve from 'bytag/langpair/tagname'
@@ -1126,7 +1267,9 @@ export class WataBookInfo extends Wata<BookInfo[]>{
    * @param tagname 
    * @param query 
    */
-  public async listFromByTag(langpair: string, tagname: string, query:DBQuery) {
+  public async listFromByTag(langpair: string, tagname: string, query: DBQuery) {
+    this.bylangpair = langpair;
+    this.bytagname = tagname;
     this.querypath = [...this.BYTAG, langpair, tagname];
     this.querynext = Object.assign({}, query);
     this.last = null;
@@ -1148,9 +1291,11 @@ export class WataBookInfo extends Wata<BookInfo[]>{
    * retrieve from 'byuid'
    * @param query 
    */
-  public async listFromByUid(query:DBQuery) {
+  public async listFromByUid(query: DBQuery) {
     this.querypath = [...this.BYUID];
     this.querynext = Object.assign({}, query);
+    if (this.querynext.orderBy === "author_uid")
+      this.byuseruid = this.querynext.equalTo;
     // this.querynext.orderBy = "author_uid";
     // this.querynext.equalTo = useruid;
     this.last = null;
@@ -1166,82 +1311,76 @@ export class WataBookInfo extends Wata<BookInfo[]>{
       this._mirror([]);
   }
 
-  /**
-   * init by a book uid (this is different part from listFromByTag/listFromByUid)
-   * @param bookuid 
-   */
-  public async initByBookUid(bookuid: string) {
-    this.querypath = [...this.BYUID, bookuid];
+  private bycollection: string[]; //collection
+  private collectionlimit: number
+  public async listFromCollection(usercfg: WataUserCfg, limit: number) {
+    this.bycollection = this.clone(usercfg.data.favorites);
 
-    //load from local
-    let data: BookInfo = await this.LDB.loadBookInfo(bookuid);
-
-    const fnCreate = () => {
-    }
-    const fnDownload = (remoteData: any) => {
-      data = remoteData;
-      this.LDB.saveBookInfo(data);
-    }
-    const fnUpload = (localData) => {
-      data = localData;
-      this.RDB.setData(this.querypath, data);
-    }
-    const fnFail = (res:DBResult) => {
-      throw new Error(res.err);
-    }
-    //get fresh data
-    await this.LDB.helperSyncVerData(data, this.querypath, null, fnCreate, fnDownload, fnUpload, fnFail);
-  
-    this._mirror(data ? [data] : []);
-  }
-
-  public async commit() {
-    let changed = false;
-    for (let key in this.data) {
-      const idx = parseInt(key);
-      const info = this.data[idx];
-
-      info.tag1 = info.tag1.trim();
-      info.tag2 = info.tag2.trim();
-      if (info.tag1 && info.tag1 === info.tag2)
-        info.tag2 = "";
-
-      let infoFrom = this.mirror[idx];
-      let diff = this.differ.test(infoFrom, info);
-      if (diff.diff) {
-        changed = true;
-        info.ver = Date.now();
-
-        this.RDB.updateDiff([...this.BYUID, info.uid], info, diff);
-        this.LDB.saveBookInfo(info);
-
-        this.updateToTag(infoFrom, info, diff);
-      }
-    }
-    if (changed)
-      this._mirror(this.data);
+    let data = await this._moreCollection();
+    this._mirror(data ? data : []);
   }
 
   /**
    * retrieve more bookinfo of its query, can append to its data
    */
   public async more() {
-    let data = await this._more();
+    let data;
+    if (this.bycollection)
+      data = await this._moreCollection();
+    else
+      data = await this._more();
     console.log("+" + data.length)
 
     if (data != null) {
-      if (this.data != null)
-        data = this.data.concat(data);
+      if (this.data != null) {
+        if (this.bycollection)
+          data = [...data, ...this.data];  
+        else  
+          data = this.data.concat(data);
+      }
       this._mirror(data);
     }
     else
       this._mirror([]);
   }
 
-  public hasMore():boolean {
+  public hasMore(): boolean {
     return this.hasmore;
   }
 
+  private async _moreCollection(): Promise<BookInfo[]> {
+    const SORTKEY = "__sortkey__";
+    let arr:BookInfo[] = [];
+    for (const bookuid in this.bycollection) {
+      const querypath = [...this.BYUID, bookuid];
+
+      //load from local
+      let data: BookInfo = await this.LDB.getCache("bookinfo-" + bookuid);
+  
+      const fnDownload = (remoteData: any) => {
+        data = remoteData;
+        this.LDB.setCache("bookinfo-" + bookuid, data);
+      }
+
+      //get fresh data
+      await this.helperSyncVerData(data, querypath, null, null, fnDownload, null, null);
+
+      if (data) {
+        arr.push(data);
+        data[SORTKEY] = this.bycollection[bookuid];
+      }
+      delete this.bycollection[bookuid];
+    }
+
+    arr.sort(function (a, b) { return (a[SORTKEY] == b[SORTKEY]) ? 1 : b[SORTKEY] - a[SORTKEY] });
+    
+    for (let data of arr) {
+      delete data[SORTKEY];
+    }
+    
+    return arr;
+  }
+  
   /**
    * retrieve more bookinfo of its query
    */
@@ -1273,10 +1412,13 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     // let data = await this.LDB.remoteGetData(this.querypath, this.querynext);
     
     const res = await this.RDB.getData(this.querypath, this.querynext);
-    
+    if (this.querypath[3] === "英文") {
+      console.log(res)
+    }
+
     if (!res.err && res.data) {
       // let data = res.data;
-      let arr:BookInfo[] = [];
+      let arr: BookInfo[] = [];
       for (let key in res.data) {
         res.data[key]["__key__"] = key;
         arr.push(res.data[key]);
@@ -1323,7 +1465,7 @@ export class WataBookInfo extends Wata<BookInfo[]>{
       if (!this.lastkey) {
         const data: BookInfo[] = await this.LDB.getCache([...this.querypath].join("/"));
         if (data) {
-          const rdata = data.slice(this.localcacheidx, this.localcacheidx+PAGESIZE);
+          const rdata = data.slice(this.localcacheidx, this.localcacheidx + PAGESIZE);
           this.localcacheidx += rdata.length;
 
           this.hasmore = this.localcacheidx < data.length;
@@ -1335,31 +1477,35 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     return [];
   }
 
-  public async newBook(booktitle:string, booktype:BookType, user:UserInfo, usercfg:UserCfg) {
-    let bookuid = MiscFunc.uid();
-    
-    let info = new BookInfo();
-    info.uid = bookuid;
-    info.author = user.displayName;
-    info.author_uid = user.uid;
-    info.nalang = usercfg.nalang;
-    info.talang = usercfg.talang;
-    info.type = booktype;
+  public async commit() {
+    if (!this.synced) return;
+      
+    let changed = false;
+    for (let key in this.data) {
+      const idx = parseInt(key);
+      const info = this.data[idx];
 
-    info.title = booktitle;
+      info.tag1 = info.tag1.trim();
+      info.tag2 = info.tag2.trim();
+      if (info.tag1 && info.tag1 === info.tag2)
+        info.tag2 = "";
 
-    info.tag1 = "英文";
-    info.tag2 = "";
-    info.views = Math.round(Math.random() * 10);
-    
-    const langpair = MiscFunc.getLangPair(info.nalang, info.talang);
+      let infoFrom = this.mirror[idx];
+      let diff = this.differ.test(infoFrom, info);
+      if (diff.diff) {
+        changed = true;
 
-    this.RDB.setData([...this.BYUID, info.uid], info);
-    this.LDB.saveBookInfo(info);
+        info.ver = Date.now();
 
-    await this.updateToTag(new BookInfo(), info, this.differ.test(new BookInfo(), info));
+        this.RDB.updateDiff([...this.BYUID, info.uid], info, diff);
+        this.LDB.saveBookInfo(info);
 
-    this._mirror([info]);
+        this.updateToTag(infoFrom, info, diff);
+        Wata._fireGlobalEvent(WataEvent.BOOKINFO_CHANGED, info)
+      }
+    }
+    if (changed)
+      this._mirror(this.data);
   }
 
   /**
@@ -1369,7 +1515,9 @@ export class WataBookInfo extends Wata<BookInfo[]>{
    * @param diff 
    */
   private async updateToTag(infoFrom: BookInfo, infoTo: BookInfo, diff: DifferResult) {
-    if (!diff.changes) return;
+    if (!this.synced || !diff.changes
+    ) return;
+
     let langchanged = diff.changes.nalang || diff.changes.talang;
     let tag1changed = diff.changes.tag1;
     let tag2changed = diff.changes.tag2;
@@ -1377,7 +1525,7 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     const leavelangpair = MiscFunc.getLangPair(infoFrom.nalang, infoFrom.talang);
     const joinlangpair = MiscFunc.getLangPair(infoTo.nalang, infoTo.talang);
 
-    for (let i = 1; i <= 2; i++){
+    for (let i = 1; i <= 2; i++) {
       let leavetag = (i == 1) ? infoFrom.tag1 : infoFrom.tag2;
       let jointag = (i == 1) ? infoTo.tag1 : infoTo.tag2;
       let tagchanged = (i == 1) ? tag1changed : tag2changed;
@@ -1405,7 +1553,7 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     }
   }
 
-  private getIdxByBookUID(bookuid: string):number {
+  private getIdxByBookUID(bookuid: string): number {
     for (let key in this.data) {
       const book = this.data[key];
       if (book.uid === bookuid)
@@ -1414,25 +1562,53 @@ export class WataBookInfo extends Wata<BookInfo[]>{
     return -1;
   }
 
-  delBook(bookuid: string) {
+  async viewBook(bookuid: string) {
     const idx = this.getIdxByBookUID(bookuid);
     if (idx >= 0) {
+      let book = this.data[idx];
+
+      let path = [...this.BYUID, book.uid, "views"];
+      console.log("bookuid " + bookuid)
+      
+      await this.RDB.transaction(path,
+        (currentData: number) => {
+          if (currentData) {
+            return currentData+1;
+          }
+          return currentData;
+        },
+        async (error, committed) => {
+          if (committed) {
+          }
+        }
+      )
+    }
+  }
+
+  async delBook(bookuid: string) {
+    const idx = this.getIdxByBookUID(bookuid);
+    if (idx >= 0 && this.synced) {
       const book = this.data[idx];
       const langpair = MiscFunc.getLangPair(book.nalang, book.talang);
+      let res: DBResult;
 
       if (book.tag1) {
-        this.RDB.setData([...this.BYTAG, langpair, book.tag1, book.uid], null);
+        res = await this.RDB.setData([...this.BYTAG, langpair, book.tag1, book.uid], null);
+        if (res.err) return false;
         
         this.w_taglist.leaveTagCnt(langpair, book.tag1);
       }
 
       if (book.tag2) {
-        this.RDB.setData([...this.BYTAG, langpair, book.tag2, book.uid], null);
-
+        res = await this.RDB.setData([...this.BYTAG, langpair, book.tag2, book.uid], null);
+        if (res.err) return false;
+        
         this.w_taglist.leaveTagCnt(langpair, book.tag2);
       }
+
+      res = await this.RDB.setData([...this.BYUID, book.uid], null);
+      if (res.err) return false;
       
-      this.RDB.setData([...this.BYUID, book.uid], null);
       this.RDB.setData([DbPrefix.BOOKDATA, book.uid], null);
       
       this.LDB.delBookInfo(book);
@@ -1440,30 +1616,157 @@ export class WataBookInfo extends Wata<BookInfo[]>{
 
       this.data.splice(idx, 1);
       this._mirror(this.data);
+      Wata._fireGlobalEvent(WataEvent.BOOKINFO_DELETED, book);
+      return true;
     }
-    
+    return false;
   }
 
+
+  public async onGlobalEvent(eventType: WataEvent, eventData?: any) {
+
+    if (eventType === WataEvent.TOGGLE_FAVOR && this.bycollection) {
+      const bookuid = eventData.bookuid;
+      const favor = eventData.favor;
+
+      let found = false;
+
+      for (const idx in this.data) {
+        const book = this.data[idx];
+        if (book.uid === bookuid) {
+          if (!favor) {
+            this.data.splice(parseInt(idx), 1);
+            found = true;
+            break;
+          }
+        }
+      }
+
+      if (!favor)
+        delete this.bycollection[bookuid];
+      if (favor && !found) {
+        this.bycollection[bookuid] = bookuid;
+        this.more();
+      }
+    }
+      
+
+
+    //sync user action on a book
+    if (eventType === WataEvent.BOOKINFO_CREATE ||
+      eventType === WataEvent.BOOKINFO_CHANGED ||
+      eventType === WataEvent.BOOKINFO_DELETED) {
+      const binfo: BookInfo = eventData;
+
+      let changed = false;
+      let found_idx: number;
+      let found_info: BookInfo;
+
+      //find the book has same uid as event data
+      for (let idx in this.data) {
+        let info = this.data[idx];
+        if (info.uid === binfo.uid) {
+          found_idx = parseInt(idx);
+          found_info = this.data[found_idx];
+          if (eventType === WataEvent.BOOKINFO_DELETED) {
+            this.data.splice(found_idx, 1);
+            changed = true;
+          }
+          break;
+        }
+      }
+
+      //handle for list by tag
+      const FnTag = () => {
+        const langpair = MiscFunc.getLangPair(binfo.nalang, binfo.talang);
+        const sameLangpair = this.bylangpair === langpair;
+        const sameTag = this.bytagname === binfo.tag1 || this.bytagname === binfo.tag2;
+
+        if (!found_info) {
+          if (sameLangpair && sameTag) {
+            this.data.push(binfo);
+            changed = true;
+          }
+        }
+        else {
+          //remove if it not belong this langpair of tag anymore
+          if (!sameLangpair || !sameTag) {
+            this.data.splice(found_idx, 1);
+            changed = true;
+          }
+          //replace to new one
+          else {
+            this.data[found_idx] = binfo;
+            changed = true;
+          }
+        }
+      }
+      //handle for list by user
+      const FnUser = () => {
+        const sameUser = this.byuseruid === binfo.author_uid;
+        if (sameUser) {
+          //add as new one
+          if (!found_info) {
+            console.log("ADD ###");
+            this.data = [binfo, ...this.data];
+            changed = true;
+          }
+          //replace to new one
+          else {
+            this.data[found_idx] = binfo;
+            changed = true;
+          }
+        }
+      }
+      //handle for list by one uid
+      const FnBookUid = () => {
+        const sameBook = this.bybookuid === binfo.uid;
+        if (sameBook) {
+          this.data[found_idx] = binfo;
+          changed = true;
+        }
+      }
+
+      if (!changed && (eventType === WataEvent.BOOKINFO_CREATE || eventType === WataEvent.BOOKINFO_CHANGED)) {
+        if (this.bylangpair && this.bytagname)
+          FnTag();
+        else if (this.byuseruid)
+          FnUser();
+        else if (this.bybookuid)
+          FnBookUid();
+      }
+
+      if (changed) {
+        this._mirror(this.data);
+
+        if (this.querypath)
+          this.LDB.setCache([...this.querypath].join("/"), this.data);
+      }
+
+    }
+  }
 }
 
 export class WataBookData extends Wata<BookData>{
   
-  constructor(public LDB: LocalDB, public RDB: IRDBapi, public w_bookinfo:WataBookInfo) {
+  constructor(public w_bookinfo:WataBookInfo) {
     super();
   }
 
   private path: string[];
   private bookuid: string;
+  private synced = false;
 
   public async newBookData(bookuid: string) {
     this.bookuid = bookuid;
     this.path = [DbPrefix.BOOKDATA, this.bookuid];
 
     let data = new BookData();
-    this.RDB.setData(this.path, data);
-    this.LDB.saveBookData(bookuid, data);
-
-    this._mirror(data);
+    const res = await this.RDB.setData(this.path, data);
+    if (!res.err) {
+      this.LDB.saveBookData(bookuid, data);
+      this._mirror(data);
+    }
   }
 
   public async getByUid(bookuid: string) {
@@ -1472,22 +1775,18 @@ export class WataBookData extends Wata<BookData>{
 
     //load from local
     let data: BookData = await this.LDB.loadBookData(bookuid);
-    
-    const fnCreate = () => {
-    }
+    this.synced = true;
+
     const fnDownload = (remoteData: any) => {
       data = remoteData;
       this.LDB.saveBookData(bookuid, data);
     }
-    const fnUpload = (localData) => {
-      data = localData;
-      this.RDB.setData(this.path, data);
-    }
     const fnFail = (res:DBResult) => {
-      throw new Error(res.err);
+      console.error(res.err);
+      this.synced = false;
     }
     //get fresh data
-    await this.LDB.helperSyncVerData(data, this.path, null, fnCreate, fnDownload, fnUpload, fnFail);
+    await this.helperSyncVerData(data, this.path, null, null, fnDownload, null, fnFail);
 
     this._mirror(data);
   }
@@ -1523,64 +1822,10 @@ export class WataBookData extends Wata<BookData>{
   }
 
   /**
-   * commit book data by checking each key and update each change
-   */
-  public async commit() {
-
-    let changed = false;
-    //check each updated item
-    for (let key in this.data.data) {
-      let item = this.data.data[key];
-
-      let itemFrom = this.mirror.data[key];
-      let diff = this.differ.test(itemFrom, item);
-      
-      if (diff.diff) {
-        changed = true;
-        this.RDB.updateDiff([...this.path, "data", key], item, diff);
-        this._mirrorParts(this.mirror.data, key, item);
-      }
-    };
-
-    //check each removed item
-    for (let key in this.mirror.data) {
-      if (!this.data.data[key]) {
-        changed = true;
-        this.RDB.setData([...this.path, "data", key], null);
-        delete this.mirror.data[key];
-      }
-    };
-
-    //check ordermap
-    let diff = this.differ.test(this.mirror.ordermap,this.data.ordermap);
-    if (diff.diff) {
-      changed = true;
-      this.RDB.setData([...this.path, "ordermap"], this.data.ordermap);
-      this._mirrorParts(this.mirror, ["ordermap"], this.data.ordermap);
-    }
-    
-    if (this.mirror.data && Object.keys(this.mirror.data).length != Object.keys(this.data.data).length) {
-      let bookidx = this.getIdxOfBook();
-      if (bookidx >= 0) {
-        this.w_bookinfo.data[bookidx].qnum = Object.keys(this.data.data).length;
-        this.w_bookinfo.commit();
-      }
-    }
-
-    //must update version by yourself, after only updated parts of data.
-    if (changed) {
-      this.data.ver = Date.now();
-      this._mirrorParts(this.mirror, ["ver"], this.data.ver);
-  
-      this.LDB.saveBookData(this.bookuid, this.data);
-      this.RDB.updateData(this.path, { ver: this.data.ver });
-    }
-  }
-
-  /**
    * commit all.
    */
   public async commitAll() {
+
     this.data.ver = Date.now();
     this._mirror(this.data);
 

@@ -17,6 +17,7 @@ import { MyService } from '../../providers/myservice/myservice';
 import { CloudHomeComponent } from '../cloud-home/cloud-home';
 import { MiscFunc } from '../../define/misc';
 import { LocaldbViewer } from '../localdb-viewer/localdb-viewer';
+import { CollectionComponent } from '../collection/collection';
 
 export interface HomeSlidePage{
   title: string,
@@ -25,6 +26,7 @@ export interface HomeSlidePage{
 }
 
 const SLIDECLS: any[] = [
+  [CollectionComponent, null],
   [CloudHomeComponent, null],
   [LocaldbViewer, null],
   [CreationComponent, null],

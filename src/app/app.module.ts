@@ -40,6 +40,7 @@ import { ViewerPageModule } from '../pages/viewer/viewerpage.module';
 import { BookListPage } from '../pages/book-list/book-list';
 import { Network } from '@ionic-native/network';
 import { LocaldbViewer } from '../pages/localdb-viewer/localdb-viewer';
+import { CollectionComponent } from '../pages/collection/collection';
 
 
 
@@ -51,7 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     MyApp,
     HomeSettingsComponent,
-    NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,LocaldbViewer,
+    NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,LocaldbViewer,CollectionComponent,
     LoginPage, LogoutPage,
     // NewpagePage
   ],
@@ -82,7 +83,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MyApp,
     HomeSettingsComponent,
     NewsComponent, CreditComponent, CreationComponent,
-    CloudHomeComponent,LocaldbViewer,
+    CloudHomeComponent,LocaldbViewer,CollectionComponent,
     LoginPage, LogoutPage,
     // NewpagePage
   ],

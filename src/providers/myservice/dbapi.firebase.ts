@@ -32,7 +32,7 @@ export abstract class IRDBapi {
   abstract getData(path: string[], query?: DBQuery): Promise<DBResult>;
   abstract setData(path: string[], data: any): Promise<DBResult>;
   
-  abstract updateData(path: string[], data: any): Promise<DBResult>;
+  abstract updateParts(path: string[], data: any): Promise<DBResult>;
   abstract updateDiff(path: string[], data: any, diff: DifferResult): Promise<DBResult>;
     
 }
@@ -345,7 +345,13 @@ export class DBapiFirebase implements IRDBapi {
   }
 
 
-  async updateData(path: string[], data: any): Promise<DBResult> {
+  // async updateData2(path: string[], data: any): Promise<DBResult> {
+  //   const ref = firebase.database().ref(path.join("/"));
+  //   const result = await this.raceTO(ref.update(data), TIMEOUTMS);
+  //   return result;
+  // }
+
+  async updateParts(path: string[], data: any): Promise<DBResult> {
     const path1 = path.join("/");
     let slot = [];
     MiscFunc.pathlize(slot, "root", "", data);
@@ -374,7 +380,7 @@ export class DBapiFirebase implements IRDBapi {
 
     const parts = (data.ver) ? { ...diff.changes, ...diff.adds, ver: data.ver } : { ...diff.changes, ...diff.adds };
 
-    return await this.updateData(path, parts);
+    return await this.updateParts(path, parts);
   }
 
   async transaction(path: string[], fnUpdate: any, fnComplete: any) {
