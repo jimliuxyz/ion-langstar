@@ -23,6 +23,8 @@ import { Mocks } from '../../define/mocks';
 import { VoiceCfg, TTS } from './tts';
 import { Page, TransitionDoneFn } from 'ionic-angular/navigation/nav-util';
 import * as firebase from 'firebase/app';
+import { DataService, UserInfoService } from '../../app/data-service';
+import { _UserInfo } from '../../app/data-service/models';
 
 
 @Injectable()
@@ -40,6 +42,32 @@ export class MyService {
     private loadCtrl: LoadingController, private storage: Storage,
     private translate: TranslateService,
     private rdb: IRDBapi) {
+    
+    DataService.init(storage);
+    let userv: UserInfoService;
+    let user = new _UserInfo();
+    user.email = "A@test.com";
+    user.displayName = "A";
+    
+    console.log("start")
+    userv = new UserInfoService().init(user);
+
+    userv.data$.subscribe(user => {
+      console.log("1", user.displayName);
+    });
+
+    userv.data$.subscribe(user => {
+      console.log("2", user.displayName);
+    });
+
+    setTimeout(() => {
+      let user = new _UserInfo();
+      user.email = "B@test.com";
+      
+      user.displayName = "B";
+      userv.init(user);
+    }, 5000);
+    
     console.log("hello my service...");
     this.db = new LocalDB(storage, rdb);
     Wata.init(this.db, rdb);

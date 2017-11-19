@@ -53,6 +53,8 @@ export class DBapiFirebase implements IRDBapi {
     private afDB: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     private googleplus: GooglePlus) {
+
+    console.log(firebase.database.ServerValue.TIMESTAMP);
     
       // this.online = false;
       this.online ? firebase.database().goOnline() : firebase.database().goOffline();
