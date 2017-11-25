@@ -1,6 +1,6 @@
 import { VerData } from "./define";
 
-export class _UserInfo extends VerData{
+export class UserInfo extends VerData{
   uid: string = "";
   displayName: string = "";
   email: string = "";

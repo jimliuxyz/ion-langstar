@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { HomeSlidePage } from '../home-slides/home-slides';
 import { MyService, WataBookInfo } from '../../providers/myservice/myservice';
 import { BookInfo, BookType } from '../../define/book';
 import { EditorPage } from '../editor/editorpage';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginPage } from '../login/login';
+import { UserInfoService } from '../../app/data-service/service/user.info.service';
+import { AuthedUserInfoService } from '../../app/data-service/service/authed.user.info.service';
+import { BookInfoService } from '../../app/data-service/service/book.info.service';
+import { BookDataService } from '../../app/data-service/service/book.data.service';
+import { ReplaySubject } from 'rxjs';
+import { BookListByAuthorService } from '../../app/data-service/service/book.list.byauthor.service';
+import { UserInfo } from '../../define/userinfo';
+import { BookInfoSet } from '../../app/data-service/service/book.list.service';
 
 
 @Component({
@@ -19,55 +27,45 @@ export class CreationComponent implements HomeSlidePage {
   readonly PRELOAD_BOOKS = 99999;
   wata: WataBookInfo;
   
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private translate:TranslateService, public serv: MyService) {
-  }
-
-  selected() {
-    this.ionViewCanEnter();
+  dsev: BookListByAuthorService;
+  data$: ReplaySubject<BookInfoSet[]>;
+  user: UserInfo;
+  
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private translate: TranslateService, public serv: MyService) {
+    this.serv.ser_user.data$.subscribe(async (user) => {
+      // this.init(user);
+      this.dsev = BookListByAuthorService.get(user.uid);
+      await this.dsev.more(9999);
+  
+      this.data$ = this.dsev.data$;
+    })    
   }
 
   async ionViewCanEnter() {
-    let ready = await this.serv.ready$;
-    if (!this.inited)
-      this.reload();
-    this.inited = true;
     return true;
   }
 
+  selected() {
+  }
+
+
   doRefresh(refresher) {
     setTimeout(async () => {
-      await this.reload();
+      this.dsev.reset();
+      await this.dsev.more(9999);
+
       refresher.complete();
     }, 0);
   }
 
-  async reload() {
-    const query = {
-      orderBy: "author_uid", equalTo: this.serv.w_userinfo.data.uid, limitToLast: this.PRELOAD_BOOKS
-    };
-
-    this.wata = await this.serv.queryBookInfosFromUid(query);
-  }
-
-  doInfinite(infiniteScroll) {
-    setTimeout(async () => {
-      if (this.wata) {
-        await this.wata.more();
-      }  
-      infiniteScroll.complete();
-    }, 100);
-  }
-
   async newBook(type: BookType) {
-    if (this.serv.isAnonymous()) {
-      this.serv.openModal(LoginPage);
-      return;
-    }
-    
-    let set = await this.serv.newBook(BookType.MCQ);
 
-    await this.serv.navTo(EditorPage, { bookset: set });
+    const uid = await this.serv.newBook(type);
+    if (uid) {
+      await this.serv.navTo(EditorPage, { bookuid: uid });
+    }
   }
+
 
   async delBook(e:Event, bookinfo: BookInfo) {
     e.preventDefault;
@@ -92,7 +90,7 @@ export class CreationComponent implements HomeSlidePage {
           text: deleteText,
           handler: () => {
             console.log("del ", bookinfo);
-            this.wata.delBook(bookinfo.uid);
+            this.serv.delBook(bookinfo.uid);
           }
         }
       ]

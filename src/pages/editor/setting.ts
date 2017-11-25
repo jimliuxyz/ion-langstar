@@ -3,31 +3,60 @@ import { NavParams,ModalController, ViewController, AlertController } from 'ioni
 import { TranslateService } from '@ngx-translate/core';
 import { MyService, WataBookInfo } from '../../providers/myservice/myservice';
 import { BookInfo, BookType, BookData_MCQ } from '../../define/book';
-import { MiscFunc } from '../../define/misc';
+import { MiscFunc as misc } from '../../define/misc';
 import { Toggle2 } from '../../patch/toggle/toggle';
+import { BookInfoService } from '../../app/data-service/service/book.info.service';
+import { QstBookCfg } from '../../app/app-service/app.quiz.service';
+import { BookDataService } from '../../app/data-service/service/book.data.service';
 
 @Component({
   selector: 'page-editpage-setting',
   templateUrl: 'setting.html',
 })
 export class SettingComponent {
-  misc = MiscFunc;
-  setting: WataBookInfo;
+  misc = misc;
+  bookuid: string;
+  dsev_info: BookInfoService;
+  dsev_data: BookDataService;
   
-  constructor(public params: NavParams, public viewCtrl: ViewController, public translate: TranslateService, public serv: MyService,private alertCtrl: AlertController) {
-    this.setting = params.get('setting');
+  info: BookInfo;
+  cfg: QstBookCfg;
+  tagarr: string[] = [];
+  
+  constructor(public params: NavParams, public viewCtrl: ViewController, public translate: TranslateService, public serv: MyService, private alertCtrl: AlertController) {
+    this.bookuid = params.get('bookuid');
+  }
+
+  async ionViewCanEnter() {
+
+    this.dsev_info = BookInfoService.get(this.bookuid);
+    this.info = await this.dsev_info.data$.take(1).toPromise();
+    this.info = misc.clone(this.info);
+
+    this.dsev_data = BookDataService.get(this.bookuid);
+    const data = await this.dsev_data.data$.take(1).toPromise();
+    this.cfg = data.cfg ? misc.clone(data.cfg) : new QstBookCfg();
+
+    this.tagarr = await this.getTagList();
+
+    return true;
+  }    
+
+  private async getTagList() {
+    const langpair = misc.getLangPair(this.info.nalang, this.info.talang);
+    return await this.serv.getTagListAsStr(langpair);
   }
 
   dismiss() {
+    this.dsev_info.set(this.info);
+    this.dsev_data.setData(undefined, this.cfg);
+    
     this.viewCtrl.dismiss();
-    this.setting.commit();
   }
 
   async addNewTag(idx: number) {
-    console.log("addNewTag")
 
     const title = await this.translate.get("TAG").toPromise() + idx;
-
     const cancelText = await this.translate.get("CANCEL").toPromise();
     const okayText = await this.translate.get("OKAY").toPromise();
     
@@ -36,7 +65,7 @@ export class SettingComponent {
       inputs: [
         {
           name: 'tag',
-          value: (idx===1)?this.setting.data[0].tag1:this.setting.data[0].tag2,
+          value: (idx === 1) ? this.info.tag1 : this.info.tag2,
           id: 'autofocu',
         },
       ],
@@ -50,14 +79,15 @@ export class SettingComponent {
         {
           text: okayText,
           handler: data => {
-
-            if (data.tag && data.tag.trim()) {
-              this.serv.w_taglist.addTempTag(data.tag);
+            const newtag = data.tag ? data.tag.trim() : null;
+            if (newtag) {
+              if (this.tagarr.filter(tag=>tag===newtag).length == 0)
+                this.tagarr.push(newtag)
 
               if (idx === 1)
-                this.setting.data[0].tag1 = data.tag;  
+                this.info.tag1 = newtag;  
               if (idx === 2)
-                this.setting.data[0].tag2 = data.tag;
+                this.info.tag2 = newtag;
 
               return true;
             }

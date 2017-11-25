@@ -1,18 +1,10 @@
 
-<ion-card *ngIf="ready" (click)="navTo()">
+<ion-card *ngIf="bookinfo && author" (click)="navTo()">
     <ion-item>
       <h1>{{bookinfo.title}}</h1>
 
-      <ng-template [ngIf]="author && author.data">
-        <p><img class="author-icon" [src]="author.cachedPhoto">{{author.data.displayName}}</p>
-      </ng-template>
+        <p><img class="author-icon" [src]="author.photoURL">{{author.displayName}}</p>
 
-      <!-- <p>
-        <img class="author-icon" [src]="author.cachedPhoto">
-        <span>{{author.data.displayName}}</span>
-      </p> -->
-      
-      <!-- <ion-icon item-right name="close"></ion-icon> -->
       <ng-content item-right></ng-content>
 
     </ion-item>

@@ -1,4 +1,4 @@
-import { DataAccess } from '../data-server';
+import { DataAccess } from '../../data-server';
 import { Storage } from '@ionic/storage';
 
 export abstract class DataService{
@@ -17,6 +17,12 @@ export abstract class DataService{
     
     if (!DataService.db) {
       throw new Error("DataService not initialized");
+    }
+  }
+
+  assert(condition: any, message?: string) {
+    if (!condition) {
+        throw message || "Assertion failed";
     }
   }
 

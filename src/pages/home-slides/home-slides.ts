@@ -26,10 +26,10 @@ export interface HomeSlidePage{
 }
 
 const SLIDECLS: any[] = [
-  [CollectionComponent, null],
-  [CloudHomeComponent, null],
-  [LocaldbViewer, null],
   [CreationComponent, null],
+  [CloudHomeComponent, null],
+  [CollectionComponent, null],
+  [LocaldbViewer, null],
   [NewsComponent, null],
   [CreditComponent, null],
 ]

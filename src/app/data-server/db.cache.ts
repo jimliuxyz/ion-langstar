@@ -1,7 +1,14 @@
 import { Storage } from '@ionic/storage';
 import { DBQuery } from '../../providers/myservice/dbapi.firebase';
 
+export enum CachePolicy {
+  BY_VERSION,
+  REMOTE_FIRST,
+  REMOTE_ONLY,
+}
+
 export class CachePool{
+
   constructor(public id: string, public size: number) {
   }
 }
@@ -15,6 +22,7 @@ export class DbCache{
   private pools: any = {};
   
   constructor(private storage: Storage) {
+    storage.clear();
     // this.get({ id:"AUTHEDUSER", size:1}, null)
   }
 
@@ -52,5 +60,10 @@ export class DbCache{
     const key = this.getDataKey(pool, path, query);
     this.visit(pool, key);
     await this.storage.set(key, data);
+  }
+
+  async del(pool: CachePool, path: string[], query?: DBQuery) {
+    const key = this.getDataKey(pool, path, query);
+    await this.storage.remove(key);
   }
 }

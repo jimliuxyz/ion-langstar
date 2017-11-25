@@ -1,47 +1,30 @@
 <ion-slide>
-  <ion-content *ngIf='!errstate && serv.w_taglist.data'>
-    <slide-refresher (ionRefresh)="doRefresh($event)" pullMin=120 pullMax=360><slide-refresher-content
-      pullingIcon="refresh-circle"
-      refreshingSpinner="circles">
-      </slide-refresher-content>
-    </slide-refresher>
-
-
-    <div *ngFor="let tag of serv.w_taglist.data">
-      <ng-template [ngIf]="tag.cnt>0">
-        <ion-list>
-
-          <xyzui-tag-header text-left (lazyTrigger)="onTagDisplay($event)" [repeat]="true" [payload]="tag" [tagname]="tag.name" [desc]="tag.cnt">
-
-          </xyzui-tag-header>
-
-
-          <div [ngIf]="books[tag.name]">
-
-            <xyzui-book-card *ngFor="let book of books[tag.name]" [bookinfo]="book">
-            </xyzui-book-card>
-            
-          </div>
-        
-        </ion-list>
-      </ng-template>
-    </div>
-
-  </ion-content>
-</ion-slide>
-
-<!-- 
-<ion-slide>
     <ion-content>
-    <ion-card *ngFor="let x of [1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,1,2,3,4,5,6,7]" (click)="navToViewer()" tappable>
-        <ion-item>
-          <ion-avatar item-start>
-            <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
-          </ion-avatar>
-          <h2>Collection of free HTML and CSS cards</h2>
-          <p>ASDFG</p>
-        </ion-item>
-  </ion-card>
-</ion-content>
-</ion-slide>
-   -->
+      <slide-refresher (ionRefresh)="doRefresh($event)" pullMin=120 pullMax=360><slide-refresher-content
+        pullingIcon="refresh-circle"
+        refreshingSpinner="circles">
+        </slide-refresher-content>
+      </slide-refresher>
+
+      <div *ngFor="let tset of data$|async">
+        
+        <xyzui-tag-header text-left [tagname]="tset.tag.name" [desc]="tset.tag.cnt"></xyzui-tag-header>
+
+        <div *ngFor="let bset of tset.booklist$|async; let idx=index">
+
+          <ng-container *ngIf="idx<infoPageSize && {book:bset.bookinfo$|async, author:bset.author$|async} as set">
+
+            <xyzui-book-card [bookinfo]="set.book" [author]="set.author">
+              </xyzui-book-card>
+
+          </ng-container>
+
+        </div>
+      </div>
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>  
+
+    </ion-content>
+  </ion-slide>

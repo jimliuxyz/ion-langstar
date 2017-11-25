@@ -1,6 +1,7 @@
 import MD5 from "md5.js";
 import { SpeechVoice } from "../providers/myservice/tts";
 import { Platform } from "ionic-angular";
+import { JsObjDiffer } from "./JsObjDiffer";
 
 class Lang{
   constructor(public code:string, public lang:string, public nalang:string) {
@@ -211,6 +212,14 @@ export class MiscFunc{
 
   static isOppositeLangPair(nalang1: string, talang1: string, nalang2: string, talang2: string): boolean {
     return nalang1 === talang2 && talang1 === nalang2;
+  }
+
+  static clone<T>(data:T):T {
+    return JSON.parse(JSON.stringify(data))
+  }
+
+  static diff(pdata: any, data: any, ignores:string[]=[], IGNOREARRAY:boolean=false) {
+    return new JsObjDiffer().test(pdata, data, ignores, IGNOREARRAY);
   }
 
   /**

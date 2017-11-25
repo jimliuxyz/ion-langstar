@@ -18,20 +18,18 @@
 
           <hr>
           
-          <ion-list *ngIf="wata && wata.data">
 
-            <xyzui-book-card *ngFor="let book of wata.data" [bookinfo]="book">
-                <!-- <button ion-button small icon-only> -->
-                    <ion-icon class="del-btn" color="danger" name="close" item-right (click)="delBook($event, book)"></ion-icon> 
-                <!-- </button> -->
+          <div *ngFor="let bset of data$|async">
+            
+            <ng-container *ngIf="{book:bset.bookinfo$|async, author:bset.author$|async} as set">
+
+            <xyzui-book-card [bookinfo]="set.book" [author]="set.author">
+                    <ion-icon class="del-btn" color="danger" name="close" item-right (click)="delBook($event, set.book)"></ion-icon> 
+                </xyzui-book-card>
+
+            </ng-container>
+
+        </div>
                 
-            </xyzui-book-card>
-                            
-                        
-          </ion-list>
-                
-            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-                <ion-infinite-scroll-content></ion-infinite-scroll-content>
-            </ion-infinite-scroll>  
     </ion-content>
 </ion-slide>

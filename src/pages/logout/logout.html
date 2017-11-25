@@ -1,9 +1,4 @@
-<!--
-  Generated template for the MePage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar primary>
     <ion-title>{{'LOGOUT'|translate}}</ion-title>
@@ -17,10 +12,10 @@
 
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngIf="user$|async as user">
 
     <ion-card-header>
-          {{serv.w_userinfo.data.displayName}}
+          {{user.displayName}}
     </ion-card-header>
 
 
@@ -28,12 +23,12 @@
       <ion-row>
         <ion-col></ion-col>
         <ion-col></ion-col>
-        <ion-col><img [src]="serv.w_userinfo.data.localPhotoURL" /></ion-col>
+        <ion-col><img [src]="user.localPhotoURL" /></ion-col>
         <ion-col></ion-col>
         <ion-col></ion-col>
       </ion-row>
       <h2>
-        {{serv.w_userinfo.data.email}}
+        {{user.email}}
       </h2>
     </ion-card-content>
   </ion-card>

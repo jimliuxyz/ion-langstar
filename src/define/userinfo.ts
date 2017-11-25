@@ -60,4 +60,11 @@ export class UserCfg{
     cfg.talang = "en_US";
     return cfg;
   }
+  static fix(data:UserCfg) {
+    if (!data) return;
+    if (!data.favorites) data.favorites = {};
+    if (!data.voices_def) data.voices_def = {};
+    if (!data.voices_cfg) data.voices_cfg = {};
+    if (!data.book_record) data.book_record = {};
+  }
 }

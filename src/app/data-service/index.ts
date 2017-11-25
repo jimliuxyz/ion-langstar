@@ -1,6 +1,6 @@
 export { QResult, STRKEY, VerData, DataSample } from "./define"
 
-export { DataService } from "./data.service";
-export { UserInfoService } from "./user.info.service";
+export { DataService } from "./service/data.service";
+export { UserInfoService } from "./service/user.info.service";
 
 

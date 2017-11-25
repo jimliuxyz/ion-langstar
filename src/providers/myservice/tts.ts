@@ -98,7 +98,7 @@ export class TTS{
       }
     }
 
-    console.log("text : " + msg.text.substr(0,10))
+    // console.log("text : " + msg.text.substr(0,10))
 
     let time = Date.now();
     let started = false;
@@ -120,7 +120,7 @@ export class TTS{
     }, 100)
 
     msg.onstart = (ev: SpeechSynthesisEvent) => {
-      console.log('  start... ');
+      // console.log('  start... ');
       started = true;
       // console.log('  start... ' + ev.timeStamp, ev)
       if (onstart)
@@ -129,7 +129,7 @@ export class TTS{
       let endtimer = setInterval(() => {
         if (!webtts.speaking) {
           clearInterval(endtimer);
-          console.log('  end...')
+          // console.log('  end...')
           msgcnt--;
           if (onend)
             onend();

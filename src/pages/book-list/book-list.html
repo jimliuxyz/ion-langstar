@@ -7,38 +7,19 @@
 
 <ion-content>
 
-      <!-- <ng-template [ngIf]="bytag"> -->
-        <ion-list *ngIf="!errstate && wata && wata.data">
+        <div *ngFor="let bset of data$|async">
 
-          <xyzui-tag-header *ngIf="bytag" text-left [tagname]="bytag" [desc]="" [nolink]="true">
-          </xyzui-tag-header>
+          <ng-container *ngIf="{book:bset.bookinfo$|async, author:bset.author$|async} as set">
 
-          <!-- (lazyTrigger)="onTagDisplay($event)" [payload]="tag" -->
+            <xyzui-book-card [bookinfo]="set.book" [author]="set.author">
+              </xyzui-book-card>
 
+          </ng-container>
 
-            <xyzui-book-card *ngFor="let book of wata.data" [bookinfo]="book">
-            </xyzui-book-card>
-            
-        
-        </ion-list>
-      <!-- </ng-template> -->
-
-      <!-- <div (lazyTrigger)="onTagDisplay()" [payload]="false">123
-        </div> -->
-
+        </div>
+  
         <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
             <ion-infinite-scroll-content></ion-infinite-scroll-content>
           </ion-infinite-scroll>  
-  </ion-content>
-
-<!-- <ion-content>
-
-    <ion-list>
-        <ion-item *ngFor="let i of items">{{i}}</ion-item>
-      </ion-list>
-     
-      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-         <ion-infinite-scroll-content></ion-infinite-scroll-content>
-       </ion-infinite-scroll>  
-      
-</ion-content> -->
+  
+</ion-content>

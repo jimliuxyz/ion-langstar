@@ -24,7 +24,15 @@ import { VoiceCfg, TTS } from './tts';
 import { Page, TransitionDoneFn } from 'ionic-angular/navigation/nav-util';
 import * as firebase from 'firebase/app';
 import { DataService, UserInfoService } from '../../app/data-service';
-import { _UserInfo } from '../../app/data-service/models';
+import { AuthedUserInfoService } from '../../app/data-service/service/authed.user.info.service';
+import { storage } from 'firebase/app';
+import { UserCfgService } from '../../app/data-service/service/user.cfg.service';
+import { BookInfoService } from '../../app/data-service/service/book.info.service';
+import { TagService } from '../../app/data-service/service/tag.service';
+import { BookListByTagService } from '../../app/data-service/service/book.list.bytag.service';
+import { TagBooksSet, TagListService } from '../../app/data-service/service/tag.list.service';
+import { BookDataService } from '../../app/data-service/service/book.data.service';
+import { EditorPage } from '../../pages/editor/editorpage';
 
 
 @Injectable()
@@ -36,6 +44,9 @@ export class MyService {
     this.ready_resolve = resolve;
   });
 
+  ser_user: AuthedUserInfoService;
+  ser_cfg: UserCfgService;
+  
   constructor(
     private platform: Platform,
     public network: Network,
@@ -44,29 +55,37 @@ export class MyService {
     private rdb: IRDBapi) {
     
     DataService.init(storage);
-    let userv: UserInfoService;
-    let user = new _UserInfo();
-    user.email = "A@test.com";
-    user.displayName = "A";
-    
-    console.log("start")
-    userv = new UserInfoService().init(user);
+    this.ser_user = new AuthedUserInfoService();
+    this.ser_cfg = new UserCfgService();
 
-    userv.data$.subscribe(user => {
-      console.log("1", user.displayName);
-    });
+    this.ser_user.data$.subscribe(user => {
+      this.ser_cfg.init(user);
+    })
 
-    userv.data$.subscribe(user => {
-      console.log("2", user.displayName);
-    });
+    // let userv: AuthedUserInfoService;
+    // let user = new _UserInfo();
+    // user.email = "A@test.com";
+    // user.displayName = "A";
 
-    setTimeout(() => {
-      let user = new _UserInfo();
-      user.email = "B@test.com";
+    // console.log("start")
+    // userv = new AuthedUserInfoService();
+    // userv.init(user)
+
+    // userv.data$.subscribe(user => {
+    //   console.log("1", user.displayName);
+    // });
+
+    // userv.data$.subscribe(user => {
+    //   console.log("2", user.displayName);
+    // });
+
+    // setTimeout(() => {
+    //   let user = new _UserInfo();
+    //   user.email = "B@test.com";
       
-      user.displayName = "B";
-      userv.init(user);
-    }, 5000);
+    //   user.displayName = "B";
+    //   userv.init(user);
+    // }, 5000);
     
     console.log("hello my service...");
     this.db = new LocalDB(storage, rdb);
@@ -179,11 +198,21 @@ export class MyService {
 
   //----
 
+
+  
+
+
+
+  //----
+
   w_userinfo: WataUserInfo;
   w_usercfg: WataUserCfg;
   w_taglist: WataTagList;
 
+  
   private async setLoginUser(user: UserInfo) {
+
+    this.ser_user.login(user);
 
     if (!this.w_userinfo) {
 
@@ -198,29 +227,60 @@ export class MyService {
     console.log("ot")
   }
 
-  isAnonymous(): boolean{
-    return (this.w_userinfo.data.email === ANONYMOUS.email);
+  async isAnonymous(){
+    const user = await this.ser_user.data$.take(1).toPromise();
+    return (user.email === ANONYMOUS.email);
   }
 
-  async newBook(booktype:BookType) {
-    await this.ready$;
+  async newBook(type: BookType) {
+    try {
+      const user = await this.ser_user.data$.take(1).toPromise();
 
-    if (this.isAnonymous())
-      return;  
+      const ucfg = await this.ser_cfg.data$.take(1).toPromise();
 
-    let bookinfo = new WataBookInfo(this.w_taglist);
-    await bookinfo.newBook(
-      await this.translate.get("MYFIRSTBOOKNAME").toPromise(),
-      booktype,
-      this.w_userinfo.data,
-      this.w_usercfg.data,
-    );
+      const bookinfo = new BookInfo();
+      bookinfo.title = await this.translate.get("MYFIRSTBOOKNAME").toPromise();
+      bookinfo.type = type;
+      bookinfo.author_uid = user.uid;
+      bookinfo.nalang = ucfg.nalang;
+      bookinfo.talang = ucfg.talang;
 
-    let bookdata = new WataBookData(bookinfo);
-    await bookdata.newBookData(bookinfo.data[0].uid);
+      await BookInfoService.create(bookinfo);
+      await BookDataService.create(bookinfo.uid);
+
+      return bookinfo.uid;
+    } catch (err) {
+      console.error(err)
+    }
+    return null;
+  }
+
+  async delBook(bookuid: string) {
+    try {
+      let ok;
+
+      ok = await (await BookInfoService.get(bookuid)).remove();
+
+      if (!ok) return false;
+      ok = await (await BookDataService.get(bookuid)).remove();
+
+      return ok;
+    } catch (err) {
+      console.error(err)
+    }
+    return false;
+  }
+  
+  async getTagListAsStr(langpair) {
+    const ucfg = await this.ser_cfg.data$.take(1).toPromise();
     
-    return { bookinfo, bookdata };
+    const dsev = TagListService.get(langpair);
+
+    return await dsev.listAsStr();
   }
+
+
+  
 
   cacheUserInfo: WataUserInfo[] = [];
   async getUserInfo(useruid: string) {
@@ -305,13 +365,30 @@ export class MyService {
     if (this.storage) {
       // this.storage.clear();
       // await this.testFirebasePaginate();
+
+      setTimeout(() => {
+        // let dsev;
+        // dsev = new BookListByTagService("en+zh", "GEPT");
+        // dsev.more(10);
+
+        // let dsev = TagListService.get("en+zh");
+        // dsev.more(3)
+
+        // dsev.data$.subscribe(data => {
+        //   console.log(data)
+        // })
+
+      }, 3000);
+
       return;
     }
+
 
     //clear data
     console.warn("clear databse!!!");
     this.storage.clear();
     this.rdb.clear(["/"]);
+
 
     //add default tags
     for (let langpair of Object.keys(deftags)) {
@@ -325,7 +402,7 @@ export class MyService {
 
         tag.list[tagname] = new Tag();
         tag.list[tagname].name = tagname;
-        // tag.list[tagname].cnt = Math.round(Math.random() * 10);        
+        // tag.list[tagname].cnt = Math.round(Math.random() * 10);
       }
       await this.rdb.setData([DbPrefix.TAGLIST, langpair], tag)
     };
@@ -334,6 +411,8 @@ export class MyService {
     let userinfos:WataUserInfo[] = [];
     let usercfgs: WataUserCfg[] = [];
     let taglist: WataTagList;
+
+    let users: UserInfo[] = [];
     
     for (let userphoto of Mocks.userphoto) {
       let username = userphoto.replace(/.*\//, "").replace(/\..*$/, "");
@@ -348,7 +427,16 @@ export class MyService {
       user.displayName = username;
       user.email = username + "@fake.com";
       user.photoURL = userphoto;
+      // users.push(user);
+
+      const userv = new AuthedUserInfoService();
+      await userv.login(user);
+      const user2 = await userv.data$.take(1).toPromise();
+      users.push(MiscFunc.clone(user2));
       
+      console.log("---", user.displayName, user.uid, user2.uid);
+      
+
       let userinfo = new WataUserInfo();
       userinfos.push(userinfo);
 
@@ -357,7 +445,7 @@ export class MyService {
 
       if (!taglist)
         taglist = new WataTagList(usercfg);
-      
+
       await userinfo.initByUserLogin(user);
       console.log(userinfo.data.displayName);
       if (userinfos.length >= 10) break;
@@ -380,6 +468,30 @@ export class MyService {
     //   await userinfo.initByUserLogin(user);
     //   console.log(userinfo.data.displayName)
     // };
+
+    for (let bookname of Mocks.booknames) {
+      let useridx = Math.round(Math.random() * (users.length - 1));
+      
+      const bookinfo = new BookInfo();
+      bookinfo.title = bookname;
+      bookinfo.type = BookType.MCQ;
+      bookinfo.author_uid = users[useridx].uid;
+      bookinfo.nalang = MiscFunc.getLangCodeNormalize(navigator.language);
+      bookinfo.talang = "en_US";
+      console.log(users[useridx].displayName, users[useridx].uid);
+      
+      let tag1idx = Math.round(Math.random() * (Mocks.tags.length-1));
+      let tag2idx = Math.round(Math.random() * (Mocks.tags.length-1));
+
+      bookinfo.tag1 = Mocks.tags[tag1idx];
+      bookinfo.tag2 = Mocks.tags[tag2idx];
+
+      bookinfo.views = Math.round(Math.random() * (10-1));
+      
+      // console.log(bookinfo.tag1 + " ? " + bookinfo.tag2);
+
+      const dsev = BookInfoService.create(bookinfo);
+    }
 
 
     let bookinfos:WataBookInfo[] = [];
@@ -928,14 +1040,7 @@ export class WataUserCfg extends Wata<UserCfg>{
   private isAnonymous = false;
 
   private fixUndefined(ucfg: UserCfg) {
-    if (ucfg) {
-      if (!ucfg.book_record) ucfg.book_record = {};
-
-      if (!ucfg.favorites) ucfg.favorites = {};
-      if (!ucfg.voices_def) ucfg.voices_def = {};
-      if (!ucfg.voices_cfg) ucfg.voices_cfg = {};
-      if (!ucfg.booktype_cfg) ucfg.booktype_cfg = {};
-    }
+    UserCfg.fix(ucfg);
   }
 
   //true: means data synced at initial phase, and not anonymous
@@ -1191,7 +1296,7 @@ export class WataTagList extends Wata<Tag[]>{
           return currentData;  //do nothing, 
 
         currentData.cnt += inc; //for update
-        currentData.ver = Date.now();
+        currentData.__ver = Date.now();
         return currentData;
       },
       async (error, committed) => {

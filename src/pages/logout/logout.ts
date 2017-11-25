@@ -4,6 +4,9 @@ import { LoadingController,ViewController } from 'ionic-angular';
 
 import { AuthService,SocialUser } from "angular4-social-login";
 import { MyService } from '../../providers/myservice/myservice';
+import { UserInfo } from '../../define/userinfo';
+import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 //Unknown error, enum SocialTypes.facebook did not compile to 0/*SocialTypes.facebook*/
 export const enum SocialTypes_ {facebook, google};
@@ -13,8 +16,10 @@ export const enum SocialTypes_ {facebook, google};
   templateUrl: 'logout.html',
 })
 export class LogoutPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loadCtrl: LoadingController, public platform: Platform,public viewCtrl: ViewController, public serv:MyService) {
-    console.log('LogoutPage constructor called');
+  user$: Observable<UserInfo>;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loadCtrl: LoadingController, public platform: Platform, public viewCtrl: ViewController, public serv: MyService) {
+    this.user$ = serv.ser_user.data$;
   }
 
   async logout() {

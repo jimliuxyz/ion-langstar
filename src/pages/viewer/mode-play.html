@@ -8,7 +8,7 @@
         </ion-buttons>
 
       <ion-title>
-          {{bookinfo.data[0].title}}
+          {{app.bookinfo?.title}}
       </ion-title>
   
       <ion-buttons end>
@@ -27,29 +27,27 @@
                 
             <div *ngFor="let fb of ['front','back']">
 
-                <div [class]="fb" style="height:100%" *ngIf="!quizf && !quizb">
+                <div [class]="fb" style="height:100%" *ngIf="!(fb=='front'?quizf:quizb)">
                     <div class="out-of-quiz">{{'_MCQ.OUTOFQUIZ'|translate}}</div>
                 </div>
                         
                 <div [class]="fb" *ngIf="(fb=='front'?quizf:quizb); let quiz">
 
-                
-                
 
                 <div style="float:right;">
-                    <button ion-button icon-only (click)="toggleLearned(quiz);">{{root.listtype==='learning'?'－':'＋'}}
+                    <button ion-button icon-only (click)="app.toggleLearned(quiz);player.next()">{{listtype==='learning'?'－':'＋'}}
                     </button>
                 </div>
 
-                <h1 *ngIf="cfgrec.qshow" [ngClass]="{'onVoice': getOnVoiceType()=='q'}" (click)="speakOnce($event, 'q')">{{quiz.q}}</h1>
+                <h1 *ngIf="app.cfgrec.qshow" [ngClass]="{'onVoice': curKey=='q'}" (click)="player.setPlayKey('q')">{{quiz.q}}</h1>
 
-                <hr>
+                <hr *ngIf="app.cfgrec.qshow">
 
-                <p *ngIf="cfgrec.ashow" [ngClass]="{'onVoice': getOnVoiceType()=='a'}" (click)="speakOnce($event, 'a')">{{quiz.a}}</p>
+                <p *ngIf="app.cfgrec.ashow" [ngClass]="{'onVoice': curKey=='a'}" (click)="player.setPlayKey('a')">{{quiz.a}}</p>
 
-                <p *ngIf="cfgrec.expshow" [ngClass]="{'onVoice': getOnVoiceType()=='exp'}" (click)="speakOnce($event, 'exp')">{{quiz.exp}}</p>
+                <p *ngIf="app.cfgrec.expshow" [ngClass]="{'onVoice': curKey=='exp'}" (click)="player.setPlayKey('exp')">{{quiz.exp}}</p>
 
-                <p *ngIf="cfgrec.tipshow" [ngClass]="{'onVoice': getOnVoiceType()=='tip'}" (click)="speakOnce($event, 'tip')">{{quiz.tip}}</p>
+                <p *ngIf="app.cfgrec.tipshow" [ngClass]="{'onVoice': curKey=='tip'}" (click)="player.setPlayKey('tip')">{{quiz.tip}}</p>
 
                 <!-- <hr>
                 <p>paused : {{tts.paused}}</p>
@@ -69,14 +67,14 @@
   </ion-content>
   
 <ion-footer>
-    <ion-range [(ngModel)]="mapidx" [min]="1" [max]="_cmap.length" pin="true" color="primary">
+    <ion-range [(ngModel)]="playidx" [min]="1" [max]="player?.getLength()" pin="true" color="primary">
     </ion-range>
 
     <div class="player_wrap">
-        <div class="btn btnplay" (click)="togglePlayPause()">
-            <ion-icon [name]="(playstatus=='play')?'pause':'play'"></ion-icon>
+        <div class="btn btnplay" (click)="player.tooglePlayStatus()">
+            <ion-icon [name]="(player?.state=='playing')?'pause':'play'"></ion-icon>
         </div>
-        <div class="btn btnnext" (click)="nextCard(1)">
+        <div class="btn btnnext" (click)="player.next()">
             <ion-icon name="skip-forward"></ion-icon>
         </div>
     </div>

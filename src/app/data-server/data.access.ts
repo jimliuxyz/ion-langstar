@@ -34,56 +34,8 @@ export class DataAccess{
     }
 
     let res;
-    if (cdata) {
-      const cache_ver = <number>cdata[STRKEY.__ver];
-      if (cache_ver) {
-
-        res = await this.server.getVer(path);
-
-        if (!res.err) {
-          const remote_ver = <number>res.data;
-          //data removed
-          if (!res.data) {
-            finaldata = null;
-            if (pool) {
-              this.cache.set(pool, path, finaldata, query);
-            }
-          }
-          //download remote
-          else if (cache_ver < remote_ver) {
-            res = await this.server.getData(path, query);
-            if (!res.err) {
-              rdata = res.data;
-              finaldata = rdata;
-              if (pool) {
-                this.cache.set(pool, path, finaldata, query);
-              }
-            }
-          }
-          //upload cache (impossible case)
-          else if (cache_ver > remote_ver) {
-          }
-          else {
-            //upload dirty cache.
-            if (cdata[STRKEY.__dirty]) {
-              res = await this.writeCacheable(pool, path, cdata);
-              if (!res.err) {
-                let new_ver = res.data;
-                cdata[STRKEY.__ver] = new_ver;
-                cdata[STRKEY.__dirty] = false;
-                finaldata = cdata;
-                if (pool) {
-                  this.cache.set(pool, path, finaldata, query);
-                }
-              }
-              else {
-              }
-            }
-          }
-        }
-      }
-    }
-    else {
+    //no cached or no version control
+    if (!cdata || !cdata[STRKEY.__ver]) {
       res = await this.server.getData(path, query);
       if (!res.err) {
         rdata = res.data;
@@ -93,24 +45,97 @@ export class DataAccess{
         }
       }
     }
+    else {
+      const cache_ver = <number>cdata[STRKEY.__ver];
+
+      res = await this.server.getVer(path);
+
+      if (!res.err) {
+        const remote_ver = <number>res.data;
+        //data removed
+        if (!res.data) {
+          finaldata = null;
+          if (pool) {
+            this.cache.set(pool, path, finaldata, query);
+          }
+        }
+        //download remote
+        else if (cache_ver < remote_ver) {
+          res = await this.server.getData(path, query);
+          if (!res.err) {
+            rdata = res.data;
+            finaldata = rdata;
+            if (pool) {
+              this.cache.set(pool, path, finaldata, query);
+            }
+          }
+        }
+        //upload cache (impossible case)
+        else if (cache_ver > remote_ver) {
+          throw new Error("upload cache (impossible case)");
+        }
+        else {
+          //try upload dirty cache.
+          if (cdata[STRKEY.__dirty]) {
+            const res_ = await this.server.setData(path, cdata);
+            if (!res_.err) {
+              let new_ver = res_.data;
+              cdata[STRKEY.__ver] = new_ver;
+              cdata[STRKEY.__dirty] = false;
+              finaldata = cdata;
+              if (pool) {
+                this.cache.set(pool, path, finaldata, query);
+              }
+            }
+            else {
+            }
+          }
+        }
+      }
+    }
 
     return new QResult(res ? res.err : undefined, finaldata);
   }
 
+  async removeCacheable(pool: CachePool, path: string[]) {
+    // console.log("del " + path.join("/"))
+    // return this.writeCacheable(pool, path, null);
+    
+    const res = await this.server.setData(path, null);
+    if (!res.err && pool) {
+      this.cache.del(pool, path, null);
+    }
+
+    return res;
+  }
+
+  /**
+   * write data and re-version it.
+   * @param pool 
+   * @param path 
+   * @param data 
+   */
   async writeCacheable(pool:CachePool, path: string[], data:any) {
     let res;
     let new_ver;
+    let correct_data;
 
     if (data) {
-      const local_ver = <number>data[STRKEY.__ver];
-      if (local_ver) {
+      //for no version control
+      if (!data[STRKEY.__ver]) {
+        res = await this.server.setData(path, data);
+        console.log("set " + path.join("/"))
+      }
+      else {
+        const local_ver = <number>data[STRKEY.__ver];
+      
         res = await this.server.getVer(path);
-
         if (!res.err) {
           const remote_ver = <number>res.data;
+          const empty = !res.data;
 
           //allow upload
-          if (!res.data || local_ver == remote_ver) {
+          if (empty || local_ver == remote_ver) {
             res = await this.server.setData(path, data);
             if (!res.err) {
               new_ver = res.data;
@@ -120,16 +145,19 @@ export class DataAccess{
                 this.cache.set(pool, path, data);
               }
             }
+            console.log(empty ? "new" : "update" + " " + path.join("/"))
           }
           else {
-            console.warn("ver L"+local_ver + " : R" +remote_ver+ " : " + path.join("/"))
+            console.warn("ver L" + local_ver + " : R" + remote_ver + " : " + path.join("/"))
+
+            const res_ = await this.server.getData(path);
+            if (!res_.err) {
+              correct_data = res_.data;
+            }
             res = new QResult(QERR.VERSION_NOT_MATCH);
           }
         }
       }
-      //for no version data
-      else
-        res = await this.server.setData(path, data);
     }
     //for delete
     else {
@@ -137,22 +165,40 @@ export class DataAccess{
       if (!res.err && pool) {
         this.cache.set(pool, path, null);
       }
+      console.log("del " + path.join("/"))
     }
 
     if (res.err && data && data[STRKEY.__ver]) {
       data[STRKEY.__dirty] = true;
     }
 
-    if (pool) {
+    if (!res.err && pool) {
       this.cache.set(pool, path, data);
     }
 
-    return new QResult(res ? res.err : undefined, new_ver);
+    return new QResult(res ? res.err : undefined, new_ver || correct_data);
   }
 
 
 
+  async transaction(path: string[], fnUpdate: any, fnComplete: any) {
+    let finaldata;
 
+    const res = await this.server.transaction(path, currentData => {
+      return fnUpdate(currentData);
+    }, (err, completed, data) => {
+      if (completed) {
+        finaldata = !data ? null : data.val();
+      }
+      if (fnComplete) {
+        fnComplete(err, completed, finaldata);
+      }
+      // console.log("b",err, completed, finaldata)
+    });
+
+    res.data = finaldata;
+    return res;
+  }
 
 
 }

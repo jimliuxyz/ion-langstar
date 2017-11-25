@@ -64,8 +64,16 @@ export class BookInfo{
 export class BookData{
   ver: number = 1;
   ordermap: any = {};
-  data: any = {};
+  // data: any = {};
+  cfg: any; //depends on its BookType
+  data: { [uid: string]: any } = {};
+  
 }
+
+// export abstract class BookItem {
+//   uid: string;
+//   order: number;
+// }
 
 //Multiple Choice Questions
 export class BookData_MCQ{

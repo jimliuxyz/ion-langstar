@@ -113,20 +113,70 @@ export class DbAccessFirebase{
     return res;
   }
 
+  /**
+   * set data and return with version
+   * @param path 
+   * @param data 
+   */
   async setData(path: string[], data: any) {
+    if (!data) return this.delData(path);
     let ref = firebase.database().ref(path.join("/"));
 
-    if (data[STRKEY.__ver]) {
-      data = JSON.parse(JSON.stringify(data))
-      data[STRKEY.__ver] = firebase.database.ServerValue.TIMESTAMP;
+    if (data[STRKEY.__ver] || data[STRKEY.__dirty]) {
+      data = JSON.parse(JSON.stringify(data));
+      if (data[STRKEY.__ver])
+        {data[STRKEY.__ver] = firebase.database.ServerValue.TIMESTAMP;}
+      if (data[STRKEY.__dirty])
+        {data[STRKEY.__dirty] = false;}
     }
 
     const res = await this.promiseTimeout(ref.set(data));
-    
+
     if (!res.err && data[STRKEY.__ver]) {
       return await this.getVer(path);
     }
     return res;
     // return await this.promiseTimeout(ref.set(data));
   }
+
+  /**
+   * set data and return with version
+   * @param path 
+   * @param data 
+   */
+  async delData(path: string[]) {
+    let ref = firebase.database().ref(path.join("/"));
+
+    const res = await this.promiseTimeout(ref.set(null));
+    return res;
+  }
+
+  async transaction(path: string[], fnUpdate: any, fnComplete: any) {
+    let ref = firebase.database().ref(path.join("/"));
+
+    const res = await this.promiseTimeout(ref.transaction(currentData => {
+      let data = fnUpdate(currentData);
+      if (data && data != currentData) {
+        if (data[STRKEY.__ver] || data[STRKEY.__dirty]) {
+          data = JSON.parse(JSON.stringify(data));
+          if (data[STRKEY.__ver])
+            {data[STRKEY.__ver] = firebase.database.ServerValue.TIMESTAMP;}
+          if (data[STRKEY.__dirty])
+            {data[STRKEY.__dirty] = false;}
+        }
+      }
+      return data;
+    }, fnComplete, false));
+    
+    return await res;
+    // return await ref.transaction(currentData => {
+    //   const newdata = fnUpdate(currentData);
+    //   return newdata;
+    // }, (err, completed, finaldata) => {
+    //   // const newdata = fnUpdate(currentData);
+
+    // });
+  }
+
+
 }
