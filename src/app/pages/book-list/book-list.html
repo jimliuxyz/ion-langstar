@@ -1,0 +1,24 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+        <div *ngFor="let bset of data$|async">
+
+          <ng-container *ngIf="{book:bset.bookinfo$|async, author:bset.author$|async} as set">
+
+            <xyz-book-card [bookinfo]="set.book" [author]="set.author"></xyz-book-card>
+
+          </ng-container>
+
+        </div>
+  
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+          </ion-infinite-scroll>  
+  
+</ion-content>

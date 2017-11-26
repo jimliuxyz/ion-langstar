@@ -1,0 +1,150 @@
+
+<ion-header>
+        
+  <ion-navbar>
+    <ion-title>{{app.bookinfo?.title}}</ion-title>
+    <ion-buttons end>
+
+      <button *ngIf="!editable" ion-button icon-only (click)="serv.w_usercfg.toggleFavorite(bookuid)">
+        <ion-icon [name]="false?'md-heart':'md-heart-outline'" color="danger"></ion-icon>
+      </button>
+
+      <button *ngIf="editable" ion-button icon-only (click)="navToEditor()">
+            <ion-icon name="ios-create-outline"></ion-icon>
+          </button>
+    
+      <button ion-button icon-only (click)="openModal($event)">
+        <ion-icon name="options"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ng-container *ngIf="app.author">
+
+    <span style="display: inline-flex;padding:10px 10px 0px 10px" (click)="navToListByAuthor()">
+            <img style='border-radius: 50%;    overflow: hidden;width: 20px;height: 20px;' [src]="app.author?app.author.photoURL:''">
+            &nbsp;{{app?.author?app.author.displayName:''}}
+        </span>
+
+    <ion-grid>
+      <ion-row>
+          <ion-col class='blockbtn' (click)="linkToMode('play')">{{'_MCQ.MODEPLAY'|translate}}</ion-col>
+          <ion-col class='blockbtn'>{{'_MCQ.MODESPEAK'|translate}}</ion-col>
+          <ion-col class='blockbtn'>{{'_MCQ.MODETEST'|translate}}</ion-col>
+        </ion-row>
+    </ion-grid>
+    
+
+
+
+
+
+
+
+
+
+
+<div padding *ngIf="app&&app.quizs">
+    <ion-segment [(ngModel)]="listtype">
+      <ion-segment-button value="learning">
+          {{'LEARNING'|translate}} <span style="display:absolute;">{{app.learning.length}}</span>
+      </ion-segment-button>
+      <ion-segment-button value="learned">
+          {{'LEARNED'|translate}} <span style="display:absolute;">{{app.learned.length}}</span>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  
+
+
+  <div [ngSwitch]="listtype" *ngIf="app&&app.quizs">
+        <ng-container *ngFor="let casetype of ['learning','learned']">
+        <ion-list  *ngSwitchCase="casetype">
+    
+            <ng-container *ngFor="let quiz of (casetype=='learning'?app.learning:app.learned)">
+    
+                <div class="card-wrapper" [ngClass]="{'gofade':goFade(quiz)}">
+    
+                    <ion-card>
+                        <ion-item>
+                            <button ion-button icon-only (click)="toggleLearned(quiz);">
+                                    {{casetype=='learning'?'－':'＋'}}
+                              </button>
+                            <h1 (click)="app.speak(quiz, 'q')">{{quiz.q}}</h1>
+                            <p>{{quiz.a}} | 
+                            {{quiz.exp}} | 
+                            {{quiz.tip}}</p>
+                        </ion-item>
+                    </ion-card>
+                
+                </div>
+                
+            </ng-container>
+          
+        </ion-list>
+    </ng-container>
+      </div>
+
+      
+
+<!--   
+  <div [ngSwitch]="listtype" *ngIf="app&&app.quizs">
+    <ion-list *ngSwitchCase="'learning'">
+
+        <ng-container *ngFor="let quiz of app.quizs">
+
+            <div class="card-wrapper" *ngIf="!app.isLearned(quiz)"  [ngClass]="{'gofade':goFade(quiz)}">
+
+                <ion-card>
+                    <ion-item>
+                        <button ion-button icon-only (click)="toggleLearned(quiz);">
+                                －
+                          </button>
+                        <h1 (click)="app.speak(quiz, 'q')">{{quiz.q}}</h1>
+                        <p>{{quiz.a}} | 
+                        {{quiz.exp}} | 
+                        {{quiz.tip}}</p>
+                    </ion-item>
+                </ion-card>
+            
+            </div>
+            
+        </ng-container>
+      
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'learned'">
+            
+            <ng-container *ngFor="let quiz of app.quizs">
+    
+                <div class="card-wrapper" *ngIf="app.isLearned(quiz)"  [ngClass]="{'gofade':goFade(quiz)}">
+    
+                    <ion-card>
+                        <ion-item>
+                            <button ion-button icon-only (click)="toggleLearned(quiz);">
+                                ＋
+                              </button>
+                            <h1>{{quiz.q}}</h1>
+                            <p>{{quiz.a}} | 
+                            {{quiz.exp}} | 
+                            {{quiz.tip}}</p>
+                        </ion-item>
+                    </ion-card>
+                </div>
+                
+            </ng-container>
+    </ion-list>
+
+  </div> -->
+
+
+</ng-container>
+
+</ion-content>
+

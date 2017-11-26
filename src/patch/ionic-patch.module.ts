@@ -5,14 +5,13 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SlideRefresher } from './refresher/slide-refresher';
 import { SlideRefresherContent } from './refresher/slide-refresher-content';
 import { LazyTrigger } from './lazy-trigger';
-import { Toggle2 } from './toggle/toggle';
 
 
 @NgModule({
   declarations: [
     SlideRefresher,
     SlideRefresherContent,
-    LazyTrigger,Toggle2
+    LazyTrigger
   ],
   imports: [
     IonicModule
@@ -20,7 +19,7 @@ import { Toggle2 } from './toggle/toggle';
   exports: [
     SlideRefresher,
     SlideRefresherContent,
-    LazyTrigger,Toggle2
+    LazyTrigger
   ],
   entryComponents: [
   ],

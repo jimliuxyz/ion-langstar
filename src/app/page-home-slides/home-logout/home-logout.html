@@ -1,0 +1,42 @@
+
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>{{'LOGOUT'|translate}}</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="dismiss()">
+            <ion-icon name="md-close"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngIf="user$|async as user">
+
+    <ion-card-header>
+          {{user.displayName}}
+    </ion-card-header>
+
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+        <ion-col><img [src]="user.photoURL" /></ion-col>
+        <ion-col></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <h2>
+        {{user.email}}
+      </h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-buttons end>
+      <button ion-button (click)="logout()">
+        {{'LOGOUT'|translate}}
+      </button>
+    </ion-buttons>
+
+</ion-content>

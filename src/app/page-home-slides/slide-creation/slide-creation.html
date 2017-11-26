@@ -1,0 +1,34 @@
+<ion-slide>
+    <ion-content>
+        <slide-refresher (ionRefresh)="doRefresh($event)" pullMin=120 pullMax=360><slide-refresher-content
+            pullingIcon="refresh-circle"
+            refreshingSpinner="circles">
+            </slide-refresher-content>
+        </slide-refresher>
+
+        <ion-grid>
+            <ion-row>
+
+                <ion-col class='blockbtn'  (click)="newBook('MCQ')">＋{{'_MCQ.NAME'|translate}}</ion-col>
+
+                <ion-col class='blockbtn'>＋{{'_CONQ.NAME'|translate}}</ion-col>
+
+              </ion-row>
+          </ion-grid>
+
+          <hr>
+
+          <div *ngFor="let bset of data$|async">
+            
+            <ng-container *ngIf="{book:bset.bookinfo$|async, author:bset.author$|async} as set">
+
+            <xyz-book-card [bookinfo]="set.book" [author]="set.author">
+                    <ion-icon class="del-btn" color="danger" name="close" item-right (click)="delBook($event, set.book)"></ion-icon> 
+                </xyz-book-card>
+
+            </ng-container>
+
+        </div>
+                
+    </ion-content>
+</ion-slide>

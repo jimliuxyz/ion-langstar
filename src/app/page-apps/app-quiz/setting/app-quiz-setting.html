@@ -1,0 +1,77 @@
+<!-- Generated template for the HomeSettingsComponent component -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+          {{'_READERSETTING.TITLE'|translate}}
+      </ion-title>
+  
+      <ion-buttons end>
+          <button ion-button icon-only (click)="dismiss()">
+              <ion-icon name="md-close"></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    
+    <ion-list padding-top>
+        <div ion-text color="primary">&nbsp; {{misc.getLang(app.bookinfo.nalang).nalang}}</div>
+  
+        <ion-item>
+          <ion-label>{{'SPEECHVOICE'|translate}}</ion-label>
+
+          <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="app.cfgrec.navoice" (ionChange)="changeVoice(true);sampleVoice(true)">
+            <ion-option *ngFor="let voice of tts.getVoices(app.bookinfo.nalang)" [value]="voice.uri">{{voice.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item no-lines>
+            <ion-range min="1" max="100"  pin="true" color="secondary" [(ngModel)]="navoice.rate" (ionChange)="sampleVoice(true)">
+                <ion-label (click)="sampleVoice(true)" range-left>{{'VOICESPEED'|translate}}</ion-label>
+              </ion-range>
+        </ion-item>
+
+    </ion-list>
+
+    
+    <ion-list style="margin-bottom:8px">
+        <div ion-text color="primary">&nbsp; {{misc.getLang(app.bookinfo.talang).nalang}}</div>
+
+        <ion-item>
+            <ion-label>{{'SPEECHVOICE'|translate}}</ion-label>
+  
+            <ion-select [okText]="'OKAY'|translate" [cancelText]="'CANCEL'|translate" #langSelect [(ngModel)]="app.cfgrec.tavoice" (ionChange)="changeVoice(false);sampleVoice(false)">
+              <ion-option *ngFor="let voice of tts.getVoices(app.bookinfo.talang)" [value]="voice.uri">{{voice.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+
+        <ion-item no-lines>
+            <ion-range min="1" max="100" pin="true" color="secondary" [(ngModel)]="tavoice.rate" (ionChange)="sampleVoice(false)">
+                <ion-label (click)="sampleVoice(false)" range-left>{{'VOICESPEED'|translate}}</ion-label>
+              </ion-range>
+        </ion-item>          
+    </ion-list>
+
+
+    <ion-list *ngIf="true">
+        <div ion-text color="primary">&nbsp; {{'_MCQ.SHOWNSPEAK'|translate}}</div>
+
+        <xyz-np-button [(value)]="app.cfgrec.qcnt" [(selected)]="app.cfgrec.qshow">{{'_MCQ.QUESTION'|translate}} ＋{{app.cfgrec.qcnt}}</xyz-np-button>
+
+        <xyz-np-button [(value)]="app.cfgrec.acnt" [(selected)]="app.cfgrec.ashow">{{'_MCQ.ANSWER'|translate}} ＋{{app.cfgrec.acnt}}</xyz-np-button>
+        
+        <xyz-np-button [(value)]="app.cfgrec.expcnt" [(selected)]="app.cfgrec.expshow">{{'_MCQ.EXAMPLE'|translate}} ＋{{app.cfgrec.expcnt}}</xyz-np-button>
+        
+        <xyz-np-button [(value)]="app.cfgrec.tipcnt" [(selected)]="app.cfgrec.tipshow">{{'_MCQ.TIP'|translate}} ＋{{app.cfgrec.tipcnt}}</xyz-np-button>
+
+        <ion-item no-lines>
+        <ion-label>{{'_MCQ.RANDOM'|translate}}</ion-label>
+        <ion-checkbox [(ngModel)]="app.cfgrec.random" item-right color="secondary" checked="true"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+  </ion-content>
+  

@@ -17,14 +17,14 @@ let config = new AuthServiceConfig([
   // }
 ]);
 
-import { MyService } from '../providers/myservice/myservice';
-import { IRDBapi,DBapiFirebase } from '../providers/myservice/dbapi.firebase';
-import { XyzuiBtnNp } from '../components/xyzui-btn-np/xyzui-btn-np';
+import { AppService } from './app-service/app-service';
+import { AuthService } from './app-service/auth-service';
+import { XyzNpButton } from './components/xyz-np-button/xyz-np-button';
 import { CommonModule } from '@angular/common';
-import { XyzuiBtnYn } from '../components/xyzui-btn-yn/xyzui-btn-yn';
-import { XyzuiBookCard } from '../components/xyzui-book-card/xyzui-book-card';
+import { XyzYnButton } from './components/xyz-yn-button/xyz-yn-button';
+import { XyzBookCard } from './components/xyz-book-card/xyz-book-card';
 import { IonicModule } from 'ionic-angular';
-import { XyzuiTagHeader } from '../components/xyzui-tag-header/xyzui-tag-header';
+import { XyzTagHeader } from './components/xyz-tag-header/xyz-tag-header';
 
 
 @NgModule({
@@ -33,11 +33,11 @@ import { XyzuiTagHeader } from '../components/xyzui-tag-header/xyzui-tag-header'
     AngularSocialAuthModule,
     SocialLoginModule.initialize(config)],
   declarations: [
-    XyzuiBtnNp, XyzuiBtnYn, XyzuiBookCard, XyzuiTagHeader
+    XyzNpButton, XyzYnButton, XyzBookCard, XyzTagHeader
   ],
   exports: [
     TranslateModule,
-    XyzuiBtnNp, XyzuiBtnYn, XyzuiBookCard, XyzuiTagHeader
+    XyzNpButton, XyzYnButton, XyzBookCard, XyzTagHeader
   ],
   entryComponents: [],
 })
@@ -45,7 +45,10 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [MyService, {provide:IRDBapi, useClass:DBapiFirebase}]
+      providers: [AppService
+        // , { provide: IDBapi, useClass: DBapiFirebase }
+        , AuthService
+      ]
     };
   }
 }

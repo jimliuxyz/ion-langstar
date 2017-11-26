@@ -10,7 +10,6 @@ export abstract class DataService{
     }
   }
 
-
   protected db: DataAccess;
   constructor() {
     this.db = DataService.db;

@@ -1,0 +1,51 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{(bookinfo$|async)?.title}}</ion-title>
+    <ion-buttons end>
+
+        <button [disabled]="!dirty&&dataReady" (click)="save()" outline ion-button class="save-btn">
+            {{'SAVE'|translate}}
+        </button>
+
+      <button ion-button icon-only (click)="openModal($event)">
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #content>
+  <textarea #tarea autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style='height:100%;width:100%;padding:10px;border:0px;' placeholder="## {{'_PLACEHOLDER.QUESTION' | translate}}
+==  {{'_PLACEHOLDER.ANSWER' | translate}}
+#=  {{'_PLACEHOLDER.EXAMPLE' | translate}}
+#?  {{'_PLACEHOLDER.TIPS' | translate}}
+
+##  star
+==  {{'_PLACEHOLDER.STAR' | translate}}
+#=  There are billions of stars in the universe.
+#?  a natural luminous body visible in the sky especially at night"></textarea>
+
+
+</ion-content>
+
+<ion-footer #Shortcut (click)="skipfocus($event);">
+<div #menu class="main-menu" [attr.state]="'full'">
+  <span name='menu' class="btn" (click)="menu.attributes.state.value=menu.attributes.state.value?'':'full';contentResize(content)"></span>
+  <div class='placeholder'></div>
+  <div class="content">
+      <div class='placeholder'></div>
+      <ion-grid>
+
+          <ion-row *ngFor="let items of btnarr">
+            <ion-col *ngFor="let str of items" text-center (click)='execCmd($event, str);'>{{str}}</ion-col>
+          </ion-row>
+
+      </ion-grid>
+  </div>
+</div>
+
+</ion-footer>

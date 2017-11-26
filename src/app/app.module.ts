@@ -26,21 +26,21 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 //custom component/page
 import { environment } from '../environments/environments';
 import { MyApp } from './app.component';
-import { HomeSlidesPage } from '../pages/home-slides/home-slides';
-import { NewsComponent } from "../pages/news/news";
-import { CreditComponent } from "../pages/credit/credit";
-import { HomeSettingsComponent } from '../pages/home-settings/home-settings';
+import { HomeSlidesPage } from './page-home-slides/home-slides';
+import { NewsComponent } from "./page-home-slides/news/news";
+import { SlideCredit } from "./page-home-slides/slide-credit/slide-credit";
+import { HomeSetting } from './page-home-slides/home-setting/home-setting';
 import { SharedModule } from './shared.module';
-import { LoginPage } from '../pages/login/login';
-import { LogoutPage } from '../pages/logout/logout';
-import { CreationComponent } from '../pages/creation/creation';
-import { EditPageModule } from '../pages/editor/editorpage.module';
-import { CloudHomeComponent } from '../pages/cloud-home/cloud-home';
-import { ViewerPageModule } from '../pages/viewer/viewerpage.module';
-import { BookListPage } from '../pages/book-list/book-list';
+import { HomeLogin } from './page-home-slides/home-login/home-login';
+import { HomeLogout } from './page-home-slides/home-logout/home-logout';
+import { SlideCreation } from './page-home-slides/slide-creation/slide-creation';
+import { EditPageModule } from './page-apps/app-quiz/editor/app-quiz-editor.module';
+import { SlideCloud } from './page-home-slides/slide-cloud/slide-cloud';
+import { ViewerPageModule } from './page-apps/app-quiz/app-quiz.module';
+import { BookListPage } from './pages/book-list/book-list';
 import { Network } from '@ionic-native/network';
-import { LocaldbViewer } from '../pages/localdb-viewer/localdb-viewer';
-import { CollectionComponent } from '../pages/collection/collection';
+import { LocaldbViewer } from './page-home-slides/localdb-viewer/localdb-viewer';
+import { SlideCollection } from './page-home-slides/slide-collection/slide-collection';
 
 
 
@@ -51,9 +51,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     MyApp,
-    HomeSettingsComponent,
-    NewsComponent,CreditComponent,CreationComponent,CloudHomeComponent,LocaldbViewer,CollectionComponent,
-    LoginPage, LogoutPage,
+    HomeSetting,
+    NewsComponent,SlideCredit,SlideCreation,SlideCloud,LocaldbViewer,SlideCollection,
+    HomeLogin, HomeLogout,
     // NewpagePage
   ],
   imports: [
@@ -81,10 +81,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomeSettingsComponent,
-    NewsComponent, CreditComponent, CreationComponent,
-    CloudHomeComponent,LocaldbViewer,CollectionComponent,
-    LoginPage, LogoutPage,
+    HomeSetting,
+    NewsComponent, SlideCredit, SlideCreation,
+    SlideCloud,LocaldbViewer,SlideCollection,
+    HomeLogin, HomeLogout,
     // NewpagePage
   ],
   providers: [

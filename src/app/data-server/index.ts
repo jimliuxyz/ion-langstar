@@ -1,1 +1,1 @@
-export { DataAccess } from "./data.access"
+export { DataAccess } from "./data-access"
