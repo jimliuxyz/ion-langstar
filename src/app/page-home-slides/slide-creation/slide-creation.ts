@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { AppService } from '../../app-service/app-service';
-import { AppQuizEditor } from '../../page-apps/app-quiz/editor/app-quiz-editor';
+import { AppQuizEditorPage } from '../../page-apps/app-quiz/editor/app-quiz-editor';
 import { TranslateService } from '@ngx-translate/core';
 import { HomeLogin } from '../home-login/home-login';
 import { UserInfoService } from '../../data-service/service/user-info.service';
@@ -59,7 +59,7 @@ export class SlideCreation implements SlidePage {
 
     const uid = await this.serv.newBook(type);
     if (uid) {
-      await this.serv.navTo(AppQuizEditor, { bookuid: uid });
+      await this.serv.navTo(AppQuizEditorPage, { bookuid: uid });
     }
   }
 

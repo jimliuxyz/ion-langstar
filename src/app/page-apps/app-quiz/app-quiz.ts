@@ -23,7 +23,7 @@ export class AppQuizPage {
   readonly bookuid: string;
 
   constructor(public platform:Platform, public modalCtrl: ModalController, public serv: AppService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
-
+    
     let urlParams = MiscFunc.getUrlParams();
     urlParams["bookuid"] = "ozv78fhdzbot";
     

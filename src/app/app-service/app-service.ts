@@ -22,8 +22,8 @@ import { UserCfgService } from '../data-service/service/user-cfg.service';
 import { BookInfoService } from '../data-service/service/book-info.service';
 import { TagListService } from '../data-service/service/tag-list.service';
 import { BookDataService } from '../data-service/service/book-data.service';
-import { IONPAGE } from './define';
 import { ANONYMOUS, UserInfo, BookInfo, BookType } from '../data-service/models';
+import { HomeSlidesPage } from '../page-home-slides/home-slides';
 
 
 @Injectable()
@@ -95,11 +95,13 @@ export class AppService {
   pageErrGoBack(where?:string): boolean {
     //if the page nav from this app
     if (this.navCtrl.length()) {
+      console.log("???1");
       return false;
     }
     //if the page directly linked from another domain
     else {
-      this.navTo(where?where:IONPAGE.HOMESLIDE);
+      console.log("???2");
+      this.navTo(where?where:HomeSlidesPage.name);
       return false;
     }
     // else {
