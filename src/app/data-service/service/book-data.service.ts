@@ -2,19 +2,26 @@ import { DataAccess } from '../../data-server/data-access';
 
 import { DataService } from './data.service';
 import { ReplaySubject } from 'rxjs';
-import { CachePool } from '../../data-server/db-cache';
+import { DataAccessConfig } from '../../data-server/db-cache';
 import { MiscFunc } from '../../app-service/misc';
 import { WeakCache } from './weak-cache';
 import { TagListService } from './tag-list.service';
 import { BookData } from '../models';
 import { TBLKEY } from '../define';
+import { AuthedUserInfoService } from './authed-user-info.service';
 
-const POOL = new CachePool("BookData", 500);
+const dac = new DataAccessConfig("BookData", 500);
 
 export class BookDataService extends DataService{
   readonly data$: ReplaySubject<BookData> = new ReplaySubject(1);
   private data: BookData;
   private static cache = new WeakCache<BookDataService>();
+
+  private static mismatchBookDataOverwriteHandler: (bookuid: string) => Promise<boolean>;
+  public static setHandler(mismatchBookDataOverwriteHandler: (bookuid: string) => Promise<boolean>)
+  {
+    this.mismatchBookDataOverwriteHandler = mismatchBookDataOverwriteHandler;
+  }
 
   private path: string[];
   
@@ -22,6 +29,26 @@ export class BookDataService extends DataService{
     super();
     this.assert(bookuid);
     this.path = [...TBLKEY.BOOKDATA, bookuid];
+    dac.readDirtyCacheHandler = this.readDirtyCacheHandler;
+    dac.writeMismatchVerHandler = this.writeMismatchVerHandler;
+  }
+
+  private async readDirtyCacheHandler(cache_data: BookData, remote_data: BookData) {
+    const user = await AuthedUserInfoService.inst.data$.take(1).toPromise();
+
+    const authed = (user.uid === remote_data.author_uid) && (user.uid === cache_data.author_uid);
+
+    return authed ? cache_data : undefined;
+  }
+
+  private async writeMismatchVerHandler(cache_data: BookData, remote_data: BookData) {
+    if (!BookDataService.mismatchBookDataOverwriteHandler) return false;
+
+    const user = await AuthedUserInfoService.inst.data$.take(1).toPromise();
+
+    const authed = (user.uid === remote_data.author_uid) && (user.uid === cache_data.author_uid);
+
+    return authed ? (await BookDataService.mismatchBookDataOverwriteHandler(this.bookuid)) : false;
   }
 
   private static fixUndefined(data: BookData) {
@@ -30,7 +57,7 @@ export class BookDataService extends DataService{
     }
   }
 
-  static get(bookuid: string): BookDataService {
+  static get(bookuid: string, overwriteMismatchHandler?: () => Promise<boolean>): BookDataService {
     let data = this.cache.get(bookuid);
     if (!data) {
       data = new BookDataService(bookuid);
@@ -40,24 +67,26 @@ export class BookDataService extends DataService{
     return data;
   }
 
-  static async create(bookuid: string): Promise<BookDataService> {
+  static async create(bookuid: string, author_uid: string): Promise<BookDataService> {
     let data = this.cache.get(bookuid);
     if (!data) {
       data = new BookDataService(bookuid);
-      const ok = await data.create();
+      const ok = await data.create(author_uid);
       if (!ok) return null;
       this.cache.set(bookuid, data);
     }
     return data;
   }
 
-  private async create() {
+  private async create(author_uid: string) {
     let data = new BookData();
+    data.author_uid = author_uid;
 
-    const res = await this.db.writeCacheable(POOL, this.path, data);
+    const res = await this.db.create(dac, this.path, data);
 
     if (res.err) {
-      throw new Error("create bookinfo failure!");
+      // throw new Error("create bookdata failure!");
+      return false;
     }
 
     this.data = data;
@@ -66,7 +95,7 @@ export class BookDataService extends DataService{
   }
 
   async init() {
-    const res = await this.db.readCacheable(POOL, this.path);
+    const res = await this.db.read(dac, this.path);
 
     BookDataService.fixUndefined(res.data);
     this.data = res.data ? res.data : null;
@@ -77,7 +106,7 @@ export class BookDataService extends DataService{
 
   async remove() {
     
-    const res = await this.db.removeCacheable(POOL, this.path);
+    const res = await this.db.remove(dac, this.path);
 
     if (res.err)
       return false;
@@ -93,11 +122,11 @@ export class BookDataService extends DataService{
     if (!this.data)
       return false;
 
-    let book = new BookData();//or clone from this.data
+    const book = MiscFunc.clone(this.data);
     book.data = data ? data : this.data.data;
     book.cfg = cfg ? cfg : this.data.cfg;
 
-    const res = await this.db.writeCacheable(POOL, this.path, book);
+    const res = await this.db.write(dac, this.path, book);
 
     if (res.err)
       return false;

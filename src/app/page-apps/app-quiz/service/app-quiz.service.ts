@@ -101,8 +101,7 @@ export class AppQuizService{
 
       //count learning/learned (need cfgrec)
       this.arrangeLearned();
-      
-      this.bookcfg = data.cfg;
+      this.bookcfg = data.cfg ? data.cfg : new QstBookCfg();
       p2.complete();
     });
 

@@ -5,7 +5,7 @@ import { AppService } from '../../../app-service/app-service';
 import { Mocks } from '../../../data-service/mocks';
 import { Observable, Subject, ReplaySubject } from 'rxjs';
 import { MiscFunc } from '../../../app-service/misc';
-import { AppQuizEditorSetting } from './setting/app-quiz-editor-settin';
+import { AppQuizEditorSetting } from './setting/app-quiz-editor-setting';
 import { BookDataService } from '../../../data-service/service/book-data.service';
 import { AppQuizService, SYM } from '../service/app-quiz.service';
 import { BookInfoService } from '../../../data-service/service/book-info.service';

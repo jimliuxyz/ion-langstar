@@ -37,7 +37,7 @@ export abstract class BookListService extends DataService {
   protected async _more(size: number) {
     if (this._uidArr.length == 0)
       await this._init();
-  
+      
     let pms: Promise<any>[] = [];
     let arr: BookInfoSet[] = [];
 

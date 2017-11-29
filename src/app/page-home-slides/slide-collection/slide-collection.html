@@ -1,0 +1,28 @@
+<ion-slide>
+  <ion-content>
+      <slide-refresher (ionRefresh)="doRefresh($event)" pullMin=120 pullMax=360><slide-refresher-content
+          pullingIcon="refresh-circle"
+          refreshingSpinner="circles">
+          </slide-refresher-content>
+      </slide-refresher>
+
+
+        <div *ngFor="let bset of data$|async">
+          
+          <ng-container *ngIf="{book:bset.bookinfo$|async, author:bset.author$|async} as set">
+            
+            <div class="wrap" [ngClass]="{'gofade':goFade(set.book.uid)}">
+              <xyz-book-card [bookinfo]="set.book" [author]="set.author">
+                  <ion-icon [name]="serv.ser_cfg.checkLike(set.book.uid)?'md-heart':'md-heart-outline'" color="danger" (click)="dislikeBook($event, set.book)"></ion-icon>
+                      <!-- <ion-icon class="del-btn" color="danger" name="close" item-right (click)="dislikeBook($event, set.book)"></ion-icon>  -->
+                  </xyz-book-card>
+            </div>
+
+
+
+          </ng-container>
+
+      </div>
+              
+  </ion-content>
+</ion-slide>

@@ -3,7 +3,8 @@ import { MiscFunc } from "../app-service/misc";
 import { VoiceCfg } from "../app-service/tts";
 
 
-export class UserInfo extends VerData{
+export class UserInfo{
+  __ver = 1;
   uid: string = "";
   displayName: string = "";
   email: string = "";
@@ -36,12 +37,15 @@ ANONYMOUS.photoURL = "./assets/img/guest.png";
 // FAKEUSER.photoURL = "./assets/img/avatar-ts-woody.png";
 
 
-export class UserCfg extends VerData{
+export class UserCfg{
+  __ver = 1;
+  __dirty = false;
+
   nalang: string;
   talang: string;
 
-  // favorites: string[] = []; //book uid list
-  favorites: { [key: string]: number } = {}; //book uid list
+  // likelist: string[] = []; //book uid list
+  likelist: { [key: string]: number } = {}; //key:bookuid value:time
 
   voices_def: { [key: string]: string } = {}; //key:lang value:voice_uri
 
@@ -59,7 +63,7 @@ export class UserCfg extends VerData{
   }
   static fix(data:UserCfg) {
     if (!data) return;
-    if (!data.favorites) data.favorites = {};
+    if (!data.likelist) data.likelist = {};
     if (!data.voices_def) data.voices_def = {};
     if (!data.voices_cfg) data.voices_cfg = {};
     if (!data.book_record) data.book_record = {};
@@ -69,7 +73,9 @@ export class UserCfg extends VerData{
 
 //----
 
-export class Tag extends VerData{
+export class Tag{
+  __ver = 1;
+
   name: string = "";
   cnt: number = 0;
 }
@@ -81,7 +87,10 @@ export enum BookType{
   CONV = <any>"CONV"
 }
 
-export class BookInfo extends VerData{
+export class BookInfo{
+  __ver = 1;
+  __dirty = false;
+
   uid: string = "";
   title: string = "";  
   type: BookType;
@@ -110,7 +119,11 @@ export class BookInfoLink{
 }
 
 
-export class BookData extends VerData{
+export class BookData{
+  __ver = 1;
+  __dirty = false;
+
+  author_uid: string;
   cfg: any; //depends on its BookType
   data: { [uid: string]: any } = {}; //depends on its BookType
 }

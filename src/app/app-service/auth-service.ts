@@ -103,7 +103,7 @@ export class AuthService {
   }
 
   private normalizeUserInfo(user): UserInfo {
-    // console.dir(user)
+    console.dir(user)
     if (user.user)
       user = user.user; //if login by credential
 
@@ -113,7 +113,7 @@ export class AuthService {
     }
     let userinfo = new UserInfo();
     //do not use firebase uid as uid, because you can't retrieve it once you don't use firebase anymore
-    userinfo.uid = undefined;
+    userinfo.uid = user.uid;
     userinfo.displayName = user.displayName;
     userinfo.email = user.email;
     userinfo.photoURL = user.photoURL;

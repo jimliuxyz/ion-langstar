@@ -1,13 +1,13 @@
 
 import { ReplaySubject } from 'rxjs';
 
-import { CachePool } from '../../data-server/db-cache';
+import { DataAccessConfig } from '../../data-server/db-cache';
 import { WeakCache } from './weak-cache';
 import { BookListService } from './book-list.service';
 import { BookInfo } from '../models';
 import { TBLKEY } from '../define';
 
-const POOL = new CachePool("BookList", 500);
+const POOL = new DataAccessConfig("BookList", 500);
 
 export class BookListByAuthorService extends BookListService{
   private path: string[];
@@ -32,10 +32,11 @@ export class BookListByAuthorService extends BookListService{
    * get the bookinfos of tag
    */
   protected async _init() {
+    this.morecnt = 0;
     this._uidArr = [];
     this._uidIdx = 0;
 
-    const res = await this.db.readCacheable(POOL, this.path, {orderBy:'author_uid', equalTo:this.authoruid});
+    const res = await this.db.read(POOL, this.path, {orderBy:'author_uid', equalTo:this.authoruid});
 
     if (!res.err && res.data) {
       let arr: BookInfo[] = [];
@@ -50,6 +51,7 @@ export class BookListByAuthorService extends BookListService{
       }
     }
   }
+  private morecnt = 0;
 
   async more(size: number) {
     const arr = await this._more(size);
@@ -57,8 +59,10 @@ export class BookListByAuthorService extends BookListService{
     this.page = arr;
     this.page$.next(this.page);
 
-    this.data = !this.data ? arr : this.data.concat(arr);
+    this.data = (!this.data||this.morecnt==0) ? arr : this.data.concat(arr);
     this.data$.next(this.data);
+
+    this.morecnt += 1;
   }
 
 }

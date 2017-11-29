@@ -1,12 +1,12 @@
 import { ReplaySubject } from 'rxjs';
 
-import { CachePool } from '../../data-server/db-cache';
+import { DataAccessConfig } from '../../data-server/db-cache';
 import { WeakCache } from './weak-cache';
 import { BookListService } from './book-list.service';
 import { BookInfoLink } from '../models';
 import { TBLKEY } from '../define';
 
-const POOL = new CachePool("BookList", 500);
+const POOL = new DataAccessConfig("BookList", 500);
 
 export class BookListByTagService extends BookListService{
   private path: string[];
@@ -34,7 +34,7 @@ export class BookListByTagService extends BookListService{
     this._uidArr = [];
     this._uidIdx = 0;
 
-    const res = await this.db.readCacheable(POOL, this.path);
+    const res = await this.db.read(POOL, this.path);
     // const res = await this.db.readCacheable(POOL, this.path, {orderBy:'author_uid', equalTo:this.authoruid});
     
     if (!res.err && res.data) {

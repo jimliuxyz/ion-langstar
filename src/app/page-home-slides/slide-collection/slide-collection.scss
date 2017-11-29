@@ -1,3 +1,16 @@
 slide-collection {
-  
+
+  .wrap {
+    overflow: hidden;
+    max-height: 100px;
+  }
+
+  .gofade{
+    max-height:0px !important;
+    -moz-transition: max-height .5s ease;
+    -webkit-transition: max-height .5s ease;
+    -o-transition: max-height .5s ease;
+    transition: max-height .5s ease;
+  }
+
 }

@@ -20,8 +20,8 @@ export const TBLKEY = {
   TAGLIST: ["_taglist"],
 
   BOOKINFO_BYTAG: ["_bookinfo", "bytag"],
-  BOOKINFO_BYUID: ["_bookinfo", "byuid"],
-  BOOKDATA:["_bookdata"],
+  BOOKINFO_BYUID: ["_bookinfo", "byuid"], //handle dirty
+  BOOKDATA:["_bookdata"], //handle dirty
 };
 
 export abstract class VerData {
@@ -30,11 +30,19 @@ export abstract class VerData {
 }
 
 export class QResult{
-  constructor(public err = "not ready", public data?:any) { }
+  constructor(public err, public data?:any) { }
+  // constructor(public err = QERR.NOT_READY, public data?:any) { }
 }
 
-export const QERR = {
-  TIMEOUT: "TIMEOUT",
-  VERSION_NOT_MATCH: "VERSION_NOT_MATCH",
-}
+// export const QERR = {
+//   TIMEOUT: "TIMEOUT",
+//   VERSION_NOT_MATCH: "VERSION_NOT_MATCH",
+// }
 
+export enum QERR {
+  NOT_READY = <any>"NOT_READY",
+  FAILURE = <any>"FAILURE",
+  TIMEOUT = <any>"TIMEOUT",
+  OFFLINE = <any>"OFFLINE",
+  VERSION_NOT_MATCH = <any>"VERSION_NOT_MATCH",
+}

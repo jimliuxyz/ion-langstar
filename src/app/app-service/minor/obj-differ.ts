@@ -49,7 +49,7 @@ export class ObjDiffer{
       //ignore function and array
       if (pdata[key] instanceof Function ||
         (IGNOREARRAY && pdata[key] instanceof Array)) {
-        return;
+          continue;
       }
       else if (pdata[key] instanceof Object) {
         let usbchanges = this.checkChanges(pdata[key], data[key], ignores, IGNOREARRAY)
@@ -80,7 +80,7 @@ export class ObjDiffer{
       //ignore function and array      
       if (pdata[key] instanceof Function ||
         (IGNOREARRAY && pdata[key] instanceof Array)) {
-        return;
+          continue;
       }
       else if (pdata[key] instanceof Object) {
         if (!data[key]) {

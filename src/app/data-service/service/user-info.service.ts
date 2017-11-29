@@ -2,12 +2,12 @@ import { DataAccess } from '../../data-server/data-access';
 
 import { DataService } from './data.service';
 import { ReplaySubject } from 'rxjs';
-import { CachePool } from '../../data-server/db-cache';
+import { DataAccessConfig } from '../../data-server/db-cache';
 import { MiscFunc } from '../../app-service/misc';
 import { WeakCache } from './weak-cache';
 import { UserInfo } from '../models';
 
-const POOL = new CachePool("UserInfo", 500);
+const POOL = new DataAccessConfig("UserInfo", 500);
 const TBL = ["_user"];
 
 export class UserInfoService extends DataService{
@@ -33,8 +33,8 @@ export class UserInfoService extends DataService{
   async init() {
     let res;
 
-    res = await this.db.readCacheable(POOL, [...TBL, this.useruid]);
-// console.log(this.useruid, res)
+    res = await this.db.read(POOL, [...TBL, this.useruid]);
+
     this.data = res.data ? res.data : null;
     this.data$.next(this.data);
   }

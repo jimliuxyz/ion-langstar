@@ -23,16 +23,15 @@ export class AppQuizPage {
   readonly bookuid: string;
 
   constructor(public platform:Platform, public modalCtrl: ModalController, public serv: AppService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
-    
+
     let urlParams = MiscFunc.getUrlParams();
-    urlParams["bookuid"] = "ozv78fhdzbot";
-    
+    urlParams["bookuid"] = "p04mchqrvdc1";
+
     this.bookuid = navParams.get('bookuid');
     if (!this.bookuid)
       this.bookuid = urlParams["bookuid"];
 
-    this.bookuid = "xxxxxxxxxxxx";
-      
+    // this.bookuid = "xxxxxxxxxxxx";
     console.log("view : ", this.bookuid);
   }
 
@@ -43,8 +42,7 @@ export class AppQuizPage {
     try {
       this.app = new AppQuizService(this.serv, this.bookuid);
       if (!await this.app.init()) {
-        console.log("???")
-        return this.serv.pageErrGoBack();
+        return await this.serv.pageErrGoBack();
       };
 
       const user = await this.serv.ser_user.data$.take(1).toPromise();

@@ -1,5 +1,5 @@
 import { Injectable, Component } from '@angular/core';
-import { Platform, LoadingController, NavController, NavOptions, ModalController } from 'ionic-angular';
+import { Platform, LoadingController, NavController, NavOptions, ModalController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network';
 import { Observable } from 'rxjs/Observable';
@@ -24,6 +24,7 @@ import { TagListService } from '../data-service/service/tag-list.service';
 import { BookDataService } from '../data-service/service/book-data.service';
 import { ANONYMOUS, UserInfo, BookInfo, BookType } from '../data-service/models';
 import { HomeSlidesPage } from '../page-home-slides/home-slides';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 
 @Injectable()
@@ -41,7 +42,10 @@ export class AppService {
   constructor(
     private platform: Platform,
     public network: Network,
-    private loadCtrl: LoadingController, private storage: Storage,
+    private loadCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController,
+    private storage: Storage,
     private translate: TranslateService,
     private auth: AuthService) {
     
@@ -56,7 +60,9 @@ export class AppService {
   }
 
   private async init() {
-    DataService.init(this.storage);
+    DataService.init(this.storage, this.network);
+    BookDataService.setHandler(this.mismatchBookDataOverwriteHandler.bind(this));
+
     this.ser_user = new AuthedUserInfoService();
     this.ser_cfg = new UserCfgService();
 
@@ -92,15 +98,24 @@ export class AppService {
   /**
    * this is work around for deeplink at 'ionViewCanEnter' stage.
    */
-  pageErrGoBack(where?:string): boolean {
+  async pageErrGoBack(where?: string) {
+    
+    const alertText = await this.translate.get("_TOAST.NAVFAILURE").toPromise();
+    
+    let toast = this.toastCtrl.create({
+      message: alertText,
+      duration: 1500,
+      position: 'bottom'
+    });
+    toast.present();
+    
+      
     //if the page nav from this app
     if (this.navCtrl.length()) {
-      console.log("???1");
       return false;
     }
     //if the page directly linked from another domain
     else {
-      console.log("???2");
       this.navTo(where?where:HomeSlidesPage.name);
       return false;
     }
@@ -124,8 +139,7 @@ export class AppService {
     //it must be a string, otherwise the url will not work together.
     if (where && (<Page>where).name)
       where = (<Page>where).name;
-    console.dir((this.allownav?"allow":"not allow") + " nav to ... " + where, params)
-    
+
     setTimeout(() => {
       this.navCtrl.push(where, params, null, (hasCompleted: boolean, requiresTransition: boolean, enteringName?: string, leavingName?: string, direction?: string) => {
         this.allownav = true;
@@ -138,16 +152,15 @@ export class AppService {
   openModal(modal: any) {
     if (modal) {
       let modalobj = this.modalCtrl.create(modal);
-      modal.present();
+      modalobj.present();
     }
   }
 
   async hasLogged() {
-    return !(await this.isAnonymous());
+    return !(this.isAnonymous(await this.ser_user.data$.take(1).toPromise()));
   }
 
-  async isAnonymous(){
-    const user = await this.ser_user.data$.take(1).toPromise();
+  isAnonymous(user: UserInfo){
     return (!user || user.email === ANONYMOUS.email);
   }
 
@@ -164,10 +177,13 @@ export class AppService {
       bookinfo.nalang = ucfg.nalang;
       bookinfo.talang = ucfg.talang;
 
-      await BookInfoService.create(bookinfo);
-      await BookDataService.create(bookinfo.uid);
+      let rv;
+      rv = await BookInfoService.create(bookinfo);
+      if (rv) {
+        rv = await BookDataService.create(bookinfo.uid, user.uid);
+      }
 
-      return bookinfo.uid;
+      return rv ? bookinfo.uid : null;
     } catch (err) {
       console.error(err)
     }
@@ -176,7 +192,7 @@ export class AppService {
 
   async delBook(bookuid: string) {
     try {
-      let ok;
+      let ok: boolean;
 
       ok = await (await BookInfoService.get(bookuid)).remove();
 
@@ -189,6 +205,55 @@ export class AppService {
     }
     return false;
   }
+
+  async viewBook(bookuid: string) {
+    const book = await BookInfoService.get(bookuid);
+    book.viewOrLike(1, 0);
+  }
+
+  async likeBook(bookuid: string) {
+    await this.ser_cfg.toggleLike(bookuid);
+    const like = this.ser_cfg.checkLike(bookuid) ? 1 : -1;
+
+    const book = await BookInfoService.get(bookuid);
+    book.viewOrLike(0, like);
+  }
+
+  private async mismatchBookDataOverwriteHandler(bookuid: string) {
+    let overwrite = false;
+    const p1 = new Subject();
+
+    const alertText = await this.translate.get("_ALERT.OVERWRITEBOOK").toPromise();
+    const cancelText = await this.translate.get("CANCEL").toPromise();
+    const deleteText = await this.translate.get("DELETE").toPromise();
+
+
+    let alert = this.alertCtrl.create({
+      title: alertText,
+      message: (await BookInfoService.get(bookuid).data$.take(1).toPromise()).title,
+      buttons: [
+        {
+          text: cancelText,
+          role: 'cancel',
+          handler: () => {
+            overwrite = false;
+            p1.complete();
+          }
+        },
+        {
+          text: deleteText,
+          handler: () => {
+            overwrite = true;
+            p1.complete();
+          }
+        }
+      ]
+    });
+    alert.present();
+
+    await p1.toPromise();
+    return overwrite;
+  }
   
   async getTagListAsStr(langpair) {
     const ucfg = await this.ser_cfg.data$.take(1).toPromise();
@@ -197,8 +262,6 @@ export class AppService {
 
     return await dsev.listAsStr();
   }
-
-
 
   async getVoiceCfg(uri: string) {
     const ucfg = await this.ser_cfg.data$.take(1).toPromise();
@@ -227,23 +290,6 @@ export class AppService {
 
   private async devInitDB() {
     if (this.storage) {
-      // this.storage.clear();
-      // await this.testFirebasePaginate();
-
-      setTimeout(() => {
-        // let dsev;
-        // dsev = new BookListByTagService("en+zh", "GEPT");
-        // dsev.more(10);
-
-        // let dsev = TagListService.get("en+zh");
-        // dsev.more(3)
-
-        // dsev.data$.subscribe(data => {
-        //   console.log(data)
-        // })
-
-      }, 3000);
-
       return;
     }
 
@@ -252,7 +298,6 @@ export class AppService {
     console.warn("clear databse!!!");
     this.storage.clear();
     // this.rdb.clear(["/"]);
-
 
     let users: UserInfo[] = [];
     
@@ -266,6 +311,7 @@ export class AppService {
       username = username.charAt(0).toUpperCase() + username.slice(1, username.length);
 
       let user = new UserInfo();
+      user.uid = MiscFunc.uid();
       user.displayName = username;
       user.email = username + "@fake.com";
       user.photoURL = userphoto;
@@ -280,24 +326,6 @@ export class AppService {
       
       if (users.length >= 10) break;
     };
-
-    // for (let username of Mocks.usernames) {
-    //   let user = new UserInfo();
-    //   user.displayName = username;
-    //   user.email = username + "@fake.com";
-      
-    //   let userinfo = new WataUserInfo();
-    //   userinfos.push(userinfo);
-
-    //   let usercfg = new WataUserCfg(, this.translate, userinfo);
-    //   usercfgs.push(usercfg);
-
-    //   if (!taglist)
-    //     taglist = new WataTagList(, usercfg);
-      
-    //   await userinfo.initByUserLogin(user);
-    //   console.log(userinfo.data.displayName)
-    // };
 
     for (let bookname of Mocks.booknames) {
       let useridx = Math.round(Math.random() * (users.length - 1));

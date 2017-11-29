@@ -2,7 +2,7 @@ import { DataAccess } from '../../data-server/data-access';
 
 import { DataService } from './data.service';
 import { ReplaySubject } from 'rxjs';
-import { CachePool } from '../../data-server/db-cache';
+import { DataAccessConfig } from '../../data-server/db-cache';
 import { MiscFunc as misc } from '../../app-service/misc';
 import { WeakCache } from './weak-cache';
 import { BookInfoSet } from './book-list.service';
@@ -10,7 +10,7 @@ import { BookListByTagService } from './book-list-bytag.service';
 import { Tag } from '../models';
 import { TBLKEY } from '../define';
 
-const POOL = new CachePool("Tag", 500);
+const POOL = new DataAccessConfig("Tag", 500);
 
 export class TagBooksSet{
   tag: Tag;
@@ -44,7 +44,7 @@ export class TagListService extends DataService{
 
   public joleTag(isJoin: boolean, tagname: string) {
 
-    this.db.transaction([...TBLKEY.TAGLIST, this.langpair, tagname], (currentData:Tag) => {
+    this.db.transaction(new DataAccessConfig(null, null), [...TBLKEY.TAGLIST, this.langpair, tagname], (currentData:Tag) => {
       if (isJoin && !currentData) {
         let tag = new Tag();
         tag.name = tagname;
@@ -73,7 +73,7 @@ export class TagListService extends DataService{
     this.tagarr = [];
     this.idx = 0;
 
-    const res = await this.db.readCacheable(POOL, this.path);
+    const res = await this.db.read(POOL, this.path);
     if (!res.err && res.data) {
       let arr = [];
       for (let key in res.data) {

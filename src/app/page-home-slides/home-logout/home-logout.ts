@@ -2,7 +2,6 @@ import { Component }                from '@angular/core';
 import { NavController, NavParams,Platform } from 'ionic-angular';
 import { LoadingController,ViewController } from 'ionic-angular';
 
-// import { AuthService,SocialUser } from "angular4-social-login";
 import { AppService } from '../../app-service/app-service';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
@@ -24,24 +23,30 @@ export class HomeLogout {
     this.user$ = serv.ser_user.data$;
   }
 
+  private obs: Subscription;
   async logout() {
     let spinner = this.loadCtrl.create({});
     spinner.present();
 
-    try {
-      await this.auth.logout();
-      await MiscFunc.sleep(300);
-      this.viewCtrl.dismiss();
-    }
-    catch (error) {
-      console.error('logout error');
-    }
-    finally {
-      spinner.dismiss()
-    }
+    this.obs = this.user$.subscribe(async user => {
+      if (!this.serv.isAnonymous(user)) {
+        try {
+          await this.auth.logout();
+        } catch (error) {
+          spinner.dismiss()
+          this.dismiss();
+        }
+      }
+      else {
+        spinner.dismiss()
+        this.dismiss();
+      }
+    });
   }
 
   dismiss() {
+    if (this.obs)
+      this.obs.unsubscribe();
     this.viewCtrl.dismiss();
   }
 }

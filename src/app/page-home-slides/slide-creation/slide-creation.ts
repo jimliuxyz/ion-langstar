@@ -13,6 +13,7 @@ import { BookListByAuthorService } from '../../data-service/service/book-list-by
 import { BookInfoSet } from '../../data-service/service/book-list.service';
 import { UserInfo, BookType, BookInfo } from '../../data-service/models';
 import { SlidePage } from '../home-slides';
+import { ToastController } from 'ionic-angular';
 
 
 @Component({
@@ -27,15 +28,15 @@ export class SlideCreation implements SlidePage {
   dsev: BookListByAuthorService;
   data$: ReplaySubject<BookInfoSet[]>;
   user: UserInfo;
-  
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private translate: TranslateService, public serv: AppService) {
+
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl:ToastController, private translate: TranslateService, public serv: AppService) {
     this.serv.ser_user.data$.subscribe(async (user) => {
       // this.init(user);
       this.dsev = BookListByAuthorService.get(user.uid);
       await this.dsev.more(9999);
   
       this.data$ = this.dsev.data$;
-    })    
+    })
   }
 
   async ionViewCanEnter() {
@@ -45,22 +46,46 @@ export class SlideCreation implements SlidePage {
   selected() {
   }
 
-
   doRefresh(refresher) {
     setTimeout(async () => {
-      this.dsev.reset();
+      await this.dsev.reset();
       await this.dsev.more(9999);
 
-      refresher.complete();
+      if (refresher)
+        refresher.complete();
     }, 0);
   }
 
   async newBook(type: BookType) {
 
+    const logged = await this.serv.hasLogged();
+    if (!logged) {
+      this.serv.openModal(HomeLogin);
+      return;
+    }
+
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please wait...'
+    });
+    loading.present();
+
     const uid = await this.serv.newBook(type);
     if (uid) {
       await this.serv.navTo(AppQuizEditorPage, { bookuid: uid });
+      this.doRefresh(null);
     }
+    else {
+      const alertText = await this.translate.get("_TOAST.NEWBOOKFAILURE").toPromise();
+      
+      let toast = this.toastCtrl.create({
+        message: alertText,
+        duration: 1500,
+        position: 'bottom'
+      });
+      toast.present();
+    }
+    loading.dismiss();
   }
 
 
@@ -80,18 +105,37 @@ export class SlideCreation implements SlidePage {
           text: cancelText,
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         },
         {
           text: deleteText,
           handler: () => {
-            console.log("del ", bookinfo);
-            this.serv.delBook(bookinfo.uid);
+            this._delBook(bookinfo);
           }
         }
       ]
     });
     alert.present();
+  }
+
+  private async _delBook(bookinfo: BookInfo) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please wait...'
+    });
+    loading.present();
+
+    const ok = await this.serv.delBook(bookinfo.uid);
+    if (!ok) {
+      const alertText = await this.translate.get("_TOAST.DELBOOKFAILURE").toPromise();
+
+      let toast = this.toastCtrl.create({
+        message: alertText,
+        duration: 1500,
+        position: 'bottom'
+      });
+      toast.present();
+    }
+    loading.dismiss();
   }
 }

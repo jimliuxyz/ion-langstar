@@ -26,9 +26,10 @@ export interface SlidePage{
 }
 
 const SLIDECLS: any[] = [
-  [SlideCreation, null],
-  [SlideCloud, null],
   [SlideCollection, null],
+  
+  [SlideCloud, null],
+  [SlideCreation, null],
   [LocaldbViewer, null],
   [NewsComponent, null],
   [SlideCredit, null],

@@ -1,12 +1,18 @@
 import * as firebase from 'firebase/app';
 import { QResult, STRKEY } from '../data-service';
 import { DBQuery } from './define';
+import { QERR } from '../data-service/define';
 
 const DBTIMEOUT = 3000;
 
 export class DbAccessFirebase{
 
   constructor() {
+    // this.clear();
+  }
+
+  private async clear() {
+    return await firebase.database().ref("/").remove();
   }
 
   /**
@@ -35,7 +41,7 @@ export class DbAccessFirebase{
 
       setTimeout(() => {
         if (!result) {
-          result = new QResult("timeout");
+          result = new QResult(QERR.TIMEOUT);
           resolve();
         }
       }, timeoutms);
@@ -113,7 +119,7 @@ export class DbAccessFirebase{
   }
 
   /**
-   * set data and return with version
+   * set data and return version
    * @param path 
    * @param data 
    */
@@ -139,7 +145,7 @@ export class DbAccessFirebase{
   }
 
   /**
-   * set data and return with version
+   * delete data
    * @param path 
    * @param data 
    */
@@ -150,8 +156,14 @@ export class DbAccessFirebase{
     return res;
   }
 
+  /**
+   * update data and return final data
+   * @param path 
+   * @param data 
+   */
   async transaction(path: string[], fnUpdate: any, fnComplete: any) {
     let ref = firebase.database().ref(path.join("/"));
+    let err, completed, finalData;
 
     const res = await this.promiseTimeout(ref.transaction(currentData => {
       let data = fnUpdate(currentData);
@@ -165,17 +177,21 @@ export class DbAccessFirebase{
         }
       }
       return data;
-    }, fnComplete, false));
-    
-    return await res;
-    // return await ref.transaction(currentData => {
-    //   const newdata = fnUpdate(currentData);
-    //   return newdata;
-    // }, (err, completed, finaldata) => {
-    //   // const newdata = fnUpdate(currentData);
+    }, (err_, completed_, data_) => {
+      err = err_;
+      completed = completed_;
+      finalData = !data_ ? null : data_.val();
+    }, false));
 
-    // });
+    if (!res.err && finalData && finalData[STRKEY.__ver]) {
+      const ver_res = await this.getVer(path);
+      if (!ver_res.err) {
+        finalData[STRKEY.__ver] = ver_res.data;
+      }
+    }
+    if (fnComplete)
+      await fnComplete(err, completed, finalData);  
+
+    return res.err ? err : new QResult(null, finalData);
   }
-
-
 }

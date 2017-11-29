@@ -2,15 +2,16 @@ import { DataAccess } from '../../data-server/data-access';
 
 import { DataService } from './data.service';
 import { ReplaySubject } from 'rxjs';
-import { CachePool } from '../../data-server/db-cache';
+import { DataAccessConfig } from '../../data-server/db-cache';
 import { MiscFunc as misc } from '../../app-service/misc';
 import { WeakCache } from './weak-cache';
 import { TagListService } from './tag-list.service';
 import { BookDataService } from './book-data.service';
 import { BookInfo, BookInfoLink } from '../models';
-import { TBLKEY } from '../define';
+import { TBLKEY, QResult } from '../define';
+import { AuthedUserInfoService } from './authed-user-info.service';
 
-const POOL = new CachePool("BookInfo", 500);
+const dac = new DataAccessConfig("BookInfo", 500);
 
 export class BookInfoService extends DataService{
   readonly data$: ReplaySubject<BookInfo> = new ReplaySubject(1);
@@ -21,6 +22,28 @@ export class BookInfoService extends DataService{
     super();
     this.assert(bookuid);
     this.path = [...TBLKEY.BOOKINFO_BYUID, bookuid];
+    dac.readDirtyCacheHandler = this.readDirtyCacheHandler.bind(this);
+    dac.writeMismatchVerHandler = this.writeMismatchVerHandler.bind(this);
+  }
+
+  private async readDirtyCacheHandler(cache_data: BookInfo, remote_data: BookInfo) {
+    const user = await AuthedUserInfoService.inst.data$.take(1).toPromise();
+
+    const authed = (user.uid === remote_data.author_uid) && (user.uid === cache_data.author_uid) && (remote_data.uid === cache_data.uid);
+    if (!authed) return undefined;
+
+    const newinfo = misc.clone(cache_data);
+    newinfo.views = remote_data.views;
+    newinfo.likes = remote_data.likes;
+
+    this.joleTag(remote_data, cache_data);
+    return newinfo;
+  }
+
+  private async writeMismatchVerHandler(cache_data: BookInfo, remote_data: BookInfo) {
+    //for bookinfo, always skip mismatch data writting and retrieve remote data.
+    this.init();
+    return false;
   }
 
   private static cache = new WeakCache<BookInfoService>();
@@ -51,10 +74,11 @@ export class BookInfoService extends DataService{
   }
 
   private async create(bookinfo: BookInfo) {
-    const res = await this.db.writeCacheable(POOL, this.path, bookinfo);
+    const res = await this.db.create(dac, this.path, bookinfo);
     
     if (res.err) {
-      throw new Error("create bookinfo failure!");
+      // throw new Error("create bookinfo failure!");
+      return false;
     }
     else {
 
@@ -63,20 +87,6 @@ export class BookInfoService extends DataService{
       let path, res;
 
       this.joleTag(null, bookinfo);
-
-      // for (let i of [1, 2]) {
-      //   const tag = i === 1 ? bookinfo.tag1 : bookinfo.tag2;
-      //   if (!tag) continue;
-
-      //   //add short information to bytag
-      //   path = [...BYTAG, langpair, tag, bookinfo.uid];
-      //   const short_info = new ShortInfo(bookinfo.views, bookinfo.likes);
-      //   res = await this.db.writeCacheable(POOL, path, short_info);
-
-      //   //to count the books of tag.
-      //   TagListService.joleTag(langpair, tag, null);
-      // }
-
     }
 
     this.data = bookinfo;
@@ -85,7 +95,7 @@ export class BookInfoService extends DataService{
   }
 
   async init() {
-    const res = await this.db.readCacheable(POOL, this.path);
+    const res = await this.db.read(dac, this.path);
 
     this.data = res.data ? res.data : null;
     this.data$.next(this.data);
@@ -93,7 +103,7 @@ export class BookInfoService extends DataService{
 
   async remove() {
 
-    const res = await this.db.removeCacheable(POOL, this.path);
+    const res = await this.db.remove(dac, this.path);
 
     if (res.err)
       return false;
@@ -110,7 +120,7 @@ export class BookInfoService extends DataService{
   async set(book: BookInfo) {
     const diff = misc.diff(this.data, book);
     if (diff.diff) {
-      const res = await this.db.writeCacheable(POOL, this.path, book);
+      const res = await this.db.write(dac, this.path, book);
 
       if (res.err)
         return false;
@@ -173,11 +183,47 @@ export class BookInfoService extends DataService{
 
     if (isJoin) {
       const short_info = new BookInfoLink(book);
-      await this.db.writeCacheable(null, path, short_info);
+      await this.db.create(new DataAccessConfig(null, null), path, short_info);
     }
     else {
-      await this.db.removeCacheable(null, path);
+      await this.db.remove(new DataAccessConfig(null, null), path);
     }
+  }
+
+  public async viewOrLike(view: number, like: number) {
+    let res: QResult;
+    res = await this.db.transaction(dac, this.path, (currentData: BookInfo) => {
+      if (currentData) {
+        currentData = misc.clone(currentData);
+        currentData.views += view;
+        currentData.likes += like;
+        return currentData;
+      }
+      return currentData;
+    }, null);
+    if (res.err) return;
+
+    this.data = res.data;
+    this.data$.next(this.data);
+
+    //update views and likes of bytag
+    const langpair = misc.getLangPair(this.data.nalang, this.data.talang);
+    for (let i of [1, 2]) {
+      const tagname = i == 1 ? this.data.tag1 : this.data.tag2;
+      if (!tagname) continue;
+
+      const path = [...TBLKEY.BOOKINFO_BYTAG, langpair, tagname, this.data.uid];
+
+      res = await this.db.transaction(dac, path, (currentData: BookInfoLink) => {
+        if (currentData) {
+          currentData = misc.clone(currentData);
+          currentData.views = this.data.views;
+          currentData.likes = this.data.likes;
+          return currentData;
+        }
+        return currentData;
+      }, null);
+    }      
   }
 
 }

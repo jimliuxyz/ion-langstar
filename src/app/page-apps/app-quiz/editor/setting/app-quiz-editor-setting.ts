@@ -10,7 +10,7 @@ import { BookInfo } from '../../../../data-service/models';
 
 @Component({
   selector: 'app-quiz-editor-setting',
-  templateUrl: 'app-quiz-editor-settin.html',
+  templateUrl: 'app-quiz-editor-setting.html',
 })
 export class AppQuizEditorSetting {
   misc = misc;
