@@ -24,11 +24,16 @@ export class AppQuizPlayerService{
   private quiz_idx = -1;
   private quiz: QstBookItem;
 
-  private keys = ['q', 'a', 'exp', 'tip'];
+  private keysA = ['q', 'a', 'exp', 'tip'];
+  private keysB = ['a', 'q', 'exp', 'tip'];
   // private keys = ['q'];
   private keys_idx = -1;
   private quizkey;
   private repeat = 0;
+
+  private getKeys() {
+    return !this.app.cfgrec.ansfirst ? this.keysA : this.keysB;
+  }
 
   private quizque: number[] = [];
   private quepushed = false;
@@ -77,15 +82,15 @@ export class AppQuizPlayerService{
     
     if (!this.quiz) return;
     if (this.gokey) {
-      forceIdx = this.keys.findIndex(key => key === this.gokey);
+      forceIdx = this.getKeys().findIndex(key => key === this.gokey);
       
       forceIdx = forceIdx >= 0 ? (forceIdx - 1) : undefined;
     }
 
-    for (let i = 0; i < this.keys.length; i++){
+    for (let i = 0; i < this.getKeys().length; i++){
       let idx = (forceIdx!=null?forceIdx:this.keys_idx) + 1 + i;
-      idx = idx < this.keys.length ? idx : (idx - this.keys.length);
-      let key = this.keys[idx];
+      idx = idx < this.getKeys().length ? idx : (idx - this.getKeys().length);
+      let key = this.getKeys()[idx];
       const show = <boolean>this.app.cfgrec[key + "show"];
       const cnt = <number>this.app.cfgrec[key + "cnt"];
       if (show && cnt > 0 && this.quiz[key]) {
@@ -157,15 +162,17 @@ export class AppQuizPlayerService{
     return this.quizkey;
   }
 
-
-
   private async speak(quiz: QstBookItem, key:string) {
-    const text = <string>quiz[key];
+    const text = <string>quiz[key].replace(/\(.*?\)/gm, ''); //skip brackets()
     const native = <boolean>this.app.bookcfg[key];
+
+    let spell;
+    if (this.app.cfgrec.spell && key === 'q')
+      spell = " ... " + text.replace(" ", ". ").split("").join(".");
 
     const vcfg = await this.app.serv.getVoiceCfg(native ? this.app.cfgrec.navoice : this.app.cfgrec.tavoice);
 
-    TTS.speak(text, vcfg,
+    TTS.speak(text+(spell?spell:""), vcfg,
       this.onstart.bind(this),
       // () => { });
       this.onend.bind(this));
@@ -192,7 +199,7 @@ export class AppQuizPlayerService{
       }
 
       if (this.keys_idx >= 0) {
-        const key = this.keys[this.keys_idx];
+        const key = this.getKeys()[this.keys_idx];
         this.fnNextKey(this.quiz, key);
       }
     }

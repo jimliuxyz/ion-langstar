@@ -58,7 +58,7 @@ export class SlideCreation implements SlidePage {
 
   async newBook(type: BookType) {
 
-    const logged = await this.serv.hasLogged();
+    const logged = this.serv.hasLogged();
     if (!logged) {
       this.serv.openModal(HomeLogin);
       return;

@@ -58,43 +58,38 @@ export class AppQuizEditorPage {
     this.dsev.data$.take(1).subscribe(book => {
       if (!book)
         this.navCtrl.pop();
-      else
-        this.dataLoaded(book);
+      else {
+        //fill TextArea
+        const txtarea: (any) = this.tarea.nativeElement;
+        
+        const arr = AppQuizService.toDataArray(book.data);
+        txtarea.value = AppQuizService.toText(arr);
+      }
     });
 
     this.bookinfo$ = BookInfoService.get(this.bookuid).data$;
 
     Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).subscribe(_ => { this.dirty=true; })
-    
+
     // Observable.merge(this.btnevent, Observable.fromEvent(this.tarea.nativeElement, 'input')).debounceTime(1000).subscribe(_ => { this.save(); })
 
     return true;
   }
 
-  protected dataReady = false;
-  protected dataLoaded(book:BookData) {
-    const txtarea: (any) = this.tarea.nativeElement;
-
-    const arr = AppQuizService.toDataArray(book.data);
-    txtarea.value = AppQuizService.toText(arr);
-    // txtarea.value = Mocks.mcqtext;
-
-    this.dataReady = true;
-    console.log("dataLoaded");
-    // this.openModal("");
-  }
-
-  protected save() {
+  protected async save() {
     const text = this.tarea.nativeElement.value;
     const data = AppQuizService.toDataObject(text);
 
-    this.dirty = !this.dsev.setData(data, undefined);
+    this.dirty = false;
+    this.dirty = !(await this.dsev.setData(data, undefined));
+
+    const bookinfo = MiscFunc.clone(await BookInfoService.get(this.bookuid).data$.take(1).toPromise());
+
+    bookinfo.qnum = Object.keys(data).length;
+    BookInfoService.get(this.bookuid).set(bookinfo);
   }
 
-
-
   //------
-
 
   protected openModal(cmd: string) {
     let modal = this.modalCtrl.create(AppQuizEditorSetting, { bookuid:this.bookuid });

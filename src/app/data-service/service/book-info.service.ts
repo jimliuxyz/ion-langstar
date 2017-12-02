@@ -46,7 +46,7 @@ export class BookInfoService extends DataService{
     return false;
   }
 
-  private static cache = new WeakCache<BookInfoService>();
+  private static cache = new WeakCache<BookInfoService>("BookInfoService");
 
   static get(bookuid: string): BookInfoService {
     let data = this.cache.get(bookuid);
@@ -192,6 +192,7 @@ export class BookInfoService extends DataService{
 
   public async viewOrLike(view: number, like: number) {
     let res: QResult;
+    //update to bookinfo
     res = await this.db.transaction(dac, this.path, (currentData: BookInfo) => {
       if (currentData) {
         currentData = misc.clone(currentData);

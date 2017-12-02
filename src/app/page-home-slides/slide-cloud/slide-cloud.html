@@ -8,7 +8,7 @@
 
       <div *ngFor="let tset of data$|async">
         
-        <xyz-tag-header text-left [tagname]="tset.tag.name" [desc]="tset.tag.cnt"></xyz-tag-header>
+        <xyz-tag-header text-left [langpair]="langpair" [tagname]="tset.tag.name" [desc]="tset.tag.cnt"></xyz-tag-header>
 
         <div *ngFor="let bset of tset.booklist$|async; let idx=index">
 

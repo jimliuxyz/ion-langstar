@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AppService } from '../../app-service/app-service';
 import { AppQuizPage } from '../../page-apps/app-quiz/app-quiz';
 import { UserInfo, BookInfo } from '../../data-service/models';
+import { BookListPage } from '../../pages/book-list/book-list';
 
 @Component({
   selector: 'xyz-book-card',
@@ -18,5 +19,9 @@ export class XyzBookCard{
 
   navTo() {
     this.serv.navTo(AppQuizPage, {bookuid:this.bookinfo.uid})
+  }
+
+  navToListByAuthor() {
+    this.serv.navTo(BookListPage, { byauthor: this.author.uid })
   }
 }

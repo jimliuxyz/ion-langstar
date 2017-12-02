@@ -44,8 +44,10 @@ export class BookListByAuthorService extends BookListService{
         arr.push(res.data[key]);
       }
 
-      arr.sort(function (a, b) { return a.uid>b.uid?-1:(a.uid<b.uid?1:0) });
+      // arr.sort(function (a, b) { return a.uid>b.uid?-1:(a.uid<b.uid?1:0) });
 
+      arr.sort(function (a, b) { return a.title>b.title?1:(a.title<b.title?-1:0) });
+      
       for (let obj of arr) {
         this._uidArr.push(obj.uid);
       }

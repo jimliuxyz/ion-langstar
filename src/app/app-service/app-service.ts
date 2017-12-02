@@ -25,6 +25,8 @@ import { BookDataService } from '../data-service/service/book-data.service';
 import { ANONYMOUS, UserInfo, BookInfo, BookType } from '../data-service/models';
 import { HomeSlidesPage } from '../page-home-slides/home-slides';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import * as GEPT from '../data-service/mocks/words.GEPT.7000';
+import { AppQuizService, SYM, QstBookCfg } from '../page-apps/app-quiz/service/app-quiz.service';
 
 
 @Injectable()
@@ -38,7 +40,9 @@ export class AppService {
 
   ser_user: AuthedUserInfoService;
   ser_cfg: UserCfgService;
-  
+
+  curr_user: UserInfo;
+
   constructor(
     private platform: Platform,
     public network: Network,
@@ -67,6 +71,7 @@ export class AppService {
     this.ser_cfg = new UserCfgService();
 
     this.ser_user.data$.subscribe(user => {
+      this.curr_user = user;
       this.ser_cfg.init(user);
     })
     this.ser_cfg.data$.subscribe(ucfg => {
@@ -78,7 +83,8 @@ export class AppService {
     this.translate.setDefaultLang('en_US');
 
     await this.devInitDB();
-
+    this.devInitMock();
+    
     // this.auth.authedUser$.subscribe(this.loginStateCallback())      
 
     this.auth.authedUser$.subscribe(async user => {
@@ -156,8 +162,8 @@ export class AppService {
     }
   }
 
-  async hasLogged() {
-    return !(this.isAnonymous(await this.ser_user.data$.take(1).toPromise()));
+  hasLogged() {
+    return !(this.isAnonymous(this.curr_user));
   }
 
   isAnonymous(user: UserInfo){
@@ -287,7 +293,6 @@ export class AppService {
     return (def)?def:"none";
   }
 
-
   private async devInitDB() {
     if (this.storage) {
       return;
@@ -354,5 +359,92 @@ export class AppService {
     this.storage.clear();
   }
 
+
+  private async devInitMock() {
+    await this.ready$;
+
+    const cate = GEPT.getCates();
+    console.log(cate);
+    
+    for (const key in cate.bylvtype) {
+      // if (key !== "GEPT-中高級-名詞")
+        continue;  
+      console.log(key);
+      const arr = key.split("-");
+
+      const title = key;  //GEPT-中高級-名詞
+      const hearder = arr[0];
+      const level = arr[1];
+      const type = arr[2];
+
+      const list = cate.bylvtype[key];
+
+      const words = GEPT.getWords(list, type);
+
+      const MAX_ITEMS = 100;
+      if (words.length >= MAX_ITEMS*1.5) {
+        const size = Math.ceil(words.length / Math.ceil(words.length / MAX_ITEMS));
+
+        //randomize
+        const words_ = words.slice();
+        for (let i = words_.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [words_[i], words_[j]] = [words_[j], words_[i]];
+        }
+
+        for (const idx_ in words_) {
+          const idx = parseInt(idx_)+1;
+          const words = words_.splice(0, size);
+          if (words.length === 0) break;
+
+          //sort again for partial
+          words.sort(function (a, b) {
+            const a_ = a.quiz.toLowerCase();
+            const b_ = b.quiz.toLowerCase();
+            return a_ > b_ ? 1 : (a_ < b_ ? -1 : 0);
+          });
+
+          // console.log(words);
+          this.mockNewBook(words, title + "-" + (idx<10?"0":"") + idx, hearder, hearder + "-" + level);
+        }
+      }
+      else {
+        this.mockNewBook(words, title, hearder, hearder + "-" + level);
+      }
+    }
+  }
+
+  private async mockNewBook(words, title, tag1, tag2) {
+
+    const user = await this.ser_user.data$.take(1).toPromise();
+    const ucfg = await this.ser_cfg.data$.take(1).toPromise();
+    
+    const textarr = []
+    for (const item of words) {
+      textarr.push(SYM.Q + " " + item.quiz);
+      textarr.push(SYM.A + " " + item.ans);
+      textarr.push(SYM.EXP + " " + item.exp);
+      textarr.push(SYM.TIP + " " + item.tip);
+      textarr.push("");
+    }
+    const bodata = AppQuizService.toDataObject(textarr.join("\n"));
+    const bocfg = new QstBookCfg();
+    
+    const bookinfo = new BookInfo();
+    bookinfo.title = title;
+    bookinfo.type = BookType.MCQ;
+    bookinfo.author_uid = user.uid;
+    bookinfo.nalang = ucfg.nalang;
+    bookinfo.talang = ucfg.talang;
+    bookinfo.qnum = words.length;
+    bookinfo.tag1 = tag1;
+    bookinfo.tag2 = tag2;
+
+    let bookser = await BookInfoService.create(bookinfo);
+    let dataser = await BookDataService.create(bookinfo.uid, user.uid);
+
+    dataser.setData(bodata, bocfg);
+  }
+    
 }
 

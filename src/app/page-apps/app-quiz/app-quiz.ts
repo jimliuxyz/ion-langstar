@@ -9,6 +9,9 @@ import { AppQuizPlay } from './mode-play/app-quiz-play';
 import { AppQuizEditorPage } from './editor/app-quiz-editor';
 import { AppQuizService, QstBookItem } from './service/app-quiz.service';
 import { HomeSlidesPage } from '../../page-home-slides/home-slides';
+import { BookInfoService } from '../../data-service/service/book-info.service';
+import { UserInfoService } from '../../data-service/index';
+import { BookListPage } from '../../pages/book-list/book-list';
 
 @IonicPage({
   segment:'app-quiz',
@@ -25,7 +28,7 @@ export class AppQuizPage {
   constructor(public platform:Platform, public modalCtrl: ModalController, public serv: AppService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
 
     let urlParams = MiscFunc.getUrlParams();
-    urlParams["bookuid"] = "p04mchqrvdc1";
+    urlParams["bookuid"] = "p0a6ypg9bxrg";
 
     this.bookuid = navParams.get('bookuid');
     if (!this.bookuid)
@@ -36,7 +39,33 @@ export class AppQuizPage {
   }
 
   protected app: AppQuizService;
-  protected editable = false;
+  protected editable;
+
+  // async ionViewCanEnter() {
+  //   try {
+  //     await this.serv.ready$;
+  //     this.app = new AppQuizService(this.serv, this.bookuid);
+      
+  //     this.app.init();
+
+  //     this.app.ready$.then(async (ready) => {
+  //       if (!ready) this.navCtrl.pop();
+  //       const user = await this.serv.ser_user.data$.take(1).toPromise();
+  //       this.editable = (user.uid === this.app.author.uid);    
+        
+  //       if (!this.editable) {
+  //         this.serv.viewBook(this.bookuid);
+  //       }
+  //     })
+  //     return true;
+  //   }
+  //   catch (error) {
+  //     console.error(error);
+  //     return false;
+  //   }
+  // }
+
+
 
   async ionViewCanEnter() {
     try {
@@ -48,6 +77,9 @@ export class AppQuizPage {
       const user = await this.serv.ser_user.data$.take(1).toPromise();
       this.editable = (user.uid === this.app.author.uid);
 
+      if (!this.editable) {
+        this.serv.viewBook(this.bookuid);
+      }
       // this.linkToMode("");
       return true;
     }
@@ -83,7 +115,7 @@ export class AppQuizPage {
   }
 
   navToListByAuthor() {
-    // this.serv.navTo(BookListPage, {byauthor:this.bookinfo.data[0].author_uid})
+    this.serv.navTo(BookListPage, { byauthor: this.app.author.uid })
   }
   
   private swithing = {};

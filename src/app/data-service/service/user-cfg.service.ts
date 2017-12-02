@@ -42,6 +42,7 @@ export class UserCfgService extends DataService{
     this.data$.next(this.data);
   }
 
+  //todo : UserCfg may get bigger and bigger...and slow down local cache and network...
   async save(data: UserCfg) {
     const res = await this.db.write(dac, this.path, data);
     if (!res.err) {

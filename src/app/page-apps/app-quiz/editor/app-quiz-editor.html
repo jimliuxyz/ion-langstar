@@ -5,7 +5,7 @@
     <ion-title>{{(bookinfo$|async)?.title}}</ion-title>
     <ion-buttons end>
 
-        <button [disabled]="!dirty&&dataReady" (click)="save()" outline ion-button class="save-btn">
+        <button [disabled]="!dirty" (click)="save()" outline ion-button class="save-btn">
             {{'SAVE'|translate}}
         </button>
 

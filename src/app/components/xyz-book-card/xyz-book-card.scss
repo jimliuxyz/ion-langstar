@@ -12,6 +12,10 @@ xyz-book-card {
     h1{
       font-size: 2.0rem !important;
       font-weight: 400;
+      span{
+        font-size: 0.5rem;
+        color: gray;
+      }
     }
     .author-icon{
       width:20px;

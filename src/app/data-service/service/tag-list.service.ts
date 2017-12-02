@@ -85,23 +85,32 @@ export class TagListService extends DataService{
 
       this.tagarr = arr;
     }
-    // return 
-
-    this.data = [];
-    this.data$.next(this.data);
   }
 
-  getNameList() {
-    
-  }
+  async reset() {
+    this.morecnt = 0;
+    this.tagarr = [];
+    this.idx = 0;
 
-  async refresh() {
-    this.data = undefined;
     await this.init();
   }
 
+  private morecnt = 0;
 
   async more(tagPageSize: number, infoPageSize: number) {
+    const arr = await this._more(tagPageSize, infoPageSize);
+
+    // this.page = arr;
+    // this.page$.next(this.page);
+
+    this.data = (!this.data||this.morecnt==0) ? arr : this.data.concat(arr);
+    this.data$.next(this.data);
+
+    this.morecnt += 1;
+  }
+
+  private async _more(tagPageSize: number, infoPageSize: number) {
+
     if (this.tagarr.length == 0)
       await this.init();
 
@@ -126,12 +135,7 @@ export class TagListService extends DataService{
     this.idx += cnt;
 
     arr = arr.filter(set => !!set);
-
-    this.page = arr;
-    // this.page$.next(this.page);
-
-    this.data = !this.data ? arr : this.data.concat(arr);
-    this.data$.next(this.data);
+    return arr;
   }
 
   async listAsStr() {

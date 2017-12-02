@@ -5,7 +5,9 @@ import { AppService } from '../../app-service/app-service';
 import { MiscFunc } from '../../app-service/misc';
 import { BookListByTagService } from '../../data-service/service/book-list-bytag.service';
 import { ReplaySubject } from 'rxjs';
-import { BookInfoSet } from '../../data-service/service/book-list.service';
+import { BookInfoSet, BookListService } from '../../data-service/service/book-list.service';
+import { BookListByAuthorService } from '../../data-service/service/book-list-byauthor.service';
+import { UserInfoService } from '../../data-service/service/user-info.service';
 
 @IonicPage({
   segment: 'booklist',
@@ -17,12 +19,14 @@ import { BookInfoSet } from '../../data-service/service/book-list.service';
 })
 export class BookListPage {
   protected title: string = "";
-  protected data$: ReplaySubject<BookInfoSet[]>;
-  
+
   readonly LOADSIZE = 9;
+  private langpair: string;
   private bytag: string;
   private byauthor: string;
-  private dsev_tag: BookListByTagService;
+
+  private dsev: BookListService;
+  protected data$: ReplaySubject<BookInfoSet[]>;
 
   private urlParams: any;
   private getParam(pname:string):string {
@@ -32,30 +36,50 @@ export class BookListPage {
   constructor(public navCtrl: NavController, public serv: AppService, public navParams: NavParams) {
     this.urlParams = MiscFunc.getUrlParams();
 
+    this.langpair = this.getParam("langpair");
     this.bytag = this.getParam("bytag");
     this.byauthor = this.getParam("byauthor");
 
-    this.title = this.bytag ? this.bytag : this.byauthor;
-    console.log("by... : " + this.bytag + " or " + this.byauthor);
+    // this.langpair = "en+zh";
+    // this.bytag = "IELTS";
+    // console.log("by... : " + this.bytag + " or " + this.byauthor);
+  }
 
-    this.dsev_tag = BookListByTagService.get("en+zh", this.bytag);
-    this.dsev_tag.more(this.LOADSIZE);
-    this.data$ = this.dsev_tag.data$;
+  async ionViewCanEnter() {
+
+    if (this.bytag) {
+      this.title = this.bytag;
+
+      this.dsev = BookListByTagService.get(this.langpair, this.bytag);
+      (<BookListByTagService>this.dsev).more(this.LOADSIZE);
+      this.data$ = this.dsev.data$;
+    }
+    else if (this.byauthor) {
+      const user = await UserInfoService.get(this.byauthor).data$.take(1).toPromise();
+      this.title = user ? user.displayName : "";
+
+      this.dsev = BookListByAuthorService.get(this.byauthor);
+      (<BookListByAuthorService>this.dsev).more(this.LOADSIZE);
+      this.data$ = this.dsev.data$;
+    }
+
+    return true;
   }
 
   doInfinite(infiniteScroll) {
     setTimeout(async () => {
-      if (this.dsev_tag) {
-        await this.dsev_tag.more(this.LOADSIZE);
-        // console.log(this.wata.data.length)
-      }  
+      if (this.dsev && this.bytag) {
+        await (<BookListByTagService>this.dsev).more(this.LOADSIZE);
+      }
+      else if (this.dsev && this.byauthor) {
+        await (<BookListByTagService>this.dsev).more(this.LOADSIZE);
+      }
       infiniteScroll.complete();
     }, 200);
   }
 
-  // errGoBack(err:string):boolean {
-  //   console.error(err);
-  //   this.navCtrl.pop();
-  //   return true;
+  // ionViewDidLeave() {
+  //   console.log("ionViewDidLeave");
   // }
+
 }

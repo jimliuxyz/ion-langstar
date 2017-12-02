@@ -31,6 +31,8 @@ export class QstUserCfgRec{
   navoice: string;
   tavoice: string;
   random = false;
+  spell = false;
+  ansfirst = false;
   qcnt = 1;
   qshow = true;
   acnt = 1;
@@ -58,6 +60,11 @@ export const SYM = {
 
 export class AppQuizService{
 
+  private ready_resolve;
+  ready$ = new Promise<boolean>((resolve, reject) => {
+    this.ready_resolve = resolve;
+  });
+
   bookinfo: BookInfo;
   author: UserInfo;
   
@@ -70,7 +77,9 @@ export class AppQuizService{
   learned: QstBookItem[] = [];
   learning: QstBookItem[] = [];
 
-  constructor(public serv: AppService, public bookuid:string) {
+  switch_qa = false;
+
+  constructor(public serv: AppService, public bookuid: string) {
   }
 
   async init() {
@@ -97,11 +106,45 @@ export class AppQuizService{
       await p3.toPromise(); //dependence : cfgrec
       if (!this.cfgrec) {p2.complete(); return; }
 
+
+      const ucfg = await this.serv.ser_cfg.data$.take(1).toPromise();
+
+      const bookinfo = await BookInfoService.get(this.bookuid).data$.take(1).toPromise();
+      
+      this.switch_qa = (ucfg.nalang === bookinfo.talang) && (ucfg.talang === bookinfo.nalang);   
+      
+
       this.quizs = AppQuizService.toDataArray(data.data);
+      if (this.switch_qa) {
+        this.quizs = MiscFunc.clone(this.quizs);
+        for (const quiz of this.quizs) {
+          [quiz.a, quiz.q] = [quiz.q, quiz.a];
+        }
+      }
+
+      this.bookcfg = data.cfg ? data.cfg : new QstBookCfg();
+      if (this.switch_qa) {
+        this.bookcfg = MiscFunc.clone(this.bookcfg);
+        [this.bookcfg.a, this.bookcfg.q] = [this.bookcfg.q, this.bookcfg.a];
+      }
 
       //count learning/learned (need cfgrec)
       this.arrangeLearned();
-      this.bookcfg = data.cfg ? data.cfg : new QstBookCfg();
+
+
+      console.log(this.switch_qa)
+      // if (this.switch_qa) {
+      //   console.log(this.quizs)
+      //   this.quizs = MiscFunc.clone(this.quizs);
+      //   for (const quiz of this.quizs) {
+      //     [quiz.a, quiz.q] = [quiz.q, quiz.a];
+      //   }
+      //   console.log(this.quizs)
+        
+      //   this.bookcfg = MiscFunc.clone(this.bookcfg);
+      //   [this.bookcfg.a, this.bookcfg.q] = [this.bookcfg.q, this.bookcfg.a];
+      // }
+
       p2.complete();
     });
 
@@ -125,12 +168,14 @@ export class AppQuizService{
 
       const bookinfo = await BookInfoService.get(this.bookuid).data$.take(1).toPromise();
 
+
       p3.complete();
     });
 
     //waitting for essential data ready.
     await Promise.all([p1.toPromise(), p2.toPromise(), p3.toPromise()]);
 
+    this.ready_resolve(initok);
     return initok;
   }
 

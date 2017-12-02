@@ -55,11 +55,13 @@
     "MODETEST": "測驗",
     "SHOWNSPEAK": "顯示與朗讀次數",
     "RANDOM": "隨機",
+    "SPELL": "讀拼音",
     "QUESTION": "題目",
     "ANSWER": "答案",
     "EXAMPLE": "例句",
     "TIP": "題解",
-    "OUTOFQUIZ": "沒有題目了"
+    "OUTOFQUIZ": "沒有題目了",
+    "ANS_FIRST": "先讀答案"
   },
   "_CONQ":{
     "NAME": "對話"

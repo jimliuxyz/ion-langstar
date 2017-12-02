@@ -26,10 +26,9 @@ export interface SlidePage{
 }
 
 const SLIDECLS: any[] = [
-  [SlideCollection, null],
-  
-  [SlideCloud, null],
   [SlideCreation, null],
+  [SlideCloud, null],
+  [SlideCollection, null],
   [LocaldbViewer, null],
   [NewsComponent, null],
   [SlideCredit, null],
@@ -130,7 +129,7 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
     if (cmd === 'settings')
       com = HomeSetting;
     else if (cmd === 'login')
-      com = (await this.serv.hasLogged())?HomeLogout:HomeLogin;
+      com = this.serv.hasLogged()?HomeLogout:HomeLogin;
 
     if (com) {
       let modal = this.modalCtrl.create(com);

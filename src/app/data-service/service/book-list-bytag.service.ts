@@ -18,13 +18,14 @@ export class BookListByTagService extends BookListService{
 
   private static cache = new WeakCache<BookListByTagService>();
   static get(langpair: string, tagname: string): BookListByTagService {
-    const key = langpair + "-" + tagname;
-    let data = this.cache.get(key);
-    if (!data) {
-      data = new BookListByTagService(langpair, tagname);
-      this.cache.set(key, data);
-    }
-    return data;
+    // const key = langpair + "-" + tagname;
+    // let data = this.cache.get(key);
+    // if (!data) {
+    //   data = new BookListByTagService(langpair, tagname);
+    //   this.cache.set(key, data);
+    // }
+    // return data;
+    return new BookListByTagService(langpair, tagname);
   }
 
   /**
@@ -45,7 +46,7 @@ export class BookListByTagService extends BookListService{
       }
 
       // arr.sort(function (a, b) { return a.views - b.views });
-      arr.sort(function (a, b) { return (a.views == b.views) ? 1 : b.views - a.views });
+      arr.sort(function (a, b) { return (a.likes == b.likes) ? 1 : b.likes - a.likes });
 
       for (let obj of arr) {
         this._uidArr.push((<any>obj).id);

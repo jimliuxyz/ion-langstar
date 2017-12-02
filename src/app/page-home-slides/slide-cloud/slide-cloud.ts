@@ -4,6 +4,8 @@ import { SlidePage } from '../home-slides';
 import { AppService } from '../../app-service/app-service';
 import { ReplaySubject } from 'rxjs';
 import { TagListService, TagBooksSet } from '../../data-service/service/tag-list.service';
+import { UserCfg } from '../../data-service/models';
+import { MiscFunc } from '../../app-service/misc';
 
 
 @Component({
@@ -14,6 +16,7 @@ export class SlideCloud implements SlidePage {
   title: string = "_CLOUD_HOME.TITLE";
   tabtitle: string = "_CLOUD_HOME.TITLE";
 
+  langpair: string;
   dsev: TagListService;
   data$: ReplaySubject<TagBooksSet[]>;
 
@@ -31,13 +34,25 @@ export class SlideCloud implements SlidePage {
       });
       loading.present();
 
-      this.dsev = TagListService.get("en+zh");
-      setTimeout(async () => {
-        await this.dsev.more(this.tagPageSize, this.infoPageSize);
+      //todo : load langpair by user
+      // const langpair = "en+zh";
+      // this.dsev = TagListService.get(langpair);
+      // setTimeout(async () => {
+      //   await this.dsev.more(this.tagPageSize, this.infoPageSize);
 
+      //   this.data$ = this.dsev.data$;
+      //   loading.dismiss();
+      // }, 0);
+
+      this.serv.ser_cfg.data$.subscribe(async (ucfg:UserCfg) => {
+        this.langpair = MiscFunc.getLangPair(ucfg.nalang, ucfg.talang);
+
+        this.dsev = TagListService.get(this.langpair);
+        await this.dsev.more(this.tagPageSize, this.infoPageSize);
+        
         this.data$ = this.dsev.data$;
         loading.dismiss();
-      }, 0);
+      })
     }
 
     return true;
@@ -49,7 +64,7 @@ export class SlideCloud implements SlidePage {
 
   doRefresh(refresher) {
     setTimeout(async () => {
-      this.dsev.refresh();
+      await this.dsev.reset();
       await this.dsev.more(this.tagPageSize, this.infoPageSize);
 
       refresher.complete();

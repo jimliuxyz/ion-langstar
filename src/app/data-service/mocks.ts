@@ -2,7 +2,14 @@
 export class Mocks{
 
   static mcqtext = 
-`##  star
+`##  test
+==  測試
+!= A
+!= B
+#=  trial, experiment, test case
+#?  a test for HIV
+
+##  star
 ==  1.星星
 != A
 != B

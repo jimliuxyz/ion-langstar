@@ -49,7 +49,7 @@ export class AppQuizPlay implements AfterViewInit, OnDestroy {
   }
 
   curKey: string;
-  _newQuizKey(quiz: QstBookItem, key:string) {
+  _newQuizKey(quiz: QstBookItem, key: string) {
     this.zone.run(() => {
       this.curKey = key;
     });

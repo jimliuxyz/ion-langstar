@@ -8,6 +8,7 @@ import { BookListPage } from '../../pages/book-list/book-list';
 })
 export class XyzTagHeader {
 
+  @Input() langpair: string = "";
   @Input() tagname: string = "";
   @Input() desc: string = "";
   @Input() nolink: boolean = false;
@@ -17,6 +18,6 @@ export class XyzTagHeader {
 
   navToListByTag() {
     if (!this.nolink)
-      this.serv.navTo(BookListPage, {bytag:this.tagname})
+      this.serv.navTo(BookListPage, {langpair:this.langpair, bytag:this.tagname})
   }
 }

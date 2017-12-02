@@ -1,4 +1,3 @@
-<!-- Generated template for the HomeSettingsComponent component -->
 
 <ion-header>
     <ion-toolbar>
@@ -64,13 +63,25 @@
         <xyz-np-button [(value)]="app.cfgrec.acnt" [(selected)]="app.cfgrec.ashow">{{'_MCQ.ANSWER'|translate}} ＋{{app.cfgrec.acnt}}</xyz-np-button>
         
         <xyz-np-button [(value)]="app.cfgrec.expcnt" [(selected)]="app.cfgrec.expshow">{{'_MCQ.EXAMPLE'|translate}} ＋{{app.cfgrec.expcnt}}</xyz-np-button>
-        
+
         <xyz-np-button [(value)]="app.cfgrec.tipcnt" [(selected)]="app.cfgrec.tipshow">{{'_MCQ.TIP'|translate}} ＋{{app.cfgrec.tipcnt}}</xyz-np-button>
+
+        <ion-item no-lines>
+        <ion-label>{{'_MCQ.SPELL'|translate}}</ion-label>
+        <ion-checkbox [(ngModel)]="app.cfgrec.spell" item-right color="secondary" checked="true"></ion-checkbox>
+        </ion-item>
+
+        <ion-item no-lines>
+        <ion-label>{{'_MCQ.ANS_FIRST'|translate}}</ion-label>
+        <ion-checkbox [(ngModel)]="app.cfgrec.ansfirst" item-right color="secondary" checked="true"></ion-checkbox>
+        </ion-item>
+
 
         <ion-item no-lines>
         <ion-label>{{'_MCQ.RANDOM'|translate}}</ion-label>
         <ion-checkbox [(ngModel)]="app.cfgrec.random" item-right color="secondary" checked="true"></ion-checkbox>
         </ion-item>
+                
       </ion-list>
 
   </ion-content>

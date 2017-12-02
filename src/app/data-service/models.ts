@@ -94,10 +94,10 @@ export class BookInfo{
   uid: string = "";
   title: string = "";  
   type: BookType;
-  qnum: number = 1;
+  qnum: number = 0;
   author: string;
   author_uid: string;
-  publish: boolean = false;
+  publish: boolean = true;
 
   views: number = 0;
   likes: number = 0;
