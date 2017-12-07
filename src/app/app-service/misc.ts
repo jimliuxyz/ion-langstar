@@ -144,7 +144,7 @@ export class MiscFunc{
    */
   static getLangCode(code: string): string {
     return code.toLowerCase().replace(/[^A-Za-z].*/g,"");
-  }    
+  }
   static getLangCodeNormalize(code: string): string {
     let code_ = code.toLowerCase().replace(/[^A-Za-z]/g,"_");
     let lang = langlist.find((lang) => {

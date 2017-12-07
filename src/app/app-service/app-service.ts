@@ -27,6 +27,11 @@ import { HomeSlidesPage } from '../page-home-slides/home-slides';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import * as GEPT from '../data-service/mocks/words.GEPT.7000';
 import { AppQuizService, SYM, QstBookCfg } from '../page-apps/app-quiz/service/app-quiz.service';
+import { STT } from './stt';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { Insomnia } from '@ionic-native/insomnia';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
 
 
 @Injectable()
@@ -46,14 +51,19 @@ export class AppService {
   constructor(
     private platform: Platform,
     public network: Network,
+    private iontts: TextToSpeech,
+    private ionstt: SpeechRecognition,
     private loadCtrl: LoadingController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private storage: Storage,
     private translate: TranslateService,
-    private auth: AuthService) {
+    private auth: AuthService,
+    private insomnia: Insomnia,
+    private admobFree: AdMobFree) {
     
     this.init();
+    
   }
 
   private navCtrl: NavController;
@@ -64,9 +74,39 @@ export class AppService {
   }
 
   private async init() {
+
+    this.insomnia.allowSleepAgain();
+
+
+    //set AdMod
+    const bannerConfig: AdMobFreeBannerConfig = {
+      bannerAtTop: !true,
+      isTesting: !true,
+      autoShow: true,
+      id: "ca-app-pub-7242559985200809/1577246763"
+    };
+    if (this.platform.is('ios')) {
+      bannerConfig.id = "ca-app-pub-7242559985200809/4775089894";
+    }
+
+    this.admobFree.banner.config(bannerConfig);
+    this.admobFree.banner.prepare()
+      .then(() => {
+        console.log("banner Ad is ready")
+        
+         // if we set autoShow to false, then we will need to call the show method here
+       })
+       .catch(e => console.log(e));
+    
+    //setup TTS / STT
+    await TTS.appInit(this.platform, this.iontts);
+    await STT.appInit(this.platform, this.ionstt);
+
+    //setup data service
     DataService.init(this.storage, this.network);
     BookDataService.setHandler(this.mismatchBookDataOverwriteHandler.bind(this));
 
+    //setup authed user service
     this.ser_user = new AuthedUserInfoService();
     this.ser_cfg = new UserCfgService();
 
@@ -75,8 +115,10 @@ export class AppService {
       this.ser_cfg.init(user);
     })
     this.ser_cfg.data$.subscribe(ucfg => {
+      
       this.translate.use(ucfg.nalang);
       this.ready_resolve(true); // here is final part of initial
+      
     })
 
     this.translate.addLangs(["en_US", "zh_TW", "ja", "ko"]);
@@ -92,6 +134,8 @@ export class AppService {
       if (user) {
         console.log("authedUser", user);
         this.ser_user.login(user);
+        console.log( 1 );
+        
       }
       else {
         throw new Error("nobody login!!!");
@@ -293,6 +337,19 @@ export class AppService {
     return (def)?def:"none";
   }
 
+  async getDefVoiceRecognUri(lang: string) {
+    const ucfg = await this.ser_cfg.data$.take(1).toPromise();
+    
+    let def = ucfg.recongs_def[lang];
+
+    let voice_def = await this.getDefVoiceUri(lang);
+    
+    if (!def)
+      def = STT.getDefVoiceRecogn(lang, voice_def);
+    
+    return (def)?def:"";
+  }
+
   private async devInitDB() {
     if (this.storage) {
       return;
@@ -368,6 +425,7 @@ export class AppService {
     
     for (const key in cate.bylvtype) {
       // if (key !== "GEPT-中高級-名詞")
+      if (key)
         continue;  
       console.log(key);
       const arr = key.split("-");

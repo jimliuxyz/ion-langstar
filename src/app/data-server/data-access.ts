@@ -297,6 +297,14 @@ export class DataAccess{
       completed = completed_;
       finaldata = data_;
     });
+    
+    // if (!res) {
+    //   console.log(dac)
+    //   console.log(path)
+    //   console.log(fnUpdate)
+    //   console.log(fnComplete)
+    //   return new QResult("XXX");
+    // }
 
     if (!res.err)
       await this.cache.set(dac, path, finaldata);

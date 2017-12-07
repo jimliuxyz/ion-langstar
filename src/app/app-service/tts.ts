@@ -1,5 +1,7 @@
 
 import { MiscFunc } from './misc';
+import { TextToSpeech, TTSOptions } from '@ionic-native/text-to-speech';
+import { Platform } from 'ionic-angular';
 
 export class SpeechVoice{
   constructor(public uri: string, public name: string, public lang:string) {
@@ -12,6 +14,7 @@ export class VoiceCfg{
   vol: number = 100;
 }
 
+const DEFLANGS = ["ar-SA","cs-CZ","da-DK","de-DE","el-GR","en-AU","en-GB","en-IE","en-IN","en-US","en-ZA","es-AR","es-ES","es-MX","es-US","fi-FI","fr-CA","fr-FR","he-IL","hi-IN","hu-HU","id-ID","it-IT","ja-JP","ko-KR","nb-NO","nl-BE","nl-NL","pl-PL","pt-BR","pt-PT","ro-RO","ru-RU","sk-SK","sv-SE","th-TH","tr-TR","zh-CN","zh-HK","zh-TW"];
 let voices:SpeechVoice[] = [];
 
 
@@ -22,15 +25,20 @@ function webLoadVoice(): boolean {
   const voices_ = window.speechSynthesis.getVoices();
   if (!voices_ || voices_.length === 0)
     return false;
-
+    
   voices = [];
+  const langs = {};
   for (let voice of voices_) {
     const v = new SpeechVoice(voice.voiceURI.trim(), voice.name.trim(), voice.lang);
     voices.push(v);
+
+    langs[voice.lang] = voice.lang;
   }
+  // console.log(Object.keys(langs).sort().join("\",\""))
+  
   return true;
 }
-const webtts = window && window.speechSynthesis;
+const webtts = (typeof window != "undefined") && window.speechSynthesis;
 if (webtts) {
   webtts.onvoiceschanged = webLoadVoice;
 }
@@ -41,15 +49,21 @@ let msgcnt = 0;
 
 export class TTS{
 
-  static async init() {
-    // return new Promise(async (resolve, reject) => {
-    //   //await TTS.webLoadVoice()
-    //   setTimeout(()=>{
-   
-    //   }, 0);
-      
-    // })
-    return true;
+  static platform: Platform;
+  static iontts: TextToSpeech;
+  static async appInit(platform: Platform, iontts: TextToSpeech) {
+    this.platform = platform;
+    if (this.platform.is('cordova')) {
+      this.iontts = iontts;
+      if (iontts) {
+        voices = [];
+        for (const lang of DEFLANGS) {
+          const v = new SpeechVoice(lang, lang, lang);
+          voices.push(v);
+        }
+        console.log(voices);
+      }
+    }
   }
 
   static getVoices(code: string): SpeechVoice[] {
@@ -71,6 +85,8 @@ export class TTS{
   static speak(text: string, cfg: VoiceCfg, onstart?: () => void, onend?: () => void) {
     if (webtts)
       TTS.webSpeak(text, cfg, onstart, onend);
+    else if (this.iontts)
+      TTS.appSpeak(text, cfg, onstart, onend);
   }
   
   private static webSpeak(text: string, cfg: VoiceCfg, onstart?: () => void, onend?: () => void) {
@@ -152,6 +168,34 @@ export class TTS{
     // Queue this utterance.
     window.speechSynthesis.speak(msg);
     // window.speechSynthesis.resume();
+  }
+
+  private static appSpeak(text: string, cfg: VoiceCfg, onstart?: () => void, onend?: () => void) {
+    console.log("appSpeak")
+
+    let opt = <TTSOptions>{};
+    opt.text = text;
+    opt.locale = cfg.uri;
+    opt.rate = cfg.rate / 100;
+
+    // if (this.platform.is('android')) {
+      if (opt.locale === "zh-HK")
+        opt.locale = "yue-HK";
+    // }
+
+    // console.log(opt)
+    // opt.text = "測試";
+    // opt.locale = "zh-TW";
+    // opt.rate = 0.5;
+    
+    
+    this.iontts.speak(opt).then((data) => {
+      if (onend) onend();
+    }).catch(() => {
+      if (onend) onend();
+    });
+    
+    if (onstart) onstart();
   }
 
 }

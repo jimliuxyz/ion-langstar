@@ -35,8 +35,8 @@
     <ion-grid>
       <ion-row>
           <ion-col class='blockbtn' (click)="linkToMode('play')">{{'_MCQ.MODEPLAY'|translate}}</ion-col>
-          <ion-col class='blockbtn'>{{'_MCQ.MODESPEAK'|translate}}</ion-col>
-          <ion-col class='blockbtn'>{{'_MCQ.MODETEST'|translate}}</ion-col>
+          <ion-col class='blockbtn' (click)="linkToMode('speak')">{{'_MCQ.MODESPEAK'|translate}}</ion-col>
+          <ion-col class='blockbtn' (click)="linkToMode('test')">{{'_MCQ.MODETEST'|translate}}</ion-col>
         </ion-row>
     </ion-grid>
     

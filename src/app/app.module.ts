@@ -41,7 +41,10 @@ import { BookListPage } from './pages/book-list/book-list';
 import { Network } from '@ionic-native/network';
 import { LocaldbViewer } from './page-home-slides/localdb-viewer/localdb-viewer';
 import { SlideCollection } from './page-home-slides/slide-collection/slide-collection';
-
+import { TextToSpeech } from '@ionic-native/text-to-speech';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { Insomnia } from '@ionic-native/insomnia';
+import { AdMobFree } from '@ionic-native/adMob-Free';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -88,7 +91,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     // NewpagePage
   ],
   providers: [
-    Network,
+    Network,Insomnia,AdMobFree,
+    TextToSpeech,SpeechRecognition,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

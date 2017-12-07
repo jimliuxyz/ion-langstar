@@ -15,7 +15,8 @@
   "TALANG":"外語",
   "TAG":"標籤",
   "LANG":"語言",
-  "SPEECHVOICE":"語音",
+  "SPEECHVOICE":"語音朗讀",
+  "VOICERECOGN":"語音辨識",
   "VOICESPEED":"語速",
   "PUBLISH":"出版",
   "EDIT":"編輯",
@@ -25,7 +26,8 @@
 
   "LEARNING": "學習中",
   "LEARNED": "已學會",
-
+  "ANSNUMRECOGN": "答題識別",
+  
   
 
 
@@ -39,7 +41,8 @@
   "_ALERT":{
     "DELBOOK": "確定要刪除這本書？",
     "DISLIKEBOOK": "確定不收藏這本書？",
-    "OVERWRITEBOOK": "是否以此內容作為正確版本？"
+    "OVERWRITEBOOK": "是否以此內容作為正確版本？",
+    "ANSNUMRECOGN": "念出供識別的答案,例如\"No.1\""
   },
 
   "_TOAST":{
@@ -51,7 +54,7 @@
   "_MCQ":{
     "NAME": "題卡",
     "MODEPLAY": "播放",
-    "MODESPEAK": "口說練習",
+    "MODESPEAK": "跟讀",
     "MODETEST": "測驗",
     "SHOWNSPEAK": "顯示與朗讀次數",
     "RANDOM": "隨機",

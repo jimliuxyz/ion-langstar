@@ -18,7 +18,7 @@ app-quiz {
   }
 
   .card-wrapper{
-    overflow: hidden;
+    // overflow: hidden;
     max-height: 150px;
     user-select: text;
     h1{
@@ -45,7 +45,7 @@ app-quiz {
 
 }
 
-app-quiz-play{
+app-quiz-play,app-quiz-speak,app-quiz-test{
 
   .out-of-quiz{
     text-align: center;
@@ -55,6 +55,10 @@ app-quiz-play{
   }
 
   ion-range {
+    height:30px;
+    // border:1px solid red;
+    margin:10px 0px 0px 0px;
+
     padding: 0px 8px !important;
     .range-slider {
       // height: 22px !important;
@@ -96,7 +100,65 @@ app-quiz-play{
     -o-perspective: 800px;
     perspective: 800px;
   }
+
+  .ansinput{
+    margin:0px 6px 20px 6px;
+    padding:5px;
+    
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 4rem;
+    font-size: 2.0rem;
+    
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border: 1px solid gray;
+  }
   
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    25%, 75% {
+      transform: translateX(6px);
+    }
+    50% {
+      transform: translateX(-6px);
+    }
+  }
+  .micOff::before{
+    color:gray !important;
+  }
+  .micOn::before{
+    color:red !important;
+    animation: shake 1s ease-in-out infinite;
+  }
+
+  .ansoption{
+    margin: 0px !important;
+    line-height: 4rem;
+
+    .opt-corrent{
+      // position: absolute;
+      font-size: 3rem !important;
+      font-weight: 900 !important;
+
+      color:green !important;
+
+      &::before{
+        vertical-align: sub;
+      }
+    }
+  }
+
+  .ans-correct::before{
+    color:green !important;
+  }
+  .ans-error::before{
+    color:red !important;
+  }
+
   .wordcard{
     display: block;
     user-select: text;
@@ -128,8 +190,10 @@ app-quiz-play{
     }
 
     h1{
+      margin: 0px;
+      
       user-select: text;
-      font-size: 4rem !important;
+      font-size: 3.5rem !important;
       font-weight: 600 !important;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -140,6 +204,7 @@ app-quiz-play{
     }
 
     p{
+      margin: 10px;
       user-select: text;
       font-size: 1.7rem !important;
       // font-weight: 600 !important;
@@ -245,5 +310,17 @@ app-quiz-setting {
     width:95%;
     display: flex;
     float: right;
+  }
+
+  .num-circle{
+    margin: 0px 5px;
+    line-height: 3rem;
+    height: 3rem;
+    width: 3rem;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    border: 1px solid gray;
   }
 }

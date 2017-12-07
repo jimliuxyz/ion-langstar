@@ -12,6 +12,9 @@ import { HomeSlidesPage } from '../../page-home-slides/home-slides';
 import { BookInfoService } from '../../data-service/service/book-info.service';
 import { UserInfoService } from '../../data-service/index';
 import { BookListPage } from '../../pages/book-list/book-list';
+import { AppQuizSpeak } from './mode-speak/app-quiz-speak';
+import { AppQuizTest } from './mode-test/app-quiz-test';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
 
 @IonicPage({
   segment:'app-quiz',
@@ -68,6 +71,7 @@ export class AppQuizPage {
 
 
   async ionViewCanEnter() {
+
     try {
       this.app = new AppQuizService(this.serv, this.bookuid);
       if (!await this.app.init()) {
@@ -80,7 +84,7 @@ export class AppQuizPage {
       if (!this.editable) {
         this.serv.viewBook(this.bookuid);
       }
-      // this.linkToMode("");
+      // this.linkToMode("test");
       return true;
     }
     catch (error) {
@@ -103,8 +107,14 @@ export class AppQuizPage {
     modal.present();
   }
 
-  private linkToMode(mode:string) {
-    let modal = this.navCtrl.push(AppQuizPlay, {
+  private linkToMode(mode: string) {
+    let com;
+    if (mode === "play") com = AppQuizPlay;
+    if (mode === "speak") com = AppQuizSpeak;
+    if (mode === "test") com = AppQuizTest;
+    if (!com) return;
+
+    let modal = this.navCtrl.push(com, {
       listtype: this.listtype,
       app: this.app
     });

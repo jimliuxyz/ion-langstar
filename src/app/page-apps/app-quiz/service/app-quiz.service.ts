@@ -30,16 +30,18 @@ export class QstBookCfg{
 export class QstUserCfgRec{
   navoice: string;
   tavoice: string;
+  narecogn: string;
+  tarecogn: string;
   random = false;
   spell = false;
   ansfirst = false;
   qcnt = 1;
   qshow = true;
-  acnt = 1;
+  acnt = 0;
   ashow = true;
-  expcnt = 1;
+  expcnt = 0;
   expshow = true;
-  tipcnt = 1;
+  tipcnt = 0;
   tipshow = true;
   learned: { [idx: string]: boolean } = {};
   static fix(data: QstUserCfgRec) {
@@ -77,7 +79,7 @@ export class AppQuizService{
   learned: QstBookItem[] = [];
   learning: QstBookItem[] = [];
 
-  switch_qa = false;
+  swapqa = false;
 
   constructor(public serv: AppService, public bookuid: string) {
   }
@@ -111,11 +113,11 @@ export class AppQuizService{
 
       const bookinfo = await BookInfoService.get(this.bookuid).data$.take(1).toPromise();
       
-      this.switch_qa = (ucfg.nalang === bookinfo.talang) && (ucfg.talang === bookinfo.nalang);   
+      this.swapqa = (ucfg.nalang === bookinfo.talang) && (ucfg.talang === bookinfo.nalang);   
       
 
       this.quizs = AppQuizService.toDataArray(data.data);
-      if (this.switch_qa) {
+      if (this.swapqa) {
         this.quizs = MiscFunc.clone(this.quizs);
         for (const quiz of this.quizs) {
           [quiz.a, quiz.q] = [quiz.q, quiz.a];
@@ -123,27 +125,13 @@ export class AppQuizService{
       }
 
       this.bookcfg = data.cfg ? data.cfg : new QstBookCfg();
-      if (this.switch_qa) {
+      if (this.swapqa) {
         this.bookcfg = MiscFunc.clone(this.bookcfg);
         [this.bookcfg.a, this.bookcfg.q] = [this.bookcfg.q, this.bookcfg.a];
       }
 
       //count learning/learned (need cfgrec)
       this.arrangeLearned();
-
-
-      console.log(this.switch_qa)
-      // if (this.switch_qa) {
-      //   console.log(this.quizs)
-      //   this.quizs = MiscFunc.clone(this.quizs);
-      //   for (const quiz of this.quizs) {
-      //     [quiz.a, quiz.q] = [quiz.q, quiz.a];
-      //   }
-      //   console.log(this.quizs)
-        
-      //   this.bookcfg = MiscFunc.clone(this.bookcfg);
-      //   [this.bookcfg.a, this.bookcfg.q] = [this.bookcfg.q, this.bookcfg.a];
-      // }
 
       p2.complete();
     });
@@ -166,6 +154,13 @@ export class AppQuizService{
       if (!this.cfgrec.tavoice)
         this.cfgrec.tavoice = await this.serv.getDefVoiceUri(this.bookinfo.talang);
 
+      // set default voice recognition (need bookinfo)
+      if (!this.cfgrec.narecogn)
+        this.cfgrec.narecogn = await this.serv.getDefVoiceRecognUri(this.bookinfo.nalang);
+
+      if (!this.cfgrec.tarecogn)
+        this.cfgrec.tarecogn = await this.serv.getDefVoiceRecognUri(this.bookinfo.talang);
+      
       const bookinfo = await BookInfoService.get(this.bookuid).data$.take(1).toPromise();
 
 
@@ -214,12 +209,12 @@ export class AppQuizService{
     this.learning = learning;
   }
 
-  public async speak(quiz: QstBookItem, key:string) {
+  public async speak(quiz: QstBookItem, key:string, onstart?:()=>void, onend?:()=>void) {
     const text = quiz[key];
     const vuri = this.bookcfg[key] ? this.cfgrec.navoice : this.cfgrec.tavoice;
 
     const vcfg = await this.serv.getVoiceCfg(vuri);
-    TTS.speak(text, vcfg);
+    TTS.speak(text, vcfg, onstart, onend);
   }
 
   //---------

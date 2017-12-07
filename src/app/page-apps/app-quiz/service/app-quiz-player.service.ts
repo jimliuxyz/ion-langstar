@@ -1,24 +1,30 @@
 import { AppQuizService, QstBookItem } from "./app-quiz.service";
 import { TTS } from "../../../app-service/tts";
+import { STT } from "../../../app-service/stt";
 
 
-export class AppQuizPlayerService{
+export class AppQuizPlayerService {
   constructor(
     public app: AppQuizService,
-    public listtype:string,
+    public listtype: string,
     public fnNextQuiz: (quiz: QstBookItem) => void,
-    public fnNextKey: (quiz: QstBookItem, key: string) => void) {
-      this.init();
+    public fnNextKey: (quiz: QstBookItem, key: string) => void,
+    public fnVoiceDone?: (quiz: QstBookItem, key: string) => void) {
+    this.init();
   }
 
+  testMode = false;
   init() {
     this.quiz_idx = -1;
     this.keys_idx = -1;
-    this.nextQuiz(1);
 
-    this.fnNextQuiz(this.quiz);
-    this.fnNextKey(this.quiz, this.quizkey);
-    // this.nextKey();
+    setTimeout(() => {
+      this.nextQuiz(1);
+      
+      this.fnNextQuiz(this.quiz);
+      this.fnNextKey(this.quiz, this.quizkey);
+      // this.nextKey();
+    }, 0);
   }
 
   private quiz_idx = -1;
@@ -37,7 +43,7 @@ export class AppQuizPlayerService{
 
   private quizque: number[] = [];
   private quepushed = false;
-  private nextQuiz(dir:number) {
+  private nextQuiz(dir: number) {
     const quizs = this.listtype == 'learned' ? this.app.learned : this.app.learning;
 
     //1.) normal
@@ -61,13 +67,13 @@ export class AppQuizPlayerService{
     if (this.quiz_idx >= quizs.length)
       this.quiz_idx = 0;
     if (this.quiz_idx < 0)
-      this.quiz_idx = quizs.length-1;
+      this.quiz_idx = quizs.length - 1;
     this.quiz = quizs[this.quiz_idx];
 
     //push quiz idx to queue
     if (dir >= 0) {
       this.quizque.push(this.quiz_idx);
-      if (this.quizque.length > 100) 
+      if (this.quizque.length > 100)
         this.quizque = this.quizque.splice(30);
     }
     this.quepushed = (dir >= 0);
@@ -77,9 +83,10 @@ export class AppQuizPlayerService{
     this.nextKey();
   }
 
+
   private nextKey() {
     let forceIdx;
-    
+
     if (!this.quiz) return;
     if (this.gokey) {
       forceIdx = this.getKeys().findIndex(key => key === this.gokey);
@@ -87,8 +94,18 @@ export class AppQuizPlayerService{
       forceIdx = forceIdx >= 0 ? (forceIdx - 1) : undefined;
     }
 
-    for (let i = 0; i < this.getKeys().length; i++){
-      let idx = (forceIdx!=null?forceIdx:this.keys_idx) + 1 + i;
+    if (this.testMode) {
+      let idx = (Math.random() >= 0.5 ? 0 : 1);
+      if (this.gokey) idx = this.keys_idx; //do not change key in test mode
+
+      this.quizkey = this.getKeys()[idx];
+      this.keys_idx = idx;
+      this.repeat = 1;
+      return true;
+    }
+
+    for (let i = 0; i < this.getKeys().length; i++) {
+      let idx = (forceIdx != null ? forceIdx : this.keys_idx) + 1 + i;
       idx = idx < this.getKeys().length ? idx : (idx - this.getKeys().length);
       let key = this.getKeys()[idx];
       const show = <boolean>this.app.cfgrec[key + "show"];
@@ -97,12 +114,46 @@ export class AppQuizPlayerService{
         this.quizkey = key;
         this.keys_idx = idx;
         this.repeat = cnt;
+
         return true;
       }
       if (forceIdx)
         return true;
     }
     return false;
+  }
+
+  getRandomQuiz() {
+    const quizs = this.listtype == 'learned' ? this.app.learned : this.app.learning;
+
+    const idx = Math.round(Math.random() * (quizs.length - 1));
+
+    return quizs[idx];
+  }
+
+  getRecognNum(str: string, key: string) {
+    const native = <boolean>this.app.bookcfg[key];
+    const lang = native ? this.app.bookinfo.nalang : this.app.bookinfo.talang;
+
+    // console.log(lang);
+    if (this.app.ucfg.numrecongs_def[lang]) {
+      const arr = this.app.ucfg.numrecongs_def[lang];
+      // console.log(arr);
+      for (const num in arr) {
+        if (!arr[num]) continue;
+        // console.log("??"+num);
+
+        const s = arr[num].replace(/\s/g, "").toLowerCase();
+
+        if (str.indexOf(s) >= 0) {
+          // console.log("@" + num + " : "+str + " =? " + s);
+        
+          return parseInt(num);
+        }
+
+      }
+    }
+    return -1;
   }
 
   state = 'pause';
@@ -138,14 +189,14 @@ export class AppQuizPlayerService{
   }
 
   private goidx = -1;
-  setPlayIdx(idx:number) {
+  setPlayIdx(idx: number) {
     this.goidx = idx;
     this.onend();
     this.goidx = -1;
   }
 
-  private gokey:string;
-  setPlayKey(key:string) {
+  private gokey: string;
+  setPlayKey(key: string) {
     this.gokey = key;
     this.onend();
     this.gokey = undefined;
@@ -153,7 +204,7 @@ export class AppQuizPlayerService{
 
   getLength() {
     const quizs = this.listtype == 'learned' ? this.app.learned : this.app.learning;
-    return quizs.length;    
+    return quizs.length;
   }
   getPlayIdx() {
     return this.quiz_idx;
@@ -162,7 +213,7 @@ export class AppQuizPlayerService{
     return this.quizkey;
   }
 
-  private async speak(quiz: QstBookItem, key:string) {
+  private async speak(quiz: QstBookItem, key: string) {
     const text = <string>quiz[key].replace(/\(.*?\)/gm, ''); //skip brackets()
     const native = <boolean>this.app.bookcfg[key];
 
@@ -172,10 +223,10 @@ export class AppQuizPlayerService{
 
     const vcfg = await this.app.serv.getVoiceCfg(native ? this.app.cfgrec.navoice : this.app.cfgrec.tavoice);
 
-    TTS.speak(text+(spell?spell:""), vcfg,
+    TTS.speak(text + (spell ? spell : ""), vcfg,
       this.onstart.bind(this),
       // () => { });
-      this.onend.bind(this));
+      this.fnVoiceDone ? () => { this.fnVoiceDone(quiz, key) } : this.onend.bind(this));
   }
 
   private onstart() {
@@ -193,7 +244,7 @@ export class AppQuizPlayerService{
 
       this.nextKey();
       if (!this.gokey && (this.goprev || this.gonext || this.goidx >= 0 || curKeyIdx >= this.keys_idx)) {
-        this.nextQuiz(this.goprev?-1:1);
+        this.nextQuiz(this.goprev ? -1 : 1);
         
         this.fnNextQuiz(this.quiz);
       }
@@ -207,11 +258,11 @@ export class AppQuizPlayerService{
     if (hasact)
       return;
 
-    if (this.state == 'playing' && this.repeat > 0 && this.quiz && this.quizkey) {
+    if (this.state !== 'pause' && this.repeat > 0 && this.quiz && this.quizkey) {
       const quiz = this.quiz;
       const key = this.quizkey;
       setTimeout(() => {
-        if (this.state !== 'playing')
+        if (this.state === 'pause')
           return;
 
         if (quiz == this.quiz && key == this.quizkey) {
@@ -224,4 +275,21 @@ export class AppQuizPlayerService{
     }
   }
 
+  recognizing = false;
+  public async recogn_start(quiz: QstBookItem, key: string,
+    onstart?: () => void,
+    onend?: () => void,
+    onresult?: (result: string) => void) {
+    
+    const native = <boolean>this.app.bookcfg[key];
+    
+    const vcfg = native ? this.app.cfgrec.narecogn : this.app.cfgrec.tarecogn;
+    
+    STT.start(vcfg, onstart, onend, onresult);
+  }
+  public async recogn_stop() {
+    STT.stop();
+  }
 }
+
+

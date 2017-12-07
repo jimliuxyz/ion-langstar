@@ -51,6 +51,10 @@ export class UserCfg{
 
   voices_cfg: { [key: string]: VoiceCfg } = {}; //key:voice_uri
 
+  recongs_def: { [key: string]: string } = {}; //key:lang value:recongs_uri
+
+  numrecongs_def: { [key: string]: { [key: string]: string } } = {}; //key:lang value:text of num voice
+  
   //this variable key also use as string in other file(WataUserCfg)!
   //record/config for each book
   book_record: { [key: string]: any } = {}; //key:book uid
@@ -59,6 +63,20 @@ export class UserCfg{
     let cfg = new UserCfg();
     cfg.nalang = MiscFunc.getLangCodeNormalize(navigator.language);
     cfg.talang = "en_US";
+    if (!cfg.numrecongs_def["en_US"]) {
+      cfg.numrecongs_def["en_US"] = {};
+      cfg.numrecongs_def["en_US"][1] = "number one";
+      cfg.numrecongs_def["en_US"][2] = "number 2";
+      cfg.numrecongs_def["en_US"][3] = "number 3";
+      cfg.numrecongs_def["en_US"][4] = "number for";
+    }
+    if (!cfg.numrecongs_def["zh_TW"]) {
+      cfg.numrecongs_def["zh_TW"] = {};
+      cfg.numrecongs_def["zh_TW"][1] = "第一";
+      cfg.numrecongs_def["zh_TW"][2] = "第二";
+      cfg.numrecongs_def["zh_TW"][3] = "第三";
+      cfg.numrecongs_def["zh_TW"][4] = "第四";
+    }
     return cfg;
   }
   static fix(data:UserCfg) {
@@ -66,6 +84,8 @@ export class UserCfg{
     if (!data.likelist) data.likelist = {};
     if (!data.voices_def) data.voices_def = {};
     if (!data.voices_cfg) data.voices_cfg = {};
+    if (!data.recongs_def) data.recongs_def = {};
+    if (!data.numrecongs_def) data.numrecongs_def = {};
     if (!data.book_record) data.book_record = {};
   }
 }

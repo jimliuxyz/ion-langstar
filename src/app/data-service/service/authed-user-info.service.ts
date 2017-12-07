@@ -33,7 +33,7 @@ export class AuthedUserInfoService extends DataService{
     dac.accessPolicy = anonymous ? DataAccessPolicy.CACHE_ONLY : DataAccessPolicy.REMOTE_FIRST;
     
     res = await this.db.read(dac, [...TBLKEY.USERINFO, user.uid]);
-
+    
     if (!res.err && res.data) {
       //the source userinfo is from firebase, and res userinfo may come from local storage.
       if (user.uid !== res.data.uid) {
@@ -41,7 +41,7 @@ export class AuthedUserInfoService extends DataService{
       }
       this.data = res.data;
     }
-    else if (!res.err && res.data === null) {
+    else if ((!res.err && !res.data) || (anonymous && res.err)) {
       const create_res = await this.db.create(dac, [...TBLKEY.USERINFO, user.uid], user);
 
       if (!create_res.err) {
@@ -50,8 +50,9 @@ export class AuthedUserInfoService extends DataService{
       else
         throw new Error("create user failure!");
     }
-    else
+    else {
       this.data = null;  
+    }
 
     this.data = MiscFunc.clone(this.data);
     this.data$.next(this.data);

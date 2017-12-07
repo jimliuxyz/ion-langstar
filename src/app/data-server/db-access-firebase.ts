@@ -192,6 +192,6 @@ export class DbAccessFirebase{
     if (fnComplete)
       await fnComplete(err, completed, finalData);  
 
-    return res.err ? err : new QResult(null, finalData);
+    return res.err ? res : new QResult(null, finalData);
   }
 }

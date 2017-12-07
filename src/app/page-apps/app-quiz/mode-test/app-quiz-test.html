@@ -1,0 +1,93 @@
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons start>
+            <button ion-button icon-only (click)="dismiss()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+        </ion-buttons>
+
+      <ion-title>
+          {{app.bookinfo?.title}}
+      </ion-title>
+  
+      <ion-buttons end>
+          <button ion-button icon-only (click)="openModal($event)">
+              <ion-icon name="options"></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+    <div class="wrapper">
+        <div #wordcard class="wordcard" [ngClass]="{'flipped': flipped}" (swipe)="swipeEvent($event)">
+                
+            <div *ngFor="let fb of ['front','back']">
+
+                <div [class]="fb" style="height:100%" *ngIf="!(fb=='front'?quizf:quizb)">
+                    <div class="out-of-quiz">{{'_MCQ.OUTOFQUIZ'|translate}}</div>
+                </div>
+
+                <div [class]="fb" *ngIf="(fb=='front'?quizf:quizb); let quizs">
+
+
+                <div style="float:right;">
+                    <button ion-button icon-only (click)="app.toggleLearned(ansquiz);player.next()">{{listtype==='learning'?'－':'＋'}}
+                    </button>
+                </div>
+
+
+                <h1 [ngClass]="{'onVoice': curKey==quizkey}" (click)="goKey(ansquiz, quizkey)">{{ansquiz[quizkey]}}</h1>
+
+
+                <div style="border-bottom: 1px dashed gray" *ngIf="app.cfgrec.expshow || app.cfgrec.tipshow">
+                        <p *ngIf="app.cfgrec.expshow" [ngClass]="{'onVoice': curKey=='exp'}" (click)="goKey(ansquiz, 'exp')">{{ansquiz.exp}}</p>
+                        
+                        <p *ngIf="app.cfgrec.tipshow" [ngClass]="{'onVoice': curKey=='tip'}" (click)="goKey(ansquiz, 'tip')">{{ansquiz.tip}}</p>
+                </div>
+
+                <div *ngFor="let quiz of quizs;let i = index">
+                    <p class="ansoption" (click)="goKey(quiz, anskey)">
+
+                            {{i+1}}. &nbsp; {{quiz[anskey]}}
+
+                            <span *ngIf="anscorrect===true && ansquiz===quizs[i]">&nbsp;<ion-icon class="opt-corrent" name="checkmark"></ion-icon></span>
+
+                    </p>
+                </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+  </ion-content>
+  
+<ion-footer>
+        <div class="ansinput">
+            <span><ion-icon [name]="anscorrect?'checkmark-circle':'help-circle'" [ngClass]="{'ans-correct': anscorrect, 'ans-error': !anscorrect}"></ion-icon></span>
+            &nbsp;{{recognans}}
+        </div>
+
+        <ion-range [(ngModel)]="playidx" [min]="1" [max]="player?.getLength()" pin="true" color="primary">
+    </ion-range>
+
+    <div class="player_wrap">
+        <div class="btn btnplay" (click)="again()">
+            <!-- <ion-icon name="mic" [color]="recogning?'Danger':'Light'"></ion-icon> -->
+            <ion-icon name="mic" [ngClass]="{'micOff': !recogning, 'micOn': recogning}"></ion-icon>
+
+        </div>
+        <div class="btn btnnext" (click)="player.next();player.play()">
+            <ion-icon name="skip-forward"></ion-icon>
+        </div>
+    </div>
+
+</ion-footer>
