@@ -18,13 +18,18 @@ xyz-book-card {
       }
     }
     .author-icon{
-      width:20px;
-      height:20px;
       border-radius: 50%;
-      display:inline;
-      vertical-align:middle;
-      margin-right: 4px;
-    }    
+      overflow: hidden;
+      width: 20px;
+      height: 20px;
+    }
+
+    span{
+      display: inline-flex;
+      line-height: 20px;
+      font-size: 1.5rem;
+      color: gray;
+    }
   }
 
 

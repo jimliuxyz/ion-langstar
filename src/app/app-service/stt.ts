@@ -237,6 +237,10 @@ export class STT{
 
     if (this.ionstt) {
       this.ionstt.stopListening();
+      if (this._onend) {
+        this._onend();  
+        this._onend = null;
+      }
     }
     else if (typeof SpeechRecognition != "undefined") {
       if (this.recognition) {
@@ -244,16 +248,15 @@ export class STT{
         this.recognition = undefined;
       }
     }
-
   }
 
-
+  private static _onend: () => void;
   private static async appStart(uri: string,
     onstart?: () => void,
     onend?: () => void,
     onresult?: (result: string) => void
   ) {
-
+    this._onend = onend;
     const opt = <SpeechRecognitionListeningOptions>{};
 
     console.log("STT:"+uri);
@@ -270,20 +273,21 @@ export class STT{
 
     if (onstart) onstart();
     await this.ionstt.startListening(opt)
-    .subscribe(
+      .take(1).toPromise()
+      .then(
       (matches: Array<string>) => {
         console.log(matches);
         for (const ans of matches) {
           if (onresult) onresult(ans);
         }
         if (onend) onend();
-      },
+      }
+    )
+    .catch(
       (onerror) => {
         console.log('error:', onerror);
         if (onend) onend();
-      }
-    )
-
+      })
   }
 
   private static recognition;

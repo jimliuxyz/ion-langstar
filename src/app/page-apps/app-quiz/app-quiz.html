@@ -2,7 +2,7 @@
 <ion-header>
         
   <ion-navbar>
-    <ion-title>{{app.bookinfo?.title}}</ion-title>
+    <ion-title>{{bookinfo?.title}}</ion-title>
     <ion-buttons end>
 
       <button *ngIf="!editable && editable !== undefined" ion-button icon-only (click)="serv.likeBook(bookuid)">
@@ -24,12 +24,12 @@
 
 
 <ion-content>
-    <ng-container *ngIf="app.author">
+    <ng-container *ngIf="author">
 
         
     <span style="display: inline-flex;padding:10px 10px 0px 10px;line-height: 20px;" (click)="navToListByAuthor()">
-            <img style='border-radius: 50%;    overflow: hidden;width: 20px;height: 20px;' [src]="app.author?app.author.photoURL:''">
-            &nbsp;{{app?.author?app.author.displayName:''}}
+            <img style='border-radius: 50%;    overflow: hidden;width: 20px;height: 20px;' [src]="author?author.photoURL:''">
+            &nbsp;{{author?author.displayName:''}}
         </span>
 
     <ion-grid>
@@ -63,7 +63,7 @@
   
   
 
-
+<!-- 
   <div [ngSwitch]="listtype" *ngIf="app&&app.quizs">
         <ng-container *ngFor="let casetype of ['learning','learned']">
         <ion-list  *ngSwitchCase="casetype">
@@ -90,59 +90,36 @@
           
         </ion-list>
     </ng-container>
-      </div>
+      </div> -->
 
-      
 
-<!--   
-  <div [ngSwitch]="listtype" *ngIf="app&&app.quizs">
-    <ion-list *ngSwitchCase="'learning'">
-
-        <ng-container *ngFor="let quiz of app.quizs">
-
-            <div class="card-wrapper" *ngIf="!app.isLearned(quiz)"  [ngClass]="{'gofade':goFade(quiz)}">
-
-                <ion-card>
-                    <ion-item>
-                        <button ion-button icon-only (click)="toggleLearned(quiz);">
-                                －
-                          </button>
-                        <h1 (click)="app.speak(quiz, 'q')">{{quiz.q}}</h1>
-                        <p>{{quiz.a}} | 
-                        {{quiz.exp}} | 
-                        {{quiz.tip}}</p>
-                    </ion-item>
-                </ion-card>
-            
-            </div>
-            
+      <div *ngIf="app&&app.quizs">
+            <ng-container *ngFor="let casetype of ['learning','learned']">
+            <ion-list [ngClass]="{'list-hidden':listtype!==casetype}">
+        
+                <ng-container *ngFor="let quiz of (casetype=='learning'?app.learning:app.learned)">
+        
+                    <div class="card-wrapper" [ngClass]="{'gofade':goFade(quiz)}">
+        
+                        <ion-card>
+                            <ion-item>
+                                <button ion-button icon-only (click)="toggleLearned(quiz);">
+                                        {{casetype=='learning'?'－':'＋'}}
+                                  </button>
+                                <h1 (click)="app.speak(quiz, 'q')">{{quiz.q}}</h1>
+                                <p>{{quiz.a}} | 
+                                {{quiz.exp}} | 
+                                {{quiz.tip}}</p>
+                            </ion-item>
+                        </ion-card>
+                    
+                    </div>
+                    
+                </ng-container>
+              
+            </ion-list>
         </ng-container>
-      
-    </ion-list>
-  
-    <ion-list *ngSwitchCase="'learned'">
-            
-            <ng-container *ngFor="let quiz of app.quizs">
-    
-                <div class="card-wrapper" *ngIf="app.isLearned(quiz)"  [ngClass]="{'gofade':goFade(quiz)}">
-    
-                    <ion-card>
-                        <ion-item>
-                            <button ion-button icon-only (click)="toggleLearned(quiz);">
-                                ＋
-                              </button>
-                            <h1>{{quiz.q}}</h1>
-                            <p>{{quiz.a}} | 
-                            {{quiz.exp}} | 
-                            {{quiz.tip}}</p>
-                        </ion-item>
-                    </ion-card>
-                </div>
-                
-            </ng-container>
-    </ion-list>
-
-  </div> -->
+          </div>
 
 
 </ng-container>

@@ -1,5 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController, Content, ViewController, Platform } from 'ionic-angular';
+import { Component, ViewChild, ElementRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { IonicPage, NavController, NavParams,ModalController, Content, ViewController, Platform, LoadingController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app-service/app-service';
 import { MiscFunc } from '../../app-service/misc';
@@ -15,6 +15,8 @@ import { BookListPage } from '../../pages/book-list/book-list';
 import { AppQuizSpeak } from './mode-speak/app-quiz-speak';
 import { AppQuizTest } from './mode-test/app-quiz-test';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
+import { BookInfo, UserInfo } from '../../data-service/models';
+import { Subscription } from 'rxjs';
 
 @IonicPage({
   segment:'app-quiz',
@@ -23,12 +25,13 @@ import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
 @Component({
   selector: 'app-quiz',
   templateUrl: 'app-quiz.html',
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppQuizPage {
+export class AppQuizPage implements OnDestroy {
   readonly listtype = "learning";
   readonly bookuid: string;
 
-  constructor(public platform:Platform, public modalCtrl: ModalController, public serv: AppService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
+  constructor(public platform:Platform, public modalCtrl: ModalController, public loadingCtrl: LoadingController, public serv: AppService, public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService) {
 
     let urlParams = MiscFunc.getUrlParams();
     urlParams["bookuid"] = "p0a6ypg9bxrg";
@@ -43,48 +46,47 @@ export class AppQuizPage {
 
   protected app: AppQuizService;
   protected editable;
+  protected bookinfo: BookInfo;
+  protected author: UserInfo;
 
-  // async ionViewCanEnter() {
-  //   try {
-  //     await this.serv.ready$;
-  //     this.app = new AppQuizService(this.serv, this.bookuid);
-      
-  //     this.app.init();
-
-  //     this.app.ready$.then(async (ready) => {
-  //       if (!ready) this.navCtrl.pop();
-  //       const user = await this.serv.ser_user.data$.take(1).toPromise();
-  //       this.editable = (user.uid === this.app.author.uid);    
-        
-  //       if (!this.editable) {
-  //         this.serv.viewBook(this.bookuid);
-  //       }
-  //     })
-  //     return true;
-  //   }
-  //   catch (error) {
-  //     console.error(error);
-  //     return false;
-  //   }
-  // }
-
-
+  private subs: Subscription;
 
   async ionViewCanEnter() {
+    if (this.app) return;
+
+    let loading = this.loadingCtrl.create({
+      spinner: 'circles',
+      content: 'Please wait...'
+    });
+    loading.present();
 
     try {
+      await this.serv.ready$;
       this.app = new AppQuizService(this.serv, this.bookuid);
-      if (!await this.app.init()) {
-        return await this.serv.pageErrGoBack();
-      };
 
-      const user = await this.serv.ser_user.data$.take(1).toPromise();
-      this.editable = (user.uid === this.app.author.uid);
+      setTimeout(async () => {
+        if (!await this.app.init()) {
+          loading.dismiss();
+          return await this.serv.pageErrGoBack();
+        };
 
-      if (!this.editable) {
-        this.serv.viewBook(this.bookuid);
-      }
-      // this.linkToMode("test");
+        const user = await this.serv.ser_user.data$.take(1).toPromise();
+        this.editable = (user.uid === this.app.author.uid);
+
+        if (!this.editable) {
+          this.serv.viewBook(this.bookuid);
+        }
+        loading.dismiss();
+        // this.linkToMode("test");
+      }, 300);
+
+      this.subs = BookInfoService.get(this.bookuid).data$.subscribe(async (bookinfo) => {
+        this.bookinfo = bookinfo;
+        if (bookinfo) {
+          this.author = await UserInfoService.get(bookinfo.author_uid).data$.take(1).toPromise();
+        }
+      });
+
       return true;
     }
     catch (error) {
@@ -94,8 +96,12 @@ export class AppQuizPage {
   }
 
 
-  ionViewCanLeave() {
+  ngOnDestroy() {
     this.app.uninit();
+    if (this.subs) {
+      this.subs.unsubscribe();
+      this.subs = null;
+    }
   }
 
   //---
@@ -139,30 +145,8 @@ export class AppQuizPage {
       this.swithing[quiz.uid] = false;
       this.app.toggleLearned(quiz);
     }, 500)
-  }    
+  }
 
-
-
-  // commitQuizRec(quizuid:string) {
-  //   this.serv.w_usercfg.commitBookRec(this.bookuid, quizuid);
-  // }
-  // commitCfgRec() {
-  //   this.serv.w_usercfg.commitBookRec(this.bookuid, "cfg");
-  // }
 
 }
 
-
-export class CFGREC{
-  navoice: string;
-  tavoice: string;
-  random = false;
-  qcnt = 1;
-  qshow = true;
-  acnt = 1;
-  ashow = true;
-  expcnt = 1;
-  expshow = true;
-  tipcnt = 1;
-  tipshow = true;
-}

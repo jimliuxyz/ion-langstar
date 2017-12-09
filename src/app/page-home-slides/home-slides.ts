@@ -29,8 +29,8 @@ const SLIDECLS: any[] = [
   [SlideCollection, null],
   [SlideCloud, null],
   [SlideCreation, null],
-  [LocaldbViewer, null],
-  [NewsComponent, null],
+  // [LocaldbViewer, null],
+  // [NewsComponent, null],
   [SlideCredit, null],
 ]
 
@@ -46,7 +46,6 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
   @ViewChild('SwipedTabsSlider') SwipedTabsSlider: Slides ;
   @ViewChild('SlideTpl', { read: ViewContainerRef }) SlideTpl: ViewContainerRef;
 
-  readytest = "not ready";
   SwipedTabsIndicator: any = null;
   slides: SlidePage[] = [];
   sidx: number = 0;
@@ -56,9 +55,7 @@ export class HomeSlidesPage implements AfterViewInit,AfterViewChecked{
   }
 
   async ionViewCanEnter(): Promise<any>{
-    
     await this.serv.ready$;
-    this.readytest = "ready";
     return true;
   }
 

@@ -16,10 +16,24 @@ app-quiz {
     -o-transition: max-height .3s ease;
     transition: max-height .3s ease;
   }
+  ion-list{
+    position: absolute;
+    width: 100%;
+  }
+    .list-hidden{
+      visibility: hidden;
+      // display:none;
+    }
 
   .card-wrapper{
-    // overflow: hidden;
-    max-height: 150px;
+    overflow: hidden;
+    max-height: 120px;
+
+    .card-ios{
+      margin: 6px 12px;
+    }
+
+
     user-select: text;
     h1{
       font-size: 4rem !important;
@@ -193,13 +207,12 @@ app-quiz-play,app-quiz-speak,app-quiz-test{
       margin: 0px;
       
       user-select: text;
-      font-size: 3.5rem !important;
-      font-weight: 600 !important;
+      font-size: 2.2rem !important;
+      font-weight: 900 !important;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      // white-space: nowrap;
 
       margin-top: 0px;
-
       transition: color 0.3s ease;
     }
 

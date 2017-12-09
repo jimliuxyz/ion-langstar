@@ -189,6 +189,7 @@ export class AppQuizService{
       delete this.cfgrec.learned[quiz.uid];
     else
       this.cfgrec.learned[quiz.uid] = true;
+    this.serv.ser_cfg.save(this.ucfg);
 
     this.arrangeLearned();
   }

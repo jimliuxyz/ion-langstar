@@ -171,7 +171,6 @@ export class TTS{
   }
 
   private static appSpeak(text: string, cfg: VoiceCfg, onstart?: () => void, onend?: () => void) {
-    console.log("appSpeak")
 
     let opt = <TTSOptions>{};
     opt.text = text;

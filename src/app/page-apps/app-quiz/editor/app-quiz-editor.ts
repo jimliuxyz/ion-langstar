@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController, Content, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController, Content, ViewController, NavOptions } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../../app-service/app-service';
 import { Mocks } from '../../../data-service/mocks';
@@ -92,7 +92,9 @@ export class AppQuizEditorPage {
   //------
 
   protected openModal(cmd: string) {
-    let modal = this.modalCtrl.create(AppQuizEditorSetting, { bookuid:this.bookuid });
+    let modal = this.modalCtrl.create(AppQuizEditorSetting, { bookuid: this.bookuid });
+    
+    // let opt = <NavOptions>{};
     modal.present();
   }
   

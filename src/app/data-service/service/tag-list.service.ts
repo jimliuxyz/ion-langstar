@@ -139,9 +139,10 @@ export class TagListService extends DataService{
   }
 
   async listAsStr() {
-    await this.data$.take(1).toPromise();
-    
+    if (this.tagarr.length == 0)
+      await this.init();
+    // await this.reset();
+
     return this.tagarr.map(data => data.name);
   }
-  
 }

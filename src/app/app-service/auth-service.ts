@@ -82,6 +82,9 @@ export class AuthService {
       if (socialtype === "google") {
         user = await this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
       }
+      if (socialtype === "facebook") {
+        user = await this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+      }
     }
   }
 
@@ -98,6 +101,10 @@ export class AuthService {
   private firebase_loginWithToken(idToken:string, socialtype: string): Promise<any> {
     if (socialtype === "google") {
       const googleCredential = firebase.auth.GoogleAuthProvider.credential(idToken);
+      return firebase.auth().signInWithCredential(googleCredential)
+    }
+    if (socialtype === "facebook") {
+      const googleCredential = firebase.auth.FacebookAuthProvider.credential(idToken);
       return firebase.auth().signInWithCredential(googleCredential)
     }
   }

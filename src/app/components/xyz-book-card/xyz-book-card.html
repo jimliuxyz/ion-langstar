@@ -6,8 +6,8 @@
         {{bookinfo.title}}
         <span>{{bookinfo.qnum}}</span>
       </h1>
-        
-      <p (click)="navToListByAuthor()"><img class="author-icon" [src]="author.photoURL">{{author.displayName}}</p>
+
+      <span (click)="navToListByAuthor()"><img class="author-icon" [src]="author.photoURL">&nbsp;{{author.displayName}}</span>
 
       <ng-content item-right></ng-content>
 

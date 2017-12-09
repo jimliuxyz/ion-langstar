@@ -3,7 +3,7 @@
   <ion-navbar>
 
     <ion-title *ngIf="slides.length>0">
-      {{slides[sidx].title | translate}} {{readytest}}
+      {{slides[sidx].title | translate}}
     </ion-title>
     <ion-buttons end *ngIf="(serv.ser_user.data$|async) as user">
 

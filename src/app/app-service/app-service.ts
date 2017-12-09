@@ -77,7 +77,6 @@ export class AppService {
 
     this.insomnia.allowSleepAgain();
 
-
     //set AdMod
     const bannerConfig: AdMobFreeBannerConfig = {
       bannerAtTop: !true,
@@ -93,7 +92,7 @@ export class AppService {
     this.admobFree.banner.prepare()
       .then(() => {
         console.log("banner Ad is ready")
-        
+        this.admobFree.banner.show();
          // if we set autoShow to false, then we will need to call the show method here
        })
        .catch(e => console.log(e));
@@ -162,6 +161,7 @@ export class AppService {
       
     //if the page nav from this app
     if (this.navCtrl.length()) {
+      this.navCtrl.pop();
       return false;
     }
     //if the page directly linked from another domain
@@ -181,6 +181,7 @@ export class AppService {
   private allownav = true;
   navTo(where: (Page|string), params?: any, opts?:NavOptions,doneFn?:TransitionDoneFn) {
     if (!where || !this.allownav) {
+      console.log("nav skip : " + where)
       if (doneFn) doneFn(false, false);
       return;
     }

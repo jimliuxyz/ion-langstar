@@ -39,17 +39,19 @@
                 </div>
 
 
-                <h1 [ngClass]="{'onVoice': curKey==quizkey}" (click)="goKey(ansquiz, quizkey)">{{ansquiz[quizkey]}}</h1>
+                <h1 [ngClass]="{'onVoice': true}" (click)="goKey(ansquiz, quizkey)">{{ansquiz[quizkey]}}</h1>
 
 
-                <div style="border-bottom: 1px dashed gray" *ngIf="app.cfgrec.expshow || app.cfgrec.tipshow">
+                <div *ngIf="app.cfgrec.expshow || app.cfgrec.tipshow">
                         <p *ngIf="app.cfgrec.expshow" [ngClass]="{'onVoice': curKey=='exp'}" (click)="goKey(ansquiz, 'exp')">{{ansquiz.exp}}</p>
                         
                         <p *ngIf="app.cfgrec.tipshow" [ngClass]="{'onVoice': curKey=='tip'}" (click)="goKey(ansquiz, 'tip')">{{ansquiz.tip}}</p>
                 </div>
 
+                <div style="border-bottom: 1px dashed gray" ></div>
+
                 <div *ngFor="let quiz of quizs;let i = index">
-                    <p class="ansoption" (click)="goKey(quiz, anskey)">
+                    <p class="ansoption" (click)="clickOpt(i)">
 
                             {{i+1}}. &nbsp; {{quiz[anskey]}}
 

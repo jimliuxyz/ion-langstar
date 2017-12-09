@@ -55,6 +55,7 @@ export class AppQuizTest implements AfterViewInit, OnDestroy {
   protected recognans = "...";
   protected anscorrect = false;
   protected exit = false;
+  private checkAns;
   _voiceDone(quiz: QstBookItem, key:string) {
     this.anscorrect = false;
     let done = false;
@@ -62,6 +63,7 @@ export class AppQuizTest implements AfterViewInit, OnDestroy {
     const obs = new Subject<string>();
     obs.debounceTime(1500).take(1).subscribe((result) => {
       if (done || this.exit) return;
+      
       this.player.recogn_stop();
       this.anscorrect = false;
       this.recognans = "..."
@@ -71,6 +73,57 @@ export class AppQuizTest implements AfterViewInit, OnDestroy {
       done = true;
     })
 
+    const checkAns = (result, byClick = false) => {
+      if (byClick && !this.anscorrect)
+        done = false;
+      if (done || this.exit) return;
+      
+      const res = result
+      .replace(this.reg1, "")
+      .replace(this.reg2, "")
+      .replace(this.reg3, "")
+      .toLowerCase().trim();
+
+      const ans = quiz[this.anskey]
+      .replace(this.reg1, "")
+      .replace(this.reg2, "")
+      .replace(this.reg3, "")
+      .toLowerCase().trim();
+      
+      const ansnum = this.player.getRecognNum(res, this.anskey);
+
+      this.recognans = result + " " + (ansnum >= 0 ? "(" + ansnum + ")" : "");
+      
+      console.log(res + " ? " + ans)
+      // console.log("ansnum ? " + ansnum)
+
+      if (res.indexOf(ans) >= 0 || this.quizs[ansnum - 1] === this.ansquiz) {
+        this.player.recogn_stop();
+        this.anscorrect = true;
+        done = true;
+
+        setTimeout(() => {
+          if (quiz != this.ansquiz) return;
+          this.app.speak(this.ansquiz, this.anskey,
+            () => { },
+            () => { 
+              setTimeout(() => {
+                if (quiz != this.ansquiz) return;
+                this.anscorrect = false;
+                this.recognans = "..."
+                this.player.next();
+                this.player.play();
+              }, 1500);                
+            }
+          )
+        }, 500);
+
+      }
+      else
+        obs.next(result);
+    };
+    this.checkAns = checkAns;
+
     
     this.player.recogn_start(quiz, this.anskey,
       () => {
@@ -79,54 +132,14 @@ export class AppQuizTest implements AfterViewInit, OnDestroy {
         this.zone.run(() => { this.recogning = false; });
     }, (result) => {
         this.zone.run(() => {
-          if (done || this.exit) return;
-
-          const res = result
-          .replace(this.reg1, "")
-          .replace(this.reg2, "")
-          .replace(this.reg3, "")
-          .toLowerCase().trim();
-
-          const ans = quiz[this.anskey]
-          .replace(this.reg1, "")
-          .replace(this.reg2, "")
-          .replace(this.reg3, "")
-          .toLowerCase().trim();
-          
-          const ansnum = this.player.getRecognNum(res, this.anskey);
-
-          this.recognans = result + " " + (ansnum >= 0 ? "(" + ansnum + ")" : "");
-          
-          // console.log(res + " ? " + ans)
-          // console.log("ansnum ? " + ansnum)
-
-          if (res.indexOf(ans) >= 0 || this.quizs[ansnum - 1] === this.ansquiz) {
-            this.player.recogn_stop();
-            this.anscorrect = true;
-            done = true;
-
-            setTimeout(() => {
-              if (quiz != this.ansquiz) return;
-              this.app.speak(this.ansquiz, this.anskey,
-                () => { },
-                () => { 
-                  setTimeout(() => {
-                    if (quiz != this.ansquiz) return;
-                    this.anscorrect = false;
-                    this.recognans = "..."
-                    this.player.next();
-                    this.player.play();
-                  }, 1500);                
-                }
-              )
-            }, 500);
-
-          }
-          else
-            obs.next(result);
+          checkAns(result);
         });
     });
     
+  }
+
+  clickOpt(ansidx:number) {
+    this.checkAns(this.quizs[ansidx][this.anskey], true);
   }
 
   again() {
@@ -150,10 +163,8 @@ export class AppQuizTest implements AfterViewInit, OnDestroy {
     });
   }
 
-  curKey: string;
   _newQuizKey(quiz: QstBookItem, key: string) {
     this.zone.run(() => {
-      this.curKey = key;
       this.quizkey = key;
       this.anskey = this.quizkey === "a" ? "q" : "a";
     });
