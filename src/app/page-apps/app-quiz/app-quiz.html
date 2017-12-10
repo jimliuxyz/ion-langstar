@@ -101,8 +101,6 @@
         
                     <div class="card-wrapper" [ngClass]="{'gofade':goFade(quiz)}">
         
-                        <ion-card>
-                            <ion-item>
                                 <button ion-button icon-only (click)="toggleLearned(quiz);">
                                         {{casetype=='learning'?'－':'＋'}}
                                   </button>
@@ -110,10 +108,7 @@
                                 <p>{{quiz.a}} | 
                                 {{quiz.exp}} | 
                                 {{quiz.tip}}</p>
-                            </ion-item>
-                        </ion-card>
-                    
-                    </div>
+                            </div>
                     
                 </ng-container>
               

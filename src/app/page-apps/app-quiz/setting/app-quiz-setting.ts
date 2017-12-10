@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavParams, ModalController, ViewController, AlertController } from 'ionic-angular';
 import { AppService } from '../../../app-service/app-service';
 import { MiscFunc } from '../../../app-service/misc';
@@ -20,7 +20,7 @@ export class AppQuizSetting {
   navoice: VoiceCfg;
   tavoice: VoiceCfg;
 
-  constructor(public params: NavParams, public viewCtrl: ViewController, public serv: AppService, public alertCtrl:AlertController, public translate: TranslateService
+  constructor(public params: NavParams, public viewCtrl: ViewController, public serv: AppService, public alertCtrl:AlertController, public translate: TranslateService, public zone: NgZone
   ) {
     this.app = params.get('app');
   }
@@ -53,9 +53,21 @@ export class AppQuizSetting {
     const cancelText = await this.translate.get("CANCEL").toPromise();
     const okayText = await this.translate.get("OKAY").toPromise();
 
+    let old_txet = this.app.ucfg.numrecongs_def[lang] ? this.app.ucfg.numrecongs_def[lang][num] : undefined;
+    let new_txet;
+
+    let getMsgText = () => {
+      let msg = "";
+      if (old_txet)
+        msg += "old_txet:" + old_txet;
+      msg += (old_txet ? "<br>" : "") + "new_txet:" + (new_txet ? new_txet : "?");
+      
+      return msg;
+    }
+    
     let alert = this.alertCtrl.create({
       title: titleText,
-      message: "...",
+      message: getMsgText(),
       buttons: [
         {
           text: cancelText,
@@ -68,9 +80,11 @@ export class AppQuizSetting {
           text: okayText,
           handler: () => {
             this.stt.stop();
+            if (!new_txet) return;
             if (!this.app.ucfg.numrecongs_def[lang])
-              this.app.ucfg.numrecongs_def[lang] = {};  
-            this.app.ucfg.numrecongs_def[lang][num] = alert.data.message;
+              this.app.ucfg.numrecongs_def[lang] = {};
+            
+            this.app.ucfg.numrecongs_def[lang][num] = new_txet;
           }
         }
       ]
@@ -82,7 +96,10 @@ export class AppQuizSetting {
       () => { },
       () => { /*alert.dismiss();*/ },
       (result: string) => {
-        alert.data.message = result;
+        this.zone.run(() => {
+          new_txet = result;
+          alert.data.message = getMsgText();
+        })
       });
   }
 

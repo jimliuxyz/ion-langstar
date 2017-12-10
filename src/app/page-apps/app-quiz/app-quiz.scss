@@ -27,17 +27,25 @@ app-quiz {
 
   .card-wrapper{
     overflow: hidden;
-    max-height: 120px;
+    max-height: 100px;
+    position: relative;
+    margin: 6px 6px;
+    padding: 0px 6px;
 
-    .card-ios{
-      margin: 6px 12px;
-    }
-
+    background: rgb(245, 245, 245);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 
     user-select: text;
     h1{
+      margin: 0px 4px !important;
       font-size: 4rem !important;
       font-weight: 600 !important;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    p{
+      margin: 4px !important;
+      color:gray;
       text-overflow: ellipsis;
       white-space: nowrap;
     }

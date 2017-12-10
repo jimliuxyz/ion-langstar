@@ -219,7 +219,7 @@ export class AppQuizPlayerService {
 
     let spell;
     if (this.app.cfgrec.spell && key === 'q')
-      spell = " ... " + text.replace(" ", ". ").split("").join(".");
+      spell = " ... " + text.replace(" ", "- ").split("").join("-");
 
     const vcfg = await this.app.serv.getVoiceCfg(native ? this.app.cfgrec.navoice : this.app.cfgrec.tavoice);
 

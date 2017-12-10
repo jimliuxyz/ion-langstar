@@ -144,7 +144,7 @@ export class AppQuizPage implements OnDestroy {
     setTimeout(() => {
       this.swithing[quiz.uid] = false;
       this.app.toggleLearned(quiz);
-    }, 500)
+    }, 300)
   }
 
 
