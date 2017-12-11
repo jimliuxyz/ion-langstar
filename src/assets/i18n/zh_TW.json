@@ -40,7 +40,7 @@
     "DELBOOK": "確定要刪除這本書？",
     "DISLIKEBOOK": "確定不收藏這本書？",
     "OVERWRITEBOOK": "是否以此內容作為正確版本？",
-    "ANSNUMRECOGN": "念出供識別的答案,例如\"No.1\""
+    "ANSNUMRECOGN": "念出供識別的答案,例如\"第一\""
   },
 
   "_TOAST":{

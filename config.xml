@@ -3,7 +3,7 @@
     <name>LangStar</name>
     <description>LangStar</description>
     <author email="jimliuxyz@gmail.com" href="http://langstar.com.tw/">LangStar</author>
-    <content original-src="index.html" src="http://192.168.1.102:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
