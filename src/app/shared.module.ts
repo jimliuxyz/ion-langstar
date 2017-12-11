@@ -5,7 +5,8 @@ import { AngularSocialAuthModule } from 'angular-social-auth';
 
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
- 
+
+//https://github.com/abacritt/angular4-social-login/blob/master/README-AOT.md
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -31,7 +32,8 @@ import { XyzTagHeader } from './components/xyz-tag-header/xyz-tag-header';
   imports: [CommonModule,
     IonicModule,
     AngularSocialAuthModule,
-    SocialLoginModule.initialize(config)],
+    // SocialLoginModule.initialize(config)
+  ],
   declarations: [
     XyzNpButton, XyzYnButton, XyzBookCard, XyzTagHeader
   ],

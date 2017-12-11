@@ -79,7 +79,7 @@
     <allow-navigation href="http://192.168.1.102:8101" />
     <allow-navigation href="http://192.168.1.101:8100" />
     <chcp>
-        <config-file url="http://169.254.80.80:3000/updates/chcp.json" />
+        <config-file url="http://192.168.1.102:8100/updates/chcp.json" />
         <auto-download enabled="false" />
         <auto-install enabled="false" />
     </chcp>
