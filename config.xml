@@ -78,8 +78,15 @@
     <allow-navigation href="http://192.168.1.102:8100" />
     <allow-navigation href="http://192.168.1.102:8101" />
     <allow-navigation href="http://192.168.1.101:8100" />
+    <chcp>
+        <config-file url="http://169.254.80.80:3000/updates/chcp.json" />
+        <auto-download enabled="false" />
+        <auto-install enabled="false" />
+    </chcp>
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.5.1" />
+    <plugin name="cordova-hot-code-push-local-dev-addon" spec="^0.4.2" />
+    <plugin name="cordova-hot-code-push-plugin" spec="^1.5.3" />
     <plugin name="cordova-plugin-admob-free" spec="^0.12.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-googleplus" spec="^5.1.1">

@@ -37,6 +37,8 @@
         "angularfire2": "^5.0.0-rc.3",
         "cordova-admob-sdk": "^0.12.0",
         "cordova-android": "^6.2.3",
+        "cordova-hot-code-push-local-dev-addon": "^0.4.2",
+        "cordova-hot-code-push-plugin": "^1.5.3",
         "cordova-ios": "^4.5.1",
         "cordova-plugin-admob-free": "^0.12.1",
         "cordova-plugin-device": "^1.1.4",
@@ -81,7 +83,9 @@
             "cordova-plugin-speechrecognition": {},
             "cordova-plugin-tts": {},
             "cordova-plugin-insomnia": {},
-            "cordova-plugin-admob-free": {}
+            "cordova-plugin-admob-free": {},
+            "cordova-hot-code-push-plugin": {},
+            "cordova-hot-code-push-local-dev-addon": {}
         },
         "platforms": [
             "android",

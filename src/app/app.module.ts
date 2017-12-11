@@ -48,7 +48,7 @@ import { AdMobFree } from '@ionic-native/adMob-Free';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/img/i18n', '.json');
 }
 
 @NgModule({

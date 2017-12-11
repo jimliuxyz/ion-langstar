@@ -1,0 +1,24 @@
+{
+  "SAYHI": "Hello～{{firstname}}～",
+  
+  "SETTING":"Setting",
+  "LOGIN":"Login",
+  "LOGOUT":"Logout",
+  "OKAY":"Okay",
+  "CANCEL":"Cancel",
+  "CLOSE":"Close",
+  "CREDIT":"Credit",
+  
+  "_SETTINGS": {
+    "TITLE": "Setting",
+    "LANG":"Language",
+    "NALANG":"Native Language"
+  },
+  "_NEWS": {
+    "TITLE": "News"
+  },
+  "_CREDIT": {
+    "TITLE": "Credit"
+  }
+
+}
