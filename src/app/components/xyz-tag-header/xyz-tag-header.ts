@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AppService } from '../../app-service/app-service';
 import { BookListPage } from '../../pages/book-list/book-list';
+import { PageLink } from '../../app-service/define';
 
 @Component({
   selector: 'xyz-tag-header',
@@ -18,6 +19,6 @@ export class XyzTagHeader {
 
   navToListByTag() {
     if (!this.nolink)
-      this.serv.navTo(BookListPage, {langpair:this.langpair, bytag:this.tagname})
+      this.serv.navTo(PageLink.BookListPage, {langpair:this.langpair, bytag:this.tagname})
   }
 }

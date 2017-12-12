@@ -1,6 +1,4 @@
 {
-  "SAYHI": "你好啊～{{firstname}}～",
-  
   "SETTING":"設定",
   "LOGIN":"登入",
   "LOGOUT":"登出",
@@ -28,6 +26,10 @@
   "LEARNED": "已學會",
   "ANSNUMRECOGN": "答題識別",
 
+  "_UPGRADE": {
+    "TITLE":"有新版本囉!",
+    "MSG":"是否現在更新?"
+  },
   
   "_SETTINGS": {
     "TITLE":"設定",

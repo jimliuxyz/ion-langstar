@@ -46,9 +46,9 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Insomnia } from '@ionic-native/insomnia';
 import { AdMobFree } from '@ionic-native/adMob-Free';
 
-
+console.log("X1")
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/img/i18n', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({

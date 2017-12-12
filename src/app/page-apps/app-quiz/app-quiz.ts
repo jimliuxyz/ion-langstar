@@ -17,6 +17,7 @@ import { AppQuizTest } from './mode-test/app-quiz-test';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
 import { BookInfo, UserInfo } from '../../data-service/models';
 import { Subscription } from 'rxjs';
+import { PageLink } from '../../app-service/define';
 
 @IonicPage({
   segment:'app-quiz',
@@ -127,11 +128,11 @@ export class AppQuizPage implements OnDestroy {
   }
 
   navToEditor() {
-    this.serv.navTo(AppQuizEditorPage, { bookuid: this.bookuid });
+    this.serv.navTo(PageLink.AppQuizEditorPage, { bookuid: this.bookuid });
   }
 
   navToListByAuthor() {
-    this.serv.navTo(BookListPage, { byauthor: this.app.author.uid })
+    this.serv.navTo(PageLink.BookListPage, { byauthor: this.app.author.uid })
   }
   
   private swithing = {};

@@ -14,6 +14,7 @@ import { BookInfoSet } from '../../data-service/service/book-list.service';
 import { UserInfo, BookType, BookInfo } from '../../data-service/models';
 import { SlidePage } from '../home-slides';
 import { ToastController } from 'ionic-angular';
+import { PageLink } from '../../app-service/define';
 
 
 @Component({
@@ -72,7 +73,7 @@ export class SlideCreation implements SlidePage {
 
     const uid = await this.serv.newBook(type);
     if (uid) {
-      await this.serv.navTo(AppQuizEditorPage, { bookuid: uid });
+      await this.serv.navTo(PageLink.AppQuizEditorPage, { bookuid: uid });
       this.doRefresh(null);
     }
     else {

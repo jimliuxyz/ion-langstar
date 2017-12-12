@@ -55,25 +55,29 @@ export class AppService {
     private ionstt: SpeechRecognition,
     private loadCtrl: LoadingController,
     private alertCtrl: AlertController,
+    // private navCtrl: NavController,
+    private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private storage: Storage,
     private translate: TranslateService,
     private auth: AuthService,
     private insomnia: Insomnia,
     private admobFree: AdMobFree) {
-    
-    this.init();
-    
+    // this._init();
   }
 
   private navCtrl: NavController;
-  private modalCtrl: ModalController;
-  setNav(navCtrl: NavController, modalCtrl: ModalController) {
+  // private modalCtrl: ModalController;
+  public async init(navCtrl: NavController, modalCtrl: ModalController) {
     this.navCtrl = navCtrl;
-    this.modalCtrl = modalCtrl;
+    // this.modalCtrl = modalCtrl;
+
+    MiscFunc.init(this.platform);
+    await this._init();
+    console.log("App Service Ready...");
   }
 
-  private async init() {
+  private async _init() {
 
     this.insomnia.allowSleepAgain();
 

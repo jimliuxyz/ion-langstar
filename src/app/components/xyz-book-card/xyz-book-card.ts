@@ -4,6 +4,7 @@ import { AppService } from '../../app-service/app-service';
 import { AppQuizPage } from '../../page-apps/app-quiz/app-quiz';
 import { UserInfo, BookInfo } from '../../data-service/models';
 import { BookListPage } from '../../pages/book-list/book-list';
+import { PageLink } from '../../app-service/define';
 
 @Component({
   selector: 'xyz-book-card',
@@ -18,10 +19,10 @@ export class XyzBookCard{
   }
 
   navTo() {
-    this.serv.navTo(AppQuizPage, {bookuid:this.bookinfo.uid})
+    this.serv.navTo(PageLink.AppQuizPage, {bookuid:this.bookinfo.uid})
   }
 
   navToListByAuthor() {
-    this.serv.navTo(BookListPage, { byauthor: this.author.uid })
+    this.serv.navTo(PageLink.BookListPage, { byauthor: this.author.uid })
   }
 }
