@@ -2,18 +2,36 @@ import * as firebase from 'firebase/app';
 import { QResult, STRKEY } from '../data-service';
 import { DBQuery } from './define';
 import { QERR } from '../data-service/define';
+import { Subject } from 'rxjs';
 
 const DBTIMEOUT = 3000;
 
 export class DbAccessFirebase{
 
+  private acttime = 0;
+  private disconn_delay = 10 * 1000;
+  private actobs = new Subject();
+
   constructor() {
     // this.clear();
+    /**
+     * go offline after N sec silent.
+     */
+    this.actobs.debounceTime(this.disconn_delay).subscribe(() => {
+      // console.log("...goOffline");
+      firebase.database().goOffline();
+    });
   }
 
   private async clear() {
     return await firebase.database().ref("/").remove();
   }
+
+  private async tryconn() {
+    this.actobs.next();
+    await firebase.database().goOnline();
+  }
+
 
   /**
    * catch promise timeout / network offline.
@@ -50,7 +68,8 @@ export class DbAccessFirebase{
   }  
 
 
-  private appendQuery(ref: firebase.database.Reference, query?: DBQuery):firebase.database.Query {
+  private appendQuery(ref: firebase.database.Reference, query?: DBQuery): firebase.database.Query {
+    
     if (query) {
       let que = ref.orderByChild(query.orderBy);
 
@@ -94,10 +113,14 @@ export class DbAccessFirebase{
   }
 
   async getVer(path: string[]) {
+    await this.tryconn();
+    
     return await this.getData([...path, STRKEY.__ver]);
   }
 
   async newVer(path: string[]) {
+    await this.tryconn();
+    
     const res = await this.setData([...path, STRKEY.__ver], firebase.database.ServerValue.TIMESTAMP);
 
     if (!res.err) {
@@ -106,7 +129,9 @@ export class DbAccessFirebase{
     return res;
   }
 
-  async getData(path: string[], query?:DBQuery) {
+  async getData(path: string[], query?: DBQuery) {
+    await this.tryconn();
+    
     let ref = firebase.database().ref(path.join("/"));
     let que = this.appendQuery(ref, query);
     
@@ -124,6 +149,8 @@ export class DbAccessFirebase{
    * @param data 
    */
   async setData(path: string[], data: any) {
+    await this.tryconn();
+    
     if (!data) return this.delData(path);
     let ref = firebase.database().ref(path.join("/"));
 
@@ -150,6 +177,8 @@ export class DbAccessFirebase{
    * @param data 
    */
   async delData(path: string[]) {
+    await this.tryconn();
+    
     let ref = firebase.database().ref(path.join("/"));
 
     const res = await this.promiseTimeout(ref.set(null));
@@ -162,6 +191,8 @@ export class DbAccessFirebase{
    * @param data 
    */
   async transaction(path: string[], fnUpdate: any, fnComplete: any) {
+    await this.tryconn();
+    
     let ref = firebase.database().ref(path.join("/"));
     let err, completed, finalData;
 

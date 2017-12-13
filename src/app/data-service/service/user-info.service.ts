@@ -18,7 +18,7 @@ export class UserInfoService extends DataService{
     super();
   }
 
-  private static cache = new WeakCache<UserInfoService>();
+  private static cache = new WeakCache<UserInfoService>("UserInfoService", 500, 100);
   
   static get(useruid: string): UserInfoService {
     let data = this.cache.get(useruid);

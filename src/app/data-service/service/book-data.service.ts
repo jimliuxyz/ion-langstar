@@ -15,7 +15,7 @@ const dac = new DataAccessConfig("BookData", 500);
 export class BookDataService extends DataService{
   readonly data$: ReplaySubject<BookData> = new ReplaySubject(1);
   private data: BookData;
-  private static cache = new WeakCache<BookDataService>();
+  private static cache = new WeakCache<BookDataService>("BookDataService", 5, 0);
 
   private static mismatchBookDataOverwriteHandler: (bookuid: string) => Promise<boolean>;
   public static setHandler(mismatchBookDataOverwriteHandler: (bookuid: string) => Promise<boolean>)

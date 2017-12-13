@@ -46,7 +46,7 @@ export class BookInfoService extends DataService{
     return false;
   }
 
-  private static cache = new WeakCache<BookInfoService>("BookInfoService");
+  private static cache = new WeakCache<BookInfoService>("BookInfoService", 500, 100);
 
   static get(bookuid: string): BookInfoService {
     let data = this.cache.get(bookuid);

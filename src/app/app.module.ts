@@ -45,8 +45,9 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Insomnia } from '@ionic-native/insomnia';
 import { AdMobFree } from '@ionic-native/adMob-Free';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
-console.log("X1")
+console.log("COMPILE VER HINT : X")
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -91,7 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // NewpagePage
   ],
   providers: [
-    Network,Insomnia,AdMobFree,
+    Network,Insomnia,AdMobFree,GoogleAnalytics,
     TextToSpeech,SpeechRecognition,
     StatusBar,
     SplashScreen,

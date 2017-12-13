@@ -32,6 +32,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Insomnia } from '@ionic-native/insomnia';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 
 @Injectable()
@@ -62,7 +63,9 @@ export class AppService {
     private translate: TranslateService,
     private auth: AuthService,
     private insomnia: Insomnia,
-    private admobFree: AdMobFree) {
+    private admobFree: AdMobFree,
+    private ga: GoogleAnalytics
+  ) {
     // this._init();
   }
 
@@ -81,6 +84,16 @@ export class AppService {
 
     this.insomnia.allowSleepAgain();
 
+    this.ga.startTrackerWithId('UA-111165690-1')
+    .then(() => {
+      console.log('Google analytics is ready now');
+         this.ga.trackView('test');
+      // Tracker is ready
+      // You can now track pages or set additional information such as AppVersion or UserId
+    })
+    .catch(e => console.log('Error starting GoogleAnalytics', e));
+    
+
     //set AdMod
     const bannerConfig: AdMobFreeBannerConfig = {
       bannerAtTop: !true,
@@ -93,13 +106,13 @@ export class AppService {
     }
 
     this.admobFree.banner.config(bannerConfig);
-    this.admobFree.banner.prepare()
-      .then(() => {
-        console.log("banner Ad is ready")
-        this.admobFree.banner.show();
-         // if we set autoShow to false, then we will need to call the show method here
-       })
-       .catch(e => console.log(e));
+    // this.admobFree.banner.prepare()
+    //   .then(() => {
+    //     console.log("banner Ad is ready")
+    //     this.admobFree.banner.show();
+    //      // if we set autoShow to false, then we will need to call the show method here
+    //    })
+    //    .catch(e => console.log(e));
     
     //setup TTS / STT
     await TTS.appInit(this.platform, this.iontts);
@@ -137,8 +150,6 @@ export class AppService {
       if (user) {
         console.log("authedUser", user);
         this.ser_user.login(user);
-        console.log( 1 );
-        
       }
       else {
         throw new Error("nobody login!!!");

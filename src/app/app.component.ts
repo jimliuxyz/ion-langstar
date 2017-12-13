@@ -33,7 +33,7 @@ export class MyApp implements OnDestroy{
 
       this.serv.init(this.nav, modalCtrl);
       this.serv.ready$.then(async () => {
-        console.log("everything ready~2");
+        console.log("everything ready~");
 
         console.log(platform.url())
         if (platform.url().indexOf("#") <= 0) {
@@ -44,12 +44,14 @@ export class MyApp implements OnDestroy{
           this.nav.push(PageLink.HomeSlidesPage)
 
           statusBar.styleDefault();
-          splashScreen.hide();          
+          splashScreen.hide(); 
         }
 
         if (platform.is('cordova')) {
           window["thisRef"] = this;
-          this.fetchUpdate();
+          setTimeout(() => {
+            this.fetchUpdate();
+          }, 1000);
         }
 
       })

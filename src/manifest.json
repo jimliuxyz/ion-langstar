@@ -4,19 +4,19 @@
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/icon/LangStar-192.png",
+    "src": "assets/icon/webicon-192.png",
     "sizes": "192x192",
     "type": "image/png"
 }, {
-    "src": "assets/icon/LangStar-256.png",
+    "src": "assets/icon/webicon-256.png",
     "sizes": "256x256",
     "type": "image/png"
 }, {
-    "src": "assets/icon/LangStar-384.png",
+    "src": "assets/icon/webicon-384.png",
     "sizes": "384x384",
     "type": "image/png"
 }, {
-    "src": "assets/icon/LangStar-512.png",
+    "src": "assets/icon/webicon-512.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
