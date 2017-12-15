@@ -1,0 +1,93 @@
+{
+	"SETTING": "Innstilling",
+	"LOGIN": "Logg Inn",
+	"LOGOUT": "Logg ut",
+	"OKAY": "Greit",
+	"CANCEL": "Avbryt",
+	"CLOSE": "Lukk",
+	"CREDIT": "Takk for",
+	"SAVE": "Lagre",
+	"DELETE": "Slett",
+	"NALANG": "Modersmål",
+	"TALANG": "Fremmedspråk",
+	"TAG": "stikkord",
+	"LANG": "Språk",
+	"SPEECHVOICE": "snakke",
+	"VOICERECOGN": "anerkjennelse",
+	"VOICESPEED": "hastighet",
+	"PUBLISH": "publisere",
+	"EDIT": "Redigere",
+	"BOOKNAME": "Tittel",
+	"GENERAL": "Generell",
+	"MYFIRSTBOOKNAME": "Min første bok",
+	"LEARNING": "læring",
+	"LEARNED": "samfunn",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Det er en ny versjon!",
+		"MSG": "Oppdater nå?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Innstilling",
+		"LANG": "Språk",
+		"NALANG": "Modersmål",
+		"TALANG": "Fremmedspråk"
+	},
+	"_ALERT": {
+		"DELBOOK": "Er du sikker på at du vil slette denne boken?",
+		"DISLIKEBOOK": "Er du sikker på at du ikke vil bokmerke denne boken?",
+		"OVERWRITEBOOK": "Overskrive dette innholdet som den riktige versjonen?",
+		"ANSNUMRECOGN": "Les ut svaret, for eksempel \"nummer ett\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigasjonen mislyktes ...",
+		"NEWBOOKFAILURE": "Opprett mislykket ...",
+		"DELBOOKFAILURE": "klarte ikke å slette ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-kort",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "Snakke",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Vis / Gjenta",
+		"RANDOM": "tilfeldig",
+		"SPELL": "stave",
+		"QUESTION": "spørsmål",
+		"ANSWER": "svar",
+		"EXAMPLE": "eksempel",
+		"TIP": "Tips",
+		"OUTOFQUIZ": "ingen quiz lenger",
+		"ANS_FIRST": "svar først"
+	},
+	"_CONQ": {
+		"NAME": "Samtale"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bokhylle"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Innstilling"
+	},
+	"_READERSETTING": {
+		"TITLE": "Innstilling"
+	},
+	"_NEWS": {
+		"TITLE": "Nyheter"
+	},
+	"_CREDIT": {
+		"TITLE": "Takk for"
+	},
+	"_CREATION": {
+		"TITLE": "Opprettelse"
+	},
+	"_COLLECTION": {
+		"TITLE": "favoritt"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "spørsmål",
+		"ANSWER": "svar",
+		"EXAMPLE": "eksempel",
+		"TIPS": "Tips",
+		"STAR": "stjerne"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "reglaj",
+	"LOGIN": "Logare",
+	"LOGOUT": "ieșiți",
+	"OKAY": "bine",
+	"CANCEL": "Anulare",
+	"CLOSE": "Închide",
+	"CREDIT": "Multumesc pentru",
+	"SAVE": "Salvați",
+	"DELETE": "Șterge",
+	"NALANG": "Limba maternă",
+	"TALANG": "Limbă străină",
+	"TAG": "Etichetă",
+	"LANG": "Limba",
+	"SPEECHVOICE": "vorbi",
+	"VOICERECOGN": "recunoaștere",
+	"VOICESPEED": "viteză",
+	"PUBLISH": "Publica",
+	"EDIT": "Editați | ×",
+	"BOOKNAME": "Titlu",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Prima mea carte",
+	"LEARNING": "învățare",
+	"LEARNED": "societate",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Există o nouă versiune!",
+		"MSG": "Actualizează acum?"
+	},
+	"_SETTINGS": {
+		"TITLE": "reglaj",
+		"LANG": "Limba",
+		"NALANG": "Limba maternă",
+		"TALANG": "Limbă străină"
+	},
+	"_ALERT": {
+		"DELBOOK": "Sigur doriți să ștergeți această carte?",
+		"DISLIKEBOOK": "Sigur nu vrei să marchezi această carte?",
+		"OVERWRITEBOOK": "Suprascrieți acest conținut ca fiind versiunea corectă?",
+		"ANSNUMRECOGN": "Citiți răspunsul, cum ar fi \"numărul unu\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigarea a eșuat ...",
+		"NEWBOOKFAILURE": "Crearea a eșuat ...",
+		"DELBOOKFAILURE": "nu s-a șters ..."
+	},
+	"_MCQ": {
+		"NAME": "Card de test",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "Vorbi",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Afișați / repetați",
+		"RANDOM": "întâmplător",
+		"SPELL": "vraja",
+		"QUESTION": "întrebare",
+		"ANSWER": "Răspuns",
+		"EXAMPLE": "exemplu",
+		"TIP": "bacsis",
+		"OUTOFQUIZ": "nici un test",
+		"ANS_FIRST": "răspundeți mai întâi"
+	},
+	"_CONQ": {
+		"NAME": "Conversaţie"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Raft de cărți"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "reglaj"
+	},
+	"_READERSETTING": {
+		"TITLE": "reglaj"
+	},
+	"_NEWS": {
+		"TITLE": "Știri"
+	},
+	"_CREDIT": {
+		"TITLE": "Multumesc pentru"
+	},
+	"_CREATION": {
+		"TITLE": "Creare"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorit"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "întrebare",
+		"ANSWER": "Răspuns",
+		"EXAMPLE": "exemplu",
+		"TIPS": "sfaturi",
+		"STAR": "stea"
+	}
+}

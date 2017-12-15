@@ -1,0 +1,93 @@
+{
+	"SETTING": "Faʻatonu",
+	"LOGIN": "tusi i totonu",
+	"LOGOUT": "saini ese j",
+	"OKAY": "Lelei",
+	"CANCEL": "Faaleaoga",
+	"CLOSE": "Katia",
+	"CREDIT": "Faafetai mo",
+	"SAVE": "Sefe",
+	"DELETE": "Aveese",
+	"NALANG": "Igilisi",
+	"TALANG": "Gagana i fafo",
+	"TAG": "Tag",
+	"LANG": "Gagana",
+	"SPEECHVOICE": "tautala",
+	"VOICERECOGN": "Aloaia",
+	"VOICESPEED": "saoasaoa",
+	"PUBLISH": "Lomiga",
+	"EDIT": "Faʻamata",
+	"BOOKNAME": "Ulutala",
+	"GENERAL": "Lautele",
+	"MYFIRSTBOOKNAME": "Laʻu tusi muamua",
+	"LEARNING": "Aoao",
+	"LEARNED": "Aoaoina",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "E i ai se faʻamatalaga fou!",
+		"MSG": "Faʻafou nei?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Faʻatonu",
+		"LANG": "Gagana",
+		"NALANG": "Igilisi",
+		"TALANG": "Gagana i fafo"
+	},
+	"_ALERT": {
+		"DELBOOK": "E te mautinoa e te manaʻo e faʻamalo lenei tusi?",
+		"DISLIKEBOOK": "E te mautinoa e te le manaʻo e faailoga le tusi lenei?",
+		"OVERWRITEBOOK": "Toe suia lenei mea e pei o le saʻo?",
+		"ANSNUMRECOGN": "Faitau le tali, pei o le \"numera tasi\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Ua le manuia le faila",
+		"NEWBOOKFAILURE": "Fatu le manuia ...",
+		"DELBOOKFAILURE": "le mafai ona tape ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Taalo",
+		"MODESPEAK": "Tautala",
+		"MODETEST": "Suʻega",
+		"SHOWNSPEAK": "Faaali / Toe faia",
+		"RANDOM": "leai",
+		"SPELL": "sipela",
+		"QUESTION": "fesili",
+		"ANSWER": "tali",
+		"EXAMPLE": "faataitaiga",
+		"TIP": "tipiga",
+		"OUTOFQUIZ": "leai se suʻega",
+		"ANS_FIRST": "tali muamua"
+	},
+	"_CONQ": {
+		"NAME": "Talanoaga"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Faʻatonu"
+	},
+	"_READERSETTING": {
+		"TITLE": "Faʻatonu"
+	},
+	"_NEWS": {
+		"TITLE": "Tala Fou"
+	},
+	"_CREDIT": {
+		"TITLE": "Faafetai mo"
+	},
+	"_CREATION": {
+		"TITLE": "Foafoaga"
+	},
+	"_COLLECTION": {
+		"TITLE": "fiafia i ai"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "fesili",
+		"ANSWER": "tali",
+		"EXAMPLE": "faataitaiga",
+		"TIPS": "fautuaga",
+		"STAR": "fetu"
+	}
+}

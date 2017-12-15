@@ -1,0 +1,93 @@
+{
+	"SETTING": "ቅንብር",
+	"LOGIN": "ግባ",
+	"LOGOUT": "ውጣ",
+	"OKAY": "እሺ",
+	"CANCEL": "ሰርዝ",
+	"CLOSE": "ገጠመ",
+	"CREDIT": "እናመሰግናለን",
+	"SAVE": "አስቀምጥ",
+	"DELETE": "ሰርዝ",
+	"NALANG": "የትውልድ ቋንቋ",
+	"TALANG": "የውጭ ቋንቋ",
+	"TAG": "መለያ",
+	"LANG": "ቋንቋ",
+	"SPEECHVOICE": "ተናገር",
+	"VOICERECOGN": "እውቅና",
+	"VOICESPEED": "ፍጥነት",
+	"PUBLISH": "አትም",
+	"EDIT": "አርትዕ",
+	"BOOKNAME": "ርዕስ",
+	"GENERAL": "አጠቃላይ",
+	"MYFIRSTBOOKNAME": "የእኔ የመጀመሪያ መጽሐፍ",
+	"LEARNING": "መማር",
+	"LEARNED": "ተምሯል",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "አዲስ ስሪት አለ!",
+		"MSG": "አሁን ያዘምኑ?"
+	},
+	"_SETTINGS": {
+		"TITLE": "ቅንብር",
+		"LANG": "ቋንቋ",
+		"NALANG": "የትውልድ ቋንቋ",
+		"TALANG": "የውጭ ቋንቋ"
+	},
+	"_ALERT": {
+		"DELBOOK": "እርግጠኛ ነዎት ይህንን መጽሐፍ መሰረዝ ይፈልጋሉ?",
+		"DISLIKEBOOK": "እርግጠኛ ነዎት ይህን መጽሐፍ ዕልባት ማድረግ አልፈለጉም?",
+		"OVERWRITEBOOK": "ይህን ይዘት እንደ ትክክለኛው እትም ይልቁንስ ይደምሩ?",
+		"ANSNUMRECOGN": "እንደ \"ቁጥር አንድ\" የመሳሰሉ መልሱን ያንብቡ."
+	},
+	"_TOAST": {
+		"NAVFAILURE": "አሰሳ አልተሳካም ...",
+		"NEWBOOKFAILURE": "መፍጠር አልተሳካም ...",
+		"DELBOOKFAILURE": "መሰረዝ አልተሳካም ..."
+	},
+	"_MCQ": {
+		"NAME": "የጥያቄ ካርድ",
+		"MODEPLAY": "ተጫወት",
+		"MODESPEAK": "ተናገር",
+		"MODETEST": "ሙከራ",
+		"SHOWNSPEAK": "አሳይ / ድገም",
+		"RANDOM": "ዘፈቀደ",
+		"SPELL": "ፊደል",
+		"QUESTION": "ጥያቄ",
+		"ANSWER": "መልስ",
+		"EXAMPLE": "ለምሳሌ",
+		"TIP": "ጠቃሚ ምክር",
+		"OUTOFQUIZ": "ምንም ጥያቄ የለም",
+		"ANS_FIRST": "መጀመሪያ መልስ ስጥ"
+	},
+	"_CONQ": {
+		"NAME": "ውይይት"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "የመጽሐፍት መደርደሪያ"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "ቅንብር"
+	},
+	"_READERSETTING": {
+		"TITLE": "ቅንብር"
+	},
+	"_NEWS": {
+		"TITLE": "ዜና"
+	},
+	"_CREDIT": {
+		"TITLE": "እናመሰግናለን"
+	},
+	"_CREATION": {
+		"TITLE": "ፍጥረት"
+	},
+	"_COLLECTION": {
+		"TITLE": "የሚወደድ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ጥያቄ",
+		"ANSWER": "መልስ",
+		"EXAMPLE": "ለምሳሌ",
+		"TIPS": "ጠቃሚ ምክሮች",
+		"STAR": "ኮከብ"
+	}
+}

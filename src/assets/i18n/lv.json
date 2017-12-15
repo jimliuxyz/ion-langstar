@@ -1,0 +1,93 @@
+{
+	"SETTING": "Iestatījums",
+	"LOGIN": "Pieslēgties",
+	"LOGOUT": "izlogoties",
+	"OKAY": "Labi",
+	"CANCEL": "Atcelt",
+	"CLOSE": "Aizvērt",
+	"CREDIT": "Paldies par",
+	"SAVE": "Saglabājiet",
+	"DELETE": "Dzēst",
+	"NALANG": "Dzimtā valoda",
+	"TALANG": "Svešvaloda",
+	"TAG": "Tag",
+	"LANG": "Valoda",
+	"SPEECHVOICE": "runā",
+	"VOICERECOGN": "Atzīšana",
+	"VOICESPEED": "ātrums",
+	"PUBLISH": "Publicēt",
+	"EDIT": "Rediģēt",
+	"BOOKNAME": "Nosaukums",
+	"GENERAL": "Ģenerālis",
+	"MYFIRSTBOOKNAME": "Mana pirmā grāmata",
+	"LEARNING": "Mācīšanās",
+	"LEARNED": "Mācīts",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Ir jauna versija!",
+		"MSG": "Atjaunināt tagad?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Iestatījums",
+		"LANG": "Valoda",
+		"NALANG": "Dzimtā valoda",
+		"TALANG": "Svešvaloda"
+	},
+	"_ALERT": {
+		"DELBOOK": "Vai tiešām vēlaties dzēst šo grāmatu?",
+		"DISLIKEBOOK": "Vai tiešām nevēlaties pievienot grāmatzīmi šai grāmatai?",
+		"OVERWRITEBOOK": "Pārrakstīt šo saturu kā pareizo versiju?",
+		"ANSNUMRECOGN": "Izlasiet atbildi, piemēram, \"numur viens\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigācija neizdevās ...",
+		"NEWBOOKFAILURE": "Izveidot neizdevās ...",
+		"DELBOOKFAILURE": "neizdevās dzēst ..."
+	},
+	"_MCQ": {
+		"NAME": "Viktorīnas karte",
+		"MODEPLAY": "Spēlēt",
+		"MODESPEAK": "Runā",
+		"MODETEST": "Pārbaude",
+		"SHOWNSPEAK": "Displejs / atkārtošana",
+		"RANDOM": "izlases veidā",
+		"SPELL": "pareizrakstības pārbaude",
+		"QUESTION": "jautājums",
+		"ANSWER": "atbilde",
+		"EXAMPLE": "piemērs",
+		"TIP": "padoms",
+		"OUTOFQUIZ": "vairs nav viktorīnas",
+		"ANS_FIRST": "atbilde vispirms"
+	},
+	"_CONQ": {
+		"NAME": "Saruna"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Grāmatu plaukts"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Iestatījums"
+	},
+	"_READERSETTING": {
+		"TITLE": "Iestatījums"
+	},
+	"_NEWS": {
+		"TITLE": "Jaunumi"
+	},
+	"_CREDIT": {
+		"TITLE": "Paldies par"
+	},
+	"_CREATION": {
+		"TITLE": "Radīšana"
+	},
+	"_COLLECTION": {
+		"TITLE": "mīļākais"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "jautājums",
+		"ANSWER": "atbilde",
+		"EXAMPLE": "piemērs",
+		"TIPS": "padomi",
+		"STAR": "zvaigzne"
+	}
+}

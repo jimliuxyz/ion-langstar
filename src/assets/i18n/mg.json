@@ -1,0 +1,93 @@
+{
+	"SETTING": "Setting",
+	"LOGIN": "Hiditra",
+	"LOGOUT": "miala",
+	"OKAY": "Okay",
+	"CANCEL": "hanafoana",
+	"CLOSE": "Close",
+	"CREDIT": "Misaotra ny",
+	"SAVE": "Save",
+	"DELETE": "Fafao",
+	"NALANG": "Fiteny vahiny",
+	"TALANG": "Fiteny vahiny",
+	"TAG": "Tag",
+	"LANG": "fiteny",
+	"SPEECHVOICE": "miteny",
+	"VOICERECOGN": "fankatoavana",
+	"VOICESPEED": "hafainganam-pandeha",
+	"PUBLISH": "Avoahy",
+	"EDIT": "anglisy",
+	"BOOKNAME": "Title",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Ny bokiko voalohany",
+	"LEARNING": "fianarana",
+	"LEARNED": "fiaraha-monina",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Misy dikan-teny vaovao!",
+		"MSG": "Update Now?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Setting",
+		"LANG": "fiteny",
+		"NALANG": "Fiteny vahiny",
+		"TALANG": "Fiteny vahiny"
+	},
+	"_ALERT": {
+		"DELBOOK": "Tena tianao ve ny hamafa ity boky ity?",
+		"DISLIKEBOOK": "Azonao antoka fa tsy te-hamorona ity boky ity ianao?",
+		"OVERWRITEBOOK": "Avereno ity votoana ity ho dikan-teny marina?",
+		"ANSNUMRECOGN": "Vakio ny valiny, toy ny \"laharana voalohany\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Tsy nahomby ny fikarohana ...",
+		"NEWBOOKFAILURE": "Hamorona tsy nahomby ...",
+		"DELBOOKFAILURE": "tsy nafahana ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "fampitana",
+		"MODESPEAK": "Mitenena",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Asehoy / averimbereno",
+		"RANDOM": "kisendrasendra",
+		"SPELL": "tsipelina",
+		"QUESTION": "fanontaniana",
+		"ANSWER": "valiny",
+		"EXAMPLE": "ohatra",
+		"TIP": "tendron'ny",
+		"OUTOFQUIZ": "tsy misy quiz intsony",
+		"ANS_FIRST": "valio voalohany"
+	},
+	"_CONQ": {
+		"NAME": "Conversation"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "fitoeram-boky"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Setting"
+	},
+	"_READERSETTING": {
+		"TITLE": "Setting"
+	},
+	"_NEWS": {
+		"TITLE": "News"
+	},
+	"_CREDIT": {
+		"TITLE": "Misaotra ny"
+	},
+	"_CREATION": {
+		"TITLE": "Creation"
+	},
+	"_COLLECTION": {
+		"TITLE": "toerana tena"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "fanontaniana",
+		"ANSWER": "valiny",
+		"EXAMPLE": "ohatra",
+		"TIPS": "soso-kevitra",
+		"STAR": "kintana"
+	}
+}

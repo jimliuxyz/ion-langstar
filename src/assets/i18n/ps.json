@@ -1,0 +1,93 @@
+{
+	"SETTING": "ترتیب",
+	"LOGIN": "د ننه کیدل",
+	"LOGOUT": "وتل",
+	"OKAY": "سمه ده",
+	"CANCEL": "لغوه کړه",
+	"CLOSE": "بنده",
+	"CREDIT": "مننه",
+	"SAVE": "ساتل",
+	"DELETE": "ړنګول",
+	"NALANG": "اصلي ژبه",
+	"TALANG": "بهرني ژبه",
+	"TAG": "ټګ",
+	"LANG": "ژبه",
+	"SPEECHVOICE": "خبرې کول",
+	"VOICERECOGN": "پیژندنه",
+	"VOICESPEED": "چټک",
+	"PUBLISH": "خپرول",
+	"EDIT": "سمون",
+	"BOOKNAME": "سرلیک",
+	"GENERAL": "عمومي",
+	"MYFIRSTBOOKNAME": "زما لومړی کتاب",
+	"LEARNING": "زده کړه",
+	"LEARNED": "زده کړه",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "نوې نسخه ده!",
+		"MSG": "اوس تازه کول"
+	},
+	"_SETTINGS": {
+		"TITLE": "ترتیب",
+		"LANG": "ژبه",
+		"NALANG": "اصلي ژبه",
+		"TALANG": "بهرني ژبه"
+	},
+	"_ALERT": {
+		"DELBOOK": "ایا ته باوري یې چې دا کتاب ړنګول غواړئ؟",
+		"DISLIKEBOOK": "ایا تاسو ډاډه یاست چې تاسو غواړئ چې د کتاب کتاب نشو کولی؟",
+		"OVERWRITEBOOK": "دا سمه بڼه د سم بڼه په توګه وکارول شي؟",
+		"ANSNUMRECOGN": "ځواب ځواب ورکړئ، لکه \"نمبر یو\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "نیویګریشن ناکام شو ...",
+		"NEWBOOKFAILURE": "ناکام شو ...",
+		"DELBOOKFAILURE": "ناکامیدل ناکام ..."
+	},
+	"_MCQ": {
+		"NAME": "د کویز کارت",
+		"MODEPLAY": "لوبه وکړئ",
+		"MODESPEAK": "غږ کړئ",
+		"MODETEST": "ازموینه",
+		"SHOWNSPEAK": "ښودل / تکرار کړئ",
+		"RANDOM": "ناڅاپه",
+		"SPELL": "منډه",
+		"QUESTION": "پوښتنه",
+		"ANSWER": "ځواب",
+		"EXAMPLE": "مثال",
+		"TIP": "تپ",
+		"OUTOFQUIZ": "اوس هیڅ پوښتنه نشته",
+		"ANS_FIRST": "لومړی ځواب ورکړئ"
+	},
+	"_CONQ": {
+		"NAME": "خبرې اترې"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "کتابیلف"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "ترتیب"
+	},
+	"_READERSETTING": {
+		"TITLE": "ترتیب"
+	},
+	"_NEWS": {
+		"TITLE": "خبرونه"
+	},
+	"_CREDIT": {
+		"TITLE": "مننه"
+	},
+	"_CREATION": {
+		"TITLE": "جوړونه"
+	},
+	"_COLLECTION": {
+		"TITLE": "خوښه"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "پوښتنه",
+		"ANSWER": "ځواب",
+		"EXAMPLE": "مثال",
+		"TIPS": "لارښوونې",
+		"STAR": "ستوری"
+	}
+}

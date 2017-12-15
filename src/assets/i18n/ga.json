@@ -1,0 +1,93 @@
+{
+	"SETTING": "Socrú",
+	"LOGIN": "Logáil isteach",
+	"LOGOUT": "Logáil Amach",
+	"OKAY": "ceart go leor",
+	"CANCEL": "Cealaigh",
+	"CLOSE": "Dún",
+	"CREDIT": "Go raibh míle as",
+	"SAVE": "Sábháil",
+	"DELETE": "Scrios",
+	"NALANG": "Teanga dúchasach",
+	"TALANG": "Teanga iasachta",
+	"TAG": "Clib",
+	"LANG": "Teanga",
+	"SPEECHVOICE": "labhair",
+	"VOICERECOGN": "Aitheantas",
+	"VOICESPEED": "luas",
+	"PUBLISH": "Fhoilsiú",
+	"EDIT": "Athraigh",
+	"BOOKNAME": "Teideal",
+	"GENERAL": "Ginearálta",
+	"MYFIRSTBOOKNAME": "Mo chéad leabhar",
+	"LEARNING": "Foghlaim",
+	"LEARNED": "Foghlaim",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Tá leagan nua ann!",
+		"MSG": "Nuashonraigh Anois?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Socrú",
+		"LANG": "Teanga",
+		"NALANG": "Teanga dúchasach",
+		"TALANG": "Teanga iasachta"
+	},
+	"_ALERT": {
+		"DELBOOK": "An bhfuil tú cinnte gur mhaith leat an leabhar seo a scriosadh?",
+		"DISLIKEBOOK": "An bhfuil tú cinnte nach mian leat an leabhar seo a chur in áirithe?",
+		"OVERWRITEBOOK": "Déan an t-ábhar seo a athscríobh mar an leagan ceart?",
+		"ANSNUMRECOGN": "Léigh an freagra, mar shampla \"uimhir amháin\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Theip ar loingseoireacht ...",
+		"NEWBOOKFAILURE": "Teip ar chruthú ...",
+		"DELBOOKFAILURE": "theip ar scriosadh ..."
+	},
+	"_MCQ": {
+		"NAME": "Cárta Tráth na gCeist",
+		"MODEPLAY": "Seinn",
+		"MODESPEAK": "Labhair",
+		"MODETEST": "Scrúdú",
+		"SHOWNSPEAK": "Taispeáin / Déan",
+		"RANDOM": "randamach",
+		"SPELL": "litriú",
+		"QUESTION": "ceist",
+		"ANSWER": "freagra",
+		"EXAMPLE": "sampla",
+		"TIP": "tip",
+		"OUTOFQUIZ": "aon tráth na gceist níos mó",
+		"ANS_FIRST": "freagra ar dtús"
+	},
+	"_CONQ": {
+		"NAME": "Comhrá"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Leabhair Leabhair"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Socrú"
+	},
+	"_READERSETTING": {
+		"TITLE": "Socrú"
+	},
+	"_NEWS": {
+		"TITLE": "Nuacht"
+	},
+	"_CREDIT": {
+		"TITLE": "Go raibh míle as"
+	},
+	"_CREATION": {
+		"TITLE": "Cruthú"
+	},
+	"_COLLECTION": {
+		"TITLE": "is fearr leat"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ceist",
+		"ANSWER": "freagra",
+		"EXAMPLE": "sampla",
+		"TIPS": "leideanna",
+		"STAR": "réalta"
+	}
+}

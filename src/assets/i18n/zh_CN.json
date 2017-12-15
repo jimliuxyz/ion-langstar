@@ -1,0 +1,93 @@
+{
+	"SETTING": "设定",
+	"LOGIN": "登入",
+	"LOGOUT": "登出",
+	"OKAY": "确定",
+	"CANCEL": "取消",
+	"CLOSE": "关闭",
+	"CREDIT": "赞誉",
+	"SAVE": "储存",
+	"DELETE": "删除",
+	"NALANG": "母语",
+	"TALANG": "外语",
+	"TAG": "标签",
+	"LANG": "语言",
+	"SPEECHVOICE": "语音朗读",
+	"VOICERECOGN": "语音辨识",
+	"VOICESPEED": "语速",
+	"PUBLISH": "出版",
+	"EDIT": "编辑",
+	"BOOKNAME": "书名",
+	"GENERAL": "一般",
+	"MYFIRSTBOOKNAME": "我的第一本书",
+	"LEARNING": "学习中",
+	"LEARNED": "已学会",
+	"ANSNUMRECOGN": "答题识别",
+	"_UPGRADE": {
+		"TITLE": "有新版本啰!",
+		"MSG": "是否现在更新?"
+	},
+	"_SETTINGS": {
+		"TITLE": "设定",
+		"LANG": "语言",
+		"NALANG": "母语",
+		"TALANG": "学习外语"
+	},
+	"_ALERT": {
+		"DELBOOK": "确定要删除这本书？",
+		"DISLIKEBOOK": "确定不收藏这本书？",
+		"OVERWRITEBOOK": "是否以此内容作为正确版本？",
+		"ANSNUMRECOGN": "念出供识别的答案,例如\"第一\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "导览失败...",
+		"NEWBOOKFAILURE": "建立书本失败...",
+		"DELBOOKFAILURE": "删除书本失败..."
+	},
+	"_MCQ": {
+		"NAME": "题卡",
+		"MODEPLAY": "播放",
+		"MODESPEAK": "跟读",
+		"MODETEST": "测验",
+		"SHOWNSPEAK": "显示与朗读次数",
+		"RANDOM": "随机",
+		"SPELL": "读拼音",
+		"QUESTION": "题目",
+		"ANSWER": "答案",
+		"EXAMPLE": "例句",
+		"TIP": "题解",
+		"OUTOFQUIZ": "没有题目了",
+		"ANS_FIRST": "先读答案"
+	},
+	"_CONQ": {
+		"NAME": "对话"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "云书柜"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "书本设定"
+	},
+	"_READERSETTING": {
+		"TITLE": "阅读设定"
+	},
+	"_NEWS": {
+		"TITLE": "新闻"
+	},
+	"_CREDIT": {
+		"TITLE": "赞誉"
+	},
+	"_CREATION": {
+		"TITLE": "创建"
+	},
+	"_COLLECTION": {
+		"TITLE": "收藏"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "题目",
+		"ANSWER": "答案",
+		"EXAMPLE": "例句",
+		"TIPS": "题解",
+		"STAR": "星星"
+	}
+}

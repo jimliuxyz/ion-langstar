@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ambientazione",
+	"LOGIN": "accesso",
+	"LOGOUT": "disconnettersi",
+	"OKAY": "Va bene",
+	"CANCEL": "Annulla",
+	"CLOSE": "Vicino",
+	"CREDIT": "Grazie per",
+	"SAVE": "Salvare",
+	"DELETE": "Elimina",
+	"NALANG": "Lingua nativa",
+	"TALANG": "Lingua straniera",
+	"TAG": "Etichetta",
+	"LANG": "linguaggio",
+	"SPEECHVOICE": "parlare",
+	"VOICERECOGN": "riconoscimento",
+	"VOICESPEED": "velocità",
+	"PUBLISH": "Pubblicare",
+	"EDIT": "modificare",
+	"BOOKNAME": "Titolo",
+	"GENERAL": "Generale",
+	"MYFIRSTBOOKNAME": "Il mio primo libro",
+	"LEARNING": "apprendimento",
+	"LEARNED": "società",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "C'è una nuova versione!",
+		"MSG": "Aggiorna ora?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ambientazione",
+		"LANG": "linguaggio",
+		"NALANG": "Lingua nativa",
+		"TALANG": "Lingua straniera"
+	},
+	"_ALERT": {
+		"DELBOOK": "Sei sicuro di voler eliminare questo libro?",
+		"DISLIKEBOOK": "Sei sicuro di non voler aggiungere questo libro ai segnalibri?",
+		"OVERWRITEBOOK": "Sovrascrivi questo contenuto come versione corretta?",
+		"ANSNUMRECOGN": "Leggi la risposta, ad esempio \"numero uno\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigazione fallita ...",
+		"NEWBOOKFAILURE": "Crea fallito ...",
+		"DELBOOKFAILURE": "impossibile eliminare ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "Parlare",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Visualizza / ripeti",
+		"RANDOM": "casuale",
+		"SPELL": "sillabare",
+		"QUESTION": "domanda",
+		"ANSWER": "risposta",
+		"EXAMPLE": "esempio",
+		"TIP": "mancia",
+		"OUTOFQUIZ": "nessun quiz più",
+		"ANS_FIRST": "rispondi prima"
+	},
+	"_CONQ": {
+		"NAME": "Conversazione"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ambientazione"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ambientazione"
+	},
+	"_NEWS": {
+		"TITLE": "notizia"
+	},
+	"_CREDIT": {
+		"TITLE": "Grazie per"
+	},
+	"_CREATION": {
+		"TITLE": "Creazione"
+	},
+	"_COLLECTION": {
+		"TITLE": "preferito"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "domanda",
+		"ANSWER": "risposta",
+		"EXAMPLE": "esempio",
+		"TIPS": "suggerimenti",
+		"STAR": "stella"
+	}
+}

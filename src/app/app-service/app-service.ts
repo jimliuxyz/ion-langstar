@@ -33,6 +33,8 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { Insomnia } from '@ionic-native/insomnia';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { GoogleTranslate } from './google-translate';
+import { ExtJobs } from './ext-jobs';
 
 
 @Injectable()
@@ -71,28 +73,33 @@ export class AppService {
 
   private navCtrl: NavController;
   // private modalCtrl: ModalController;
-  public async init(navCtrl: NavController, modalCtrl: ModalController) {
+  public async init(navCtrl: NavController) {
     this.navCtrl = navCtrl;
-    // this.modalCtrl = modalCtrl;
 
     MiscFunc.init(this.platform);
     await this._init();
     console.log("App Service Ready...");
+
+    // const text = await GoogleTranslate.translate("en", "zh-TW", "love");
+    // console.log(text)
+
+    // ExtJobs.downloadI18nJson();
   }
 
   private async _init() {
 
     this.insomnia.allowSleepAgain();
 
-    this.ga.startTrackerWithId('UA-111165690-1')
-    .then(() => {
-      console.log('Google analytics is ready now');
-         this.ga.trackView('test');
-      // Tracker is ready
-      // You can now track pages or set additional information such as AppVersion or UserId
-    })
-    .catch(e => console.log('Error starting GoogleAnalytics', e));
-    
+    if (this.platform.is("cordova")) {
+      this.ga.startTrackerWithId('UA-111165690-1')
+      .then(() => {
+        console.log('Google analytics is ready now');
+          this.ga.trackView('test');
+        // Tracker is ready
+        // You can now track pages or set additional information such as AppVersion or UserId
+      })
+      .catch(e => console.log('Error starting GoogleAnalytics', e));      
+    }
 
     //set AdMod
     const bannerConfig: AdMobFreeBannerConfig = {
@@ -137,11 +144,12 @@ export class AppService {
       
     })
 
-    this.translate.addLangs(["en_US", "zh_TW", "ja", "ko"]);
-    this.translate.setDefaultLang('en_US');
+    this.translate.addLangs(MiscFunc.getLangListCode());
+    this.translate.setDefaultLang('en');
 
     await this.devInitDB();
     this.devInitMock();
+    // this.devInitMock2();
     
     // this.auth.authedUser$.subscribe(this.loginStateCallback())      
 
@@ -413,7 +421,7 @@ export class AppService {
       bookinfo.type = BookType.MCQ;
       bookinfo.author_uid = users[useridx].uid;
       bookinfo.nalang = MiscFunc.getLangCodeNormalize(navigator.language);
-      bookinfo.talang = "en_US";
+      bookinfo.talang = "en";
       console.log(users[useridx].displayName, users[useridx].uid);
       
       let tag1idx = Math.round(Math.random() * (Mocks.tags.length-1));
@@ -431,7 +439,21 @@ export class AppService {
 
     this.storage.clear();
   }
-
+  private async devInitMock2() {
+    const user = await this.ser_user.data$.take(1).toPromise();
+    const ucfg = await this.ser_cfg.data$.take(1).toPromise();
+    const books = await ExtJobs.getExampleBooks();
+    
+    for (const book of books) {
+      book.info.author_uid = user.uid;
+      
+      let bookser = await BookInfoService.create(book.info);
+      console.log("book.info?"+book.info.uid)
+      let dataser = await BookDataService.create(book.info.uid, user.uid);
+  
+      dataser.setData(book.data.data, book.data.cfg);
+    }
+  }    
 
   private async devInitMock() {
     await this.ready$;

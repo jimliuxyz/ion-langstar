@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ayar",
+	"LOGIN": "oturum aç",
+	"LOGOUT": "çıkış Yap",
+	"OKAY": "Tamam",
+	"CANCEL": "İptal etmek",
+	"CLOSE": "Kapat",
+	"CREDIT": "İçin teşekkürler",
+	"SAVE": "Kayıt etmek",
+	"DELETE": "silmek",
+	"NALANG": "Anadil",
+	"TALANG": "Yabancı dil",
+	"TAG": "Etiket",
+	"LANG": "Dil",
+	"SPEECHVOICE": "konuşmak",
+	"VOICERECOGN": "tanıma",
+	"VOICESPEED": "hız",
+	"PUBLISH": "Yayınla",
+	"EDIT": "Düzenle",
+	"BOOKNAME": "Başlık",
+	"GENERAL": "Genel",
+	"MYFIRSTBOOKNAME": "Ilk kitabım",
+	"LEARNING": "öğrenme",
+	"LEARNED": "toplum",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Yeni bir sürüm var!",
+		"MSG": "Şimdi güncelle?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ayar",
+		"LANG": "Dil",
+		"NALANG": "Anadil",
+		"TALANG": "Yabancı dil"
+	},
+	"_ALERT": {
+		"DELBOOK": "Bu kitabı silmek istediğinizden emin misiniz?",
+		"DISLIKEBOOK": "Bu kitaba yer imi koymak istemediğinden emin misin?",
+		"OVERWRITEBOOK": "Bu içeriğin doğru sürümü üzerine yazılsın mı?",
+		"ANSNUMRECOGN": "\"Bir numara\" gibi cevabı okuyun"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Gezinme başarısız oldu ...",
+		"NEWBOOKFAILURE": "Oluşturulamadı ...",
+		"DELBOOKFAILURE": "silinemedi ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Kartı",
+		"MODEPLAY": "Yayın",
+		"MODESPEAK": "konuşmak",
+		"MODETEST": "Ölçek",
+		"SHOWNSPEAK": "Göster / Tekrarla",
+		"RANDOM": "rasgele",
+		"SPELL": "harf harf kodlamak",
+		"QUESTION": "soru",
+		"ANSWER": "Cevap",
+		"EXAMPLE": "örnek",
+		"TIP": "bahşiş",
+		"OUTOFQUIZ": "artık sınav yok",
+		"ANS_FIRST": "önce cevapla"
+	},
+	"_CONQ": {
+		"NAME": "konuşma"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Kitaplık"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ayar"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ayar"
+	},
+	"_NEWS": {
+		"TITLE": "Haber"
+	},
+	"_CREDIT": {
+		"TITLE": "İçin teşekkürler"
+	},
+	"_CREATION": {
+		"TITLE": "Oluşturma"
+	},
+	"_COLLECTION": {
+		"TITLE": "favori"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "soru",
+		"ANSWER": "Cevap",
+		"EXAMPLE": "örnek",
+		"TIPS": "ipuçları",
+		"STAR": "star"
+	}
+}

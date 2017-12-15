@@ -1,0 +1,93 @@
+{
+	"SETTING": "mjedis",
+	"LOGIN": "hyni në",
+	"LOGOUT": "shkyç",
+	"OKAY": "Mirë",
+	"CANCEL": "anuloj",
+	"CLOSE": "afër",
+	"CREDIT": "Faleminderit per",
+	"SAVE": "Save",
+	"DELETE": "fshij",
+	"NALANG": "Gjuha amtare",
+	"TALANG": "Gjuhë e huaj",
+	"TAG": "etiketë",
+	"LANG": "Gjuhe",
+	"SPEECHVOICE": "flas",
+	"VOICERECOGN": "njohje",
+	"VOICESPEED": "shpejtësi",
+	"PUBLISH": "publikoj",
+	"EDIT": "redaktoj",
+	"BOOKNAME": "titull",
+	"GENERAL": "i përgjithshëm",
+	"MYFIRSTBOOKNAME": "Libri im i parë",
+	"LEARNING": "mësim",
+	"LEARNED": "shoqëri",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Ka një version të ri!",
+		"MSG": "Përditëso tani?"
+	},
+	"_SETTINGS": {
+		"TITLE": "mjedis",
+		"LANG": "Gjuhe",
+		"NALANG": "Gjuha amtare",
+		"TALANG": "Gjuhë e huaj"
+	},
+	"_ALERT": {
+		"DELBOOK": "Je i sigurt që dëshiron ta fshish këtë libër?",
+		"DISLIKEBOOK": "Je i sigurt që nuk dëshiron të shënosh këtë libër?",
+		"OVERWRITEBOOK": "Mbisheni këtë përmbajtje si versionin e saktë?",
+		"ANSNUMRECOGN": "Lexoni përgjigjen, të tilla si \"numri një\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Lundrimi dështoi ...",
+		"NEWBOOKFAILURE": "Krijo dështuar ...",
+		"DELBOOKFAILURE": "dështoi të fshihej ..."
+	},
+	"_MCQ": {
+		"NAME": "Letër Quiz",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "flas",
+		"MODETEST": "provë",
+		"SHOWNSPEAK": "Ekrani / përsëritet",
+		"RANDOM": "i rastësishëm",
+		"SPELL": "magji",
+		"QUESTION": "pyetje",
+		"ANSWER": "përgjigje",
+		"EXAMPLE": "shembull",
+		"TIP": "majë",
+		"OUTOFQUIZ": "nuk ka më quiz",
+		"ANS_FIRST": "përgjigjuni së pari"
+	},
+	"_CONQ": {
+		"NAME": "bisedë"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Raft librash"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "mjedis"
+	},
+	"_READERSETTING": {
+		"TITLE": "mjedis"
+	},
+	"_NEWS": {
+		"TITLE": "Lajme"
+	},
+	"_CREDIT": {
+		"TITLE": "Faleminderit per"
+	},
+	"_CREATION": {
+		"TITLE": "Krijim"
+	},
+	"_COLLECTION": {
+		"TITLE": "i preferuar"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pyetje",
+		"ANSWER": "përgjigje",
+		"EXAMPLE": "shembull",
+		"TIPS": "Këshilla",
+		"STAR": "yll"
+	}
+}

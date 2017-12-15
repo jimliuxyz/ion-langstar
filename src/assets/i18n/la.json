@@ -1,0 +1,93 @@
+{
+	"SETTING": "Occasum",
+	"LOGIN": "in log",
+	"LOGOUT": "e log",
+	"OKAY": "bene",
+	"CANCEL": "Cancel",
+	"CLOSE": "prope",
+	"CREDIT": "Propter",
+	"SAVE": "salvare",
+	"DELETE": "delere",
+	"NALANG": "Mater lingua",
+	"TALANG": "linguam alienam",
+	"TAG": "Tag →",
+	"LANG": "Lingua",
+	"SPEECHVOICE": "dicere",
+	"VOICERECOGN": "recognition",
+	"VOICESPEED": "celeritas",
+	"PUBLISH": "publish",
+	"EDIT": "recensere",
+	"BOOKNAME": "titulus",
+	"GENERAL": "Generalis",
+	"MYFIRSTBOOKNAME": "Liber primus",
+	"LEARNING": "cognita",
+	"LEARNED": "societas",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Est a version!",
+		"MSG": "Nunc update?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Occasum",
+		"LANG": "Lingua",
+		"NALANG": "Mater lingua",
+		"TALANG": "linguam alienam"
+	},
+	"_ALERT": {
+		"DELBOOK": "Tu es certus vos volo ut delete is liber?",
+		"DISLIKEBOOK": "Certus es tu non volo hoc libro ad hac habitasse platea?",
+		"OVERWRITEBOOK": "Verum haec versio ut overwrite contentus?",
+		"ANSNUMRECOGN": "Responsum ex lege, ut 'unum numero'"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation defecit ...",
+		"NEWBOOKFAILURE": "Create defecit ...",
+		"DELBOOKFAILURE": "defecit delere ..."
+	},
+	"_MCQ": {
+		"NAME": "Card Quiz",
+		"MODEPLAY": "iaci",
+		"MODESPEAK": "dicere",
+		"MODETEST": "test",
+		"SHOWNSPEAK": "Display / Repeat",
+		"RANDOM": "temere",
+		"SPELL": "exponentia",
+		"QUESTION": "quaestio",
+		"ANSWER": "responsum",
+		"EXAMPLE": "exempli gratia",
+		"TIP": "tip",
+		"OUTOFQUIZ": "quiz non est amplius:",
+		"ANS_FIRST": "prius responde"
+	},
+	"_CONQ": {
+		"NAME": "colloquium"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Occasum"
+	},
+	"_READERSETTING": {
+		"TITLE": "Occasum"
+	},
+	"_NEWS": {
+		"TITLE": "News"
+	},
+	"_CREDIT": {
+		"TITLE": "Propter"
+	},
+	"_CREATION": {
+		"TITLE": "creaturae"
+	},
+	"_COLLECTION": {
+		"TITLE": "ventus"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "quaestio",
+		"ANSWER": "responsum",
+		"EXAMPLE": "exempli gratia",
+		"TIPS": "tips",
+		"STAR": "stella"
+	}
+}

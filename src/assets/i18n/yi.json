@@ -1,0 +1,93 @@
+{
+	"SETTING": "באַשטעטיקן",
+	"LOGIN": "צייכן אריין",
+	"LOGOUT": "קלאָץ אויס",
+	"OKAY": "אקעי",
+	"CANCEL": "Cancel",
+	"CLOSE": "Close",
+	"CREDIT": "Thanks for",
+	"SAVE": "היט",
+	"DELETE": "Delete",
+	"NALANG": "געבוירן שפּראַך",
+	"TALANG": "פרעמד שפּראַך",
+	"TAG": "Tag",
+	"LANG": "שפּראַך",
+	"SPEECHVOICE": "רעדן",
+	"VOICERECOGN": "Recognition",
+	"VOICESPEED": "גיכקייַט",
+	"PUBLISH": "אַרויסגעבן",
+	"EDIT": "רעדאַגירן",
+	"BOOKNAME": "טיטל",
+	"GENERAL": "אַלגעמיין",
+	"MYFIRSTBOOKNAME": "מיין ערשטער בוך",
+	"LEARNING": "לערנען",
+	"LEARNED": "געלערנט",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "עס איז אַ נייַ ווערסיע!",
+		"MSG": "דערהייַנטיקן איצט?"
+	},
+	"_SETTINGS": {
+		"TITLE": "באַשטעטיקן",
+		"LANG": "שפּראַך",
+		"NALANG": "געבוירן שפּראַך",
+		"TALANG": "פרעמד שפּראַך"
+	},
+	"_ALERT": {
+		"DELBOOK": "זענט איר זיכער איר ווילן צו ויסמעקן דעם בוך?",
+		"DISLIKEBOOK": "זענט איר זיכער אַז איר טאָן נישט וועלן צו בוקמאַרק דעם בוך?",
+		"OVERWRITEBOOK": "יבערבליק דעם אינהאַלט ווי די ריכטיק ווערסיע?",
+		"ANSNUMRECOGN": "לייענען די ענטפער, אַזאַ ווי \"נומער איין\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "נאַוויגאַציע אַנדערש ...",
+		"NEWBOOKFAILURE": "שאַפֿן ניט אַנדערש ...",
+		"DELBOOKFAILURE": "ניט געקענט אויסמעקן ..."
+	},
+	"_MCQ": {
+		"NAME": "קוויז קאַרד",
+		"MODEPLAY": "שפּיל",
+		"MODESPEAK": "רעדן",
+		"MODETEST": "טעסט",
+		"SHOWNSPEAK": "ווייַז / איבערחזרן",
+		"RANDOM": "random",
+		"SPELL": "רעגע",
+		"QUESTION": "קשיא",
+		"ANSWER": "ענטפער",
+		"EXAMPLE": "בייַשפּיל",
+		"TIP": "עצה",
+		"OUTOFQUIZ": "קיין קוויז קיין",
+		"ANS_FIRST": "ענטפֿערן ערשטער"
+	},
+	"_CONQ": {
+		"NAME": "שמועס"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "באַשטעטיקן"
+	},
+	"_READERSETTING": {
+		"TITLE": "באַשטעטיקן"
+	},
+	"_NEWS": {
+		"TITLE": "נייַעס"
+	},
+	"_CREDIT": {
+		"TITLE": "Thanks for"
+	},
+	"_CREATION": {
+		"TITLE": "שאַפונג"
+	},
+	"_COLLECTION": {
+		"TITLE": "באַליבט"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "קשיא",
+		"ANSWER": "ענטפער",
+		"EXAMPLE": "בייַשפּיל",
+		"TIPS": "עצות",
+		"STAR": "star"
+	}
+}

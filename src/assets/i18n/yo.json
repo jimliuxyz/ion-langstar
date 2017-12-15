@@ -1,0 +1,93 @@
+{
+	"SETTING": "Eto",
+	"LOGIN": "wo ile",
+	"LOGOUT": "wọle jade",
+	"OKAY": "Dara",
+	"CANCEL": "Fagilee",
+	"CLOSE": "Pa",
+	"CREDIT": "O ṣeun fun",
+	"SAVE": "Fipamọ",
+	"DELETE": "Paarẹ",
+	"NALANG": "Èdè abinibi",
+	"TALANG": "Ede ajeji",
+	"TAG": "Atokọ",
+	"LANG": "Ede",
+	"SPEECHVOICE": "sọrọ",
+	"VOICERECOGN": "Ayeye",
+	"VOICESPEED": "iyara",
+	"PUBLISH": "Ṣe atẹjade",
+	"EDIT": "Ṣatunkọ",
+	"BOOKNAME": "Akọle",
+	"GENERAL": "Gbogbogbo",
+	"MYFIRSTBOOKNAME": "Iwe akọkọ mi",
+	"LEARNING": "Eko",
+	"LEARNED": "Kọ ẹkọ",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Nibẹ ni titun kan ikede!",
+		"MSG": "Imudojuiwọn Bayi?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Eto",
+		"LANG": "Ede",
+		"NALANG": "Èdè abinibi",
+		"TALANG": "Ede ajeji"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ṣe o da ọ loju pe o fẹ pa iwe yii?",
+		"DISLIKEBOOK": "Ṣe o da ọ loju pe o ko fẹ bukumaaki iwe yii?",
+		"OVERWRITEBOOK": "Ṣe atunkọ akoonu yii gẹgẹ bi ikede ti o tọ?",
+		"ANSNUMRECOGN": "Ka idahun naa, bii \"nọmba kan\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Lilọ kiri kuna ...",
+		"NEWBOOKFAILURE": "Ṣẹda akuna ...",
+		"DELBOOKFAILURE": "ti kuna lati paarẹ ..."
+	},
+	"_MCQ": {
+		"NAME": "Kaadi Kaadi",
+		"MODEPLAY": "Mu ṣiṣẹ",
+		"MODESPEAK": "Sọ",
+		"MODETEST": "Idanwo",
+		"SHOWNSPEAK": "Fihan / Tun ṣe",
+		"RANDOM": "ID",
+		"SPELL": "sipeli",
+		"QUESTION": "ibeere",
+		"ANSWER": "idahun",
+		"EXAMPLE": "apẹẹrẹ",
+		"TIP": "sample",
+		"OUTOFQUIZ": "ko si alagbatọ kan lẹẹkansi",
+		"ANS_FIRST": "dahun akọkọ"
+	},
+	"_CONQ": {
+		"NAME": "Ibaraẹnisọrọ"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Iwe iwe iwe"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Eto"
+	},
+	"_READERSETTING": {
+		"TITLE": "Eto"
+	},
+	"_NEWS": {
+		"TITLE": "Awọn iroyin"
+	},
+	"_CREDIT": {
+		"TITLE": "O ṣeun fun"
+	},
+	"_CREATION": {
+		"TITLE": "Ẹda"
+	},
+	"_COLLECTION": {
+		"TITLE": "ayanfẹ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ibeere",
+		"ANSWER": "idahun",
+		"EXAMPLE": "apẹẹrẹ",
+		"TIPS": "awọn imọran",
+		"STAR": "Star"
+	}
+}

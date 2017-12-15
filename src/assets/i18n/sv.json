@@ -1,0 +1,93 @@
+{
+	"SETTING": "Miljö",
+	"LOGIN": "logga in",
+	"LOGOUT": "logga ut",
+	"OKAY": "Okej",
+	"CANCEL": "Annullera",
+	"CLOSE": "Stänga",
+	"CREDIT": "Tack för",
+	"SAVE": "Spara",
+	"DELETE": "Radera",
+	"NALANG": "Modersmål",
+	"TALANG": "Främmande språk",
+	"TAG": "Märka",
+	"LANG": "Språk",
+	"SPEECHVOICE": "tala",
+	"VOICERECOGN": "erkännande",
+	"VOICESPEED": "fart",
+	"PUBLISH": "Publicera",
+	"EDIT": "Redigera",
+	"BOOKNAME": "Titel",
+	"GENERAL": "Allmän",
+	"MYFIRSTBOOKNAME": "Min första bok",
+	"LEARNING": "Learning",
+	"LEARNED": "samhället",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Det finns en ny version!",
+		"MSG": "Uppdatera nu?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Miljö",
+		"LANG": "Språk",
+		"NALANG": "Modersmål",
+		"TALANG": "Främmande språk"
+	},
+	"_ALERT": {
+		"DELBOOK": "Är du säker på att du vill radera den här boken?",
+		"DISLIKEBOOK": "Är du säker på att du inte vill bokmärke den här boken?",
+		"OVERWRITEBOOK": "Skriv om det här innehållet som rätt version?",
+		"ANSNUMRECOGN": "Läs ut svaret, till exempel \"nummer ett\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation misslyckades ...",
+		"NEWBOOKFAILURE": "Skapa misslyckad ...",
+		"DELBOOKFAILURE": "misslyckades med att radera ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-kort",
+		"MODEPLAY": "broadcast",
+		"MODESPEAK": "Tala",
+		"MODETEST": "Testa",
+		"SHOWNSPEAK": "Display / Repeat",
+		"RANDOM": "slumpmässig",
+		"SPELL": "stava",
+		"QUESTION": "fråga",
+		"ANSWER": "svar",
+		"EXAMPLE": "exempel",
+		"TIP": "tips",
+		"OUTOFQUIZ": "ingen frågesport längre",
+		"ANS_FIRST": "svara först"
+	},
+	"_CONQ": {
+		"NAME": "Konversation"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bokhylla"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Miljö"
+	},
+	"_READERSETTING": {
+		"TITLE": "Miljö"
+	},
+	"_NEWS": {
+		"TITLE": "Nyheter"
+	},
+	"_CREDIT": {
+		"TITLE": "Tack för"
+	},
+	"_CREATION": {
+		"TITLE": "Skapande"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorit-"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "fråga",
+		"ANSWER": "svar",
+		"EXAMPLE": "exempel",
+		"TIPS": "tips",
+		"STAR": "stjärna"
+	}
+}

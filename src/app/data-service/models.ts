@@ -115,7 +115,6 @@ export class BookInfo{
   title: string = "";  
   type: BookType;
   qnum: number = 0;
-  author: string;
   author_uid: string;
   publish: boolean = true;
 

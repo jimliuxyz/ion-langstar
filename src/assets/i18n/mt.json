@@ -1,0 +1,93 @@
+{
+	"SETTING": "Twaqqif",
+	"LOGIN": "Idħol",
+	"LOGOUT": "Oħroġ",
+	"OKAY": "Okay",
+	"CANCEL": "Ikkanċella",
+	"CLOSE": "Agħlaq",
+	"CREDIT": "Grazzi talli",
+	"SAVE": "Ħlief",
+	"DELETE": "Ħassar",
+	"NALANG": "Lingwa nattiva",
+	"TALANG": "Lingwa barranija",
+	"TAG": "Tag",
+	"LANG": "Lingwa",
+	"SPEECHVOICE": "jitkellmu",
+	"VOICERECOGN": "Rikonoxximent",
+	"VOICESPEED": "veloċità",
+	"PUBLISH": "Tippubblika",
+	"EDIT": "Edit",
+	"BOOKNAME": "Titolu",
+	"GENERAL": "Ġenerali",
+	"MYFIRSTBOOKNAME": "L-ewwel ktieb tiegħi",
+	"LEARNING": "Tagħlim",
+	"LEARNED": "Mgħaraf",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Hemm verżjoni ġdida!",
+		"MSG": "Aġġorna Issa?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Twaqqif",
+		"LANG": "Lingwa",
+		"NALANG": "Lingwa nattiva",
+		"TALANG": "Lingwa barranija"
+	},
+	"_ALERT": {
+		"DELBOOK": "Int żgur li int trid tħassar dan il-ktieb?",
+		"DISLIKEBOOK": "Int żgur li ma tridx tibdel dan il-ktieb?",
+		"OVERWRITEBOOK": "Jissostitwixxi dan il-kontenut bħala l-verżjoni korretta?",
+		"ANSNUMRECOGN": "Aqra r-risposta, bħal \"numru wieħed\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "In-navigazzjoni naqset ...",
+		"NEWBOOKFAILURE": "Oħloq fallew ...",
+		"DELBOOKFAILURE": "naqset milli tħassar ..."
+	},
+	"_MCQ": {
+		"NAME": "Kart tal-Quiz",
+		"MODEPLAY": "Play",
+		"MODESPEAK": "Speak",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Uri / Irrepeti",
+		"RANDOM": "addoċċ",
+		"SPELL": "jespliċitaw",
+		"QUESTION": "mistoqsija",
+		"ANSWER": "risposta",
+		"EXAMPLE": "eżempju",
+		"TIP": "ponta",
+		"OUTOFQUIZ": "l-ebda kwizz aktar",
+		"ANS_FIRST": "risposta l-ewwel"
+	},
+	"_CONQ": {
+		"NAME": "Konversazzjoni"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Librerija"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Twaqqif"
+	},
+	"_READERSETTING": {
+		"TITLE": "Twaqqif"
+	},
+	"_NEWS": {
+		"TITLE": "Aħbarijiet"
+	},
+	"_CREDIT": {
+		"TITLE": "Grazzi talli"
+	},
+	"_CREATION": {
+		"TITLE": "Ħolqien"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorit"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "mistoqsija",
+		"ANSWER": "risposta",
+		"EXAMPLE": "eżempju",
+		"TIPS": "pariri",
+		"STAR": "stilla"
+	}
+}

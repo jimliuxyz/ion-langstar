@@ -1,0 +1,93 @@
+{
+	"SETTING": "सेटिङ",
+	"LOGIN": "लग - इन",
+	"LOGOUT": "बाहिर निस्कनु",
+	"OKAY": "ल",
+	"CANCEL": "रद्द गर्नुहोस्",
+	"CLOSE": "बन्द गर्नुहोस्",
+	"CREDIT": "को लागि धन्यवाद",
+	"SAVE": "बचत गर्नुहोस्",
+	"DELETE": "मेटाउन",
+	"NALANG": "मूल भाषा",
+	"TALANG": "विदेशी भाषा",
+	"TAG": "ट्याग",
+	"LANG": "भाषा",
+	"SPEECHVOICE": "बोल्नुहोस्",
+	"VOICERECOGN": "पहिचान",
+	"VOICESPEED": "गति",
+	"PUBLISH": "प्रकाशित गर्नुहोस्",
+	"EDIT": "सम्पादन गर्नुहोस्",
+	"BOOKNAME": "शीर्षक",
+	"GENERAL": "सामान्य",
+	"MYFIRSTBOOKNAME": "मेरो पहिलो पुस्तक",
+	"LEARNING": "सिक्दै",
+	"LEARNED": "सिक्यो",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "त्यहाँ नयाँ संस्करण हो!",
+		"MSG": "अहिले अपडेट गर्नुहोस्?"
+	},
+	"_SETTINGS": {
+		"TITLE": "सेटिङ",
+		"LANG": "भाषा",
+		"NALANG": "मूल भाषा",
+		"TALANG": "विदेशी भाषा"
+	},
+	"_ALERT": {
+		"DELBOOK": "के तपाईं पक्का यो पुस्तक मेटाउन चाहानुहुन्छ?",
+		"DISLIKEBOOK": "के तपाईं पक्का यो पुस्तक बुकमार्क गर्न चाहानुहुन्छ?",
+		"OVERWRITEBOOK": "यो संस्करण सही संस्करणको रूपमा अधिलेखन गर्ने हो?",
+		"ANSNUMRECOGN": "जवाफ फर्काउनुहोस्, जस्तै \"नम्बर एक\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "नेभिगेशन असफल भयो ...",
+		"NEWBOOKFAILURE": "सिर्जना असफल भयो ...",
+		"DELBOOKFAILURE": "हटाउन असफल भयो ..."
+	},
+	"_MCQ": {
+		"NAME": "प्रश्नोत्तरी कार्ड",
+		"MODEPLAY": "बजाउनुहोस्",
+		"MODESPEAK": "बोल्नुहोस्",
+		"MODETEST": "टेस्ट गर्नुहोस्",
+		"SHOWNSPEAK": "प्रदर्शन / दोहोर्याउनुहोस्",
+		"RANDOM": "यादृच्छिक",
+		"SPELL": "हिज्जे",
+		"QUESTION": "प्रश्न",
+		"ANSWER": "जवाफ दिनुहोस्",
+		"EXAMPLE": "उदाहरण",
+		"TIP": "टिप",
+		"OUTOFQUIZ": "अब प्रश्नोत्तरी छैन",
+		"ANS_FIRST": "पहिलो जवाफ दिनुहोस्"
+	},
+	"_CONQ": {
+		"NAME": "कुराकानी"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "सेटिङ"
+	},
+	"_READERSETTING": {
+		"TITLE": "सेटिङ"
+	},
+	"_NEWS": {
+		"TITLE": "समाचार"
+	},
+	"_CREDIT": {
+		"TITLE": "को लागि धन्यवाद"
+	},
+	"_CREATION": {
+		"TITLE": "सिर्जना"
+	},
+	"_COLLECTION": {
+		"TITLE": "मनपर्छ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "प्रश्न",
+		"ANSWER": "जवाफ दिनुहोस्",
+		"EXAMPLE": "उदाहरण",
+		"TIPS": "सुझावहरू",
+		"STAR": "तारा"
+	}
+}

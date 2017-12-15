@@ -1,0 +1,103 @@
+
+
+ {
+  "SETTING": "Setting",
+  "LOGIN": "log in",
+  "LOGOUT": "log out",
+  "OKAY": "Okay",
+  "CANCEL": "Cancel",
+  "CLOSE": "Close",
+  "CREDIT": "感謝",
+  "SAVE": "Save",
+  "DELETE": "Delete",
+  
+  "NALANG": "母語",
+  "TALANG": "外語",
+  "TAG": "Tag",
+  "LANG": "Language",
+  "SPEECHVOICE": "speak",
+  "VOICERECOGN": "辨識",
+  "VOICESPEED": "speed",
+  "PUBLISH": "Publish",
+  "EDIT": "Edit",
+  "BOOKNAME": "Title",
+  "GENERAL": "General",
+  "MYFIRSTBOOKNAME": "My first book",
+  
+  "LEARNING": "學習中",
+  "LEARNED": "學會的",
+  "ANSNUMRECOGN": "",
+  
+  "_UPGRADE": {
+    "TITLE": "There is a new version!",
+    "MSG": "Update Now?"
+  },
+  
+  "_SETTINGS": {
+    "TITLE": "Setting",
+    "LANG": "Language",
+    "NALANG": "母語",
+    "TALANG": "外語"
+  },
+  "_ALERT": {
+    "DELBOOK": "Are you sure you want to delete this book?",
+    "DISLIKEBOOK": "Are you sure you don't want to bookmark this book?",
+    "OVERWRITEBOOK": "Overwrite this content as the correct version?",
+    "ANSNUMRECOGN": "Read out the answer, such as \"number one\""
+   },
+  "_TOAST": {
+  "NAVFAILURE": "Navigation failed ...",
+  "NEWBOOKFAILURE": "Create failed ...",
+  "DELBOOKFAILURE": "failed to delete..."
+  },
+  
+  "_MCQ": {
+    "NAME": "Quiz Card",
+    "MODEPLAY": "播放",
+    "MODESPEAK": "Speak",
+    "MODETEST": "Test",
+    "SHOWNSPEAK": "Display / Repeat",
+    "RANDOM": "random",
+    "SPELL": "spell",
+    "QUESTION": "question",
+    "ANSWER": "answer",
+    "EXAMPLE": "example",
+    "TIP": "tip",
+    "OUTOFQUIZ": "no quiz anymore",
+    "ANS_FIRST": "answer first"
+  },
+  "_CONQ": {
+    "NAME": "Conversation"
+  },
+  
+  "_CLOUD_HOME": {
+    "TITLE": "Bookshelf"
+  },
+  
+  "_BOOKSETTING": {
+    "TITLE": "Setting"
+  },
+  "_READERSETTING": {
+    "TITLE": "Setting"
+  },
+  "_NEWS": {
+    "TITLE": "News"
+  },
+  "_CREDIT": {
+    "TITLE": "感謝"
+  },
+  "_CREATION": {
+    "TITLE": "Creation"
+  },
+  "_COLLECTION": {
+    "TITLE": "favorite"
+  },
+  "_PLACEHOLDER": {
+    "QUESTION": "question",
+    "ANSWER": "answer",
+    "EXAMPLE": "example",
+    "TIPS": "tips",
+    "STAR": "star"
+  }
+  
+}

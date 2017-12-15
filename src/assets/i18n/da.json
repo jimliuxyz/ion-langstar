@@ -1,0 +1,93 @@
+{
+	"SETTING": "Indstilling",
+	"LOGIN": "Log på",
+	"LOGOUT": "Log ud",
+	"OKAY": "okay",
+	"CANCEL": "Afbestille",
+	"CLOSE": "Tæt",
+	"CREDIT": "Tak for",
+	"SAVE": "Gemme",
+	"DELETE": "Slet",
+	"NALANG": "Modersmål",
+	"TALANG": "Fremmedsprog",
+	"TAG": "tag",
+	"LANG": "Sprog",
+	"SPEECHVOICE": "tale",
+	"VOICERECOGN": "anerkendelse",
+	"VOICESPEED": "fart",
+	"PUBLISH": "Offentliggøre",
+	"EDIT": "Redigere",
+	"BOOKNAME": "Titel",
+	"GENERAL": "Generel",
+	"MYFIRSTBOOKNAME": "Min første bog",
+	"LEARNING": "Læring",
+	"LEARNED": "samfund",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Der er en ny version!",
+		"MSG": "Opdatere nu?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Indstilling",
+		"LANG": "Sprog",
+		"NALANG": "Modersmål",
+		"TALANG": "Fremmedsprog"
+	},
+	"_ALERT": {
+		"DELBOOK": "Er du sikker på, at du vil slette denne bog?",
+		"DISLIKEBOOK": "Er du sikker på, at du ikke vil bogmærke denne bog?",
+		"OVERWRITEBOOK": "Overskriv dette indhold som den korrekte version?",
+		"ANSNUMRECOGN": "Læs svaret, som \"nummer et\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation mislykkedes ...",
+		"NEWBOOKFAILURE": "Opret mislykket ...",
+		"DELBOOKFAILURE": "undladt at slette ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-kort",
+		"MODEPLAY": "broadcast",
+		"MODESPEAK": "Tale",
+		"MODETEST": "Prøve",
+		"SHOWNSPEAK": "Vis / Gentag",
+		"RANDOM": "tilfældig",
+		"SPELL": "stave",
+		"QUESTION": "spørgsmål",
+		"ANSWER": "svar",
+		"EXAMPLE": "eksempel",
+		"TIP": "tip",
+		"OUTOFQUIZ": "ingen quiz mere",
+		"ANS_FIRST": "svar først"
+	},
+	"_CONQ": {
+		"NAME": "Samtale"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bogreol"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Indstilling"
+	},
+	"_READERSETTING": {
+		"TITLE": "Indstilling"
+	},
+	"_NEWS": {
+		"TITLE": "Nyheder"
+	},
+	"_CREDIT": {
+		"TITLE": "Tak for"
+	},
+	"_CREATION": {
+		"TITLE": "Skabelse"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorit"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "spørgsmål",
+		"ANSWER": "svar",
+		"EXAMPLE": "eksempel",
+		"TIPS": "Tips",
+		"STAR": "stjerne"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Nastavitev",
+	"LOGIN": "Vpiši se",
+	"LOGOUT": "izpisati",
+	"OKAY": "v redu",
+	"CANCEL": "Prekliči",
+	"CLOSE": "Zapri",
+	"CREDIT": "Hvala za",
+	"SAVE": "Shrani",
+	"DELETE": "Izbriši",
+	"NALANG": "Native language",
+	"TALANG": "Tuji jezik",
+	"TAG": "Oznaka",
+	"LANG": "Jezik",
+	"SPEECHVOICE": "govoriti",
+	"VOICERECOGN": "Priznavanje",
+	"VOICESPEED": "hitrost",
+	"PUBLISH": "Objavi",
+	"EDIT": "Uredi",
+	"BOOKNAME": "Naslov",
+	"GENERAL": "Splošno",
+	"MYFIRSTBOOKNAME": "Moja prva knjiga",
+	"LEARNING": "Učenje",
+	"LEARNED": "Izvedel",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Obstaja nova različica!",
+		"MSG": "Posodobi zdaj?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Nastavitev",
+		"LANG": "Jezik",
+		"NALANG": "Native language",
+		"TALANG": "Tuji jezik"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ali ste prepričani, da želite izbrisati to knjigo?",
+		"DISLIKEBOOK": "Ali ste prepričani, da ne želite zaznamovati te knjige?",
+		"OVERWRITEBOOK": "To vsebino prepišite kot pravilno različico?",
+		"ANSNUMRECOGN": "Preberite odgovor, na primer \"številka ena\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigacija ni uspela ...",
+		"NEWBOOKFAILURE": "Ustvarjanje ni uspelo ...",
+		"DELBOOKFAILURE": "ni bilo mogoče izbrisati ..."
+	},
+	"_MCQ": {
+		"NAME": "Kviz kartica",
+		"MODEPLAY": "Igraj",
+		"MODESPEAK": "Govoriti",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Prikaz / ponavljanje",
+		"RANDOM": "naključen",
+		"SPELL": "urok",
+		"QUESTION": "vprašanje",
+		"ANSWER": "odgovor",
+		"EXAMPLE": "primer",
+		"TIP": "nasvet",
+		"OUTOFQUIZ": "noben kviz ni več",
+		"ANS_FIRST": "najprej odgovorite"
+	},
+	"_CONQ": {
+		"NAME": "Pogovor"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Knjižna polica"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Nastavitev"
+	},
+	"_READERSETTING": {
+		"TITLE": "Nastavitev"
+	},
+	"_NEWS": {
+		"TITLE": "Novice"
+	},
+	"_CREDIT": {
+		"TITLE": "Hvala za"
+	},
+	"_CREATION": {
+		"TITLE": "Ustvarjanje"
+	},
+	"_COLLECTION": {
+		"TITLE": "najljubši"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "vprašanje",
+		"ANSWER": "odgovor",
+		"EXAMPLE": "primer",
+		"TIPS": "nasveti",
+		"STAR": "zvezda"
+	}
+}

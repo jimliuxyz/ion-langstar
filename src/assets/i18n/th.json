@@ -1,0 +1,93 @@
+{
+	"SETTING": "การตั้งค่า",
+	"LOGIN": "เข้าสู่ระบบ",
+	"LOGOUT": "ออกจากระบบ",
+	"OKAY": "ถูก",
+	"CANCEL": "ยกเลิก",
+	"CLOSE": "ปิด",
+	"CREDIT": "ขอบคุณสำหรับ",
+	"SAVE": "บันทึก",
+	"DELETE": "ลบ",
+	"NALANG": "ภาษาพื้นเมือง",
+	"TALANG": "ภาษาต่างประเทศ",
+	"TAG": "แท็ก",
+	"LANG": "ภาษา",
+	"SPEECHVOICE": "พูด",
+	"VOICERECOGN": "การรับรู้",
+	"VOICESPEED": "ความเร็ว",
+	"PUBLISH": "ประกาศ",
+	"EDIT": "แก้ไข",
+	"BOOKNAME": "หัวข้อ",
+	"GENERAL": "ทั่วไป",
+	"MYFIRSTBOOKNAME": "หนังสือเล่มแรกของฉัน",
+	"LEARNING": "การเรียนรู้",
+	"LEARNED": "สังคม",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "มีเวอร์ชันใหม่!",
+		"MSG": "อัปเดตเดี๋ยวนี้"
+	},
+	"_SETTINGS": {
+		"TITLE": "การตั้งค่า",
+		"LANG": "ภาษา",
+		"NALANG": "ภาษาพื้นเมือง",
+		"TALANG": "ภาษาต่างประเทศ"
+	},
+	"_ALERT": {
+		"DELBOOK": "คุณแน่ใจหรือไม่ว่าต้องการลบหนังสือเล่มนี้?",
+		"DISLIKEBOOK": "คุณแน่ใจหรือไม่ว่าคุณไม่ต้องการบุ๊กมาร์กหนังสือเล่มนี้",
+		"OVERWRITEBOOK": "เขียนทับเนื้อหานี้เป็นเวอร์ชันที่ถูกต้องหรือไม่?",
+		"ANSNUMRECOGN": "อ่านคำตอบเช่น \"หมายเลขหนึ่ง\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "การนำทางล้มเหลว ...",
+		"NEWBOOKFAILURE": "สร้างล้มเหลว ...",
+		"DELBOOKFAILURE": "ไม่สามารถลบ ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "ออกอากาศ",
+		"MODESPEAK": "พูด",
+		"MODETEST": "ทดสอบ",
+		"SHOWNSPEAK": "แสดง / ทำซ้ำ",
+		"RANDOM": "สุ่ม",
+		"SPELL": "สะกด",
+		"QUESTION": "คำถาม",
+		"ANSWER": "ตอบ",
+		"EXAMPLE": "ตัวอย่าง",
+		"TIP": "ปลาย",
+		"OUTOFQUIZ": "ไม่มีคำถามอีกต่อไป",
+		"ANS_FIRST": "ตอบก่อน"
+	},
+	"_CONQ": {
+		"NAME": "การสนทนา"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "ชั้นวางหนังสือ"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "การตั้งค่า"
+	},
+	"_READERSETTING": {
+		"TITLE": "การตั้งค่า"
+	},
+	"_NEWS": {
+		"TITLE": "ข่าว"
+	},
+	"_CREDIT": {
+		"TITLE": "ขอบคุณสำหรับ"
+	},
+	"_CREATION": {
+		"TITLE": "การสร้าง"
+	},
+	"_COLLECTION": {
+		"TITLE": "ที่ชื่นชอบ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "คำถาม",
+		"ANSWER": "ตอบ",
+		"EXAMPLE": "ตัวอย่าง",
+		"TIPS": "เคล็ดลับ",
+		"STAR": "ดาว"
+	}
+}

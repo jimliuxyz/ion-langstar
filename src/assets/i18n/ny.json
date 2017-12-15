@@ -1,0 +1,93 @@
+{
+	"SETTING": "Kukhazikitsa",
+	"LOGIN": "Lowani muakaunti",
+	"LOGOUT": "tulukani",
+	"OKAY": "Chabwino",
+	"CANCEL": "Sakanizani",
+	"CLOSE": "Yandikirani",
+	"CREDIT": "Zikomo",
+	"SAVE": "Sungani",
+	"DELETE": "Chotsani",
+	"NALANG": "Chilankhulo",
+	"TALANG": "Chilankhulo chachilendo",
+	"TAG": "Taganizani",
+	"LANG": "Chilankhulo",
+	"SPEECHVOICE": "lankhulani",
+	"VOICERECOGN": "Kuzindikiridwa",
+	"VOICESPEED": "liwiro",
+	"PUBLISH": "Sindikizani",
+	"EDIT": "Sintha",
+	"BOOKNAME": "Mutu",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Bukhu langa loyamba",
+	"LEARNING": "Kuphunzira",
+	"LEARNED": "Anaphunzira",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Pali mtundu watsopano!",
+		"MSG": "Sintha tsopano?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Kukhazikitsa",
+		"LANG": "Chilankhulo",
+		"NALANG": "Chilankhulo",
+		"TALANG": "Chilankhulo chachilendo"
+	},
+	"_ALERT": {
+		"DELBOOK": "Kodi mukutsimikiza kuti mukufuna kuchotsa bukuli?",
+		"DISLIKEBOOK": "Mukutsimikiza kuti simukufuna kuika bukhu ili?",
+		"OVERWRITEBOOK": "Kulemba izi ndizolemba molondola?",
+		"ANSNUMRECOGN": "Werengani yankho lanu, monga \"nambala imodzi\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Kuyenda kunalephera ...",
+		"NEWBOOKFAILURE": "Pangani akulephera ...",
+		"DELBOOKFAILURE": "sanathetse ..."
+	},
+	"_MCQ": {
+		"NAME": "Khadi la Mafunso",
+		"MODEPLAY": "Sewani",
+		"MODESPEAK": "Lankhulani",
+		"MODETEST": "Mayeso",
+		"SHOWNSPEAK": "Onetsani / Bwerezani",
+		"RANDOM": "zopanda pake",
+		"SPELL": "spell",
+		"QUESTION": "funso",
+		"ANSWER": "Yankhani",
+		"EXAMPLE": "chitsanzo",
+		"TIP": "nsonga",
+		"OUTOFQUIZ": "palibe mafunso",
+		"ANS_FIRST": "yankhani choyamba"
+	},
+	"_CONQ": {
+		"NAME": "Kukambirana"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Kukhazikitsa"
+	},
+	"_READERSETTING": {
+		"TITLE": "Kukhazikitsa"
+	},
+	"_NEWS": {
+		"TITLE": "Nkhani"
+	},
+	"_CREDIT": {
+		"TITLE": "Zikomo"
+	},
+	"_CREATION": {
+		"TITLE": "Chilengedwe"
+	},
+	"_COLLECTION": {
+		"TITLE": "zokonda"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "funso",
+		"ANSWER": "Yankhani",
+		"EXAMPLE": "chitsanzo",
+		"TIPS": "malingaliro",
+		"STAR": "nyenyezi"
+	}
+}

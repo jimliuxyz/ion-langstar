@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ntọala",
+	"LOGIN": "banye",
+	"LOGOUT": "abanye",
+	"OKAY": "Ọ dị mma",
+	"CANCEL": "Kwụsị",
+	"CLOSE": "Mechie",
+	"CREDIT": "Daalụ maka",
+	"SAVE": "Chekwa",
+	"DELETE": "Hichapụ",
+	"NALANG": "Asụsụ obodo",
+	"TALANG": "Asụsụ mba ọzọ",
+	"TAG": "Nkume",
+	"LANG": "Asụsụ",
+	"SPEECHVOICE": "ekwu okwu",
+	"VOICERECOGN": "Ịghọta",
+	"VOICESPEED": "ọsọ",
+	"PUBLISH": "Bipụta",
+	"EDIT": "Dezie",
+	"BOOKNAME": "Aha",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Akwụkwọ m mbụ",
+	"LEARNING": "Ịmụ ihe",
+	"LEARNED": "Mụtara",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "E nwere nsụgharị ọhụrụ!",
+		"MSG": "Melite ugbu a?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ntọala",
+		"LANG": "Asụsụ",
+		"NALANG": "Asụsụ obodo",
+		"TALANG": "Asụsụ mba ọzọ"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ị ji n'aka na ịchọrọ ihichapụ akwụkwọ a?",
+		"DISLIKEBOOK": "Ị ma na ịchọrọ ịdebanye akwụkwọ a n'akwụkwọ?",
+		"OVERWRITEBOOK": "Dezie ọdịnaya a dịka nsụgharị ziri ezi?",
+		"ANSNUMRECOGN": "Gụọ azịza ya, dịka \"nọmba otu\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Igodo okpu ...",
+		"NEWBOOKFAILURE": "Mepụta okpu ...",
+		"DELBOOKFAILURE": "okpughi ..."
+	},
+	"_MCQ": {
+		"NAME": "Card Quiz",
+		"MODEPLAY": "Gwuo",
+		"MODESPEAK": "Kwuo",
+		"MODETEST": "Ule",
+		"SHOWNSPEAK": "Gosi / Tinyegharịa",
+		"RANDOM": "random",
+		"SPELL": "asụ",
+		"QUESTION": "ajụjụ",
+		"ANSWER": "azịza",
+		"EXAMPLE": "ihe atụ",
+		"TIP": "ọnụ",
+		"OUTOFQUIZ": "ọ dịghị ajụjụ ọzọ",
+		"ANS_FIRST": "zaa ụzọ"
+	},
+	"_CONQ": {
+		"NAME": "Mkparịta ụka"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ntọala"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ntọala"
+	},
+	"_NEWS": {
+		"TITLE": "Akụkọ"
+	},
+	"_CREDIT": {
+		"TITLE": "Daalụ maka"
+	},
+	"_CREATION": {
+		"TITLE": "Ihe okike"
+	},
+	"_COLLECTION": {
+		"TITLE": "ọkacha mmasị"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ajụjụ",
+		"ANSWER": "azịza",
+		"EXAMPLE": "ihe atụ",
+		"TIPS": "ndụmọdụ",
+		"STAR": "kpakpando"
+	}
+}

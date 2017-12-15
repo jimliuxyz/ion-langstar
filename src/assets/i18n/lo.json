@@ -1,0 +1,93 @@
+{
+	"SETTING": "ການຕັ້ງຄ່າ",
+	"LOGIN": "ເຂົ້າ​ສູ່​ລະ​ບົບ",
+	"LOGOUT": "ອອກ​ຈາກ​ລະ​ບົບ",
+	"OKAY": "Okay",
+	"CANCEL": "ຍົກເລີກ",
+	"CLOSE": "ປິດ",
+	"CREDIT": "ຂອບ​ໃຈ​ສໍາ​ລັບ",
+	"SAVE": "ຊ່ວຍປະຢັດ",
+	"DELETE": "ລຶບ",
+	"NALANG": "ພາສາພື້ນເມືອງ",
+	"TALANG": "ພາສາຕ່າງປະເທດ",
+	"TAG": "Tag",
+	"LANG": "ພາສາ",
+	"SPEECHVOICE": "ເວົ້າ",
+	"VOICERECOGN": "ການຮັບຮູ້",
+	"VOICESPEED": "ຄວາມໄວ",
+	"PUBLISH": "ເຜີຍແຜ່",
+	"EDIT": "ແກ້ໄຂ",
+	"BOOKNAME": "Title",
+	"GENERAL": "ທົ່ວໄປ",
+	"MYFIRSTBOOKNAME": "ປື້ມທໍາອິດຂອງຂ້ອຍ",
+	"LEARNING": "ຮຽນຮູ້",
+	"LEARNED": "ຮຽນຮູ້",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "ມີສະບັບໃຫມ່!",
+		"MSG": "Update now?"
+	},
+	"_SETTINGS": {
+		"TITLE": "ການຕັ້ງຄ່າ",
+		"LANG": "ພາສາ",
+		"NALANG": "ພາສາພື້ນເມືອງ",
+		"TALANG": "ພາສາຕ່າງປະເທດ"
+	},
+	"_ALERT": {
+		"DELBOOK": "ທ່ານແນ່ໃຈວ່າທ່ານຕ້ອງການລຶບປື້ມນີ້ບໍ?",
+		"DISLIKEBOOK": "ທ່ານແນ່ໃຈວ່າທ່ານບໍ່ຕ້ອງການ bookmark book ນີ້ບໍ?",
+		"OVERWRITEBOOK": "ຂຽນລາຍລະອຽດນີ້ເປັນເວີຊັນທີ່ຖືກຕ້ອງ?",
+		"ANSNUMRECOGN": "ອ່ານຄໍາຕອບ, ເຊັ່ນ: \"ຈໍານວນຫນຶ່ງ\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation failed ...",
+		"NEWBOOKFAILURE": "ສ້າງລົ້ມເຫລວ ...",
+		"DELBOOKFAILURE": "ບໍ່ສາມາດລຶບ ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "ຫຼິ້ນ",
+		"MODESPEAK": "ເວົ້າ",
+		"MODETEST": "ທົດສອບ",
+		"SHOWNSPEAK": "ສະແດງ / ເຮັດຊ້ໍາ",
+		"RANDOM": "random",
+		"SPELL": "spell",
+		"QUESTION": "ຄໍາຖາມ",
+		"ANSWER": "ຕອບ",
+		"EXAMPLE": "ຕົວຢ່າງ",
+		"TIP": "ປາຍ",
+		"OUTOFQUIZ": "no quiz anymore",
+		"ANS_FIRST": "ຕອບທໍາອິດ"
+	},
+	"_CONQ": {
+		"NAME": "ການສົນທະນາ"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "bookhelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "ການຕັ້ງຄ່າ"
+	},
+	"_READERSETTING": {
+		"TITLE": "ການຕັ້ງຄ່າ"
+	},
+	"_NEWS": {
+		"TITLE": "ຂ່າວສານ"
+	},
+	"_CREDIT": {
+		"TITLE": "ຂອບ​ໃຈ​ສໍາ​ລັບ"
+	},
+	"_CREATION": {
+		"TITLE": "ການສ້າງ"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorite"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ຄໍາຖາມ",
+		"ANSWER": "ຕອບ",
+		"EXAMPLE": "ຕົວຢ່າງ",
+		"TIPS": "ຄໍາແນະນໍາ",
+		"STAR": "star"
+	}
+}

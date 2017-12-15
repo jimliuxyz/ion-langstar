@@ -1,0 +1,93 @@
+{
+	"SETTING": "налада",
+	"LOGIN": "увайсці",
+	"LOGOUT": "выйсці",
+	"OKAY": "Добра",
+	"CANCEL": "адмяніць",
+	"CLOSE": "блізка",
+	"CREDIT": "дзякуй за",
+	"SAVE": "захаваць",
+	"DELETE": "выдаляць",
+	"NALANG": "родная мова",
+	"TALANG": "замежную мову",
+	"TAG": "тэг",
+	"LANG": "мова",
+	"SPEECHVOICE": "гаварыць",
+	"VOICERECOGN": "прызнанне",
+	"VOICESPEED": "хуткасць",
+	"PUBLISH": "апублікаваць",
+	"EDIT": "рэдагаваць",
+	"BOOKNAME": "тытульны",
+	"GENERAL": "агульны",
+	"MYFIRSTBOOKNAME": "Мая першая кніга",
+	"LEARNING": "навучанне",
+	"LEARNED": "таварыства",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Існуе новая версія!",
+		"MSG": "Абнавіць зараз?"
+	},
+	"_SETTINGS": {
+		"TITLE": "налада",
+		"LANG": "мова",
+		"NALANG": "родная мова",
+		"TALANG": "замежную мову"
+	},
+	"_ALERT": {
+		"DELBOOK": "Вы ўпэўненыя, што жадаеце выдаліць гэтую кнігу?",
+		"DISLIKEBOOK": "Вы ўпэўненыя, што вы не хочаце, каб дадаць гэтую кнігу?",
+		"OVERWRITEBOOK": "Перапісаць гэта змест як правільную версію?",
+		"ANSNUMRECOGN": "Лічыце адказ, напрыклад, як «нумар адзін»"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Рух не ўдалося ...",
+		"NEWBOOKFAILURE": "Стварэнне не атрымалася ...",
+		"DELBOOKFAILURE": "не ўдалося выдаліць ..."
+	},
+	"_MCQ": {
+		"NAME": "тэст карты",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "гаварыць",
+		"MODETEST": "тэст",
+		"SHOWNSPEAK": "Паказаць / Repeat",
+		"RANDOM": "выпадковы",
+		"SPELL": "загавор",
+		"QUESTION": "пытанне",
+		"ANSWER": "адказ",
+		"EXAMPLE": "прыклад",
+		"TIP": "наканечнік",
+		"OUTOFQUIZ": "няма віктарыны больш",
+		"ANS_FIRST": "адказаць на першы"
+	},
+	"_CONQ": {
+		"NAME": "размова"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "кніжная палка"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "налада"
+	},
+	"_READERSETTING": {
+		"TITLE": "налада"
+	},
+	"_NEWS": {
+		"TITLE": "навіны"
+	},
+	"_CREDIT": {
+		"TITLE": "дзякуй за"
+	},
+	"_CREATION": {
+		"TITLE": "стварэнне"
+	},
+	"_COLLECTION": {
+		"TITLE": "любімы"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "пытанне",
+		"ANSWER": "адказ",
+		"EXAMPLE": "прыклад",
+		"TIPS": "чаявыя",
+		"STAR": "зорка"
+	}
+}

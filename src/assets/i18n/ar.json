@@ -1,0 +1,93 @@
+{
+	"SETTING": "ضبط",
+	"LOGIN": "تسجيل الدخول",
+	"LOGOUT": "الخروج",
+	"OKAY": "حسنا",
+	"CANCEL": "إلغاء",
+	"CLOSE": "قريب",
+	"CREDIT": "شكرا لك على",
+	"SAVE": "حفظ",
+	"DELETE": "حذف",
+	"NALANG": "اللغة الأصلية",
+	"TALANG": "اللغة الأجنبية",
+	"TAG": "بطاقة",
+	"LANG": "لغة",
+	"SPEECHVOICE": "تحدث",
+	"VOICERECOGN": "اعتراف",
+	"VOICESPEED": "سرعة",
+	"PUBLISH": "نشر",
+	"EDIT": "تصحيح",
+	"BOOKNAME": "عنوان",
+	"GENERAL": "جنرال لواء",
+	"MYFIRSTBOOKNAME": "أول كتاب لي",
+	"LEARNING": "تعلم",
+	"LEARNED": "مجتمع",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "هناك نسخة جديدة!",
+		"MSG": "تحديث الان؟"
+	},
+	"_SETTINGS": {
+		"TITLE": "ضبط",
+		"LANG": "لغة",
+		"NALANG": "اللغة الأصلية",
+		"TALANG": "اللغة الأجنبية"
+	},
+	"_ALERT": {
+		"DELBOOK": "هل تريد بالتأكيد حذف هذا الكتاب؟",
+		"DISLIKEBOOK": "هل أنت متأكد من أنك لا تريد وضع إشارة مرجعية على هذا الكتاب؟",
+		"OVERWRITEBOOK": "هل تريد استبدال هذا المحتوى بالإصدار الصحيح؟",
+		"ANSNUMRECOGN": "اقرأ الجواب، مثل \"رقم واحد\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "أخفق التنقل ...",
+		"NEWBOOKFAILURE": "أخفق الإنشاء ...",
+		"DELBOOKFAILURE": "أخفق الحذف ..."
+	},
+	"_MCQ": {
+		"NAME": "بطاقة مسابقة",
+		"MODEPLAY": "البث",
+		"MODESPEAK": "تحدث",
+		"MODETEST": "اختبار",
+		"SHOWNSPEAK": "عرض / كرر",
+		"RANDOM": "عشوائي",
+		"SPELL": "تهجئه",
+		"QUESTION": "سؤال",
+		"ANSWER": "إجابة",
+		"EXAMPLE": "مثال",
+		"TIP": "تلميح",
+		"OUTOFQUIZ": "لا مسابقة بعد الآن",
+		"ANS_FIRST": "أجب أولا"
+	},
+	"_CONQ": {
+		"NAME": "محادثة"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "رف الكتب"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "ضبط"
+	},
+	"_READERSETTING": {
+		"TITLE": "ضبط"
+	},
+	"_NEWS": {
+		"TITLE": "أخبار"
+	},
+	"_CREDIT": {
+		"TITLE": "شكرا لك على"
+	},
+	"_CREATION": {
+		"TITLE": "خلق"
+	},
+	"_COLLECTION": {
+		"TITLE": "مفضل"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "سؤال",
+		"ANSWER": "إجابة",
+		"EXAMPLE": "مثال",
+		"TIPS": "نصائح",
+		"STAR": "نجمة"
+	}
+}

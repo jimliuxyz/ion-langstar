@@ -1,0 +1,93 @@
+{
+	"SETTING": "سيٽنگ",
+	"LOGIN": "لاگ ان ۾",
+	"LOGOUT": "ڪم ڇڏڻ",
+	"OKAY": "ٺيڪ آهي",
+	"CANCEL": "منسوخ ڪريو",
+	"CLOSE": "بند ڪريو",
+	"CREDIT": "جي مهرباني",
+	"SAVE": "محفوظ ڪريو",
+	"DELETE": "ختم ڪريو",
+	"NALANG": "اصلي ٻولي",
+	"TALANG": "غير ملڪي ٻولي",
+	"TAG": "ٽيگ",
+	"LANG": "ٻولي",
+	"SPEECHVOICE": "ڳالهاء",
+	"VOICERECOGN": "سڃاڻپ",
+	"VOICESPEED": "رفتار",
+	"PUBLISH": "شايع ڪريو",
+	"EDIT": "ترميم ڪريو",
+	"BOOKNAME": "ٽائيٽل",
+	"GENERAL": "عام",
+	"MYFIRSTBOOKNAME": "منهنجو پهريون ڪتاب",
+	"LEARNING": "سکيا",
+	"LEARNED": "سکيو",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "هتي هڪ نئون نسخو آهي",
+		"MSG": "هاڻي تازو ٿيو؟"
+	},
+	"_SETTINGS": {
+		"TITLE": "سيٽنگ",
+		"LANG": "ٻولي",
+		"NALANG": "اصلي ٻولي",
+		"TALANG": "غير ملڪي ٻولي"
+	},
+	"_ALERT": {
+		"DELBOOK": "ڇا اوھان کي پڪ آھي ته ھن ڪتاب کي ختم ڪرڻ چاھيو ٿا؟",
+		"DISLIKEBOOK": "ڇا اوھان کي پڪ آھي ته ھن ڪتاب کي نشانو بڻائڻ چاھيو ٿا؟",
+		"OVERWRITEBOOK": "هن مواد کي صحيح ورزن وانگر مڪمل ڪيو آهي؟",
+		"ANSNUMRECOGN": "جواب پڙهو، جيئن ته \"نمبر هڪ\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ناڪامي ناڪام ٿي ...",
+		"NEWBOOKFAILURE": "ناڪام ٿي ويو ...",
+		"DELBOOKFAILURE": "ختم ڪرڻ ناڪام ٿي ..."
+	},
+	"_MCQ": {
+		"NAME": "کوئز ڪارڊ",
+		"MODEPLAY": "کيڏو",
+		"MODESPEAK": "ڳالهايو",
+		"MODETEST": "ٽيسٽ",
+		"SHOWNSPEAK": "ڏيکاري / ورجائي",
+		"RANDOM": "بي ترتيب",
+		"SPELL": "هجي",
+		"QUESTION": "سوال",
+		"ANSWER": "جواب ڏيو",
+		"EXAMPLE": "مثال",
+		"TIP": "ٽپ",
+		"OUTOFQUIZ": "ڪوبه سوال نه لهي ٿو",
+		"ANS_FIRST": "پهريون جواب ڏيو"
+	},
+	"_CONQ": {
+		"NAME": "گفتگو"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "ڪتابيليلف"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "سيٽنگ"
+	},
+	"_READERSETTING": {
+		"TITLE": "سيٽنگ"
+	},
+	"_NEWS": {
+		"TITLE": "خبرون"
+	},
+	"_CREDIT": {
+		"TITLE": "جي مهرباني"
+	},
+	"_CREATION": {
+		"TITLE": "بڻائڻ"
+	},
+	"_COLLECTION": {
+		"TITLE": "پسنديده"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "سوال",
+		"ANSWER": "جواب ڏيو",
+		"EXAMPLE": "مثال",
+		"TIPS": "صلاحون",
+		"STAR": "تارو"
+	}
+}

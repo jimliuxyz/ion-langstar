@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ajuste",
+	"LOGIN": "iniciar sesión",
+	"LOGOUT": "cerrar sesión",
+	"OKAY": "Bueno",
+	"CANCEL": "Cancelar",
+	"CLOSE": "Cerca",
+	"CREDIT": "Gracias por",
+	"SAVE": "Salvar",
+	"DELETE": "Borrar",
+	"NALANG": "Idioma nativo",
+	"TALANG": "Idioma extranjero",
+	"TAG": "Etiqueta",
+	"LANG": "Idioma",
+	"SPEECHVOICE": "hablar",
+	"VOICERECOGN": "Reconocimiento",
+	"VOICESPEED": "velocidad",
+	"PUBLISH": "Publicar",
+	"EDIT": "Editar",
+	"BOOKNAME": "Título",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Mi primer libro",
+	"LEARNING": "Aprender",
+	"LEARNED": "Aprendido",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Hay una nueva versión!",
+		"MSG": "¿Actualizar ahora?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ajuste",
+		"LANG": "Idioma",
+		"NALANG": "Idioma nativo",
+		"TALANG": "Idioma extranjero"
+	},
+	"_ALERT": {
+		"DELBOOK": "¿Seguro que quieres eliminar este libro?",
+		"DISLIKEBOOK": "¿Estás seguro de que no quieres marcar este libro?",
+		"OVERWRITEBOOK": "¿Sobrescribir este contenido como la versión correcta?",
+		"ANSNUMRECOGN": "Lea la respuesta, como \"número uno\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "La navegación falló ...",
+		"NEWBOOKFAILURE": "Crear un error ...",
+		"DELBOOKFAILURE": "no se pudo eliminar ..."
+	},
+	"_MCQ": {
+		"NAME": "Tarjeta de prueba",
+		"MODEPLAY": "Jugar",
+		"MODESPEAK": "Hablar",
+		"MODETEST": "Prueba",
+		"SHOWNSPEAK": "Mostrar / repetir",
+		"RANDOM": "aleatorio",
+		"SPELL": "deletrear",
+		"QUESTION": "pregunta",
+		"ANSWER": "responder",
+		"EXAMPLE": "ejemplo",
+		"TIP": "propina",
+		"OUTOFQUIZ": "ya no hay cuestionario",
+		"ANS_FIRST": "responde primero"
+	},
+	"_CONQ": {
+		"NAME": "Conversacion"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Estante para libros"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ajuste"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ajuste"
+	},
+	"_NEWS": {
+		"TITLE": "Noticias"
+	},
+	"_CREDIT": {
+		"TITLE": "Gracias por"
+	},
+	"_CREATION": {
+		"TITLE": "Creación"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorito"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pregunta",
+		"ANSWER": "responder",
+		"EXAMPLE": "ejemplo",
+		"TIPS": "consejos",
+		"STAR": "estrella"
+	}
+}

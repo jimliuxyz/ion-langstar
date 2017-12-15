@@ -1,0 +1,93 @@
+{
+	"SETTING": "సెట్టింగు",
+	"LOGIN": "లాగిన్ అవ్వండి",
+	"LOGOUT": "లాగ్ అవుట్ చేయండి",
+	"OKAY": "సరే",
+	"CANCEL": "రద్దు",
+	"CLOSE": "Close",
+	"CREDIT": "ధన్యవాదాలు",
+	"SAVE": "సేవ్",
+	"DELETE": "తొలగించు",
+	"NALANG": "స్థానిక భాష",
+	"TALANG": "విదేశీ భాష",
+	"TAG": "ట్యాగ్",
+	"LANG": "భాషా",
+	"SPEECHVOICE": "మాట్లాడటం",
+	"VOICERECOGN": "గుర్తింపు",
+	"VOICESPEED": "వేగం",
+	"PUBLISH": "ప్రచురించు",
+	"EDIT": "మార్చు",
+	"BOOKNAME": "శీర్షిక",
+	"GENERAL": "జనరల్",
+	"MYFIRSTBOOKNAME": "నా మొదటి పుస్తకం",
+	"LEARNING": "శిక్షణ",
+	"LEARNED": "సొసైటీ",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "కొత్త వెర్షన్ ఉంది!",
+		"MSG": "ఇప్పుడే నవీకరించండి?"
+	},
+	"_SETTINGS": {
+		"TITLE": "సెట్టింగు",
+		"LANG": "భాషా",
+		"NALANG": "స్థానిక భాష",
+		"TALANG": "విదేశీ భాష"
+	},
+	"_ALERT": {
+		"DELBOOK": "మీరు ఖచ్చితంగా ఈ పుస్తకాన్ని తొలగించాలనుకుంటున్నారా?",
+		"DISLIKEBOOK": "ఈ పుస్తకం బుక్ మార్క్ చేయకూడదని మీరు ఖచ్చితంగా భావిస్తున్నారా?",
+		"OVERWRITEBOOK": "సరైన కంటెంట్గా ఈ కంటెంట్ను ఓవర్రైట్ చేయాలా?",
+		"ANSNUMRECOGN": "\"నంబర్ వన్\" వంటి జవాబును చదవండి"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "నావిగేషన్ విఫలమైంది ...",
+		"NEWBOOKFAILURE": "సృష్టించడం విఫలమైంది ...",
+		"DELBOOKFAILURE": "తొలగించడంలో విఫలమైంది ..."
+	},
+	"_MCQ": {
+		"NAME": "క్విజ్ కార్డ్",
+		"MODEPLAY": "బ్రాడ్కాస్ట్",
+		"MODESPEAK": "మాట్లాడు",
+		"MODETEST": "టెస్ట్",
+		"SHOWNSPEAK": "ప్రదర్శించు / పునరావృతం",
+		"RANDOM": "యాదృచ్ఛిక",
+		"SPELL": "అక్షరక్రమ",
+		"QUESTION": "ప్రశ్న",
+		"ANSWER": "సమాధానం",
+		"EXAMPLE": "ఉదాహరణ",
+		"TIP": "కొన",
+		"OUTOFQUIZ": "ఏ క్విజ్ అయినా",
+		"ANS_FIRST": "మొదటి సమాధానం"
+	},
+	"_CONQ": {
+		"NAME": "సంభాషణ"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "బుక్షెల్ఫ్"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "సెట్టింగు"
+	},
+	"_READERSETTING": {
+		"TITLE": "సెట్టింగు"
+	},
+	"_NEWS": {
+		"TITLE": "న్యూస్"
+	},
+	"_CREDIT": {
+		"TITLE": "ధన్యవాదాలు"
+	},
+	"_CREATION": {
+		"TITLE": "సృష్టి"
+	},
+	"_COLLECTION": {
+		"TITLE": "ఇష్టమైన"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ప్రశ్న",
+		"ANSWER": "సమాధానం",
+		"EXAMPLE": "ఉదాహరణ",
+		"TIPS": "చిట్కాలు",
+		"STAR": "స్టార్"
+	}
+}

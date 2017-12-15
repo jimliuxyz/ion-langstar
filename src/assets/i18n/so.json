@@ -1,0 +1,93 @@
+{
+	"SETTING": "Dejinta",
+	"LOGIN": "gal gudaha",
+	"LOGOUT": "ka bax",
+	"OKAY": "Haa",
+	"CANCEL": "Jooji",
+	"CLOSE": "Xir",
+	"CREDIT": "Waxaan kaaga mahad celinayaa",
+	"SAVE": "Badbaadi",
+	"DELETE": "Tirtir",
+	"NALANG": "Afka hooyo",
+	"TALANG": "Luqadda shisheeye",
+	"TAG": "Tag",
+	"LANG": "Luuqadda",
+	"SPEECHVOICE": "hadal",
+	"VOICERECOGN": "Aqoonsiga",
+	"VOICESPEED": "xawaaraha",
+	"PUBLISH": "Daabac",
+	"EDIT": "Isbedel",
+	"BOOKNAME": "Title",
+	"GENERAL": "Guud",
+	"MYFIRSTBOOKNAME": "Buugeyga koowaad",
+	"LEARNING": "Barashada",
+	"LEARNED": "Waxbartay",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Waxaa jira nooc cusub!",
+		"MSG": "Cusbooneysiin hadda?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Dejinta",
+		"LANG": "Luuqadda",
+		"NALANG": "Afka hooyo",
+		"TALANG": "Luqadda shisheeye"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ma hubtaa inaad rabto inaad tirtirto buuggan?",
+		"DISLIKEBOOK": "Ma hubtaa inaadan rabin inaad soo dhigato buuggan?",
+		"OVERWRITEBOOK": "Ku dhaji mawduucan oo ah nooca saxda ah?",
+		"ANSNUMRECOGN": "Akhri jawaabta, sida \"lambarka 1\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation failed ...",
+		"NEWBOOKFAILURE": "Abuur abuur ...",
+		"DELBOOKFAILURE": "ku guuldareysatay inay tirtirto ..."
+	},
+	"_MCQ": {
+		"NAME": "Kaarka Keeska",
+		"MODEPLAY": "Ciyaar",
+		"MODESPEAK": "Hadal",
+		"MODETEST": "Imtixaanka",
+		"SHOWNSPEAK": "Sawir / Soo celin",
+		"RANDOM": "random",
+		"SPELL": "qori",
+		"QUESTION": "su'aasha",
+		"ANSWER": "jawaab",
+		"EXAMPLE": "Tusaale",
+		"TIP": "caarada",
+		"OUTOFQUIZ": "maya wax su'aalo ah",
+		"ANS_FIRST": "marka hore u jawaab"
+	},
+	"_CONQ": {
+		"NAME": "Wadahadal"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Qurxinta"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Dejinta"
+	},
+	"_READERSETTING": {
+		"TITLE": "Dejinta"
+	},
+	"_NEWS": {
+		"TITLE": "Wararka"
+	},
+	"_CREDIT": {
+		"TITLE": "Waxaan kaaga mahad celinayaa"
+	},
+	"_CREATION": {
+		"TITLE": "Abuurka"
+	},
+	"_COLLECTION": {
+		"TITLE": "jecel"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "su'aasha",
+		"ANSWER": "jawaab",
+		"EXAMPLE": "Tusaale",
+		"TIPS": "Talooyin",
+		"STAR": "xiddig"
+	}
+}

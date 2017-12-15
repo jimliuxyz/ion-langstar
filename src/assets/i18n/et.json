@@ -1,0 +1,93 @@
+{
+	"SETTING": "Seadistus",
+	"LOGIN": "Logi sisse",
+	"LOGOUT": "Logi välja",
+	"OKAY": "Okei",
+	"CANCEL": "Loobu",
+	"CLOSE": "Sulge",
+	"CREDIT": "Tänud",
+	"SAVE": "Salvesta",
+	"DELETE": "Kustuta",
+	"NALANG": "Emakeel",
+	"TALANG": "Võõrkeel",
+	"TAG": "Silt",
+	"LANG": "Keel",
+	"SPEECHVOICE": "räägi",
+	"VOICERECOGN": "Tunnustamine",
+	"VOICESPEED": "kiirus",
+	"PUBLISH": "Avalda",
+	"EDIT": "Muuda",
+	"BOOKNAME": "Pealkiri",
+	"GENERAL": "Üldine",
+	"MYFIRSTBOOKNAME": "Minu esimene raamat",
+	"LEARNING": "Õppimine",
+	"LEARNED": "Õppinud",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "On uus versioon!",
+		"MSG": "Uuendage kohe?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Seadistus",
+		"LANG": "Keel",
+		"NALANG": "Emakeel",
+		"TALANG": "Võõrkeel"
+	},
+	"_ALERT": {
+		"DELBOOK": "Kas olete kindel, et soovite selle raamatu kustutada?",
+		"DISLIKEBOOK": "Kas olete kindel, et te ei soovi selle raamatu järjehoidjat lisada?",
+		"OVERWRITEBOOK": "Kas soovite selle sisuga üle kirjutada õigeks versiooniks?",
+		"ANSNUMRECOGN": "Võtke läbi vastus, näiteks \"number üks\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigeerimine nurjus ...",
+		"NEWBOOKFAILURE": "Loo nurjus ...",
+		"DELBOOKFAILURE": "ei kustutanud ..."
+	},
+	"_MCQ": {
+		"NAME": "Viktoriinkaart",
+		"MODEPLAY": "Mängi",
+		"MODESPEAK": "Räägi",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Kuva / korrata",
+		"RANDOM": "juhuslikult",
+		"SPELL": "õigekiri",
+		"QUESTION": "küsimus",
+		"ANSWER": "vastus",
+		"EXAMPLE": "näide",
+		"TIP": "otsa",
+		"OUTOFQUIZ": "pole enam viktoriini",
+		"ANS_FIRST": "vastus kõigepealt"
+	},
+	"_CONQ": {
+		"NAME": "Vestlus"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Raamaturiiul"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Seadistus"
+	},
+	"_READERSETTING": {
+		"TITLE": "Seadistus"
+	},
+	"_NEWS": {
+		"TITLE": "Uudised"
+	},
+	"_CREDIT": {
+		"TITLE": "Tänud"
+	},
+	"_CREATION": {
+		"TITLE": "Loomine"
+	},
+	"_COLLECTION": {
+		"TITLE": "lemmik"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "küsimus",
+		"ANSWER": "vastus",
+		"EXAMPLE": "näide",
+		"TIPS": "näpunäited",
+		"STAR": "täht"
+	}
+}

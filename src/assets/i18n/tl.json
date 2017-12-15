@@ -1,0 +1,93 @@
+{
+	"SETTING": "Pagtatakda",
+	"LOGIN": "mag log in",
+	"LOGOUT": "mag-log out",
+	"OKAY": "Sige",
+	"CANCEL": "Kanselahin",
+	"CLOSE": "Isara",
+	"CREDIT": "Salamat sa",
+	"SAVE": "I-save",
+	"DELETE": "Tanggalin",
+	"NALANG": "Katutubong wika",
+	"TALANG": "Wikang banyaga",
+	"TAG": "Tag",
+	"LANG": "Wika",
+	"SPEECHVOICE": "magsalita",
+	"VOICERECOGN": "Pagkilala",
+	"VOICESPEED": "bilis",
+	"PUBLISH": "I-publish",
+	"EDIT": "I-edit",
+	"BOOKNAME": "Pamagat",
+	"GENERAL": "Pangkalahatan",
+	"MYFIRSTBOOKNAME": "Ang aking unang libro",
+	"LEARNING": "Pag-aaral",
+	"LEARNED": "Natutunan",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "May isang bagong bersyon!",
+		"MSG": "I-update Ngayon?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Pagtatakda",
+		"LANG": "Wika",
+		"NALANG": "Katutubong wika",
+		"TALANG": "Wikang banyaga"
+	},
+	"_ALERT": {
+		"DELBOOK": "Sigurado ka bang gusto mong tanggalin ang aklat na ito?",
+		"DISLIKEBOOK": "Sigurado ka ba na ayaw mong i-bookmark ang aklat na ito?",
+		"OVERWRITEBOOK": "I-overwrite ang nilalamang ito bilang tamang bersyon?",
+		"ANSNUMRECOGN": "Basahin ang sagot, tulad ng \"number one\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Nabigo ang pag-navigate ...",
+		"NEWBOOKFAILURE": "Lumikha ng nabigo ...",
+		"DELBOOKFAILURE": "Nabigo ang tanggalin ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Maglaro",
+		"MODESPEAK": "Magsalita",
+		"MODETEST": "Pagsusulit",
+		"SHOWNSPEAK": "Ipakita / Ulitin",
+		"RANDOM": "random",
+		"SPELL": "spell",
+		"QUESTION": "tanong",
+		"ANSWER": "sagot",
+		"EXAMPLE": "Halimbawa",
+		"TIP": "tip",
+		"OUTOFQUIZ": "wala nang pagsusulit",
+		"ANS_FIRST": "sagutin muna"
+	},
+	"_CONQ": {
+		"NAME": "Pag-uusap"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Pagtatakda"
+	},
+	"_READERSETTING": {
+		"TITLE": "Pagtatakda"
+	},
+	"_NEWS": {
+		"TITLE": "Balita"
+	},
+	"_CREDIT": {
+		"TITLE": "Salamat sa"
+	},
+	"_CREATION": {
+		"TITLE": "Paglikha"
+	},
+	"_COLLECTION": {
+		"TITLE": "paborito"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "tanong",
+		"ANSWER": "sagot",
+		"EXAMPLE": "Halimbawa",
+		"TIPS": "tip",
+		"STAR": "bituin"
+	}
+}

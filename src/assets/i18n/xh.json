@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ukubeka",
+	"LOGIN": "Ngema",
+	"LOGOUT": "phuma",
+	"OKAY": "Kulungile",
+	"CANCEL": "Cancel",
+	"CLOSE": "Vala",
+	"CREDIT": "Enkosi nge",
+	"SAVE": "Gcina",
+	"DELETE": "Cima",
+	"NALANG": "Ulwimi lwasekhaya",
+	"TALANG": "Ulwimi lwangaphandle",
+	"TAG": "Tshintsha",
+	"LANG": "ULwimi",
+	"SPEECHVOICE": "kuthetha",
+	"VOICERECOGN": "Ukuqwalaselwa",
+	"VOICESPEED": "ngesivinini",
+	"PUBLISH": "Shicilela",
+	"EDIT": "Hlela",
+	"BOOKNAME": "Isihloko",
+	"GENERAL": "Jikelele",
+	"MYFIRSTBOOKNAME": "Incwadi yam yokuqala",
+	"LEARNING": "Kufunda",
+	"LEARNED": "Ufunde",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Kukho inguqulelo entsha!",
+		"MSG": "Uhlaziyo ngoku?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ukubeka",
+		"LANG": "ULwimi",
+		"NALANG": "Ulwimi lwasekhaya",
+		"TALANG": "Ulwimi lwangaphandle"
+	},
+	"_ALERT": {
+		"DELBOOK": "Uqinisekile ukuba ufuna ukususa le ncwadi?",
+		"DISLIKEBOOK": "Ngaba uqinisekile ukuba awufuni ukukhangela ibhukumaka le ncwadi?",
+		"OVERWRITEBOOK": "Ukubhalwa kweli phepha njengenguqu echanekileyo?",
+		"ANSNUMRECOGN": "Funda impendulo, njenge \"inombolo enye\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Ukuhamba kwehlulekile ...",
+		"NEWBOOKFAILURE": "Yakha ihlulekile ...",
+		"DELBOOKFAILURE": "ehlulekile ukususa ..."
+	},
+	"_MCQ": {
+		"NAME": "IKhadi Lemibuzo",
+		"MODEPLAY": "Dlala",
+		"MODESPEAK": "Thetha",
+		"MODETEST": "Vavanyo",
+		"SHOWNSPEAK": "Bonisa / Phinda",
+		"RANDOM": "ngandlela-thile",
+		"SPELL": "ukupela",
+		"QUESTION": "umbuzo",
+		"ANSWER": "mpendulo",
+		"EXAMPLE": "mzekelo",
+		"TIP": "ithiphu",
+		"OUTOFQUIZ": "akukho mbuzo kwakhona",
+		"ANS_FIRST": "mpendulo kuqala"
+	},
+	"_CONQ": {
+		"NAME": "Ingxoxo"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Iincwadi"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ukubeka"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ukubeka"
+	},
+	"_NEWS": {
+		"TITLE": "Iindaba"
+	},
+	"_CREDIT": {
+		"TITLE": "Enkosi nge"
+	},
+	"_CREATION": {
+		"TITLE": "Indalo"
+	},
+	"_COLLECTION": {
+		"TITLE": "ozithandayo"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "umbuzo",
+		"ANSWER": "mpendulo",
+		"EXAMPLE": "mzekelo",
+		"TIPS": "iingcebiso",
+		"STAR": "nkwenkwezi"
+	}
+}

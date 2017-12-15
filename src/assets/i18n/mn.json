@@ -1,0 +1,93 @@
+{
+	"SETTING": "Тохируулах",
+	"LOGIN": "нэвтрэн орно",
+	"LOGOUT": "гарах",
+	"OKAY": "За за",
+	"CANCEL": "Цуцлах",
+	"CLOSE": "Хаах",
+	"CREDIT": "Нд баярлалаа",
+	"SAVE": "Хадгалах",
+	"DELETE": "Устгах",
+	"NALANG": "Төрөлх хэл",
+	"TALANG": "Гадаад хэл",
+	"TAG": "Таг",
+	"LANG": "Хэл",
+	"SPEECHVOICE": "ярьж байна",
+	"VOICERECOGN": "Хүлээн зөвшөөрөлт",
+	"VOICESPEED": "хурд",
+	"PUBLISH": "Нийтлэх",
+	"EDIT": "Засварлах",
+	"BOOKNAME": "Гарчиг",
+	"GENERAL": "Ерөнхий зүйл",
+	"MYFIRSTBOOKNAME": "Миний анхны ном",
+	"LEARNING": "Суралцах",
+	"LEARNED": "Сурсан",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Шинэ хувилбар байна!",
+		"MSG": "Одоо шинэчлэх?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Тохируулах",
+		"LANG": "Хэл",
+		"NALANG": "Төрөлх хэл",
+		"TALANG": "Гадаад хэл"
+	},
+	"_ALERT": {
+		"DELBOOK": "Та энэ номыг устгахдаа итгэлтэй байна уу?",
+		"DISLIKEBOOK": "Та энэ номын хавчуурга тавихыг хүсэхгүй гэдэгтээ итгэлтэй байна уу?",
+		"OVERWRITEBOOK": "Энэ контентыг зөв хувилбар болгон дарж бичих үү?",
+		"ANSNUMRECOGN": "\"Тоог нэг\" гэх мэт хариултыг унш"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Залуурдлага амжилтгүй болсон ...",
+		"NEWBOOKFAILURE": "Файл амжилтгүй болсон ...",
+		"DELBOOKFAILURE": "устгаж чадсангүй"
+	},
+	"_MCQ": {
+		"NAME": "Куиз Карт",
+		"MODEPLAY": "Тоглуулах",
+		"MODESPEAK": "Яриач",
+		"MODETEST": "Туршилт",
+		"SHOWNSPEAK": "Дэлгэц / давталт",
+		"RANDOM": "Санамсаргүй",
+		"SPELL": "spell",
+		"QUESTION": "асуулт",
+		"ANSWER": "хариулт",
+		"EXAMPLE": "жишээ нь",
+		"TIP": "tip",
+		"OUTOFQUIZ": "ямар ч асуулт байхгүй",
+		"ANS_FIRST": "Эхлээд хариул"
+	},
+	"_CONQ": {
+		"NAME": "Харилцаа холбоо"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Номын сан"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Тохируулах"
+	},
+	"_READERSETTING": {
+		"TITLE": "Тохируулах"
+	},
+	"_NEWS": {
+		"TITLE": "Мэдээ мэдээлэл"
+	},
+	"_CREDIT": {
+		"TITLE": "Нд баярлалаа"
+	},
+	"_CREATION": {
+		"TITLE": "Бүтээл"
+	},
+	"_COLLECTION": {
+		"TITLE": "дуртай"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "асуулт",
+		"ANSWER": "хариулт",
+		"EXAMPLE": "жишээ нь",
+		"TIPS": "зөвлөмжүүд",
+		"STAR": "од"
+	}
+}

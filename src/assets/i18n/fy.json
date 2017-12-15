@@ -1,0 +1,93 @@
+{
+	"SETTING": "Setting",
+	"LOGIN": "ynlogge",
+	"LOGOUT": "útlogge",
+	"OKAY": "Okay",
+	"CANCEL": "Ôfbrekke",
+	"CLOSE": "Slute",
+	"CREDIT": "Tankewol foar",
+	"SAVE": "Rêde",
+	"DELETE": "Wiskje",
+	"NALANG": "Native language",
+	"TALANG": "Foreign language",
+	"TAG": "Tag",
+	"LANG": "Taal",
+	"SPEECHVOICE": "sprekke",
+	"VOICERECOGN": "Recognition",
+	"VOICESPEED": "faasje",
+	"PUBLISH": "Publisearje",
+	"EDIT": "Bewurkje",
+	"BOOKNAME": "Titel",
+	"GENERAL": "Algemien",
+	"MYFIRSTBOOKNAME": "Myn earste boek",
+	"LEARNING": "Learje",
+	"LEARNED": "Leard",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Der is in nije ferzje!",
+		"MSG": "No bywurkje?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Setting",
+		"LANG": "Taal",
+		"NALANG": "Native language",
+		"TALANG": "Foreign language"
+	},
+	"_ALERT": {
+		"DELBOOK": "Binne jo wis dat jo dit boek wiskje wolle?",
+		"DISLIKEBOOK": "Binne jo wis dat jo dit boek net blêdwike wolle?",
+		"OVERWRITEBOOK": "Dizze ynhâld oerskriuwe as de correcte ferzje?",
+		"ANSNUMRECOGN": "Lês it antwurd, lykas \"nûmer ien\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigaasje mislearre ...",
+		"NEWBOOKFAILURE": "Untläuten meitsje ...",
+		"DELBOOKFAILURE": "mislearre ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Play",
+		"MODESPEAK": "Sprekke",
+		"MODETEST": "Toets",
+		"SHOWNSPEAK": "Werjefte / werhelje",
+		"RANDOM": "willekeurich",
+		"SPELL": "tsjoen",
+		"QUESTION": "fraach",
+		"ANSWER": "antwurd",
+		"EXAMPLE": "foarbyld",
+		"TIP": "foai",
+		"OUTOFQUIZ": "gjin quiz mear",
+		"ANS_FIRST": "antwurd antwurd"
+	},
+	"_CONQ": {
+		"NAME": "Petear"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Setting"
+	},
+	"_READERSETTING": {
+		"TITLE": "Setting"
+	},
+	"_NEWS": {
+		"TITLE": "Nijs"
+	},
+	"_CREDIT": {
+		"TITLE": "Tankewol foar"
+	},
+	"_CREATION": {
+		"TITLE": "Kreaasje"
+	},
+	"_COLLECTION": {
+		"TITLE": "favoryt"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "fraach",
+		"ANSWER": "antwurd",
+		"EXAMPLE": "foarbyld",
+		"TIPS": "tips",
+		"STAR": "stjer"
+	}
+}

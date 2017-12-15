@@ -1,0 +1,93 @@
+{
+	"SETTING": "සැකසීම",
+	"LOGIN": "ඇතුල් වන්න",
+	"LOGOUT": "ලොග් වන්න",
+	"OKAY": "හරි හරී",
+	"CANCEL": "අවලංගු කරන්න",
+	"CLOSE": "වසන්න",
+	"CREDIT": "ස්තූතියි",
+	"SAVE": "සුරකින්න",
+	"DELETE": "මකන්න",
+	"NALANG": "දේශීය භාෂාව",
+	"TALANG": "විදේශීය භාෂාව",
+	"TAG": "Tag",
+	"LANG": "භාෂාව",
+	"SPEECHVOICE": "කතා කරන්න",
+	"VOICERECOGN": "පිළිගැනීම",
+	"VOICESPEED": "වේගය",
+	"PUBLISH": "පළ කරන්න",
+	"EDIT": "සංස්කරණය කරන්න",
+	"BOOKNAME": "ශීර්ෂය",
+	"GENERAL": "ජනරාල්",
+	"MYFIRSTBOOKNAME": "මගේ පළමු පොත",
+	"LEARNING": "ඉගෙනීම",
+	"LEARNED": "උගත්",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "නව අනුවාදයක් පවතී!",
+		"MSG": "දැන් යාවත්කාලීන කරන්න?"
+	},
+	"_SETTINGS": {
+		"TITLE": "සැකසීම",
+		"LANG": "භාෂාව",
+		"NALANG": "දේශීය භාෂාව",
+		"TALANG": "විදේශීය භාෂාව"
+	},
+	"_ALERT": {
+		"DELBOOK": "මෙම පොත මකා දැමීමට ඔබට අවශ්යද?",
+		"DISLIKEBOOK": "ඔබට මෙම පොත පොතක් තැබීමට අවශ්ය නැති බව ඔබට විශ්වාසද?",
+		"OVERWRITEBOOK": "නිවැරදි අනුවාදය ලෙස මෙම අන්තර්ගතය නවීකරණය කරන්නද?",
+		"ANSNUMRECOGN": "\"අංක එකේ\" වැනි උත්තරය කියවන්න."
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ගමනාගමනය අසාර්ථකයි ...",
+		"NEWBOOKFAILURE": "අසමත් ...",
+		"DELBOOKFAILURE": "මකා දැමීමට අසමත් විය ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "සෙල්ලම",
+		"MODESPEAK": "කතා කරන්න",
+		"MODETEST": "ටෙස්ට්",
+		"SHOWNSPEAK": "දර්ශනය / නැවත කිරීම",
+		"RANDOM": "අහඹු",
+		"SPELL": "චලනය",
+		"QUESTION": "ප්රශ්නයක්",
+		"ANSWER": "පිළිතුර",
+		"EXAMPLE": "උදාහරණයක්",
+		"TIP": "ඉඟියකි",
+		"OUTOFQUIZ": "තවදුරටත් විවාදයක් නැත",
+		"ANS_FIRST": "පළමුව උත්තර දෙන්න"
+	},
+	"_CONQ": {
+		"NAME": "සාකච්ඡාව"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "ෙපාත් රාක්කය"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "සැකසීම"
+	},
+	"_READERSETTING": {
+		"TITLE": "සැකසීම"
+	},
+	"_NEWS": {
+		"TITLE": "පුවත්"
+	},
+	"_CREDIT": {
+		"TITLE": "ස්තූතියි"
+	},
+	"_CREATION": {
+		"TITLE": "නිර්මාණය"
+	},
+	"_COLLECTION": {
+		"TITLE": "ප්රියතම"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ප්රශ්නයක්",
+		"ANSWER": "පිළිතුර",
+		"EXAMPLE": "උදාහරණයක්",
+		"TIPS": "ඉඟි",
+		"STAR": "තරුව"
+	}
+}

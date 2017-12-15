@@ -59,8 +59,8 @@ export class AppQuizSetting {
     let getMsgText = () => {
       let msg = "";
       if (old_txet)
-        msg += ">>:" + old_txet;
-      msg += (old_txet ? "<br>" : "") + ">>:" + (new_txet ? new_txet : "?");
+        msg += ">>" + old_txet + "<<";
+      msg += (old_txet ? "<br>" : "") + "" + (new_txet ? new_txet : "?");
 
       return msg;
     }

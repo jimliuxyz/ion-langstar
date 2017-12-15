@@ -1,0 +1,93 @@
+{
+	"SETTING": "Gosod",
+	"LOGIN": "Mewngofnodi",
+	"LOGOUT": "allgofnodi",
+	"OKAY": "iawn",
+	"CANCEL": "Diddymu",
+	"CLOSE": "Yn agos",
+	"CREDIT": "Diolch am",
+	"SAVE": "Arbed",
+	"DELETE": "Dileu",
+	"NALANG": "Iaith frodorol",
+	"TALANG": "Iaith dramor",
+	"TAG": "Tag",
+	"LANG": "Iaith",
+	"SPEECHVOICE": "siaradwch",
+	"VOICERECOGN": "Cydnabyddiaeth",
+	"VOICESPEED": "cyflymder",
+	"PUBLISH": "Cyhoeddi",
+	"EDIT": "Golygu",
+	"BOOKNAME": "Teitl",
+	"GENERAL": "Cyffredinol",
+	"MYFIRSTBOOKNAME": "Fy llyfr cyntaf",
+	"LEARNING": "Dysgu",
+	"LEARNED": "Dysgwyd",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Mae fersiwn newydd!",
+		"MSG": "Diweddaru Nawr?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Gosod",
+		"LANG": "Iaith",
+		"NALANG": "Iaith frodorol",
+		"TALANG": "Iaith dramor"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ydych chi'n siŵr eich bod am ddileu'r llyfr hwn?",
+		"DISLIKEBOOK": "Ydych chi'n siŵr nad ydych am lofnodi'r llyfr hwn?",
+		"OVERWRITEBOOK": "Ysgrifennwch y cynnwys hwn fel y fersiwn cywir?",
+		"ANSNUMRECOGN": "Darllenwch yr ateb, megis \"rhif un\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Methu llywio ...",
+		"NEWBOOKFAILURE": "Creu methu ...",
+		"DELBOOKFAILURE": "methu â dileu ..."
+	},
+	"_MCQ": {
+		"NAME": "Cerdyn Cwis",
+		"MODEPLAY": "Chwarae",
+		"MODESPEAK": "Siaradwch",
+		"MODETEST": "Prawf",
+		"SHOWNSPEAK": "Arddangos / Ailadrodd",
+		"RANDOM": "hap",
+		"SPELL": "sillafu",
+		"QUESTION": "cwestiwn",
+		"ANSWER": "ateb",
+		"EXAMPLE": "enghraifft",
+		"TIP": "tip",
+		"OUTOFQUIZ": "dim cwis anymore",
+		"ANS_FIRST": "ateb yn gyntaf"
+	},
+	"_CONQ": {
+		"NAME": "Sgwrs"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Silff Llyfrau"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Gosod"
+	},
+	"_READERSETTING": {
+		"TITLE": "Gosod"
+	},
+	"_NEWS": {
+		"TITLE": "Newyddion"
+	},
+	"_CREDIT": {
+		"TITLE": "Diolch am"
+	},
+	"_CREATION": {
+		"TITLE": "Creu"
+	},
+	"_COLLECTION": {
+		"TITLE": "hoff"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "cwestiwn",
+		"ANSWER": "ateb",
+		"EXAMPLE": "enghraifft",
+		"TIPS": "awgrymiadau",
+		"STAR": "seren"
+	}
+}

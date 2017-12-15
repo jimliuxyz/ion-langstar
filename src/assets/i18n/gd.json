@@ -1,0 +1,93 @@
+{
+	"SETTING": "A 'suidheachadh",
+	"LOGIN": "Log a-steach",
+	"LOGOUT": "Log a-mach",
+	"OKAY": "Ceart gu leor",
+	"CANCEL": "Sguir dheth",
+	"CLOSE": "Dùin",
+	"CREDIT": "Taing airson",
+	"SAVE": "Sàbhail",
+	"DELETE": "Delete",
+	"NALANG": "Cànan dùthchasach",
+	"TALANG": "Cànan cèin",
+	"TAG": "Tag",
+	"LANG": "Cànan",
+	"SPEECHVOICE": "bruidhinn",
+	"VOICERECOGN": "Aithneachadh",
+	"VOICESPEED": "astar",
+	"PUBLISH": "Foillsich",
+	"EDIT": "Deasaich",
+	"BOOKNAME": "Tiotal",
+	"GENERAL": "Coitcheann",
+	"MYFIRSTBOOKNAME": "A 'chiad leabhar agam",
+	"LEARNING": "Ionnsachadh",
+	"LEARNED": "Ionnsachadh",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Tha dreach ùr ann!",
+		"MSG": "Ùraich a-nis?"
+	},
+	"_SETTINGS": {
+		"TITLE": "A 'suidheachadh",
+		"LANG": "Cànan",
+		"NALANG": "Cànan dùthchasach",
+		"TALANG": "Cànan cèin"
+	},
+	"_ALERT": {
+		"DELBOOK": "A bheil thu cinnteach gu bheil thu airson an leabhar seo a sguabadh às?",
+		"DISLIKEBOOK": "A bheil thu cinnteach nach eil thu airson an leabhar seo a chomharrachadh?",
+		"OVERWRITEBOOK": "Ath-sgrìobh an susbaint seo mar an tionndadh ceart?",
+		"ANSNUMRECOGN": "Leugh am freagairt a-mach, mar \"àireamh a h-aon\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Dh'fhàillig seòladh ...",
+		"NEWBOOKFAILURE": "Cruthaich fàilligeadh ...",
+		"DELBOOKFAILURE": "air a dhubhadh às ..."
+	},
+	"_MCQ": {
+		"NAME": "Cairt nan ceasnachadh",
+		"MODEPLAY": "Cluich",
+		"MODESPEAK": "Bruidhinn",
+		"MODETEST": "Deuchainn",
+		"SHOWNSPEAK": "Taisbeanaibh / aithris a-rithist",
+		"RANDOM": "air thuaiream",
+		"SPELL": "litreachadh",
+		"QUESTION": "ceist",
+		"ANSWER": "freagairt",
+		"EXAMPLE": "eisimpleir",
+		"TIP": "tip",
+		"OUTOFQUIZ": "chan eil ceist sam bith nas fhaide",
+		"ANS_FIRST": "freagair an toiseach"
+	},
+	"_CONQ": {
+		"NAME": "Còmhradh"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Leabhran Leabhraichean"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "A 'suidheachadh"
+	},
+	"_READERSETTING": {
+		"TITLE": "A 'suidheachadh"
+	},
+	"_NEWS": {
+		"TITLE": "Naidheachdan"
+	},
+	"_CREDIT": {
+		"TITLE": "Taing airson"
+	},
+	"_CREATION": {
+		"TITLE": "Cruthachadh"
+	},
+	"_COLLECTION": {
+		"TITLE": "is fheàrr leat"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ceist",
+		"ANSWER": "freagairt",
+		"EXAMPLE": "eisimpleir",
+		"TIPS": "molaidhean",
+		"STAR": "rionnag"
+	}
+}

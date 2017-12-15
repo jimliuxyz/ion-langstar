@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ayarlama",
+	"LOGIN": "daxil ol",
+	"LOGOUT": "çıxış",
+	"OKAY": "Tamam",
+	"CANCEL": "Ləğv et",
+	"CLOSE": "Yaxın",
+	"CREDIT": "Təşəkkürlər",
+	"SAVE": "Yadda saxla",
+	"DELETE": "Sil",
+	"NALANG": "Ana dil",
+	"TALANG": "Xarici dil",
+	"TAG": "Tag",
+	"LANG": "Dil",
+	"SPEECHVOICE": "danışmaq",
+	"VOICERECOGN": "Tanınma",
+	"VOICESPEED": "sürət",
+	"PUBLISH": "Yayınla",
+	"EDIT": "Düzəliş edin",
+	"BOOKNAME": "Başlıq",
+	"GENERAL": "Ümumi",
+	"MYFIRSTBOOKNAME": "İlk kitabım",
+	"LEARNING": "Öyrənmə",
+	"LEARNED": "Öyrəndik",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Yeni bir versiyası var!",
+		"MSG": "İndi yeniləyin?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ayarlama",
+		"LANG": "Dil",
+		"NALANG": "Ana dil",
+		"TALANG": "Xarici dil"
+	},
+	"_ALERT": {
+		"DELBOOK": "Bu kitabı silmək istədiyinizə əminsiniz?",
+		"DISLIKEBOOK": "Bu kitabı imzalamaq istəmədiyinizdən əminsinizmi?",
+		"OVERWRITEBOOK": "Bu məzmunun düzgün versiyası kimi yazılsın?",
+		"ANSNUMRECOGN": "Cavabı oxumaq, \"bir nömrə\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Naviqasiya uğursuz oldu ...",
+		"NEWBOOKFAILURE": "Failed to create ...",
+		"DELBOOKFAILURE": "silmək uğursuz oldu ..."
+	},
+	"_MCQ": {
+		"NAME": "Viktorina kartı",
+		"MODEPLAY": "Play",
+		"MODESPEAK": "Danışın",
+		"MODETEST": "Test et",
+		"SHOWNSPEAK": "Göstər / təkrarlayın",
+		"RANDOM": "təsadüfi",
+		"SPELL": "yazım",
+		"QUESTION": "sual",
+		"ANSWER": "cavab",
+		"EXAMPLE": "nümunə",
+		"TIP": "ucu",
+		"OUTOFQUIZ": "artıq heç bir viktorina",
+		"ANS_FIRST": "İlk cavab"
+	},
+	"_CONQ": {
+		"NAME": "Söhbət"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Kitabxanalar"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ayarlama"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ayarlama"
+	},
+	"_NEWS": {
+		"TITLE": "Xəbərlər"
+	},
+	"_CREDIT": {
+		"TITLE": "Təşəkkürlər"
+	},
+	"_CREATION": {
+		"TITLE": "Yaradılma"
+	},
+	"_COLLECTION": {
+		"TITLE": "Sevimli"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "sual",
+		"ANSWER": "cavab",
+		"EXAMPLE": "nümunə",
+		"TIPS": "məsləhətlər",
+		"STAR": "ulduz"
+	}
+}

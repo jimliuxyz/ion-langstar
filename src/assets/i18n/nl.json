@@ -1,0 +1,93 @@
+{
+	"SETTING": "omgeving",
+	"LOGIN": "Log in",
+	"LOGOUT": "uitloggen",
+	"OKAY": "oke",
+	"CANCEL": "Annuleer",
+	"CLOSE": "Dichtbij",
+	"CREDIT": "Bedankt voor",
+	"SAVE": "Opslaan",
+	"DELETE": "Verwijder",
+	"NALANG": "Moedertaal",
+	"TALANG": "Vreemde taal",
+	"TAG": "Label",
+	"LANG": "Taal",
+	"SPEECHVOICE": "spreken",
+	"VOICERECOGN": "erkenning",
+	"VOICESPEED": "snelheid",
+	"PUBLISH": "Publiceren",
+	"EDIT": "Bewerk",
+	"BOOKNAME": "Titel",
+	"GENERAL": "Algemeen",
+	"MYFIRSTBOOKNAME": "Mijn eerste boek",
+	"LEARNING": "geleerdheid",
+	"LEARNED": "maatschappij",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Er is een nieuwe versie!",
+		"MSG": "Update nu?"
+	},
+	"_SETTINGS": {
+		"TITLE": "omgeving",
+		"LANG": "Taal",
+		"NALANG": "Moedertaal",
+		"TALANG": "Vreemde taal"
+	},
+	"_ALERT": {
+		"DELBOOK": "Weet je zeker dat je dit boek wilt verwijderen?",
+		"DISLIKEBOOK": "Weet je zeker dat je dit boek niet als bladwijzer wilt gebruiken?",
+		"OVERWRITEBOOK": "Overschrijven van deze inhoud als de juiste versie?",
+		"ANSNUMRECOGN": "Lees het antwoord voor, zoals \"nummer één\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigatie mislukt ...",
+		"NEWBOOKFAILURE": "Maken mislukt ...",
+		"DELBOOKFAILURE": "kan niet verwijderen ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-kaart",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "Spreken",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Weergeven / herhalen",
+		"RANDOM": "willekeurig",
+		"SPELL": "spellen",
+		"QUESTION": "vraag",
+		"ANSWER": "antwoord",
+		"EXAMPLE": "voorbeeld",
+		"TIP": "tip",
+		"OUTOFQUIZ": "geen quiz meer",
+		"ANS_FIRST": "antwoord eerst"
+	},
+	"_CONQ": {
+		"NAME": "Gesprek"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Boekenplank"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "omgeving"
+	},
+	"_READERSETTING": {
+		"TITLE": "omgeving"
+	},
+	"_NEWS": {
+		"TITLE": "Nieuws"
+	},
+	"_CREDIT": {
+		"TITLE": "Bedankt voor"
+	},
+	"_CREATION": {
+		"TITLE": "schepping"
+	},
+	"_COLLECTION": {
+		"TITLE": "favoriete"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "vraag",
+		"ANSWER": "antwoord",
+		"EXAMPLE": "voorbeeld",
+		"TIPS": "tips",
+		"STAR": "ster"
+	}
+}

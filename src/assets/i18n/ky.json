@@ -1,0 +1,93 @@
+{
+	"SETTING": "жөндөө",
+	"LOGIN": "кирүү",
+	"LOGOUT": "чыгуу",
+	"OKAY": "Болуптур",
+	"CANCEL": "жокко чыгаруу",
+	"CLOSE": "жакын",
+	"CREDIT": "Үчүн рахмат",
+	"SAVE": "Save",
+	"DELETE": "жок кылуу",
+	"NALANG": "эне тил",
+	"TALANG": "Чет тили",
+	"TAG": "Tag",
+	"LANG": "тил",
+	"SPEECHVOICE": "сүйлөө",
+	"VOICERECOGN": "билүү",
+	"VOICESPEED": "ылдамдык",
+	"PUBLISH": "чыгаруу",
+	"EDIT": "редакциялоо",
+	"BOOKNAME": "наам",
+	"GENERAL": "жалпы",
+	"MYFIRSTBOOKNAME": "Менин биринчи китеби",
+	"LEARNING": "Learning",
+	"LEARNED": "коом",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "бир жаңы версия бар!",
+		"MSG": "Update Сыр сөзүм кандай эле?"
+	},
+	"_SETTINGS": {
+		"TITLE": "жөндөө",
+		"LANG": "тил",
+		"NALANG": "эне тил",
+		"TALANG": "Чет тили"
+	},
+	"_ALERT": {
+		"DELBOOK": "Эгер бул китепти жок чын эле барбы?",
+		"DISLIKEBOOK": "Эгер сиз бул китепти шилтеме келген жок аныкпы?",
+		"OVERWRITEBOOK": "туура айы бул мазмунду жокко?",
+		"ANSNUMRECOGN": "мисалы, \"сан\" катары жооп чыгып, оку"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Багыттоо ишке ашкан жок ...",
+		"NEWBOOKFAILURE": "Түзүү ишке ашкан жок ...",
+		"DELBOOKFAILURE": "жок кылуу ишке ашкан жок ..."
+	},
+	"_MCQ": {
+		"NAME": "Тест картасы",
+		"MODEPLAY": "уктуруу",
+		"MODESPEAK": "сүйлөө",
+		"MODETEST": "текшерүү",
+		"SHOWNSPEAK": "Display / Кайталап",
+		"RANDOM": "кокустук",
+		"SPELL": "сыйкырлоо",
+		"QUESTION": "суроо",
+		"ANSWER": "жооп",
+		"EXAMPLE": "мисал",
+		"TIP": "уч",
+		"OUTOFQUIZ": "жок Тест ары",
+		"ANS_FIRST": "жооп биринчи"
+	},
+	"_CONQ": {
+		"NAME": "сүйлөшүү"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "жөндөө"
+	},
+	"_READERSETTING": {
+		"TITLE": "жөндөө"
+	},
+	"_NEWS": {
+		"TITLE": "жаңылык"
+	},
+	"_CREDIT": {
+		"TITLE": "Үчүн рахмат"
+	},
+	"_CREATION": {
+		"TITLE": "Тъзългён"
+	},
+	"_COLLECTION": {
+		"TITLE": "сүйүктүү"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "суроо",
+		"ANSWER": "жооп",
+		"EXAMPLE": "мисал",
+		"TIPS": "Сунуштар",
+		"STAR": "жылдыз"
+	}
+}

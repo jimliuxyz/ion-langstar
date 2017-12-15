@@ -1,0 +1,93 @@
+{
+	"SETTING": "Beállítás",
+	"LOGIN": "Belépés",
+	"LOGOUT": "Kijelentkezés",
+	"OKAY": "oké",
+	"CANCEL": "Megszünteti",
+	"CLOSE": "Bezárás",
+	"CREDIT": "Kösz érte",
+	"SAVE": "Mentés",
+	"DELETE": "Töröl",
+	"NALANG": "Az anyanyelv",
+	"TALANG": "Idegen nyelv",
+	"TAG": "Címke",
+	"LANG": "Nyelv",
+	"SPEECHVOICE": "beszél",
+	"VOICERECOGN": "elismerés",
+	"VOICESPEED": "sebesség",
+	"PUBLISH": "közzétesz",
+	"EDIT": "szerkesztése",
+	"BOOKNAME": "Cím",
+	"GENERAL": "Tábornok",
+	"MYFIRSTBOOKNAME": "Az első könyvem",
+	"LEARNING": "tanulás",
+	"LEARNED": "társadalom",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Van egy új verzió!",
+		"MSG": "Frissítse most?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Beállítás",
+		"LANG": "Nyelv",
+		"NALANG": "Az anyanyelv",
+		"TALANG": "Idegen nyelv"
+	},
+	"_ALERT": {
+		"DELBOOK": "Biztos benne, hogy törölni szeretné ezt a könyvet?",
+		"DISLIKEBOOK": "Biztos benne, hogy nem szeretné könyvjelzőként megjelölni ezt a könyvet?",
+		"OVERWRITEBOOK": "Felülírja ezt a tartalmat helyes verzióként?",
+		"ANSNUMRECOGN": "Olvassa el a választ, mint például az \"első számú\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "A navigáció sikertelen ...",
+		"NEWBOOKFAILURE": "Hiba történt ...",
+		"DELBOOKFAILURE": "nem sikerült törölni ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz kártya",
+		"MODEPLAY": "broadcast",
+		"MODESPEAK": "Beszél",
+		"MODETEST": "Teszt",
+		"SHOWNSPEAK": "Megjelenítés / Ismétlés",
+		"RANDOM": "véletlen",
+		"SPELL": "varázslat",
+		"QUESTION": "kérdés",
+		"ANSWER": "válasz",
+		"EXAMPLE": "példa",
+		"TIP": "tipp",
+		"OUTOFQUIZ": "nincs kvíz többé",
+		"ANS_FIRST": "válaszolj először"
+	},
+	"_CONQ": {
+		"NAME": "Beszélgetés"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Könyvespolc"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Beállítás"
+	},
+	"_READERSETTING": {
+		"TITLE": "Beállítás"
+	},
+	"_NEWS": {
+		"TITLE": "hírek"
+	},
+	"_CREDIT": {
+		"TITLE": "Kösz érte"
+	},
+	"_CREATION": {
+		"TITLE": "Teremtés"
+	},
+	"_COLLECTION": {
+		"TITLE": "kedvenc"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "kérdés",
+		"ANSWER": "válasz",
+		"EXAMPLE": "példa",
+		"TIPS": "tippek",
+		"STAR": "csillag"
+	}
+}

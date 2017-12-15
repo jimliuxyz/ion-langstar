@@ -1,0 +1,93 @@
+{
+	"SETTING": "Configuració",
+	"LOGIN": "iniciar Sessió",
+	"LOGOUT": "tancar sessió",
+	"OKAY": "Bé",
+	"CANCEL": "Cancel · lar",
+	"CLOSE": "Tanca",
+	"CREDIT": "Gràcies per",
+	"SAVE": "Desa",
+	"DELETE": "Suprimeix",
+	"NALANG": "Llengua materna",
+	"TALANG": "Llengua estrangera",
+	"TAG": "Etiqueta",
+	"LANG": "Llenguatge",
+	"SPEECHVOICE": "parlar",
+	"VOICERECOGN": "Reconeixement",
+	"VOICESPEED": "velocitat",
+	"PUBLISH": "Publica",
+	"EDIT": "Edita",
+	"BOOKNAME": "Títol",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "El meu primer llibre",
+	"LEARNING": "Aprenentatge",
+	"LEARNED": "Après",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Hi ha una versió nova.",
+		"MSG": "Actualitzar ara?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Configuració",
+		"LANG": "Llenguatge",
+		"NALANG": "Llengua materna",
+		"TALANG": "Llengua estrangera"
+	},
+	"_ALERT": {
+		"DELBOOK": "Esteu segur que voleu suprimir aquest llibre?",
+		"DISLIKEBOOK": "Estàs segur que no vols marcar aquest llibre?",
+		"OVERWRITEBOOK": "Voleu sobreescriure aquest contingut com la versió correcta?",
+		"ANSNUMRECOGN": "Llegiu la resposta, com ara \"número u\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Ha fallat la navegació ...",
+		"NEWBOOKFAILURE": "Crea un error ...",
+		"DELBOOKFAILURE": "no s'ha pogut eliminar ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Reprodueix",
+		"MODESPEAK": "Parla",
+		"MODETEST": "Prova",
+		"SHOWNSPEAK": "Mostra / Repetir",
+		"RANDOM": "aleatori",
+		"SPELL": "encanteri",
+		"QUESTION": "pregunta",
+		"ANSWER": "resposta",
+		"EXAMPLE": "exemple",
+		"TIP": "punta",
+		"OUTOFQUIZ": "ja no hi ha cap qüestionari",
+		"ANS_FIRST": "respon primer"
+	},
+	"_CONQ": {
+		"NAME": "Conversa"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Prestatge per a llibres"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Configuració"
+	},
+	"_READERSETTING": {
+		"TITLE": "Configuració"
+	},
+	"_NEWS": {
+		"TITLE": "Notícies"
+	},
+	"_CREDIT": {
+		"TITLE": "Gràcies per"
+	},
+	"_CREATION": {
+		"TITLE": "Creació"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorit"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pregunta",
+		"ANSWER": "resposta",
+		"EXAMPLE": "exemple",
+		"TIPS": "consells",
+		"STAR": "estrella"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Stillingar",
+	"LOGIN": "skrá inn",
+	"LOGOUT": "að skrá þig út",
+	"OKAY": "allt í lagi",
+	"CANCEL": "Hætta við",
+	"CLOSE": "Loka",
+	"CREDIT": "Takk fyrir",
+	"SAVE": "Vista",
+	"DELETE": "Eyða",
+	"NALANG": "Native language",
+	"TALANG": "Erlend tungumál",
+	"TAG": "Tag",
+	"LANG": "Tungumál",
+	"SPEECHVOICE": "tala",
+	"VOICERECOGN": "Viðurkenning",
+	"VOICESPEED": "hraði",
+	"PUBLISH": "Birta",
+	"EDIT": "Breyta",
+	"BOOKNAME": "Titill",
+	"GENERAL": "Almennt",
+	"MYFIRSTBOOKNAME": "Fyrsta bókin mín",
+	"LEARNING": "Nám",
+	"LEARNED": "Lært",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Það er ný útgáfa!",
+		"MSG": "Uppfæra núna?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Stillingar",
+		"LANG": "Tungumál",
+		"NALANG": "Native language",
+		"TALANG": "Erlend tungumál"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ertu viss um að þú viljir eyða þessum bók?",
+		"DISLIKEBOOK": "Ertu viss um að þú viljir ekki bókamerki þessa bók?",
+		"OVERWRITEBOOK": "Yfirskrifa þetta efni sem rétta útgáfu?",
+		"ANSNUMRECOGN": "Lestu út svarið, svo sem \"númer eitt\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Siglingar mistókst ...",
+		"NEWBOOKFAILURE": "Búa til mistókst ...",
+		"DELBOOKFAILURE": "tókst ekki að eyða ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Spila",
+		"MODESPEAK": "Tala",
+		"MODETEST": "Próf",
+		"SHOWNSPEAK": "Sýna / Endurtaka",
+		"RANDOM": "handahófi",
+		"SPELL": "stafa",
+		"QUESTION": "spurning",
+		"ANSWER": "svara",
+		"EXAMPLE": "dæmi",
+		"TIP": "þjórfé",
+		"OUTOFQUIZ": "ekki quiz lengur",
+		"ANS_FIRST": "svaraðu fyrst"
+	},
+	"_CONQ": {
+		"NAME": "Samtal"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bókahilla"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Stillingar"
+	},
+	"_READERSETTING": {
+		"TITLE": "Stillingar"
+	},
+	"_NEWS": {
+		"TITLE": "Fréttir"
+	},
+	"_CREDIT": {
+		"TITLE": "Takk fyrir"
+	},
+	"_CREATION": {
+		"TITLE": "Sköpun"
+	},
+	"_COLLECTION": {
+		"TITLE": "uppáhalds"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "spurning",
+		"ANSWER": "svara",
+		"EXAMPLE": "dæmi",
+		"TIPS": "ábendingar",
+		"STAR": "stjörnu"
+	}
+}

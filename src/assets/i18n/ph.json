@@ -1,0 +1,93 @@
+{
+  "SETTING": "Itakda",
+  "LOGIN": "Mag-login",
+  "LOGOUT": "Mag-log out",
+  "OKAY": "OK",
+  "CANCEL": "Kanselahin",
+  "CLOSE": "Isara",
+  "CREDIT": "Salamat sa",
+  "SAVE": "I-save",
+  "DELETE": "Tanggalin",
+  "NALANG": "Katutubong wika",
+  "TALANG": "Wikang banyaga",
+  "TAG": "Mga Tag",
+  "LANG": "Wika",
+  "SPEECHVOICE": "Basahin",
+  "VOICERECOGN": "Pagkilala",
+  "VOICESPEED": "Bilis",
+  "PUBLISH": "Nai-publish",
+  "EDIT": "I-edit",
+  "BOOKNAME": "Pamagat",
+  "GENERAL": "Pangkalahatan",
+  "MYFIRSTBOOKNAME": "Ang aking unang libro",
+  "LEARNING": "Pag-aaral",
+  "LEARNED": "Natutunan",
+  "ANSNUMRECOGN": "",
+  "_UPGRADE": {
+   "TITLE": "May isang bagong bersyon!",
+   "MSG": "Na-update na ba ngayon?"
+  },
+  "_SETTINGS": {
+   "TITLE": "Itakda",
+   "LANG": "Wika",
+   "NALANG": "Katutubong wika",
+   "TALANG": "Wikang banyaga"
+  },
+  "_ALERT": {
+   "DELBOOK": "Sigurado ka bang gusto mong tanggalin ang aklat na ito?",
+   "DISLIKEBOOK": "Sigurado ka ba na hindi mo i-bookmark ang aklat na ito?",
+   "OVERWRITEBOOK": "Ang nilalamang ito ay ang tamang bersyon?",
+   "ANSNUMRECOGN": "Basahin ang sagot, tulad ng \"unang\""
+  },
+  "_TOAST": {
+   "NAVFAILURE": "Nabigo ang pag-navigate ...",
+   "NEWBOOKFAILURE": "Nabigo ang pagtatayo ...",
+   "DELBOOKFAILURE": "Tanggalin ang nabigo ..."
+  },
+  "_MCQ": {
+   "NAME": "Word card",
+   "MODEPLAY": "Maglaro",
+   "MODESPEAK": "Nagsasalita",
+   "MODETEST": "Pagsusulit",
+   "SHOWNSPEAK": "Ipakita / ulitin",
+   "RANDOM": "Random",
+   "SPELL": "Pinyin",
+   "QUESTION": "Tanong",
+   "ANSWER": "Sagot",
+   "EXAMPLE": "Halimbawa ng mga pangungusap",
+   "TIP": "Ipaliwanag",
+   "OUTOFQUIZ": "Walang problema",
+   "ANS_FIRST": "Ang sagot ay nasa harap"
+  },
+  "_CONQ": {
+   "NAME": "Dialogue"
+  },
+  "_CLOUD_HOME": {
+   "TITLE": "Aparador ng mga aklat"
+  },
+  "_BOOKSETTING": {
+   "TITLE": "Itakda"
+  },
+  "_READERSETTING": {
+   "TITLE": "Itakda"
+  },
+  "_NEWS": {
+   "TITLE": "Balita"
+  },
+  "_CREDIT": {
+   "TITLE": "Salamat sa"
+  },
+  "_CREATION": {
+   "TITLE": "Mag-set up"
+  },
+  "_COLLECTION": {
+   "TITLE": "Koleksyon"
+  },
+  "_PLACEHOLDER": {
+   "QUESTION": "Tanong",
+   "ANSWER": "Sagot",
+   "EXAMPLE": "Halimbawa ng mga pangungusap",
+   "TIPS": "Ipaliwanag",
+   "STAR": "Mga Bituin"
+  }
+ }

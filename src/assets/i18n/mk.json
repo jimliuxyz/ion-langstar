@@ -1,0 +1,93 @@
+{
+	"SETTING": "Поставување",
+	"LOGIN": "Логирај Се",
+	"LOGOUT": "одјавите",
+	"OKAY": "добро",
+	"CANCEL": "Откажи",
+	"CLOSE": "Затвори",
+	"CREDIT": "Фала За",
+	"SAVE": "Зачувај",
+	"DELETE": "Избриши",
+	"NALANG": "Мајчин јазик",
+	"TALANG": "Странски јазик",
+	"TAG": "Tag",
+	"LANG": "Јазик",
+	"SPEECHVOICE": "зборувај",
+	"VOICERECOGN": "Признавање",
+	"VOICESPEED": "брзина",
+	"PUBLISH": "Објавете",
+	"EDIT": "Уредување",
+	"BOOKNAME": "Наслов",
+	"GENERAL": "Општо",
+	"MYFIRSTBOOKNAME": "Мојата прва книга",
+	"LEARNING": "Учење",
+	"LEARNED": "Научив",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Постои нова верзија!",
+		"MSG": "Ажурирање сега?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Поставување",
+		"LANG": "Јазик",
+		"NALANG": "Мајчин јазик",
+		"TALANG": "Странски јазик"
+	},
+	"_ALERT": {
+		"DELBOOK": "Дали сте сигурни дека сакате да ја избришете оваа книга?",
+		"DISLIKEBOOK": "Дали сте сигурни дека не сакате да ја обележите оваа книга?",
+		"OVERWRITEBOOK": "Запиши ја оваа содржина како точна верзија?",
+		"ANSNUMRECOGN": "Прочитајте го одговорот, како што е \"број еден\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Навигацијата не успеа ...",
+		"NEWBOOKFAILURE": "Создади неуспешен ...",
+		"DELBOOKFAILURE": "не успеа да избрише ..."
+	},
+	"_MCQ": {
+		"NAME": "Квиз картичка",
+		"MODEPLAY": "Играј",
+		"MODESPEAK": "Зборувај",
+		"MODETEST": "Тест",
+		"SHOWNSPEAK": "Покажи / Повтори",
+		"RANDOM": "случајно",
+		"SPELL": "магија",
+		"QUESTION": "прашање",
+		"ANSWER": "одговор",
+		"EXAMPLE": "пример",
+		"TIP": "Совет",
+		"OUTOFQUIZ": "повеќе нема квиз",
+		"ANS_FIRST": "прво одговори"
+	},
+	"_CONQ": {
+		"NAME": "Разговор"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Полица за книги"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Поставување"
+	},
+	"_READERSETTING": {
+		"TITLE": "Поставување"
+	},
+	"_NEWS": {
+		"TITLE": "Вести"
+	},
+	"_CREDIT": {
+		"TITLE": "Фала За"
+	},
+	"_CREATION": {
+		"TITLE": "Создавање"
+	},
+	"_COLLECTION": {
+		"TITLE": "омилен"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "прашање",
+		"ANSWER": "одговор",
+		"EXAMPLE": "пример",
+		"TIPS": "совети",
+		"STAR": "ѕвезда"
+	}
+}

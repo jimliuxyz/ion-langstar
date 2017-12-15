@@ -1,0 +1,93 @@
+{
+	"SETTING": "Rahmen",
+	"LOGIN": "Einloggen",
+	"LOGOUT": "Ausloggen",
+	"OKAY": "okay",
+	"CANCEL": "Stornieren",
+	"CLOSE": "Schließen",
+	"CREDIT": "Danke für",
+	"SAVE": "sparen",
+	"DELETE": "Löschen",
+	"NALANG": "Muttersprache",
+	"TALANG": "Fremdsprache",
+	"TAG": "Etikett",
+	"LANG": "Sprache",
+	"SPEECHVOICE": "sprechen",
+	"VOICERECOGN": "Anerkennung",
+	"VOICESPEED": "Geschwindigkeit",
+	"PUBLISH": "Veröffentlichen",
+	"EDIT": "Bearbeiten",
+	"BOOKNAME": "Titel",
+	"GENERAL": "Allgemeines",
+	"MYFIRSTBOOKNAME": "Mein erstes Buch",
+	"LEARNING": "Lernen",
+	"LEARNED": "Gelernt",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Es gibt eine neue Version!",
+		"MSG": "Jetzt aktualisieren?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Rahmen",
+		"LANG": "Sprache",
+		"NALANG": "Muttersprache",
+		"TALANG": "Fremdsprache"
+	},
+	"_ALERT": {
+		"DELBOOK": "Möchten Sie dieses Buch wirklich löschen?",
+		"DISLIKEBOOK": "Sind Sie sicher, dass Sie dieses Buch nicht als Lesezeichen speichern möchten?",
+		"OVERWRITEBOOK": "Überschreiben Sie diesen Inhalt als die richtige Version?",
+		"ANSNUMRECOGN": "Lesen Sie die Antwort wie \"Nummer Eins\" vor"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation fehlgeschlagen ...",
+		"NEWBOOKFAILURE": "Erstellen fehlgeschlagen ...",
+		"DELBOOKFAILURE": "konnte nicht gelöscht werden ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-Karte",
+		"MODEPLAY": "Spielen",
+		"MODESPEAK": "Sprechen",
+		"MODETEST": "Prüfung",
+		"SHOWNSPEAK": "Anzeigen / Wiederholen",
+		"RANDOM": "zufällig",
+		"SPELL": "buchstabieren",
+		"QUESTION": "Frage",
+		"ANSWER": "Antworten",
+		"EXAMPLE": "Beispiel",
+		"TIP": "Spitze",
+		"OUTOFQUIZ": "kein Quiz mehr",
+		"ANS_FIRST": "antworte zuerst"
+	},
+	"_CONQ": {
+		"NAME": "Konversation"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bücherregal"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Rahmen"
+	},
+	"_READERSETTING": {
+		"TITLE": "Rahmen"
+	},
+	"_NEWS": {
+		"TITLE": "Nachrichten"
+	},
+	"_CREDIT": {
+		"TITLE": "Danke für"
+	},
+	"_CREATION": {
+		"TITLE": "Schaffung"
+	},
+	"_COLLECTION": {
+		"TITLE": "Favorit"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "Frage",
+		"ANSWER": "Antworten",
+		"EXAMPLE": "Beispiel",
+		"TIPS": "Tipps",
+		"STAR": "Star"
+	}
+}

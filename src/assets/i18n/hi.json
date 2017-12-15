@@ -1,0 +1,93 @@
+{
+	"SETTING": "सेटिंग",
+	"LOGIN": "लॉग इन करें",
+	"LOGOUT": "लोग आउट",
+	"OKAY": "ठीक है",
+	"CANCEL": "रद्द करना",
+	"CLOSE": "बंद करे",
+	"CREDIT": "शुकि्रया",
+	"SAVE": "बचाना",
+	"DELETE": "हटाना",
+	"NALANG": "मूल भाषा",
+	"TALANG": "विदेशी भाषा",
+	"TAG": "टैग",
+	"LANG": "भाषा",
+	"SPEECHVOICE": "बोले",
+	"VOICERECOGN": "मान्यता",
+	"VOICESPEED": "गति",
+	"PUBLISH": "प्रकाशित करना",
+	"EDIT": "संपादित करें",
+	"BOOKNAME": "शीर्षक",
+	"GENERAL": "सामान्य",
+	"MYFIRSTBOOKNAME": "मेरी पहली किताब",
+	"LEARNING": "शिक्षा",
+	"LEARNED": "समाज",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "एक नया संस्करण है!",
+		"MSG": "अभी अद्यतन करें?"
+	},
+	"_SETTINGS": {
+		"TITLE": "सेटिंग",
+		"LANG": "भाषा",
+		"NALANG": "मूल भाषा",
+		"TALANG": "विदेशी भाषा"
+	},
+	"_ALERT": {
+		"DELBOOK": "क्या आप वाकई इस पुस्तक को हटाना चाहते हैं?",
+		"DISLIKEBOOK": "क्या आप वाकई इस पुस्तक को बुकमार्क करना नहीं चाहते हैं?",
+		"OVERWRITEBOOK": "सही सामग्री के रूप में इस सामग्री को अधिलेखित करें?",
+		"ANSNUMRECOGN": "जवाब पढ़ें, जैसे \"नंबर एक\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "नेविगेशन विफल ...",
+		"NEWBOOKFAILURE": "असफल बनाओ ...",
+		"DELBOOKFAILURE": "हटाने में विफल ..."
+	},
+	"_MCQ": {
+		"NAME": "प्रश्नोत्तरी कार्ड",
+		"MODEPLAY": "प्रसारण",
+		"MODESPEAK": "बोले",
+		"MODETEST": "परीक्षा",
+		"SHOWNSPEAK": "प्रदर्शन / दोहराएं",
+		"RANDOM": "बिना सोचे समझे",
+		"SPELL": "जादू",
+		"QUESTION": "सवाल",
+		"ANSWER": "उत्तर",
+		"EXAMPLE": "उदाहरण",
+		"TIP": "टिप",
+		"OUTOFQUIZ": "अब कोई प्रश्नोत्तरी नहीं है",
+		"ANS_FIRST": "पहला जवाब दें"
+	},
+	"_CONQ": {
+		"NAME": "बातचीत"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "पुस्ताक तख्ता"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "सेटिंग"
+	},
+	"_READERSETTING": {
+		"TITLE": "सेटिंग"
+	},
+	"_NEWS": {
+		"TITLE": "समाचार"
+	},
+	"_CREDIT": {
+		"TITLE": "शुकि्रया"
+	},
+	"_CREATION": {
+		"TITLE": "सृष्टि"
+	},
+	"_COLLECTION": {
+		"TITLE": "पसंदीदा"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "सवाल",
+		"ANSWER": "उत्तर",
+		"EXAMPLE": "उदाहरण",
+		"TIPS": "युक्तियाँ",
+		"STAR": "तारा"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Орнату",
+	"LOGIN": "кіру",
+	"LOGOUT": "шығу",
+	"OKAY": "Жақсы",
+	"CANCEL": "Болдырмау",
+	"CLOSE": "Жабық",
+	"CREDIT": "Рахмет",
+	"SAVE": "Сақтау",
+	"DELETE": "Жою",
+	"NALANG": "Ана тілі",
+	"TALANG": "Шетел тілі",
+	"TAG": "Тег",
+	"LANG": "Тіл",
+	"SPEECHVOICE": "сөйлеу",
+	"VOICERECOGN": "Тану",
+	"VOICESPEED": "жылдамдығы",
+	"PUBLISH": "Жариялау",
+	"EDIT": "Өңдеу",
+	"BOOKNAME": "Атауы",
+	"GENERAL": "Жалпы",
+	"MYFIRSTBOOKNAME": "Менің бірінші кітабым",
+	"LEARNING": "Оқу",
+	"LEARNED": "Үйренді",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Жаңа нұсқасы бар!",
+		"MSG": "Қазір жаңарту керек пе?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Орнату",
+		"LANG": "Тіл",
+		"NALANG": "Ана тілі",
+		"TALANG": "Шетел тілі"
+	},
+	"_ALERT": {
+		"DELBOOK": "Сіз бұл кітапты жойғыңыз келе ме?",
+		"DISLIKEBOOK": "Бұл кітабты бетбелгіге қоюды қаламайсыз ба?",
+		"OVERWRITEBOOK": "Бұл мазмұнды дұрыс нұсқамен қайта жазу керек пе?",
+		"ANSNUMRECOGN": "Жауапты оқыңыз, мысалы, «бірінші нөмір»"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Шарлау сәтсіз аяқталды ...",
+		"NEWBOOKFAILURE": "Жасау сәтсіз аяқталды ...",
+		"DELBOOKFAILURE": "жойылмады ..."
+	},
+	"_MCQ": {
+		"NAME": "Викториналар картасы",
+		"MODEPLAY": "Ойнату",
+		"MODESPEAK": "Сөйлеу",
+		"MODETEST": "Сынақ",
+		"SHOWNSPEAK": "Көрсету / қайталау",
+		"RANDOM": "кездейсоқ",
+		"SPELL": "заклинание",
+		"QUESTION": "сұрақ",
+		"ANSWER": "жауап",
+		"EXAMPLE": "мысал",
+		"TIP": "ұшы",
+		"OUTOFQUIZ": "Енді викториналар жоқ",
+		"ANS_FIRST": "алдымен жауап беріңіз"
+	},
+	"_CONQ": {
+		"NAME": "Әңгіме"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Кітап сөресі"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Орнату"
+	},
+	"_READERSETTING": {
+		"TITLE": "Орнату"
+	},
+	"_NEWS": {
+		"TITLE": "Жаңалықтар"
+	},
+	"_CREDIT": {
+		"TITLE": "Рахмет"
+	},
+	"_CREATION": {
+		"TITLE": "Жасау"
+	},
+	"_COLLECTION": {
+		"TITLE": "сүйікті"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "сұрақ",
+		"ANSWER": "жауап",
+		"EXAMPLE": "мысал",
+		"TIPS": "кеңестер",
+		"STAR": "жұлдыз"
+	}
+}

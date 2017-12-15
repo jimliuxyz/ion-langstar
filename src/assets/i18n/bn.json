@@ -1,0 +1,93 @@
+{
+	"SETTING": "বিন্যাস",
+	"LOGIN": "লগ ইন",
+	"LOGOUT": "প্রস্থান",
+	"OKAY": "ঠিক আছে",
+	"CANCEL": "বাতিল",
+	"CLOSE": "ঘনিষ্ঠ",
+	"CREDIT": "ধন্যবাদ",
+	"SAVE": "সংরক্ষণ করুন",
+	"DELETE": "মুছে ফেলা",
+	"NALANG": "নেটিভ ভাষা",
+	"TALANG": "বিদেশী ভাষা",
+	"TAG": "ট্যাগ",
+	"LANG": "ভাষা",
+	"SPEECHVOICE": "কথা বলা",
+	"VOICERECOGN": "স্বীকার",
+	"VOICESPEED": "গতি",
+	"PUBLISH": "প্রকাশ করা",
+	"EDIT": "সম্পাদন করা",
+	"BOOKNAME": "খেতাব",
+	"GENERAL": "সাধারণ",
+	"MYFIRSTBOOKNAME": "আমার প্রথম বই",
+	"LEARNING": "শিক্ষা",
+	"LEARNED": "সমাজ",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "একটি নতুন সংস্করণ আছে!",
+		"MSG": "এখন হালনাগাদ করুন?"
+	},
+	"_SETTINGS": {
+		"TITLE": "বিন্যাস",
+		"LANG": "ভাষা",
+		"NALANG": "নেটিভ ভাষা",
+		"TALANG": "বিদেশী ভাষা"
+	},
+	"_ALERT": {
+		"DELBOOK": "আপনি কি নিশ্চিত যে আপনি এই বইটি মুছতে চান?",
+		"DISLIKEBOOK": "আপনি কি এই বইটি বুকমার্ক করতে চান না?",
+		"OVERWRITEBOOK": "এই সংস্করণটি সঠিক সংস্করণ হিসাবে ওভাররাইট করবেন?",
+		"ANSNUMRECOGN": "উত্তর পড়ুন, যেমন \"নম্বর এক\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ন্যাভিগেশন ব্যর্থ ...",
+		"NEWBOOKFAILURE": "তৈরি করুন ব্যর্থ ...",
+		"DELBOOKFAILURE": "মুছে ফেলতে ব্যর্থ হয়েছে ..."
+	},
+	"_MCQ": {
+		"NAME": "ক্যুইজ কার্ড",
+		"MODEPLAY": "ব্রডকাস্ট",
+		"MODESPEAK": "কথা বলা",
+		"MODETEST": "পরীক্ষা",
+		"SHOWNSPEAK": "প্রদর্শন / পুনরাবৃত্তি",
+		"RANDOM": "এলোমেলো",
+		"SPELL": "বানান করা",
+		"QUESTION": "প্রশ্ন",
+		"ANSWER": "উত্তর",
+		"EXAMPLE": "উদাহরণ",
+		"TIP": "ডগা",
+		"OUTOFQUIZ": "আর কোনও কোয়েজ নেই",
+		"ANS_FIRST": "উত্তর প্রথম"
+	},
+	"_CONQ": {
+		"NAME": "কথোপকথন"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "পুস্তক-রাখিবার আলমারি"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "বিন্যাস"
+	},
+	"_READERSETTING": {
+		"TITLE": "বিন্যাস"
+	},
+	"_NEWS": {
+		"TITLE": "খবর"
+	},
+	"_CREDIT": {
+		"TITLE": "ধন্যবাদ"
+	},
+	"_CREATION": {
+		"TITLE": "সৃষ্টি"
+	},
+	"_COLLECTION": {
+		"TITLE": "প্রিয়"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "প্রশ্ন",
+		"ANSWER": "উত্তর",
+		"EXAMPLE": "উদাহরণ",
+		"TIPS": "পরামর্শ",
+		"STAR": "তারকা"
+	}
+}

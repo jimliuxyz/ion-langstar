@@ -1,0 +1,93 @@
+{
+	"SETTING": "Postavljanje",
+	"LOGIN": "Ulogovati se",
+	"LOGOUT": "odjaviti se",
+	"OKAY": "U redu",
+	"CANCEL": "Otkaži",
+	"CLOSE": "Zatvori",
+	"CREDIT": "Hvala za",
+	"SAVE": "Spremi",
+	"DELETE": "Izbriši",
+	"NALANG": "Native language",
+	"TALANG": "Strani jezik",
+	"TAG": "Tag",
+	"LANG": "Jezik",
+	"SPEECHVOICE": "govori",
+	"VOICERECOGN": "Prepoznavanje",
+	"VOICESPEED": "brzina",
+	"PUBLISH": "Objavite",
+	"EDIT": "Izmeni",
+	"BOOKNAME": "Naslov",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Moja prva knjiga",
+	"LEARNING": "Učenje",
+	"LEARNED": "Naučio",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Postoji nova verzija!",
+		"MSG": "Ažurirati sada?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Postavljanje",
+		"LANG": "Jezik",
+		"NALANG": "Native language",
+		"TALANG": "Strani jezik"
+	},
+	"_ALERT": {
+		"DELBOOK": "Da li ste sigurni da želite izbrisati ovu knjigu?",
+		"DISLIKEBOOK": "Da li ste sigurni da ne želite da obeležite ovu knjigu?",
+		"OVERWRITEBOOK": "Da li je ovaj sadržaj prepisan kao ispravna verzija?",
+		"ANSNUMRECOGN": "Pročitajte odgovor, kao što je \"broj jedan\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigacija nije uspela ...",
+		"NEWBOOKFAILURE": "Napravi neuspelo ...",
+		"DELBOOKFAILURE": "nije uspelo obrisati ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Igraj",
+		"MODESPEAK": "Govorite",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Prikaz / ponavljanje",
+		"RANDOM": "slučajno",
+		"SPELL": "čarolija",
+		"QUESTION": "pitanje",
+		"ANSWER": "odgovor",
+		"EXAMPLE": "primer",
+		"TIP": "vrh",
+		"OUTOFQUIZ": "više nema kviza",
+		"ANS_FIRST": "prvo odgovorite"
+	},
+	"_CONQ": {
+		"NAME": "Razgovor"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Knjiga polica"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Postavljanje"
+	},
+	"_READERSETTING": {
+		"TITLE": "Postavljanje"
+	},
+	"_NEWS": {
+		"TITLE": "Novosti"
+	},
+	"_CREDIT": {
+		"TITLE": "Hvala za"
+	},
+	"_CREATION": {
+		"TITLE": "Kreacija"
+	},
+	"_COLLECTION": {
+		"TITLE": "omiljeni"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pitanje",
+		"ANSWER": "odgovor",
+		"EXAMPLE": "primer",
+		"TIPS": "savete",
+		"STAR": "zvezda"
+	}
+}

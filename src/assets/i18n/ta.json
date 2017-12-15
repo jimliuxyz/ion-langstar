@@ -1,0 +1,93 @@
+{
+	"SETTING": "அமைப்பை",
+	"LOGIN": "உள் நுழை",
+	"LOGOUT": "வெளியேறு",
+	"OKAY": "சரி",
+	"CANCEL": "ரத்து",
+	"CLOSE": "நெருக்கமான",
+	"CREDIT": "நன்றி",
+	"SAVE": "சேமி",
+	"DELETE": "அழி",
+	"NALANG": "இவரது மொழி",
+	"TALANG": "வெளிநாட்டு மொழி",
+	"TAG": "டேக்",
+	"LANG": "மொழி",
+	"SPEECHVOICE": "பேசு",
+	"VOICERECOGN": "அங்கீகாரம்",
+	"VOICESPEED": "வேகம்",
+	"PUBLISH": "வெளியிடு",
+	"EDIT": "தொகு",
+	"BOOKNAME": "தலைப்பு",
+	"GENERAL": "பொது",
+	"MYFIRSTBOOKNAME": "என் முதல் புத்தகம்",
+	"LEARNING": "கற்றல்",
+	"LEARNED": "சமூகம்",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "புதிய பதிப்பு உள்ளது!",
+		"MSG": "இப்பொழுது மேம்படுத்து?"
+	},
+	"_SETTINGS": {
+		"TITLE": "அமைப்பை",
+		"LANG": "மொழி",
+		"NALANG": "இவரது மொழி",
+		"TALANG": "வெளிநாட்டு மொழி"
+	},
+	"_ALERT": {
+		"DELBOOK": "இந்த புத்தகத்தை நிச்சயமாக நீக்க வேண்டுமா?",
+		"DISLIKEBOOK": "இந்த புத்தகத்தை நீங்கள் புக்மார்க் செய்ய விரும்பவில்லையா?",
+		"OVERWRITEBOOK": "இந்த உள்ளடக்கத்தை சரியான பதிப்பாக மேலெழுதவா?",
+		"ANSNUMRECOGN": "பதில், \"எண் ஒன்று\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ஊடுருவல் தோல்வி ...",
+		"NEWBOOKFAILURE": "உருவாக்க முடியவில்லை ...",
+		"DELBOOKFAILURE": "நீக்க முடியவில்லை ..."
+	},
+	"_MCQ": {
+		"NAME": "வினாடி-வினா அட்டை",
+		"MODEPLAY": "பிராட்காஸ்ட்",
+		"MODESPEAK": "பேசு",
+		"MODETEST": "டெஸ்ட்",
+		"SHOWNSPEAK": "காட்சி / மீண்டும் செய்யவும்",
+		"RANDOM": "சீரற்ற",
+		"SPELL": "உச்சரிக்க",
+		"QUESTION": "கேள்வி",
+		"ANSWER": "பதில்",
+		"EXAMPLE": "உதாரணமாக",
+		"TIP": "முனை",
+		"OUTOFQUIZ": "இனி வினாடி வினா",
+		"ANS_FIRST": "முதலில் பதிலளிக்கவும்"
+	},
+	"_CONQ": {
+		"NAME": "உரையாடல்"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "புக்செல்ஃப்"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "அமைப்பை"
+	},
+	"_READERSETTING": {
+		"TITLE": "அமைப்பை"
+	},
+	"_NEWS": {
+		"TITLE": "செய்திகள்"
+	},
+	"_CREDIT": {
+		"TITLE": "நன்றி"
+	},
+	"_CREATION": {
+		"TITLE": "உருவாக்கம்"
+	},
+	"_COLLECTION": {
+		"TITLE": "பிடித்த"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "கேள்வி",
+		"ANSWER": "பதில்",
+		"EXAMPLE": "உதாரணமாக",
+		"TIPS": "குறிப்புகள்",
+		"STAR": "நட்சத்திர"
+	}
+}

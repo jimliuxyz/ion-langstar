@@ -1,0 +1,93 @@
+{
+	"SETTING": "設定",
+	"LOGIN": "ログイン",
+	"LOGOUT": "ログアウト",
+	"OKAY": "はい",
+	"CANCEL": "キャンセル",
+	"CLOSE": "閉じる",
+	"CREDIT": "についてありがとうございました",
+	"SAVE": "セーブ",
+	"DELETE": "削除",
+	"NALANG": "母国語",
+	"TALANG": "外国語",
+	"TAG": "タグ",
+	"LANG": "言語",
+	"SPEECHVOICE": "話す",
+	"VOICERECOGN": "認識",
+	"VOICESPEED": "速度",
+	"PUBLISH": "公開する",
+	"EDIT": "編集",
+	"BOOKNAME": "タイトル",
+	"GENERAL": "一般",
+	"MYFIRSTBOOKNAME": "私の最初の本",
+	"LEARNING": "学習",
+	"LEARNED": "学んだ",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "新しいバージョンがあります！",
+		"MSG": "今すぐアップデート？"
+	},
+	"_SETTINGS": {
+		"TITLE": "設定",
+		"LANG": "言語",
+		"NALANG": "母国語",
+		"TALANG": "外国語"
+	},
+	"_ALERT": {
+		"DELBOOK": "この本を削除してもよろしいですか？",
+		"DISLIKEBOOK": "この本をブックマークしたくないのですか？",
+		"OVERWRITEBOOK": "このコンテンツを正しいバージョンとして上書きしますか？",
+		"ANSNUMRECOGN": "答えを読んでください。例えば、 \"number one\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ナビゲーションに失敗しました...",
+		"NEWBOOKFAILURE": "作成に失敗しました...",
+		"DELBOOKFAILURE": "削除に失敗しました..."
+	},
+	"_MCQ": {
+		"NAME": "クイズカード",
+		"MODEPLAY": "遊ぶ",
+		"MODESPEAK": "話す",
+		"MODETEST": "テスト",
+		"SHOWNSPEAK": "表示/繰り返し",
+		"RANDOM": "ランダム",
+		"SPELL": "スペル",
+		"QUESTION": "質問",
+		"ANSWER": "回答",
+		"EXAMPLE": "例",
+		"TIP": "先端",
+		"OUTOFQUIZ": "もうクイズはない",
+		"ANS_FIRST": "最初に答える"
+	},
+	"_CONQ": {
+		"NAME": "会話"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "本棚"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "設定"
+	},
+	"_READERSETTING": {
+		"TITLE": "設定"
+	},
+	"_NEWS": {
+		"TITLE": "ニュース"
+	},
+	"_CREDIT": {
+		"TITLE": "についてありがとうございました"
+	},
+	"_CREATION": {
+		"TITLE": "創造"
+	},
+	"_COLLECTION": {
+		"TITLE": "お気に入り"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "質問",
+		"ANSWER": "回答",
+		"EXAMPLE": "例",
+		"TIPS": "ヒント",
+		"STAR": "星"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Setting",
+	"LOGIN": "masuk",
+	"LOGOUT": "keluar",
+	"OKAY": "baik",
+	"CANCEL": "Membatalkan",
+	"CLOSE": "Dekat",
+	"CREDIT": "Terima kasih untuk",
+	"SAVE": "Menyimpan",
+	"DELETE": "Menghapus",
+	"NALANG": "Bahasa asli",
+	"TALANG": "Bahasa asing",
+	"TAG": "Menandai",
+	"LANG": "Bahasa",
+	"SPEECHVOICE": "berbicara",
+	"VOICERECOGN": "Pengakuan",
+	"VOICESPEED": "kecepatan",
+	"PUBLISH": "Menerbitkan",
+	"EDIT": "Edit",
+	"BOOKNAME": "Judul",
+	"GENERAL": "Umum",
+	"MYFIRSTBOOKNAME": "Buku pertamaku",
+	"LEARNING": "Belajar",
+	"LEARNED": "Belajar",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Ada versi baru!",
+		"MSG": "Memperbarui sekarang?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Setting",
+		"LANG": "Bahasa",
+		"NALANG": "Bahasa asli",
+		"TALANG": "Bahasa asing"
+	},
+	"_ALERT": {
+		"DELBOOK": "Yakin ingin menghapus buku ini?",
+		"DISLIKEBOOK": "Anda yakin tidak ingin menandai buku ini?",
+		"OVERWRITEBOOK": "Timpa konten ini sebagai versi yang benar?",
+		"ANSNUMRECOGN": "Bacalah jawabannya, seperti \"nomor satu\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigasi gagal ...",
+		"NEWBOOKFAILURE": "Buat gagal ...",
+		"DELBOOKFAILURE": "gagal menghapus ..."
+	},
+	"_MCQ": {
+		"NAME": "Kartu kuis",
+		"MODEPLAY": "Putar",
+		"MODESPEAK": "Berbicara",
+		"MODETEST": "Uji",
+		"SHOWNSPEAK": "Tampilan / Ulangi",
+		"RANDOM": "acak",
+		"SPELL": "mengeja",
+		"QUESTION": "pertanyaan",
+		"ANSWER": "menjawab",
+		"EXAMPLE": "contoh",
+		"TIP": "tip",
+		"OUTOFQUIZ": "tidak ada kuis lagi",
+		"ANS_FIRST": "jawab dulu"
+	},
+	"_CONQ": {
+		"NAME": "Percakapan"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Rak buku"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Setting"
+	},
+	"_READERSETTING": {
+		"TITLE": "Setting"
+	},
+	"_NEWS": {
+		"TITLE": "Berita"
+	},
+	"_CREDIT": {
+		"TITLE": "Terima kasih untuk"
+	},
+	"_CREATION": {
+		"TITLE": "Penciptaan"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorit"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pertanyaan",
+		"ANSWER": "menjawab",
+		"EXAMPLE": "contoh",
+		"TIPS": "tip",
+		"STAR": "bintang"
+	}
+}

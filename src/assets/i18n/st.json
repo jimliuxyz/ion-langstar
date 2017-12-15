@@ -1,0 +1,93 @@
+{
+	"SETTING": "Ho beha",
+	"LOGIN": "kena",
+	"LOGOUT": "tsoa ka ntle",
+	"OKAY": "Ho lokile",
+	"CANCEL": "Khaola",
+	"CLOSE": "E haufi",
+	"CREDIT": "Kea leboha",
+	"SAVE": "Boloka",
+	"DELETE": "Tlosa",
+	"NALANG": "Puo ea matsoalloa",
+	"TALANG": "Puo ea linaha tse ling",
+	"TAG": "Tšoaea",
+	"LANG": "Puo",
+	"SPEECHVOICE": "bua",
+	"VOICERECOGN": "Ho amoheloa",
+	"VOICESPEED": "lebelo",
+	"PUBLISH": "Hlahisa",
+	"EDIT": "Fetola",
+	"BOOKNAME": "Sehlooho",
+	"GENERAL": "Kakaretso",
+	"MYFIRSTBOOKNAME": "Buka ea ka ea pele",
+	"LEARNING": "Ho ithuta",
+	"LEARNED": "Ithute",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Ho na le phetoho e ncha!",
+		"MSG": "Hlahisa Hona Joale?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Ho beha",
+		"LANG": "Puo",
+		"NALANG": "Puo ea matsoalloa",
+		"TALANG": "Puo ea linaha tse ling"
+	},
+	"_ALERT": {
+		"DELBOOK": "Na u netefatsa hore u batla ho hlakola buka ee?",
+		"DISLIKEBOOK": "Na o na le bonnete ba hore ha u batle ho beha buka ena hloko?",
+		"OVERWRITEBOOK": "Ho ngola lintho tsee e le phetolelo e nepahetseng?",
+		"ANSNUMRECOGN": "Bala karabo, e kang \"nomoro ea\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Tlhahlobo e hlōlehile ...",
+		"NEWBOOKFAILURE": "Etsa ho hlōleha ...",
+		"DELBOOKFAILURE": "ha ea ka ea hlakola ..."
+	},
+	"_MCQ": {
+		"NAME": "Leqephe la Quiz",
+		"MODEPLAY": "Bapala",
+		"MODESPEAK": "Bua",
+		"MODETEST": "Teko",
+		"SHOWNSPEAK": "Bontša / pheta",
+		"RANDOM": "sekhetho",
+		"SPELL": "spell",
+		"QUESTION": "potso",
+		"ANSWER": "araba",
+		"EXAMPLE": "mohlala",
+		"TIP": "ntlha",
+		"OUTOFQUIZ": "ha ho sa na lipotso",
+		"ANS_FIRST": "araba pele"
+	},
+	"_CONQ": {
+		"NAME": "Puisano"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Ho beha"
+	},
+	"_READERSETTING": {
+		"TITLE": "Ho beha"
+	},
+	"_NEWS": {
+		"TITLE": "Litaba"
+	},
+	"_CREDIT": {
+		"TITLE": "Kea leboha"
+	},
+	"_CREATION": {
+		"TITLE": "Pōpo"
+	},
+	"_COLLECTION": {
+		"TITLE": "li ratang"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "potso",
+		"ANSWER": "araba",
+		"EXAMPLE": "mohlala",
+		"TIPS": "litlhahiso",
+		"STAR": "naleli"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Kuweka",
+	"LOGIN": "Ingia",
+	"LOGOUT": "loka nje",
+	"OKAY": "Sawa",
+	"CANCEL": "Futa",
+	"CLOSE": "Funga",
+	"CREDIT": "Ahsante kwa",
+	"SAVE": "Hifadhi",
+	"DELETE": "Futa",
+	"NALANG": "Lugha ya asili",
+	"TALANG": "Lugha ya kigeni",
+	"TAG": "Andika",
+	"LANG": "Lugha",
+	"SPEECHVOICE": "sema",
+	"VOICERECOGN": "Kutambuliwa",
+	"VOICESPEED": "kasi",
+	"PUBLISH": "Kuchapisha",
+	"EDIT": "Badilisha",
+	"BOOKNAME": "Kichwa",
+	"GENERAL": "Mkuu",
+	"MYFIRSTBOOKNAME": "Kitabu changu cha kwanza",
+	"LEARNING": "Kujifunza",
+	"LEARNED": "Alijifunza",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Kuna toleo jipya!",
+		"MSG": "Sasisha Sasa?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Kuweka",
+		"LANG": "Lugha",
+		"NALANG": "Lugha ya asili",
+		"TALANG": "Lugha ya kigeni"
+	},
+	"_ALERT": {
+		"DELBOOK": "Una uhakika unataka kufuta kitabu hiki?",
+		"DISLIKEBOOK": "Je! Una hakika hutaki kuhamisha kitabu hiki?",
+		"OVERWRITEBOOK": "Kuandika maudhui haya kama toleo sahihi?",
+		"ANSNUMRECOGN": "Soma nje jibu, kama \"nambari moja\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation imeshindwa ...",
+		"NEWBOOKFAILURE": "Unda kushindwa ...",
+		"DELBOOKFAILURE": "imeshindwa kufuta ..."
+	},
+	"_MCQ": {
+		"NAME": "Kadi ya Quiz",
+		"MODEPLAY": "Jaribu",
+		"MODESPEAK": "Sema",
+		"MODETEST": "Mtihani",
+		"SHOWNSPEAK": "Onyesha / Rudia",
+		"RANDOM": "random",
+		"SPELL": "spell",
+		"QUESTION": "swali",
+		"ANSWER": "jibu",
+		"EXAMPLE": "mfano",
+		"TIP": "ncha",
+		"OUTOFQUIZ": "hakuna jaribio tena",
+		"ANS_FIRST": "jibu kwanza"
+	},
+	"_CONQ": {
+		"NAME": "Majadiliano"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Vitabu"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Kuweka"
+	},
+	"_READERSETTING": {
+		"TITLE": "Kuweka"
+	},
+	"_NEWS": {
+		"TITLE": "Habari"
+	},
+	"_CREDIT": {
+		"TITLE": "Ahsante kwa"
+	},
+	"_CREATION": {
+		"TITLE": "Uumbaji"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorite"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "swali",
+		"ANSWER": "jibu",
+		"EXAMPLE": "mfano",
+		"TIPS": "vidokezo",
+		"STAR": "nyota"
+	}
+}

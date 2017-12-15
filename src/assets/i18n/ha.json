@@ -1,0 +1,93 @@
+{
+	"SETTING": "Saitin",
+	"LOGIN": "shiga",
+	"LOGOUT": "shiga waje",
+	"OKAY": "Okay",
+	"CANCEL": "Cancel",
+	"CLOSE": "Kusa",
+	"CREDIT": "Godiya ga",
+	"SAVE": "Ajiye",
+	"DELETE": "Share",
+	"NALANG": "Harshen ƙasar",
+	"TALANG": "Harshen waje",
+	"TAG": "Tag",
+	"LANG": "Harshe",
+	"SPEECHVOICE": "magana",
+	"VOICERECOGN": "Lissafi",
+	"VOICESPEED": "gudun",
+	"PUBLISH": "Buga",
+	"EDIT": "Shirya",
+	"BOOKNAME": "Title",
+	"GENERAL": "Janar",
+	"MYFIRSTBOOKNAME": "Littafin na farko",
+	"LEARNING": "Koyo",
+	"LEARNED": "Koyi",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Akwai sabon fasalin!",
+		"MSG": "Ɗaukaka Yanzu?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Saitin",
+		"LANG": "Harshe",
+		"NALANG": "Harshen ƙasar",
+		"TALANG": "Harshen waje"
+	},
+	"_ALERT": {
+		"DELBOOK": "Kuna tabbatar kana so ka share wannan littafin?",
+		"DISLIKEBOOK": "Shin kuna tabbatar ba ku so kuyi alamar littafin nan?",
+		"OVERWRITEBOOK": "Ƙarfafa wannan abun ciki kamar yadda yake daidai?",
+		"ANSNUMRECOGN": "Karanta amsar, kamar \"lambar ɗaya\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Kuskuren kasa ya kasa ...",
+		"NEWBOOKFAILURE": "Ƙirƙiri ya kasa ...",
+		"DELBOOKFAILURE": "kasa warwarewa ..."
+	},
+	"_MCQ": {
+		"NAME": "Katin Tambayar",
+		"MODEPLAY": "Kunna",
+		"MODESPEAK": "Magana",
+		"MODETEST": "Gwaji",
+		"SHOWNSPEAK": "Nuna / Maimaitawa",
+		"RANDOM": "bazuwar",
+		"SPELL": "ƙwaƙwalwa",
+		"QUESTION": "tambaya",
+		"ANSWER": "amsar",
+		"EXAMPLE": "misali",
+		"TIP": "tip",
+		"OUTOFQUIZ": "babu wani tambari",
+		"ANS_FIRST": "amsa farko"
+	},
+	"_CONQ": {
+		"NAME": "Tattaunawa"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Saitin"
+	},
+	"_READERSETTING": {
+		"TITLE": "Saitin"
+	},
+	"_NEWS": {
+		"TITLE": "News"
+	},
+	"_CREDIT": {
+		"TITLE": "Godiya ga"
+	},
+	"_CREATION": {
+		"TITLE": "Halitta"
+	},
+	"_COLLECTION": {
+		"TITLE": "fi so"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "tambaya",
+		"ANSWER": "amsar",
+		"EXAMPLE": "misali",
+		"TIPS": "shawarwari",
+		"STAR": "star"
+	}
+}

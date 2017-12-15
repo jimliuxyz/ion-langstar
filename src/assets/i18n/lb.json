@@ -1,0 +1,93 @@
+{
+	"SETTING": "Setzen",
+	"LOGIN": "aloggen",
+	"LOGOUT": "ausloggen",
+	"OKAY": "Okay",
+	"CANCEL": "Ofbriechen",
+	"CLOSE": "Zoumaachen",
+	"CREDIT": "Merci fir",
+	"SAVE": "Späicheren",
+	"DELETE": "Läschen",
+	"NALANG": "Muttersprache",
+	"TALANG": "Auslännesche Sprooch",
+	"TAG": "Tag",
+	"LANG": "Sprooch",
+	"SPEECHVOICE": "schwätzt",
+	"VOICERECOGN": "Unerkennung",
+	"VOICESPEED": "Geschwindegkeet",
+	"PUBLISH": "Publizéieren",
+	"EDIT": "Editéieren",
+	"BOOKNAME": "Titelen",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Mäin éischt Buch",
+	"LEARNING": "Léieren",
+	"LEARNED": "Léiert",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Et gëtt eng nei Versioun!",
+		"MSG": "Update Now?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Setzen",
+		"LANG": "Sprooch",
+		"NALANG": "Muttersprache",
+		"TALANG": "Auslännesche Sprooch"
+	},
+	"_ALERT": {
+		"DELBOOK": "Sidd Dir sécher datt Dir dëst Buch läschen wëllt?",
+		"DISLIKEBOOK": "Sidd Dir sécher, datt Dir dëst Buch net bookmarkt wëllt?",
+		"OVERWRITEBOOK": "Dës Inhaltsplaz wéi déi richteg Versioun überschritt?",
+		"ANSNUMRECOGN": "Liest d'Äntwert liesen, wéi \"Nummer 1\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigatioun ass falsch ...",
+		"NEWBOOKFAILURE": "Erstallt gëtt ...",
+		"DELBOOKFAILURE": "net geläscht hunn ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Spillt",
+		"MODESPEAK": "Schwätz",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Wieder / Wiederholen",
+		"RANDOM": "zoufälleg",
+		"SPELL": "Zauber",
+		"QUESTION": "Fro",
+		"ANSWER": "Äntwert",
+		"EXAMPLE": "Beispill",
+		"TIP": "Tipp",
+		"OUTOFQUIZ": "kee Quiz méi",
+		"ANS_FIRST": "Äntwert éischter"
+	},
+	"_CONQ": {
+		"NAME": "Gespréich"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bicherregal"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Setzen"
+	},
+	"_READERSETTING": {
+		"TITLE": "Setzen"
+	},
+	"_NEWS": {
+		"TITLE": "News"
+	},
+	"_CREDIT": {
+		"TITLE": "Merci fir"
+	},
+	"_CREATION": {
+		"TITLE": "Schafen"
+	},
+	"_COLLECTION": {
+		"TITLE": "Favoriten"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "Fro",
+		"ANSWER": "Äntwert",
+		"EXAMPLE": "Beispill",
+		"TIPS": "Tipps",
+		"STAR": "Stär"
+	}
+}

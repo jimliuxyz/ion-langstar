@@ -1,0 +1,93 @@
+{
+	"SETTING": "Oprawa",
+	"LOGIN": "Zaloguj Się",
+	"LOGOUT": "Wyloguj",
+	"OKAY": "w porządku",
+	"CANCEL": "Anuluj",
+	"CLOSE": "Blisko",
+	"CREDIT": "Dzięki za",
+	"SAVE": "Zapisać",
+	"DELETE": "Kasować",
+	"NALANG": "Język ojczysty",
+	"TALANG": "Język obcy",
+	"TAG": "Etykietka",
+	"LANG": "Język",
+	"SPEECHVOICE": "mówić",
+	"VOICERECOGN": "Rozpoznanie",
+	"VOICESPEED": "prędkość",
+	"PUBLISH": "Publikować",
+	"EDIT": "Edytować",
+	"BOOKNAME": "Tytuł",
+	"GENERAL": "Generał",
+	"MYFIRSTBOOKNAME": "Moja pierwsza książka",
+	"LEARNING": "Uczenie się",
+	"LEARNED": "Nauczyłem się",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Jest nowa wersja!",
+		"MSG": "Aktualizuj teraz?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Oprawa",
+		"LANG": "Język",
+		"NALANG": "Język ojczysty",
+		"TALANG": "Język obcy"
+	},
+	"_ALERT": {
+		"DELBOOK": "Czy na pewno chcesz usunąć tę książkę?",
+		"DISLIKEBOOK": "Czy na pewno nie chcesz dodać tej książki do zakładek?",
+		"OVERWRITEBOOK": "Zastąp tę zawartość jako poprawną wersję?",
+		"ANSNUMRECOGN": "Przeczytaj odpowiedź, np. \"Numer jeden\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Brak nawigacji ...",
+		"NEWBOOKFAILURE": "Utwórz nieudany ...",
+		"DELBOOKFAILURE": "nie udało się usunąć ..."
+	},
+	"_MCQ": {
+		"NAME": "Karta quizu",
+		"MODEPLAY": "Graj",
+		"MODESPEAK": "Mówić",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Wyświetl / powtórz",
+		"RANDOM": "losowy",
+		"SPELL": "zaklęcie",
+		"QUESTION": "pytanie",
+		"ANSWER": "odpowiedź",
+		"EXAMPLE": "przykład",
+		"TIP": "Wskazówka",
+		"OUTOFQUIZ": "bez quizu",
+		"ANS_FIRST": "odpowiedz najpierw"
+	},
+	"_CONQ": {
+		"NAME": "Rozmowa"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Półka na książki"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Oprawa"
+	},
+	"_READERSETTING": {
+		"TITLE": "Oprawa"
+	},
+	"_NEWS": {
+		"TITLE": "Aktualności"
+	},
+	"_CREDIT": {
+		"TITLE": "Dzięki za"
+	},
+	"_CREATION": {
+		"TITLE": "kreacja"
+	},
+	"_COLLECTION": {
+		"TITLE": "ulubiony"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pytanie",
+		"ANSWER": "odpowiedź",
+		"EXAMPLE": "przykład",
+		"TIPS": "wskazówki",
+		"STAR": "gwiazda"
+	}
+}

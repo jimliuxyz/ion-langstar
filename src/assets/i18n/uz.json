@@ -1,0 +1,93 @@
+{
+	"SETTING": "Sozlash",
+	"LOGIN": "Kirish",
+	"LOGOUT": "chiqish",
+	"OKAY": "xop",
+	"CANCEL": "Bekor qilish",
+	"CLOSE": "Yoping",
+	"CREDIT": "Uchun rahmat",
+	"SAVE": "Saqlash",
+	"DELETE": "O'chir",
+	"NALANG": "Ona tili",
+	"TALANG": "Chet til",
+	"TAG": "Yorliq",
+	"LANG": "Til",
+	"SPEECHVOICE": "gapirish",
+	"VOICERECOGN": "Ovozni aniqlash",
+	"VOICESPEED": "tezligi",
+	"PUBLISH": "Nashr qiling",
+	"EDIT": "Tahrirlash",
+	"BOOKNAME": "Sarlavha",
+	"GENERAL": "Umumiy",
+	"MYFIRSTBOOKNAME": "Mening birinchi kitobim",
+	"LEARNING": "Ta'lim",
+	"LEARNED": "O'rgangan",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Yangi versiya mavjud!",
+		"MSG": "Hozir yangilashni xohlaysizmi?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Sozlash",
+		"LANG": "Til",
+		"NALANG": "Ona tili",
+		"TALANG": "Chet til"
+	},
+	"_ALERT": {
+		"DELBOOK": "Haqiqatan ham bu kitobni o'chirib tashlamoqchimisiz?",
+		"DISLIKEBOOK": "Bu kitobni joylamoqchi emasligingizga ishonchingiz komilmi?",
+		"OVERWRITEBOOK": "Ushbu tarkibni to'g'ri versiya deb yozib olasizmi?",
+		"ANSNUMRECOGN": "Javobni o'qing, masalan, \"birinchi raqam\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigatsiya amalga oshmadi ...",
+		"NEWBOOKFAILURE": "Muvaffaqiyatsiz yaratish ...",
+		"DELBOOKFAILURE": "o'chirib bo'lmadi ..."
+	},
+	"_MCQ": {
+		"NAME": "Viktorina kartasi",
+		"MODEPLAY": "Tinglash",
+		"MODESPEAK": "Gapiring",
+		"MODETEST": "Viktorina",
+		"SHOWNSPEAK": "Ko'rish / Takrorlash",
+		"RANDOM": "tasodifiy",
+		"SPELL": "sehrlash",
+		"QUESTION": "savol",
+		"ANSWER": "javob berish",
+		"EXAMPLE": "misol",
+		"TIP": "uchi",
+		"OUTOFQUIZ": "boshqa viktorina yo'q",
+		"ANS_FIRST": "birinchi javob"
+	},
+	"_CONQ": {
+		"NAME": "Suhbat"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Sozlash"
+	},
+	"_READERSETTING": {
+		"TITLE": "Sozlash"
+	},
+	"_NEWS": {
+		"TITLE": "Yangiliklar"
+	},
+	"_CREDIT": {
+		"TITLE": "Uchun rahmat"
+	},
+	"_CREATION": {
+		"TITLE": "Yaratilish"
+	},
+	"_COLLECTION": {
+		"TITLE": "sevimli"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "savol",
+		"ANSWER": "javob berish",
+		"EXAMPLE": "misol",
+		"TIPS": "maslahatlar",
+		"STAR": "Yulduz"
+	}
+}

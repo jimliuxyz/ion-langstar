@@ -1,0 +1,93 @@
+{
+	"SETTING": "سیٹنگ",
+	"LOGIN": "میں لاگ ان کریں",
+	"LOGOUT": "لاگ آوٹ",
+	"OKAY": "ٹھیک ہے",
+	"CANCEL": "منسوخ کریں",
+	"CLOSE": "بند کریں",
+	"CREDIT": "کے لئے شکریہ",
+	"SAVE": "محفوظ کریں",
+	"DELETE": "حذف کریں",
+	"NALANG": "مقامی زبان",
+	"TALANG": "غیر ملکی زبان",
+	"TAG": "ٹیگ",
+	"LANG": "زبان",
+	"SPEECHVOICE": "بات کرو",
+	"VOICERECOGN": "شناخت",
+	"VOICESPEED": "رفتار",
+	"PUBLISH": "شائع کریں",
+	"EDIT": "ترمیم",
+	"BOOKNAME": "عنوان",
+	"GENERAL": "جنرل",
+	"MYFIRSTBOOKNAME": "میری پہلی کتاب",
+	"LEARNING": "سیکھنا",
+	"LEARNED": "سیکھا",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "ایک نیا ورژن ہے!",
+		"MSG": "تازہ ترین کریں. جدید بنایں؟"
+	},
+	"_SETTINGS": {
+		"TITLE": "سیٹنگ",
+		"LANG": "زبان",
+		"NALANG": "مقامی زبان",
+		"TALANG": "غیر ملکی زبان"
+	},
+	"_ALERT": {
+		"DELBOOK": "کیا آپ واقعی یہ کتاب حذف کرنا چاہتے ہیں؟",
+		"DISLIKEBOOK": "کیا آپ واقعی یہ کتاب بک مارک نہیں کرنا چاہتے ہیں؟",
+		"OVERWRITEBOOK": "صحیح مواد کے طور پر اس مواد کو لکھنا؟",
+		"ANSNUMRECOGN": "جواب پڑھیں، جیسے \"نمبر ایک\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "نیوی گیشن ناکام ہوگئی ...",
+		"NEWBOOKFAILURE": "ناکام بنائیں ...",
+		"DELBOOKFAILURE": "حذف کرنے میں ناکامی"
+	},
+	"_MCQ": {
+		"NAME": "کوئز کارڈ",
+		"MODEPLAY": "کھیلیں",
+		"MODESPEAK": "بولو",
+		"MODETEST": "ٹیسٹ",
+		"SHOWNSPEAK": "ڈسپلے / دہرائیں",
+		"RANDOM": "بے ترتیب",
+		"SPELL": "جادو",
+		"QUESTION": "سوال",
+		"ANSWER": "جواب دیں",
+		"EXAMPLE": "مثال",
+		"TIP": "ٹپ",
+		"OUTOFQUIZ": "اب کوئی کوئز نہیں",
+		"ANS_FIRST": "پہلے جواب دیں"
+	},
+	"_CONQ": {
+		"NAME": "بات چیت"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "کتابوفیلف"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "سیٹنگ"
+	},
+	"_READERSETTING": {
+		"TITLE": "سیٹنگ"
+	},
+	"_NEWS": {
+		"TITLE": "خبریں"
+	},
+	"_CREDIT": {
+		"TITLE": "کے لئے شکریہ"
+	},
+	"_CREATION": {
+		"TITLE": "تخلیق"
+	},
+	"_COLLECTION": {
+		"TITLE": "پسندیدہ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "سوال",
+		"ANSWER": "جواب دیں",
+		"EXAMPLE": "مثال",
+		"TIPS": "تجاویز",
+		"STAR": "ستارہ"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "setting ကို",
+	"LOGIN": "လော့ဂ်အင်",
+	"LOGOUT": "နေ log out",
+	"OKAY": "အိုကေ",
+	"CANCEL": "Cancel",
+	"CLOSE": "ပိတ်",
+	"CREDIT": "အတွက်ကျေးဇူးတင်ပါတယ်",
+	"SAVE": "ကြော်ငြာကို Save လုပ်ရန်",
+	"DELETE": "ဖျက်ပစ်ပါ",
+	"NALANG": "မိခင်ဘာသာစကား",
+	"TALANG": "နိုင်ငံခြားဘာသာစကား",
+	"TAG": "tag ကို",
+	"LANG": "ဘာသာစကား",
+	"SPEECHVOICE": "ပွောဆို",
+	"VOICERECOGN": "မှတ်မိခြင်း",
+	"VOICESPEED": "အရှိန်",
+	"PUBLISH": "ပုံနှိပ်ထုတ်ဝေ",
+	"EDIT": "Edit ကို",
+	"BOOKNAME": "ခေါင်းစဥ်",
+	"GENERAL": "ယေဘုယျ",
+	"MYFIRSTBOOKNAME": "ကျွန်မရဲ့ပထမဦးဆုံးစာအုပ်",
+	"LEARNING": "သင်ယူခြင်း",
+	"LEARNED": "လူ့အဖွဲ့အစည်း",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "ဗားရှင်းအသစ်ရှိပါသည်!",
+		"MSG": "အခုတော့ကိုအပ်ဒိတ်လုပ်?"
+	},
+	"_SETTINGS": {
+		"TITLE": "setting ကို",
+		"LANG": "ဘာသာစကား",
+		"NALANG": "မိခင်ဘာသာစကား",
+		"TALANG": "နိုင်ငံခြားဘာသာစကား"
+	},
+	"_ALERT": {
+		"DELBOOK": "သင်ဤစာအုပ်ကိုသင်ဖျက်ချင်တာသေချာလား?",
+		"DISLIKEBOOK": "သင်ဤစာအုပ်ကို bookmark ကိုမှမလိုချင်ကြဘူးသေချာလား?",
+		"OVERWRITEBOOK": "မှန်ကန်သောဗားရှင်းအဖြစ်ဤအကြောင်းအရာ Overwrite?",
+		"ANSNUMRECOGN": "ထိုကဲ့သို့သော \"နံပါတ်တစ်\" အဖြစ်, အဖြေထွက် Read"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "navigation ပျက်ကွက် ...",
+		"NEWBOOKFAILURE": "မအောင်မြင် Create ...",
+		"DELBOOKFAILURE": "ဖျက်ပစ်ရန်ပျက်ကွက် ..."
+	},
+	"_MCQ": {
+		"NAME": "ပဟေဠိ Card ကို",
+		"MODEPLAY": "အသံလွှင်း",
+		"MODESPEAK": "ပွောဆို",
+		"MODETEST": "စမ်းသပ်",
+		"SHOWNSPEAK": "display / ထပ်ခါတလဲလဲ",
+		"RANDOM": "အမှတ်မဲ့ဖြစ်သော",
+		"SPELL": "စာလုံးပေါင်းရ",
+		"QUESTION": "မေးခွန်း",
+		"ANSWER": "အဖွေ",
+		"EXAMPLE": "နမူနာ",
+		"TIP": "အဖျား",
+		"OUTOFQUIZ": "တော့ဘူးမျှပဟေဠိ",
+		"ANS_FIRST": "ပထမဦးဆုံးဖြေဆို"
+	},
+	"_CONQ": {
+		"NAME": "စကားလက်ဆုံ"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "စာအုပ်စင်"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "setting ကို"
+	},
+	"_READERSETTING": {
+		"TITLE": "setting ကို"
+	},
+	"_NEWS": {
+		"TITLE": "သတင်း"
+	},
+	"_CREDIT": {
+		"TITLE": "အတွက်ကျေးဇူးတင်ပါတယ်"
+	},
+	"_CREATION": {
+		"TITLE": "ဖန်တီးခြင်း"
+	},
+	"_COLLECTION": {
+		"TITLE": "အကြိုက်ဆုံး"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "မေးခွန်း",
+		"ANSWER": "အဖွေ",
+		"EXAMPLE": "နမူနာ",
+		"TIPS": "အကြံပေးချက်များ",
+		"STAR": "ကြယ်"
+	}
+}

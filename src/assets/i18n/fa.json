@@ -1,0 +1,93 @@
+{
+	"SETTING": "تنظیمات",
+	"LOGIN": "ورود",
+	"LOGOUT": "خروج",
+	"OKAY": "باشه",
+	"CANCEL": "لغو",
+	"CLOSE": "نزدیک",
+	"CREDIT": "متشکرم",
+	"SAVE": "صرفه جویی",
+	"DELETE": "حذف",
+	"NALANG": "زبان مادری",
+	"TALANG": "زبان خارجی",
+	"TAG": "برچسب",
+	"LANG": "زبان",
+	"SPEECHVOICE": "صحبت",
+	"VOICERECOGN": "شناخت",
+	"VOICESPEED": "سرعت",
+	"PUBLISH": "انتشار",
+	"EDIT": "ویرایش",
+	"BOOKNAME": "عنوان",
+	"GENERAL": "عمومی",
+	"MYFIRSTBOOKNAME": "اولین کتاب من",
+	"LEARNING": "یادگیری",
+	"LEARNED": "آموخته ام",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "یک نسخه جدید وجود دارد!",
+		"MSG": "به روز رسانی کن"
+	},
+	"_SETTINGS": {
+		"TITLE": "تنظیمات",
+		"LANG": "زبان",
+		"NALANG": "زبان مادری",
+		"TALANG": "زبان خارجی"
+	},
+	"_ALERT": {
+		"DELBOOK": "آیا مطمئن هستید که میخواهید این کتاب را حذف کنید؟",
+		"DISLIKEBOOK": "آیا مطمئن هستید که نمی خواهید این کتاب را نشانه گذاری کنید؟",
+		"OVERWRITEBOOK": "این محتوا را به عنوان نسخه صحیح بازنویسی کنید؟",
+		"ANSNUMRECOGN": "پاسخ را بخوانید، مانند \"شماره یک\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ناوبری شکست خورد ...",
+		"NEWBOOKFAILURE": "ایجاد نشد ...",
+		"DELBOOKFAILURE": "موفق به حذف ..."
+	},
+	"_MCQ": {
+		"NAME": "کارت امتحان",
+		"MODEPLAY": "بازی",
+		"MODESPEAK": "صحبت",
+		"MODETEST": "تست",
+		"SHOWNSPEAK": "نمایش / تکرار",
+		"RANDOM": "تصادفی",
+		"SPELL": "هجی کردن",
+		"QUESTION": "سوال",
+		"ANSWER": "پاسخ",
+		"EXAMPLE": "مثال",
+		"TIP": "نکته",
+		"OUTOFQUIZ": "هیچ مسابقه ای دیگر نیست",
+		"ANS_FIRST": "پاسخ اول"
+	},
+	"_CONQ": {
+		"NAME": "گفتگو"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "قفسه کتاب"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "تنظیمات"
+	},
+	"_READERSETTING": {
+		"TITLE": "تنظیمات"
+	},
+	"_NEWS": {
+		"TITLE": "اخبار"
+	},
+	"_CREDIT": {
+		"TITLE": "متشکرم"
+	},
+	"_CREATION": {
+		"TITLE": "ایجاد"
+	},
+	"_COLLECTION": {
+		"TITLE": "مورد علاقه"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "سوال",
+		"ANSWER": "پاسخ",
+		"EXAMPLE": "مثال",
+		"TIPS": "نکات",
+		"STAR": "ستاره"
+	}
+}

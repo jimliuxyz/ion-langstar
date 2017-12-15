@@ -1,0 +1,93 @@
+{
+	"SETTING": "omgewing",
+	"LOGIN": "teken aan",
+	"LOGOUT": "teken uit",
+	"OKAY": "Goed",
+	"CANCEL": "kanselleer",
+	"CLOSE": "Naby",
+	"CREDIT": "Dankie vir",
+	"SAVE": "Save",
+	"DELETE": "verwyder",
+	"NALANG": "Moedertaal",
+	"TALANG": "Buitelandse taal",
+	"TAG": "tag",
+	"LANG": "Taal",
+	"SPEECHVOICE": "praat",
+	"VOICERECOGN": "erkenning",
+	"VOICESPEED": "spoed",
+	"PUBLISH": "publiseer",
+	"EDIT": "wysig",
+	"BOOKNAME": "Titel",
+	"GENERAL": "algemene",
+	"MYFIRSTBOOKNAME": "My eerste boek",
+	"LEARNING": "leer",
+	"LEARNED": "samelewing",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Daar is 'n nuwe weergawe!",
+		"MSG": "Nou op datum bring?"
+	},
+	"_SETTINGS": {
+		"TITLE": "omgewing",
+		"LANG": "Taal",
+		"NALANG": "Moedertaal",
+		"TALANG": "Buitelandse taal"
+	},
+	"_ALERT": {
+		"DELBOOK": "Is jy seker jy wil hierdie boek uitvee?",
+		"DISLIKEBOOK": "Is jy seker jy wil nie hierdie boek boekmerke nie?",
+		"OVERWRITEBOOK": "Oorskryf hierdie inhoud as die korrekte weergawe?",
+		"ANSNUMRECOGN": "Lees die antwoord uit, soos \"nommer een\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigasie het misluk ...",
+		"NEWBOOKFAILURE": "Skep misluk ...",
+		"DELBOOKFAILURE": "Kon nie verwyder nie ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-kaart",
+		"MODEPLAY": "uitsending",
+		"MODESPEAK": "praat",
+		"MODETEST": "toets",
+		"SHOWNSPEAK": "Vertoon / Herhaal",
+		"RANDOM": "ewekansige",
+		"SPELL": "spel",
+		"QUESTION": "vraag",
+		"ANSWER": "antwoord",
+		"EXAMPLE": "byvoorbeeld",
+		"TIP": "wenk",
+		"OUTOFQUIZ": "geen vasvra nie",
+		"ANS_FIRST": "antwoord eerste"
+	},
+	"_CONQ": {
+		"NAME": "gesprek"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Boekrak"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "omgewing"
+	},
+	"_READERSETTING": {
+		"TITLE": "omgewing"
+	},
+	"_NEWS": {
+		"TITLE": "Nuus"
+	},
+	"_CREDIT": {
+		"TITLE": "Dankie vir"
+	},
+	"_CREATION": {
+		"TITLE": "skepping"
+	},
+	"_COLLECTION": {
+		"TITLE": "gunsteling"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "vraag",
+		"ANSWER": "antwoord",
+		"EXAMPLE": "byvoorbeeld",
+		"TIPS": "wenke",
+		"STAR": "ster"
+	}
+}

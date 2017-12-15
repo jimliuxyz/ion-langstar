@@ -1,0 +1,93 @@
+{
+	"SETTING": "Танзимот",
+	"LOGIN": "даромадан",
+	"LOGOUT": "баромадан",
+	"OKAY": "Хуб",
+	"CANCEL": "Бекор кардан",
+	"CLOSE": "Пӯшед",
+	"CREDIT": "Ташаккур барои",
+	"SAVE": "Save",
+	"DELETE": "Тоза кардан",
+	"NALANG": "Забони модарӣ",
+	"TALANG": "Забони хориҷӣ",
+	"TAG": "Так",
+	"LANG": "Забон",
+	"SPEECHVOICE": "сӯҳбат кунед",
+	"VOICERECOGN": "Эътироф",
+	"VOICESPEED": "суръат",
+	"PUBLISH": "Publish",
+	"EDIT": "Таҳрири",
+	"BOOKNAME": "Title",
+	"GENERAL": "Генерал",
+	"MYFIRSTBOOKNAME": "Китоби аввалини ман",
+	"LEARNING": "Омӯзиш",
+	"LEARNED": "Омӯзиш",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Варианти нав вуҷуд дорад!",
+		"MSG": "Ҳоло навсозӣ?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Танзимот",
+		"LANG": "Забон",
+		"NALANG": "Забони модарӣ",
+		"TALANG": "Забони хориҷӣ"
+	},
+	"_ALERT": {
+		"DELBOOK": "Оё боварӣ доред, ки ин китобро нест кардан мехоҳед?",
+		"DISLIKEBOOK": "Оё боварӣ доред, ки ин китобро ҷойгир кардан мехоҳед?",
+		"OVERWRITEBOOK": "Ин мундариҷа ҳамчун версияи дурустро бароред?",
+		"ANSNUMRECOGN": "Ҷавобро хонед, ба монанди \"рақами як\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Настройка failed ...",
+		"NEWBOOKFAILURE": "Нобуд сохтани ...",
+		"DELBOOKFAILURE": "..."
+	},
+	"_MCQ": {
+		"NAME": "Кортҳои Quiz",
+		"MODEPLAY": "Бозӣ",
+		"MODESPEAK": "Сухан кунед",
+		"MODETEST": "Санҷиш",
+		"SHOWNSPEAK": "Намоиш / Такрор",
+		"RANDOM": "тасодуфӣ",
+		"SPELL": "зебо",
+		"QUESTION": "савол",
+		"ANSWER": "ҷавоб",
+		"EXAMPLE": "намуна",
+		"TIP": "Маслиҳат",
+		"OUTOFQUIZ": "Не озмуни иловагӣ",
+		"ANS_FIRST": "аввал ҷавоб диҳед"
+	},
+	"_CONQ": {
+		"NAME": "Гуфтугӯ"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Китобхона"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Танзимот"
+	},
+	"_READERSETTING": {
+		"TITLE": "Танзимот"
+	},
+	"_NEWS": {
+		"TITLE": "Хабарҳо"
+	},
+	"_CREDIT": {
+		"TITLE": "Ташаккур барои"
+	},
+	"_CREATION": {
+		"TITLE": "Офариниш"
+	},
+	"_COLLECTION": {
+		"TITLE": "дӯстдошта"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "савол",
+		"ANSWER": "ҷавоб",
+		"EXAMPLE": "намуна",
+		"TIPS": "маслиҳатҳо",
+		"STAR": "ситора"
+	}
+}

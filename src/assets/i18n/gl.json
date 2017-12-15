@@ -1,0 +1,93 @@
+{
+	"SETTING": "Configuración",
+	"LOGIN": "Iniciar sesión",
+	"LOGOUT": "saír",
+	"OKAY": "Está ben",
+	"CANCEL": "Cancelar",
+	"CLOSE": "Pechar",
+	"CREDIT": "Graciñas por",
+	"SAVE": "Gardar",
+	"DELETE": "Eliminar",
+	"NALANG": "Linguaxe nativa",
+	"TALANG": "Lingua estranxeira",
+	"TAG": "Etiqueta",
+	"LANG": "Lingua",
+	"SPEECHVOICE": "falar",
+	"VOICERECOGN": "Recoñecemento",
+	"VOICESPEED": "velocidade",
+	"PUBLISH": "Publicar",
+	"EDIT": "Editar",
+	"BOOKNAME": "Título",
+	"GENERAL": "Xeral",
+	"MYFIRSTBOOKNAME": "O meu primeiro libro",
+	"LEARNING": "Aprendizaxe",
+	"LEARNED": "Aprendido",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "¡Hai unha nova versión!",
+		"MSG": "Actualizar agora?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Configuración",
+		"LANG": "Lingua",
+		"NALANG": "Linguaxe nativa",
+		"TALANG": "Lingua estranxeira"
+	},
+	"_ALERT": {
+		"DELBOOK": "Estás seguro de que queres eliminar este libro?",
+		"DISLIKEBOOK": "¿Estás seguro de que non queres marcar este libro?",
+		"OVERWRITEBOOK": "¿Sobrescribir este contido como a versión correcta?",
+		"ANSNUMRECOGN": "Lea a resposta, como \"número uno\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Fallou a navegación ...",
+		"NEWBOOKFAILURE": "Produciuse un erro ...",
+		"DELBOOKFAILURE": "non se puido eliminar ..."
+	},
+	"_MCQ": {
+		"NAME": "Tarxeta de preguntas",
+		"MODEPLAY": "Xogar",
+		"MODESPEAK": "Fala",
+		"MODETEST": "Proba",
+		"SHOWNSPEAK": "Mostrar / Repetir",
+		"RANDOM": "aleatorio",
+		"SPELL": "feitizo",
+		"QUESTION": "pregunta",
+		"ANSWER": "resposta",
+		"EXAMPLE": "exemplo",
+		"TIP": "punta",
+		"OUTOFQUIZ": "xa non hai dúbida",
+		"ANS_FIRST": "resposta primeiro"
+	},
+	"_CONQ": {
+		"NAME": "Conversa"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Estantería"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Configuración"
+	},
+	"_READERSETTING": {
+		"TITLE": "Configuración"
+	},
+	"_NEWS": {
+		"TITLE": "Novas"
+	},
+	"_CREDIT": {
+		"TITLE": "Graciñas por"
+	},
+	"_CREATION": {
+		"TITLE": "Creación"
+	},
+	"_COLLECTION": {
+		"TITLE": "favorito"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pregunta",
+		"ANSWER": "resposta",
+		"EXAMPLE": "exemplo",
+		"TIPS": "consellos",
+		"STAR": "estrela"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Setting",
+	"LOGIN": "têketin",
+	"LOGOUT": "derkeve",
+	"OKAY": "Okay",
+	"CANCEL": "Bişûndekirin",
+	"CLOSE": "Nêzîkî",
+	"CREDIT": "Spas ji bo",
+	"SAVE": "Rizgarkirin",
+	"DELETE": "Jêbirin",
+	"NALANG": "Zimanek niştecîh",
+	"TALANG": "Zimanek biyanî",
+	"TAG": "Tag",
+	"LANG": "Ziman",
+	"SPEECHVOICE": "axaftin",
+	"VOICERECOGN": "Nasnameyê",
+	"VOICESPEED": "zûbûnî",
+	"PUBLISH": "Weşandin",
+	"EDIT": "Weşandin",
+	"BOOKNAME": "Nav",
+	"GENERAL": "Giştî",
+	"MYFIRSTBOOKNAME": "Pirtûka yekemîn min",
+	"LEARNING": "Hînbûnê",
+	"LEARNED": "Fêr kirin",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Vebijareke nû ye!",
+		"MSG": "Niha nû bike?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Setting",
+		"LANG": "Ziman",
+		"NALANG": "Zimanek niştecîh",
+		"TALANG": "Zimanek biyanî"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ma tu dixwazî ​​ku hûn pirtûka vê rûpelê derxînin?",
+		"DISLIKEBOOK": "Ma hûn bawer nakin ku hûn naxwazin vê pirtûka pirtûkxanê?",
+		"OVERWRITEBOOK": "Vê vîdyoyê wekî rastê vala binivîse?",
+		"ANSNUMRECOGN": "Bersiv bixwînin, wekî \"hejmara yek\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation failed ...",
+		"NEWBOOKFAILURE": "Afirandin ...",
+		"DELBOOKFAILURE": "nekarxistin ..."
+	},
+	"_MCQ": {
+		"NAME": "Karta Quiz",
+		"MODEPLAY": "Play",
+		"MODESPEAK": "Axaftin",
+		"MODETEST": "Îmtîhan",
+		"SHOWNSPEAK": "Display / Repeat",
+		"RANDOM": "bêpayîn",
+		"SPELL": "sihêr",
+		"QUESTION": "pirs",
+		"ANSWER": "bersiv",
+		"EXAMPLE": "mînak",
+		"TIP": "bexşîş",
+		"OUTOFQUIZ": "no quiz now",
+		"ANS_FIRST": "bersiva yekem"
+	},
+	"_CONQ": {
+		"NAME": "Kêfî"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Setting"
+	},
+	"_READERSETTING": {
+		"TITLE": "Setting"
+	},
+	"_NEWS": {
+		"TITLE": "Nûçe"
+	},
+	"_CREDIT": {
+		"TITLE": "Spas ji bo"
+	},
+	"_CREATION": {
+		"TITLE": "Xuliqî"
+	},
+	"_COLLECTION": {
+		"TITLE": "hezkirî"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pirs",
+		"ANSWER": "bersiv",
+		"EXAMPLE": "mînak",
+		"TIPS": "pêşniyar",
+		"STAR": "stêrk"
+	}
+}

@@ -31,7 +31,7 @@ export class MyApp implements OnDestroy{
     platform.ready().then(() => {
       console.log("platform ready~")
 
-      this.serv.init(this.nav, modalCtrl);
+      this.serv.init(this.nav);
       this.serv.ready$.then(async () => {
         console.log("everything ready~");
 

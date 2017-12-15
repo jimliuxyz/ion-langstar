@@ -1,0 +1,93 @@
+{
+	"SETTING": "Cài đặt",
+	"LOGIN": "đăng nhập",
+	"LOGOUT": "đăng xuất",
+	"OKAY": "đuợc",
+	"CANCEL": "Hủy",
+	"CLOSE": "Gần",
+	"CREDIT": "Cảm ơn vì",
+	"SAVE": "Tiết kiệm",
+	"DELETE": "Xóa bỏ",
+	"NALANG": "Ngôn ngữ bản địa",
+	"TALANG": "Ngoại ngữ",
+	"TAG": "Nhãn",
+	"LANG": "Ngôn ngữ",
+	"SPEECHVOICE": "nói",
+	"VOICERECOGN": "Công nhận",
+	"VOICESPEED": "tốc độ",
+	"PUBLISH": "Công bố",
+	"EDIT": "Chỉnh sửa",
+	"BOOKNAME": "Chức vụ",
+	"GENERAL": "Chung",
+	"MYFIRSTBOOKNAME": "Cuốn sách đầu tiên của tôi",
+	"LEARNING": "Học tập",
+	"LEARNED": "Học được",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Có một phiên bản mới!",
+		"MSG": "Cập nhật bây giờ?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Cài đặt",
+		"LANG": "Ngôn ngữ",
+		"NALANG": "Ngôn ngữ bản địa",
+		"TALANG": "Ngoại ngữ"
+	},
+	"_ALERT": {
+		"DELBOOK": "Bạn có chắc chắn muốn xóa cuốn sách này?",
+		"DISLIKEBOOK": "Bạn có chắc là bạn không muốn đánh dấu trang này?",
+		"OVERWRITEBOOK": "Ghi đè nội dung này làm phiên bản chính xác?",
+		"ANSNUMRECOGN": "Đọc ra câu trả lời, chẳng hạn như \"số một\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Điều hướng không thành công ...",
+		"NEWBOOKFAILURE": "Tạo không thành công ...",
+		"DELBOOKFAILURE": "không thể xóa ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Chơi",
+		"MODESPEAK": "Nói",
+		"MODETEST": "Kiểm tra",
+		"SHOWNSPEAK": "Hiển thị / Lặp lại",
+		"RANDOM": "ngẫu nhiên",
+		"SPELL": "Đánh vần",
+		"QUESTION": "câu hỏi",
+		"ANSWER": "câu trả lời",
+		"EXAMPLE": "thí dụ",
+		"TIP": "tiền boa",
+		"OUTOFQUIZ": "không có bài kiểm tra nữa",
+		"ANS_FIRST": "trả lời đầu tiên"
+	},
+	"_CONQ": {
+		"NAME": "Cuộc hội thoại"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Giá sách"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Cài đặt"
+	},
+	"_READERSETTING": {
+		"TITLE": "Cài đặt"
+	},
+	"_NEWS": {
+		"TITLE": "Tin tức"
+	},
+	"_CREDIT": {
+		"TITLE": "Cảm ơn vì"
+	},
+	"_CREATION": {
+		"TITLE": "Sự sáng tạo"
+	},
+	"_COLLECTION": {
+		"TITLE": "yêu thích"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "câu hỏi",
+		"ANSWER": "câu trả lời",
+		"EXAMPLE": "thí dụ",
+		"TIPS": "lời khuyên",
+		"STAR": "ngôi sao"
+	}
+}

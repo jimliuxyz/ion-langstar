@@ -37,7 +37,7 @@ export class QstUserCfgRec{
   ansfirst = false;
   qcnt = 1;
   qshow = true;
-  acnt = 0;
+  acnt = 1;
   ashow = true;
   expcnt = 0;
   expshow = true;
@@ -333,6 +333,7 @@ export class AppQuizService{
 
     });
 
+    // console.log(text)
     // console.log(group)
     // this.toDataArray(group)
     

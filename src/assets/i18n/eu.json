@@ -1,0 +1,93 @@
+{
+	"SETTING": "Entorno",
+	"LOGIN": "saioa hasi",
+	"LOGOUT": "Saioa amaitu",
+	"OKAY": "ados",
+	"CANCEL": "Utzi",
+	"CLOSE": "Itxi",
+	"CREDIT": "Eskerrik asko",
+	"SAVE": "Save",
+	"DELETE": "ezabatu",
+	"NALANG": "Native hizkuntza",
+	"TALANG": "Atzerriko hizkuntza",
+	"TAG": "Tag",
+	"LANG": "Hizkuntza",
+	"SPEECHVOICE": "hitz egin",
+	"VOICERECOGN": "Errekonozimendua",
+	"VOICESPEED": "abiadura",
+	"PUBLISH": "Argitaratu",
+	"EDIT": "Editatu",
+	"BOOKNAME": "Izenburua",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Nire lehen liburua",
+	"LEARNING": "Ikaskuntza",
+	"LEARNED": "Gizartea",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Bertsio berria dago!",
+		"MSG": "Eguneratu orain?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Entorno",
+		"LANG": "Hizkuntza",
+		"NALANG": "Native hizkuntza",
+		"TALANG": "Atzerriko hizkuntza"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ziur liburu hau ezabatu nahi duzula?",
+		"DISLIKEBOOK": "Ziur ez duzula liburu hau markatu nahi?",
+		"OVERWRITEBOOK": "Edukia gainidazten du bertsio zuzena bezala?",
+		"ANSNUMRECOGN": "Irakurri erantzuna, \"zenbaki bat\" esaterako"
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Nabigazioa huts egin du ...",
+		"NEWBOOKFAILURE": "Sortu huts egin du ...",
+		"DELBOOKFAILURE": "Ezin izan da ezabatu ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz txartela",
+		"MODEPLAY": "Broadcast",
+		"MODESPEAK": "Hitz egin",
+		"MODETEST": "Probatu",
+		"SHOWNSPEAK": "Bistaratu / Errepikatu",
+		"RANDOM": "ausazko",
+		"SPELL": "ortografia",
+		"QUESTION": "Galdera",
+		"ANSWER": "erantzun",
+		"EXAMPLE": "Adibidez",
+		"TIP": "punta",
+		"OUTOFQUIZ": "galderarik ez gehiago",
+		"ANS_FIRST": "erantzun lehenik"
+	},
+	"_CONQ": {
+		"NAME": "Elkarrizketen"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "apal"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Entorno"
+	},
+	"_READERSETTING": {
+		"TITLE": "Entorno"
+	},
+	"_NEWS": {
+		"TITLE": "Berriak"
+	},
+	"_CREDIT": {
+		"TITLE": "Eskerrik asko"
+	},
+	"_CREATION": {
+		"TITLE": "Sorkuntza"
+	},
+	"_COLLECTION": {
+		"TITLE": "gogoko"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "Galdera",
+		"ANSWER": "erantzun",
+		"EXAMPLE": "Adibidez",
+		"TIPS": "aholku",
+		"STAR": "izar"
+	}
+}

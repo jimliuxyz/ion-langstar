@@ -1,0 +1,93 @@
+{
+	"SETTING": "postavljanje",
+	"LOGIN": "prijaviti se",
+	"LOGOUT": "odjaviti se",
+	"OKAY": "u redu",
+	"CANCEL": "Otkazati",
+	"CLOSE": "Zatvoriti",
+	"CREDIT": "Hvala za",
+	"SAVE": "Uštedjeti",
+	"DELETE": "Izbrisati",
+	"NALANG": "Izvorni jezik",
+	"TALANG": "Strani jezik",
+	"TAG": "Označiti",
+	"LANG": "Jezik",
+	"SPEECHVOICE": "govoriti",
+	"VOICERECOGN": "prepoznavanje",
+	"VOICESPEED": "ubrzati",
+	"PUBLISH": "Objaviti",
+	"EDIT": "Uredi",
+	"BOOKNAME": "Titula",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Moja prva knjiga",
+	"LEARNING": "učenje",
+	"LEARNED": "društvo",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Tu je nova verzija!",
+		"MSG": "Ažurirati sada?"
+	},
+	"_SETTINGS": {
+		"TITLE": "postavljanje",
+		"LANG": "Jezik",
+		"NALANG": "Izvorni jezik",
+		"TALANG": "Strani jezik"
+	},
+	"_ALERT": {
+		"DELBOOK": "Jeste li sigurni da želite izbrisati ovu knjigu?",
+		"DISLIKEBOOK": "Jeste li sigurni da ne želite označiti ovu knjigu?",
+		"OVERWRITEBOOK": "Overwrite ovaj sadržaj kao ispravnu verziju?",
+		"ANSNUMRECOGN": "Pročitajte odgovor, kao što je \"broj jedan\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigacija nije uspjela ...",
+		"NEWBOOKFAILURE": "Izrada nije uspjela ...",
+		"DELBOOKFAILURE": "nije uspjelo izbrisati ..."
+	},
+	"_MCQ": {
+		"NAME": "Kviz kartica",
+		"MODEPLAY": "emitiranje",
+		"MODESPEAK": "Govoriti",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Prikaz / ponavljanje",
+		"RANDOM": "slučajan",
+		"SPELL": "čarolija",
+		"QUESTION": "pitanje",
+		"ANSWER": "odgovor",
+		"EXAMPLE": "primjer",
+		"TIP": "Savjet",
+		"OUTOFQUIZ": "više nema kviza",
+		"ANS_FIRST": "prvo odgovorite"
+	},
+	"_CONQ": {
+		"NAME": "Razgovor"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "polica za knjige"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "postavljanje"
+	},
+	"_READERSETTING": {
+		"TITLE": "postavljanje"
+	},
+	"_NEWS": {
+		"TITLE": "Vijesti"
+	},
+	"_CREDIT": {
+		"TITLE": "Hvala za"
+	},
+	"_CREATION": {
+		"TITLE": "Stvaranje"
+	},
+	"_COLLECTION": {
+		"TITLE": "ljubimac"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pitanje",
+		"ANSWER": "odgovor",
+		"EXAMPLE": "primjer",
+		"TIPS": "savjeti",
+		"STAR": "zvijezda"
+	}
+}

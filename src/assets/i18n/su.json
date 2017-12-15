@@ -1,0 +1,93 @@
+{
+	"SETTING": "setelan",
+	"LOGIN": "lebet",
+	"LOGOUT": "kaluar",
+	"OKAY": "Oké",
+	"CANCEL": "ngabatalkeun",
+	"CLOSE": "nutup",
+	"CREDIT": "Hatur nuhun",
+	"SAVE": "Simpen",
+	"DELETE": "Mupus",
+	"NALANG": "basa indung",
+	"TALANG": "basa asing",
+	"TAG": "Tag",
+	"LANG": "basa",
+	"SPEECHVOICE": "ngomong",
+	"VOICERECOGN": "pangakuan",
+	"VOICESPEED": "kagancangan",
+	"PUBLISH": "nyebarkeun",
+	"EDIT": "Edit",
+	"BOOKNAME": "gelar",
+	"GENERAL": "umum",
+	"MYFIRSTBOOKNAME": "buku kahiji abdi",
+	"LEARNING": "learning",
+	"LEARNED": "perkumpulan",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Aya versi anyar!",
+		"MSG": "Apdet Ayeuna?"
+	},
+	"_SETTINGS": {
+		"TITLE": "setelan",
+		"LANG": "basa",
+		"NALANG": "basa indung",
+		"TALANG": "basa asing"
+	},
+	"_ALERT": {
+		"DELBOOK": "Anjeun yakin rék ngahapus buku ieu?",
+		"DISLIKEBOOK": "Anjeun pasti anjeun teu hoyong tetengger buku ieu?",
+		"OVERWRITEBOOK": "Nimpa eusi ieu versi bener?",
+		"ANSNUMRECOGN": "Baca kaluar jawaban, sapertos \"nomer hiji\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigasi gagal ...",
+		"NEWBOOKFAILURE": "Jieun gagal ...",
+		"DELBOOKFAILURE": "gagal dihapus ..."
+	},
+	"_MCQ": {
+		"NAME": "kuis Card",
+		"MODEPLAY": "siaran",
+		"MODESPEAK": "ngomong",
+		"MODETEST": "nguji",
+		"SHOWNSPEAK": "Tampilan / Ulang",
+		"RANDOM": "acak",
+		"SPELL": "ngejah",
+		"QUESTION": "tatanya",
+		"ANSWER": "jawaban",
+		"EXAMPLE": "conto",
+		"TIP": "tip",
+		"OUTOFQUIZ": "euweuh kuis deui",
+		"ANS_FIRST": "ngajawab munggaran"
+	},
+	"_CONQ": {
+		"NAME": "obrolan"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "rak buku"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "setelan"
+	},
+	"_READERSETTING": {
+		"TITLE": "setelan"
+	},
+	"_NEWS": {
+		"TITLE": "wartos"
+	},
+	"_CREDIT": {
+		"TITLE": "Hatur nuhun"
+	},
+	"_CREATION": {
+		"TITLE": "ciptaan"
+	},
+	"_COLLECTION": {
+		"TITLE": "karesep"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "tatanya",
+		"ANSWER": "jawaban",
+		"EXAMPLE": "conto",
+		"TIPS": "tips",
+		"STAR": "bentang"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "सेटिंग",
+	"LOGIN": "लॉग इन",
+	"LOGOUT": "बाहेर पडणे",
+	"OKAY": "ठीक आहे",
+	"CANCEL": "रद्द करा",
+	"CLOSE": "बंद",
+	"CREDIT": "च्या साठी धन्यवाद",
+	"SAVE": "जतन करा",
+	"DELETE": "हटवा",
+	"NALANG": "मूळ भाषा",
+	"TALANG": "विदेशी भाषा",
+	"TAG": "टॅग करा",
+	"LANG": "भाषा",
+	"SPEECHVOICE": "बोला",
+	"VOICERECOGN": "ओळख",
+	"VOICESPEED": "गती",
+	"PUBLISH": "प्रकाशित करा",
+	"EDIT": "संपादित करा",
+	"BOOKNAME": "शीर्षक",
+	"GENERAL": "सामान्य",
+	"MYFIRSTBOOKNAME": "माझी पहिली पुस्तक",
+	"LEARNING": "शिकणे",
+	"LEARNED": "शिकलेले",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "एक नवीन आवृत्ती आहे!",
+		"MSG": "आता अद्ययावत करा?"
+	},
+	"_SETTINGS": {
+		"TITLE": "सेटिंग",
+		"LANG": "भाषा",
+		"NALANG": "मूळ भाषा",
+		"TALANG": "विदेशी भाषा"
+	},
+	"_ALERT": {
+		"DELBOOK": "आपली खात्री आहे की आपण हे पुस्तक हटवू इच्छिता?",
+		"DISLIKEBOOK": "आपल्याला खात्री आहे की आपण या पुस्तकास बुकमार्क करू इच्छित नाही?",
+		"OVERWRITEBOOK": "ही सामग्री योग्य आवृत्ती म्हणून अधिलिखित करायची?",
+		"ANSNUMRECOGN": "उत्तर वाचा, जसे \"क्रमांक एक\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "नेव्हिगेशन अयशस्वी ...",
+		"NEWBOOKFAILURE": "अयशस्वी तयार करा ...",
+		"DELBOOKFAILURE": "हटविण्यात अयशस्वी ..."
+	},
+	"_MCQ": {
+		"NAME": "क्विझ कार्ड",
+		"MODEPLAY": "खेळा",
+		"MODESPEAK": "बोला",
+		"MODETEST": "चाचणी",
+		"SHOWNSPEAK": "प्रदर्शन / पुनरावृत्ती करा",
+		"RANDOM": "यादृच्छिक",
+		"SPELL": "शब्दलेखन",
+		"QUESTION": "प्रश्न",
+		"ANSWER": "उत्तर",
+		"EXAMPLE": "उदाहरण",
+		"TIP": "टीप",
+		"OUTOFQUIZ": "आता आणखी क्विझ नाही",
+		"ANS_FIRST": "प्रथम उत्तर द्या"
+	},
+	"_CONQ": {
+		"NAME": "संभाषण"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "बुक्सहेलेफ"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "सेटिंग"
+	},
+	"_READERSETTING": {
+		"TITLE": "सेटिंग"
+	},
+	"_NEWS": {
+		"TITLE": "बातम्या"
+	},
+	"_CREDIT": {
+		"TITLE": "च्या साठी धन्यवाद"
+	},
+	"_CREATION": {
+		"TITLE": "निर्मिती"
+	},
+	"_COLLECTION": {
+		"TITLE": "आवडता"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "प्रश्न",
+		"ANSWER": "उत्तर",
+		"EXAMPLE": "उदाहरण",
+		"TIPS": "टिपा",
+		"STAR": "तारा"
+	}
+}

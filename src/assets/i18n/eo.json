@@ -1,0 +1,93 @@
+{
+	"SETTING": "Agordo",
+	"LOGIN": "Ensaluti",
+	"LOGOUT": "elsaluti",
+	"OKAY": "Bone",
+	"CANCEL": "Nuligi",
+	"CLOSE": "Fermi",
+	"CREDIT": "Dankon pro",
+	"SAVE": "Savi",
+	"DELETE": "Forigi",
+	"NALANG": "Denaska lingvo",
+	"TALANG": "Fremda lingvo",
+	"TAG": "Tag",
+	"LANG": "Lingvo",
+	"SPEECHVOICE": "paroli",
+	"VOICERECOGN": "Rekono",
+	"VOICESPEED": "rapido",
+	"PUBLISH": "Publikigi",
+	"EDIT": "Redakti",
+	"BOOKNAME": "Titolo",
+	"GENERAL": "Ĝenerala",
+	"MYFIRSTBOOKNAME": "Mia unua libro",
+	"LEARNING": "Lernado",
+	"LEARNED": "Lernita",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Estas nova versio!",
+		"MSG": "Ĝisdatigu Nun?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Agordo",
+		"LANG": "Lingvo",
+		"NALANG": "Denaska lingvo",
+		"TALANG": "Fremda lingvo"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ĉu vi certas, ke vi volas forigi ĉi tiun libron?",
+		"DISLIKEBOOK": "Ĉu vi certas, ke vi ne volas marki ĉi tiun libron?",
+		"OVERWRITEBOOK": "Redaksi ĉi tiun enhavon kiel la ĝustan version?",
+		"ANSNUMRECOGN": "Legu la respondon, kiel \"numero unu\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigado malsukcesis ...",
+		"NEWBOOKFAILURE": "Kreu malsukcesis ...",
+		"DELBOOKFAILURE": "malsukcesis forigi ..."
+	},
+	"_MCQ": {
+		"NAME": "Kvartkarto",
+		"MODEPLAY": "Ludi",
+		"MODESPEAK": "Paroli",
+		"MODETEST": "Testo",
+		"SHOWNSPEAK": "Montri / ripeti",
+		"RANDOM": "hazarda",
+		"SPELL": "sorĉas",
+		"QUESTION": "demando",
+		"ANSWER": "respondo",
+		"EXAMPLE": "ekzemplo",
+		"TIP": "beko",
+		"OUTOFQUIZ": "Neniu kvizo plu",
+		"ANS_FIRST": "respondu unue"
+	},
+	"_CONQ": {
+		"NAME": "Konversacio"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Librofelo"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Agordo"
+	},
+	"_READERSETTING": {
+		"TITLE": "Agordo"
+	},
+	"_NEWS": {
+		"TITLE": "Novaĵoj"
+	},
+	"_CREDIT": {
+		"TITLE": "Dankon pro"
+	},
+	"_CREATION": {
+		"TITLE": "Kreo"
+	},
+	"_COLLECTION": {
+		"TITLE": "ŝatata"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "demando",
+		"ANSWER": "respondo",
+		"EXAMPLE": "ekzemplo",
+		"TIPS": "konsiletoj",
+		"STAR": "stelo"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Nastavení",
+	"LOGIN": "přihlásit se",
+	"LOGOUT": "odhlásit se",
+	"OKAY": "dobře",
+	"CANCEL": "zrušení",
+	"CLOSE": "Zavřít",
+	"CREDIT": "Děkuji za",
+	"SAVE": "Uložit",
+	"DELETE": "Vymazat",
+	"NALANG": "Mateřský jazyk",
+	"TALANG": "Cizí jazyk",
+	"TAG": "Štítek",
+	"LANG": "Jazyk",
+	"SPEECHVOICE": "mluvit",
+	"VOICERECOGN": "Rozpoznávání",
+	"VOICESPEED": "Rychlost",
+	"PUBLISH": "Publikovat",
+	"EDIT": "Upravit",
+	"BOOKNAME": "Titul",
+	"GENERAL": "Všeobecné",
+	"MYFIRSTBOOKNAME": "Moje první kniha",
+	"LEARNING": "Učení",
+	"LEARNED": "Naučeno",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "K dispozici je nová verze!",
+		"MSG": "Nyní aktualizovat?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Nastavení",
+		"LANG": "Jazyk",
+		"NALANG": "Mateřský jazyk",
+		"TALANG": "Cizí jazyk"
+	},
+	"_ALERT": {
+		"DELBOOK": "Opravdu chcete tuto knihu smazat?",
+		"DISLIKEBOOK": "Opravdu chcete tuto knihu nechat uložit?",
+		"OVERWRITEBOOK": "Přepsat tento obsah jako správnou verzi?",
+		"ANSNUMRECOGN": "Přečtěte si odpověď, například \"číslo jedna\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigace se nezdařila ...",
+		"NEWBOOKFAILURE": "Vytvořit se nepodařilo ...",
+		"DELBOOKFAILURE": "se nepodařilo smazat ..."
+	},
+	"_MCQ": {
+		"NAME": "Kvízová karta",
+		"MODEPLAY": "Přehrát",
+		"MODESPEAK": "Mluvit",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Zobrazení / opakování",
+		"RANDOM": "náhodný",
+		"SPELL": "hláskovat",
+		"QUESTION": "otázka",
+		"ANSWER": "Odpovědět",
+		"EXAMPLE": "příklad",
+		"TIP": "tip",
+		"OUTOFQUIZ": "žádný kvíz už",
+		"ANS_FIRST": "odpovědět nejprve"
+	},
+	"_CONQ": {
+		"NAME": "Konverzace"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Regál"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Nastavení"
+	},
+	"_READERSETTING": {
+		"TITLE": "Nastavení"
+	},
+	"_NEWS": {
+		"TITLE": "Zprávy"
+	},
+	"_CREDIT": {
+		"TITLE": "Děkuji za"
+	},
+	"_CREATION": {
+		"TITLE": "Stvoření"
+	},
+	"_COLLECTION": {
+		"TITLE": "oblíbený"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "otázka",
+		"ANSWER": "Odpovědět",
+		"EXAMPLE": "příklad",
+		"TIPS": "tipy",
+		"STAR": "hvězda"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "환경",
+	"LOGIN": "로그인",
+	"LOGOUT": "로그 아웃",
+	"OKAY": "괜찮아",
+	"CANCEL": "취소",
+	"CLOSE": "닫기",
+	"CREDIT": "에 감사하다",
+	"SAVE": "구하다",
+	"DELETE": "지우다",
+	"NALANG": "모국어",
+	"TALANG": "외국어",
+	"TAG": "꼬리표",
+	"LANG": "언어",
+	"SPEECHVOICE": "말하다",
+	"VOICERECOGN": "인정",
+	"VOICESPEED": "속도",
+	"PUBLISH": "게시",
+	"EDIT": "편집하다",
+	"BOOKNAME": "표제",
+	"GENERAL": "일반",
+	"MYFIRSTBOOKNAME": "내 첫번째 책",
+	"LEARNING": "학습",
+	"LEARNED": "배운",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "새 버전이 있습니다!",
+		"MSG": "지금 업데이트 하시겠습니까?"
+	},
+	"_SETTINGS": {
+		"TITLE": "환경",
+		"LANG": "언어",
+		"NALANG": "모국어",
+		"TALANG": "외국어"
+	},
+	"_ALERT": {
+		"DELBOOK": "이 책을 삭제 하시겠습니까?",
+		"DISLIKEBOOK": "이 책을 북마크하고 싶지 않습니까?",
+		"OVERWRITEBOOK": "이 콘텐츠를 올바른 버전으로 덮어 쓰시겠습니까?",
+		"ANSNUMRECOGN": "\"1 번\"과 같은 대답을 읽어보십시오."
+	},
+	"_TOAST": {
+		"NAVFAILURE": "탐색에 실패했습니다 ...",
+		"NEWBOOKFAILURE": "만들기 실패 ...",
+		"DELBOOKFAILURE": "삭제하지 못했습니다 ..."
+	},
+	"_MCQ": {
+		"NAME": "퀴즈 카드",
+		"MODEPLAY": "놀이",
+		"MODESPEAK": "말하다",
+		"MODETEST": "테스트",
+		"SHOWNSPEAK": "표시 / 반복",
+		"RANDOM": "무작위의",
+		"SPELL": "주문",
+		"QUESTION": "문제",
+		"ANSWER": "대답",
+		"EXAMPLE": "예",
+		"TIP": "팁",
+		"OUTOFQUIZ": "더 이상 퀴즈가 없습니다.",
+		"ANS_FIRST": "처음 대답하다"
+	},
+	"_CONQ": {
+		"NAME": "대화"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "책장"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "환경"
+	},
+	"_READERSETTING": {
+		"TITLE": "환경"
+	},
+	"_NEWS": {
+		"TITLE": "뉴스"
+	},
+	"_CREDIT": {
+		"TITLE": "에 감사하다"
+	},
+	"_CREATION": {
+		"TITLE": "창조"
+	},
+	"_COLLECTION": {
+		"TITLE": "특히 잘하는"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "문제",
+		"ANSWER": "대답",
+		"EXAMPLE": "예",
+		"TIPS": "팁",
+		"STAR": "별"
+	}
+}

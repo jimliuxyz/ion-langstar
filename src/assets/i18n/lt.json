@@ -1,0 +1,93 @@
+{
+	"SETTING": "Nustatymas",
+	"LOGIN": "Prisijungti",
+	"LOGOUT": "Atsijungti",
+	"OKAY": "Gerai",
+	"CANCEL": "Atšaukti",
+	"CLOSE": "Uždaryti",
+	"CREDIT": "Ačiū už",
+	"SAVE": "Sutaupyti",
+	"DELETE": "Ištrinti",
+	"NALANG": "Gimtoji kalba",
+	"TALANG": "Užsienio kalba",
+	"TAG": "Žyma",
+	"LANG": "Kalba",
+	"SPEECHVOICE": "kalbėk",
+	"VOICERECOGN": "Pripažinimas",
+	"VOICESPEED": "greitis",
+	"PUBLISH": "Paskelbti",
+	"EDIT": "Redaguoti",
+	"BOOKNAME": "Pavadinimas",
+	"GENERAL": "Generalinis direktorius",
+	"MYFIRSTBOOKNAME": "Mano pirmoji knyga",
+	"LEARNING": "Mokymasis",
+	"LEARNED": "Išmokti",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Yra nauja versija!",
+		"MSG": "Atnaujinti dabar?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Nustatymas",
+		"LANG": "Kalba",
+		"NALANG": "Gimtoji kalba",
+		"TALANG": "Užsienio kalba"
+	},
+	"_ALERT": {
+		"DELBOOK": "Ar tikrai norite ištrinti šią knygą?",
+		"DISLIKEBOOK": "Ar tikrai nenorite pažymėti šios knygos?",
+		"OVERWRITEBOOK": "Perrašyti šį turinį kaip teisingą versiją?",
+		"ANSNUMRECOGN": "Perskaitykite atsakymą, pvz., \"Numeris vienas\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigacija nepavyko ...",
+		"NEWBOOKFAILURE": "Sukurti nepavyko ...",
+		"DELBOOKFAILURE": "nepavyko ištrinti ..."
+	},
+	"_MCQ": {
+		"NAME": "Viktorina kortelė",
+		"MODEPLAY": "Žaisti",
+		"MODESPEAK": "Pasakyk",
+		"MODETEST": "Testas",
+		"SHOWNSPEAK": "Rodyti / pakartoti",
+		"RANDOM": "atsitiktinis",
+		"SPELL": "burtas",
+		"QUESTION": "klausimas",
+		"ANSWER": "atsakyti",
+		"EXAMPLE": "pavyzdys",
+		"TIP": "patarimas",
+		"OUTOFQUIZ": "nebėra viktorinos",
+		"ANS_FIRST": "atsakyti pirmiausia"
+	},
+	"_CONQ": {
+		"NAME": "Pokalbis"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Knygų lentyna"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Nustatymas"
+	},
+	"_READERSETTING": {
+		"TITLE": "Nustatymas"
+	},
+	"_NEWS": {
+		"TITLE": "žinios"
+	},
+	"_CREDIT": {
+		"TITLE": "Ačiū už"
+	},
+	"_CREATION": {
+		"TITLE": "Kūrimas"
+	},
+	"_COLLECTION": {
+		"TITLE": "mėgstamiausia"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "klausimas",
+		"ANSWER": "atsakyti",
+		"EXAMPLE": "pavyzdys",
+		"TIPS": "patarimai",
+		"STAR": "žvaigždė"
+	}
+}

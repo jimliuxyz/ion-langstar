@@ -1,0 +1,93 @@
+{
+	"SETTING": "Parcu",
+	"LOGIN": "in entre",
+	"LOGOUT": "scunnettà si",
+	"OKAY": "Avete",
+	"CANCEL": "Annulla",
+	"CLOSE": "Chiudere",
+	"CREDIT": "Grazie",
+	"SAVE": "Salvà",
+	"DELETE": "Delete",
+	"NALANG": "Lingua nativa",
+	"TALANG": "Lingua straniera",
+	"TAG": "Tag",
+	"LANG": "Lingua",
+	"SPEECHVOICE": "parle",
+	"VOICERECOGN": "Ricunniscenza",
+	"VOICESPEED": "veloce",
+	"PUBLISH": "Publicate",
+	"EDIT": "Edit",
+	"BOOKNAME": "Titulu",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "U primu libru",
+	"LEARNING": "Learning",
+	"LEARNED": "Learned",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Ci hè una nova versione!",
+		"MSG": "Aghjurnà?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Parcu",
+		"LANG": "Lingua",
+		"NALANG": "Lingua nativa",
+		"TALANG": "Lingua straniera"
+	},
+	"_ALERT": {
+		"DELBOOK": "Sè sicuru chì vulete sguassate stu libru?",
+		"DISLIKEBOOK": "Sè sicuru chì ùn vulete micca marcà stu libru?",
+		"OVERWRITEBOOK": "Scrivite stu cuntenutu cum'è a versione curretta?",
+		"ANSNUMRECOGN": "Lea a risposta, cum'è \"numeri unu\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "A navigazioni falle ...",
+		"NEWBOOKFAILURE": "Creazione falle ...",
+		"DELBOOKFAILURE": "hà micca scupertu ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Play",
+		"MODESPEAK": "Speak",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Amparà / Repetite",
+		"RANDOM": "aleatoriu",
+		"SPELL": "spell",
+		"QUESTION": "quistione",
+		"ANSWER": "risposta",
+		"EXAMPLE": "esempiu",
+		"TIP": "punta",
+		"OUTOFQUIZ": "nisun quiz più",
+		"ANS_FIRST": "risposta prima"
+	},
+	"_CONQ": {
+		"NAME": "Conversazione"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Parcu"
+	},
+	"_READERSETTING": {
+		"TITLE": "Parcu"
+	},
+	"_NEWS": {
+		"TITLE": "News"
+	},
+	"_CREDIT": {
+		"TITLE": "Grazie"
+	},
+	"_CREATION": {
+		"TITLE": "Creazione"
+	},
+	"_COLLECTION": {
+		"TITLE": "favuritu"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "quistione",
+		"ANSWER": "risposta",
+		"EXAMPLE": "esempiu",
+		"TIPS": "cunsiglii",
+		"STAR": "stella"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "સેટિંગ",
+	"LOGIN": "લૉગ ઇન કરો",
+	"LOGOUT": "લૉગ આઉટ",
+	"OKAY": "બરાબર",
+	"CANCEL": "રદ કરો",
+	"CLOSE": "બંધ",
+	"CREDIT": "ને માટે આભાર",
+	"SAVE": "સાચવો",
+	"DELETE": "કાઢી નાંખો",
+	"NALANG": "મૂળ ભાષા",
+	"TALANG": "વિદેશી ભાષા",
+	"TAG": "ટૅગ",
+	"LANG": "ભાષા",
+	"SPEECHVOICE": "બોલો",
+	"VOICERECOGN": "માન્યતા",
+	"VOICESPEED": "ઝડપ",
+	"PUBLISH": "પ્રકાશિત કરો",
+	"EDIT": "સંપાદિત કરો",
+	"BOOKNAME": "શીર્ષક",
+	"GENERAL": "જનરલ",
+	"MYFIRSTBOOKNAME": "મારી પ્રથમ પુસ્તક",
+	"LEARNING": "લર્નિંગ",
+	"LEARNED": "શીખ્યા",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "એક નવું સંસ્કરણ છે!",
+		"MSG": "હવે અપડેટ કરીએ?"
+	},
+	"_SETTINGS": {
+		"TITLE": "સેટિંગ",
+		"LANG": "ભાષા",
+		"NALANG": "મૂળ ભાષા",
+		"TALANG": "વિદેશી ભાષા"
+	},
+	"_ALERT": {
+		"DELBOOK": "શું તમે ખરેખર આ પુસ્તકને કાઢવા માંગો છો?",
+		"DISLIKEBOOK": "શું તમે ખરેખર આ બુક બુકમાર્ક કરવા નથી માગતા?",
+		"OVERWRITEBOOK": "આ સામગ્રીને યોગ્ય સંસ્કરણ તરીકે ઓવરરાઇટ કરીએ?",
+		"ANSNUMRECOGN": "જવાબ વાંચો, જેમ કે \"નંબર વન\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "નેવિગેશન નિષ્ફળ ...",
+		"NEWBOOKFAILURE": "નિષ્ફળ બનાવો ...",
+		"DELBOOKFAILURE": "કાઢી નાખવામાં નિષ્ફળ ..."
+	},
+	"_MCQ": {
+		"NAME": "ક્વિઝ કાર્ડ",
+		"MODEPLAY": "રમો",
+		"MODESPEAK": "બોલો",
+		"MODETEST": "પરીક્ષણ",
+		"SHOWNSPEAK": "પ્રદર્શન / પુનરાવર્તન કરો",
+		"RANDOM": "રેન્ડમ",
+		"SPELL": "જોડણી",
+		"QUESTION": "પ્રશ્ન",
+		"ANSWER": "જવાબ આપો",
+		"EXAMPLE": "ઉદાહરણ",
+		"TIP": "ટિપ",
+		"OUTOFQUIZ": "હવે કોઈ ક્વિઝ નથી",
+		"ANS_FIRST": "પ્રથમ જવાબ આપો"
+	},
+	"_CONQ": {
+		"NAME": "વાતચીત"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "બુકશેલ્ફ"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "સેટિંગ"
+	},
+	"_READERSETTING": {
+		"TITLE": "સેટિંગ"
+	},
+	"_NEWS": {
+		"TITLE": "સમાચાર"
+	},
+	"_CREDIT": {
+		"TITLE": "ને માટે આભાર"
+	},
+	"_CREATION": {
+		"TITLE": "બનાવટ"
+	},
+	"_COLLECTION": {
+		"TITLE": "પ્રિય"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "પ્રશ્ન",
+		"ANSWER": "જવાબ આપો",
+		"EXAMPLE": "ઉદાહરણ",
+		"TIPS": "ટીપ્સ",
+		"STAR": "તારો"
+	}
+}

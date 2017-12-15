@@ -1,0 +1,93 @@
+{
+	"SETTING": "asetus",
+	"LOGIN": "Kirjaudu sisään",
+	"LOGOUT": "kirjautua ulos",
+	"OKAY": "Okei",
+	"CANCEL": "Peruuttaa",
+	"CLOSE": "kiinni",
+	"CREDIT": "Kiitos",
+	"SAVE": "Tallentaa",
+	"DELETE": "Poistaa",
+	"NALANG": "Alkuperäinen kieli",
+	"TALANG": "Vieraat kielet",
+	"TAG": "Tag",
+	"LANG": "Kieli",
+	"SPEECHVOICE": "puhua",
+	"VOICERECOGN": "tunnustus",
+	"VOICESPEED": "nopeus",
+	"PUBLISH": "Julkaista",
+	"EDIT": "Muokata",
+	"BOOKNAME": "otsikko",
+	"GENERAL": "yleinen",
+	"MYFIRSTBOOKNAME": "Ensimmäinen kirjaani",
+	"LEARNING": "oppiminen",
+	"LEARNED": "yhteiskunta",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "On uusi versio!",
+		"MSG": "Päivitä nyt?"
+	},
+	"_SETTINGS": {
+		"TITLE": "asetus",
+		"LANG": "Kieli",
+		"NALANG": "Alkuperäinen kieli",
+		"TALANG": "Vieraat kielet"
+	},
+	"_ALERT": {
+		"DELBOOK": "Haluatko varmasti poistaa tämän kirjan?",
+		"DISLIKEBOOK": "Oletko varma, ettet halua kirjanmerkkiä tätä kirjaa?",
+		"OVERWRITEBOOK": "Korvaa tämä sisältö oikein?",
+		"ANSNUMRECOGN": "Lue vastaus, kuten \"numero yksi\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigointi epäonnistui ...",
+		"NEWBOOKFAILURE": "Luo epäonnistui ...",
+		"DELBOOKFAILURE": "epäonnistui poistamalla ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz-kortti",
+		"MODEPLAY": "broadcast",
+		"MODESPEAK": "Puhua",
+		"MODETEST": "Testata",
+		"SHOWNSPEAK": "Näytä / Toista",
+		"RANDOM": "satunnainen",
+		"SPELL": "loitsu",
+		"QUESTION": "kysymys",
+		"ANSWER": "vastaus",
+		"EXAMPLE": "esimerkki",
+		"TIP": "kärki",
+		"OUTOFQUIZ": "ei enää tietokilpailua",
+		"ANS_FIRST": "vastaus ensin"
+	},
+	"_CONQ": {
+		"NAME": "Keskustelu"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Kirjahylly"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "asetus"
+	},
+	"_READERSETTING": {
+		"TITLE": "asetus"
+	},
+	"_NEWS": {
+		"TITLE": "Uutiset"
+	},
+	"_CREDIT": {
+		"TITLE": "Kiitos"
+	},
+	"_CREATION": {
+		"TITLE": "luominen"
+	},
+	"_COLLECTION": {
+		"TITLE": "suosikki-"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "kysymys",
+		"ANSWER": "vastaus",
+		"EXAMPLE": "esimerkki",
+		"TIPS": "vihjeitä",
+		"STAR": "tähti"
+	}
+}

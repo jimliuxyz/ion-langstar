@@ -1,0 +1,93 @@
+{
+	"SETTING": "Tautuhi",
+	"LOGIN": "takiuru",
+	"LOGOUT": "takiuru",
+	"OKAY": "Pai",
+	"CANCEL": "Whakakore",
+	"CLOSE": "Katia",
+	"CREDIT": "Mauruuru mo",
+	"SAVE": "Tiaki",
+	"DELETE": "Mukua",
+	"NALANG": "Reo Maori",
+	"TALANG": "Reo ke",
+	"TAG": "Tohu",
+	"LANG": "Reo",
+	"SPEECHVOICE": "korero",
+	"VOICERECOGN": "Whakaaetanga",
+	"VOICESPEED": "tere",
+	"PUBLISH": "Whakaputa",
+	"EDIT": "Whakatika",
+	"BOOKNAME": "Taitara",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Ko taku pukapuka tuatahi",
+	"LEARNING": "Te ako",
+	"LEARNED": "I ako",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "He putanga hou!",
+		"MSG": "Whakahoutia Anei?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Tautuhi",
+		"LANG": "Reo",
+		"NALANG": "Reo Maori",
+		"TALANG": "Reo ke"
+	},
+	"_ALERT": {
+		"DELBOOK": "Kei te hiahia koe kia muku i tenei pukapuka?",
+		"DISLIKEBOOK": "Kaore koe e hiahia ana ki te tohu tohu i tenei pukapuka?",
+		"OVERWRITEBOOK": "Tuhia tenei ihirangi kia rite ki te putanga tika?",
+		"ANSNUMRECOGN": "Pānuihia te whakautu, penei i te \"tau kotahi\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "I rahua te whakatere ...",
+		"NEWBOOKFAILURE": "I rahua te waihanga ...",
+		"DELBOOKFAILURE": "I rahua te muku ..."
+	},
+	"_MCQ": {
+		"NAME": "Paetukutuku Quiz",
+		"MODEPLAY": "Purei",
+		"MODESPEAK": "Korero",
+		"MODETEST": "Whakamātautau",
+		"SHOWNSPEAK": "Whakaatu / Korero",
+		"RANDOM": "matapōkere",
+		"SPELL": "tuhi",
+		"QUESTION": "pātai",
+		"ANSWER": "whakautu",
+		"EXAMPLE": "tauira",
+		"TIP": "tohu",
+		"OUTOFQUIZ": "kaore he kaitono",
+		"ANS_FIRST": "whakautu tuatahi"
+	},
+	"_CONQ": {
+		"NAME": "Kaupapa"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Pukapukapuka"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Tautuhi"
+	},
+	"_READERSETTING": {
+		"TITLE": "Tautuhi"
+	},
+	"_NEWS": {
+		"TITLE": "News"
+	},
+	"_CREDIT": {
+		"TITLE": "Mauruuru mo"
+	},
+	"_CREATION": {
+		"TITLE": "Te hanganga"
+	},
+	"_COLLECTION": {
+		"TITLE": "tino pai"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "pātai",
+		"ANSWER": "whakautu",
+		"EXAMPLE": "tauira",
+		"TIPS": "tohutohu",
+		"STAR": "whetu"
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"SETTING": "Anviwònman",
+	"LOGIN": "ouvri sesyon an",
+	"LOGOUT": "Dekonekte",
+	"OKAY": "Dakò",
+	"CANCEL": "Anile",
+	"CLOSE": "Fèmen",
+	"CREDIT": "Mèsi pou",
+	"SAVE": "Sove",
+	"DELETE": "Efase",
+	"NALANG": "Lang natif natal",
+	"TALANG": "Lang etranje",
+	"TAG": "Tag",
+	"LANG": "Lang",
+	"SPEECHVOICE": "pale",
+	"VOICERECOGN": "Rekonesans",
+	"VOICESPEED": "vitès",
+	"PUBLISH": "Pibliye",
+	"EDIT": "Edit",
+	"BOOKNAME": "Tit",
+	"GENERAL": "Jeneral",
+	"MYFIRSTBOOKNAME": "Premye liv mwen an",
+	"LEARNING": "Aprantisaj",
+	"LEARNED": "Aprann",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Gen yon nouvo vèsyon!",
+		"MSG": "Mete ajou kounye a?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Anviwònman",
+		"LANG": "Lang",
+		"NALANG": "Lang natif natal",
+		"TALANG": "Lang etranje"
+	},
+	"_ALERT": {
+		"DELBOOK": "Èske ou sèten ou vle efase liv sa a?",
+		"DISLIKEBOOK": "Èske ou sèten ou pa vle makè liv sa a?",
+		"OVERWRITEBOOK": "Ekri kontni sa a kòm vèsyon ki kòrèk la?",
+		"ANSNUMRECOGN": "Li soti repons lan, tankou \"nimewo youn\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigasyon echwe ...",
+		"NEWBOOKFAILURE": "Kreye echwe ...",
+		"DELBOOKFAILURE": "echwe pou pou efase ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Kat",
+		"MODEPLAY": "Jwe",
+		"MODESPEAK": "Pale",
+		"MODETEST": "Tès",
+		"SHOWNSPEAK": "Montre / Repete",
+		"RANDOM": "o aza",
+		"SPELL": "eple",
+		"QUESTION": "kesyon",
+		"ANSWER": "Repons",
+		"EXAMPLE": "egzanp",
+		"TIP": "pwent",
+		"OUTOFQUIZ": "pa gen okenn egzamen ankò",
+		"ANS_FIRST": "repons premye"
+	},
+	"_CONQ": {
+		"NAME": "Konvèsasyon"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Libreri"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Anviwònman"
+	},
+	"_READERSETTING": {
+		"TITLE": "Anviwònman"
+	},
+	"_NEWS": {
+		"TITLE": "Nouvèl"
+	},
+	"_CREDIT": {
+		"TITLE": "Mèsi pou"
+	},
+	"_CREATION": {
+		"TITLE": "Kreyasyon"
+	},
+	"_COLLECTION": {
+		"TITLE": "pi renmen"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "kesyon",
+		"ANSWER": "Repons",
+		"EXAMPLE": "egzanp",
+		"TIPS": "konsèy",
+		"STAR": "zetwal"
+	}
+}

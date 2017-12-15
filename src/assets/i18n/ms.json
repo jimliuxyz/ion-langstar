@@ -1,0 +1,93 @@
+{
+	"SETTING": "Menetapkan",
+	"LOGIN": "log masuk",
+	"LOGOUT": "log keluar",
+	"OKAY": "baik",
+	"CANCEL": "Batalkan",
+	"CLOSE": "Tutup",
+	"CREDIT": "Terima kasih kerana",
+	"SAVE": "Simpan",
+	"DELETE": "Padam",
+	"NALANG": "Bahasa ibunda",
+	"TALANG": "Bahasa asing",
+	"TAG": "Tag",
+	"LANG": "Bahasa",
+	"SPEECHVOICE": "bercakap",
+	"VOICERECOGN": "Pengiktirafan",
+	"VOICESPEED": "kelajuan",
+	"PUBLISH": "Menerbitkan",
+	"EDIT": "Edit",
+	"BOOKNAME": "Tajuk",
+	"GENERAL": "Ketua",
+	"MYFIRSTBOOKNAME": "Buku pertama saya",
+	"LEARNING": "Pembelajaran",
+	"LEARNED": "Belajar",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Terdapat versi baru!",
+		"MSG": "Mengemas kini sekarang?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Menetapkan",
+		"LANG": "Bahasa",
+		"NALANG": "Bahasa ibunda",
+		"TALANG": "Bahasa asing"
+	},
+	"_ALERT": {
+		"DELBOOK": "Adakah anda pasti mahu memadamkan buku ini?",
+		"DISLIKEBOOK": "Adakah anda pasti anda tidak mahu menanda buku ini?",
+		"OVERWRITEBOOK": "Timpa kandungan ini sebagai versi yang betul?",
+		"ANSNUMRECOGN": "Bacalah jawapan, seperti \"nombor satu\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigasi gagal ...",
+		"NEWBOOKFAILURE": "Buat gagal ...",
+		"DELBOOKFAILURE": "gagal padamkan ..."
+	},
+	"_MCQ": {
+		"NAME": "Kad Kuiz",
+		"MODEPLAY": "Bermain",
+		"MODESPEAK": "Bercakap",
+		"MODETEST": "Ujian",
+		"SHOWNSPEAK": "Paparkan / Ulangi",
+		"RANDOM": "rawak",
+		"SPELL": "ejaan",
+		"QUESTION": "soalan",
+		"ANSWER": "jawapannya",
+		"EXAMPLE": "contohnya",
+		"TIP": "tip",
+		"OUTOFQUIZ": "tiada kuiz lagi",
+		"ANS_FIRST": "jawapan dahulu"
+	},
+	"_CONQ": {
+		"NAME": "Perbualan"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Rak buku"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Menetapkan"
+	},
+	"_READERSETTING": {
+		"TITLE": "Menetapkan"
+	},
+	"_NEWS": {
+		"TITLE": "Berita"
+	},
+	"_CREDIT": {
+		"TITLE": "Terima kasih kerana"
+	},
+	"_CREATION": {
+		"TITLE": "Ciptaan"
+	},
+	"_COLLECTION": {
+		"TITLE": "kegemaran"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "soalan",
+		"ANSWER": "jawapannya",
+		"EXAMPLE": "contohnya",
+		"TIPS": "petua",
+		"STAR": "bintang"
+	}
+}

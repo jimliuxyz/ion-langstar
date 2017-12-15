@@ -1,0 +1,93 @@
+{
+	"SETTING": "ਸੈਟਿੰਗ",
+	"LOGIN": "ਲਾਗਿਨ",
+	"LOGOUT": "ਲਾੱਗ ਆਊਟ, ਬਾਹਰ ਆਉਣਾ",
+	"OKAY": "ਠੀਕ ਹੈ",
+	"CANCEL": "ਰੱਦ ਕਰੋ",
+	"CLOSE": "ਬੰਦ ਕਰੋ",
+	"CREDIT": "ਧੰਨਵਾਦ",
+	"SAVE": "ਸੇਵ ਕਰੋ",
+	"DELETE": "ਮਿਟਾਓ",
+	"NALANG": "ਮੂਲ ਭਾਸ਼ਾ",
+	"TALANG": "ਵਿਦੇਸ਼ੀ ਭਾਸ਼ਾ",
+	"TAG": "ਟੈਗ",
+	"LANG": "ਭਾਸ਼ਾ",
+	"SPEECHVOICE": "ਬੋਲੋ",
+	"VOICERECOGN": "ਮਾਨਤਾ",
+	"VOICESPEED": "ਗਤੀ",
+	"PUBLISH": "ਪਬਲਿਸ਼ ਕਰੋ",
+	"EDIT": "ਸੰਪਾਦਿਤ ਕਰੋ",
+	"BOOKNAME": "ਟਾਈਟਲ",
+	"GENERAL": "ਜਨਰਲ",
+	"MYFIRSTBOOKNAME": "ਮੇਰੀ ਪਹਿਲੀ ਕਿਤਾਬ",
+	"LEARNING": "ਸਿਖਲਾਈ",
+	"LEARNED": "ਸਿੱਖਿਆ",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "ਨਵਾਂ ਵਰਜਨ ਹੈ!",
+		"MSG": "ਹੁਣ ਅਪਡੇਟ ਕਰੀਏ?"
+	},
+	"_SETTINGS": {
+		"TITLE": "ਸੈਟਿੰਗ",
+		"LANG": "ਭਾਸ਼ਾ",
+		"NALANG": "ਮੂਲ ਭਾਸ਼ਾ",
+		"TALANG": "ਵਿਦੇਸ਼ੀ ਭਾਸ਼ਾ"
+	},
+	"_ALERT": {
+		"DELBOOK": "ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਕਿਤਾਬ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+		"DISLIKEBOOK": "ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਕਿਤਾਬ ਨੂੰ ਬੁੱਕਮਾਰਕ ਨਹੀਂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+		"OVERWRITEBOOK": "ਸਹੀ ਸਮੱਗਰੀ ਦੇ ਰੂਪ ਵਿੱਚ ਇਸ ਸਮੱਗਰੀ ਨੂੰ ਉੱਤੇ ਲਿਖੋ?",
+		"ANSNUMRECOGN": "ਜਵਾਬ ਪੜ੍ਹੋ, ਜਿਵੇਂ ਕਿ \"ਨੰਬਰ ਇਕ\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ਨੇਵੀਗੇਸ਼ਨ ਅਸਫਲ ਹੋਇਆ ...",
+		"NEWBOOKFAILURE": "ਅਸਫਲ ਬਣਾਓ ...",
+		"DELBOOKFAILURE": "ਮਿਟਾਉਣ ਵਿੱਚ ਅਸਫ਼ਲ ਹੋ ਗਿਆ ..."
+	},
+	"_MCQ": {
+		"NAME": "ਕਵਿਜ਼ ਕਾਰਡ",
+		"MODEPLAY": "ਖੇਡੋ",
+		"MODESPEAK": "ਬੋਲੋ",
+		"MODETEST": "ਟੈਸਟ",
+		"SHOWNSPEAK": "ਡਿਸਪਲੇ / ਦੁਹਰਾਓ",
+		"RANDOM": "ਬੇਤਰਤੀਬ",
+		"SPELL": "ਸਪੈਲ",
+		"QUESTION": "ਸਵਾਲ",
+		"ANSWER": "ਜਵਾਬ",
+		"EXAMPLE": "ਉਦਾਹਰਨ",
+		"TIP": "ਟਿਪ",
+		"OUTOFQUIZ": "ਹੁਣ ਕੋਈ ਵੀ ਕਵਿਜ਼ ਨਹੀਂ",
+		"ANS_FIRST": "ਪਹਿਲਾ ਜਵਾਬ"
+	},
+	"_CONQ": {
+		"NAME": "ਗੱਲਬਾਤ"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "ਬੁਕਸੈਲਫ"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "ਸੈਟਿੰਗ"
+	},
+	"_READERSETTING": {
+		"TITLE": "ਸੈਟਿੰਗ"
+	},
+	"_NEWS": {
+		"TITLE": "ਨਿਊਜ਼"
+	},
+	"_CREDIT": {
+		"TITLE": "ਧੰਨਵਾਦ"
+	},
+	"_CREATION": {
+		"TITLE": "ਸ੍ਰਿਸ਼ਟੀ"
+	},
+	"_COLLECTION": {
+		"TITLE": "ਮਨਪਸੰਦ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "ਸਵਾਲ",
+		"ANSWER": "ਜਵਾਬ",
+		"EXAMPLE": "ਉਦਾਹਰਨ",
+		"TIPS": "ਸੁਝਾਅ",
+		"STAR": "ਤਾਰਾ"
+	}
+}

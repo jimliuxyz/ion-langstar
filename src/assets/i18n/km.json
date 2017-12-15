@@ -1,0 +1,93 @@
+{
+	"SETTING": "ការកំណត់",
+	"LOGIN": "ចូល",
+	"LOGOUT": "ចាកចេញ",
+	"OKAY": "យល់ព្រម",
+	"CANCEL": "បោះបង់",
+	"CLOSE": "បិទ",
+	"CREDIT": "អរគុណសម្រាប់",
+	"SAVE": "រក្សាទុក",
+	"DELETE": "លុប",
+	"NALANG": "ភាសាកំណើត",
+	"TALANG": "ភាសាបរទេស",
+	"TAG": "ស្លាក",
+	"LANG": "ភាសា",
+	"SPEECHVOICE": "និយាយ",
+	"VOICERECOGN": "ការទទួលស្គាល់",
+	"VOICESPEED": "ល្បឿន",
+	"PUBLISH": "ផ្សាយ",
+	"EDIT": "កែសម្រួល",
+	"BOOKNAME": "ចំណងជើង",
+	"GENERAL": "ទូទៅ",
+	"MYFIRSTBOOKNAME": "សៀវភៅដំបូងរបស់ខ្ញុំ",
+	"LEARNING": "ការរៀន",
+	"LEARNED": "បានរៀន",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "មានកំណែថ្មី!",
+		"MSG": "ធ្វើបច្ចុប្បន្នភាពឥឡូវនេះ?"
+	},
+	"_SETTINGS": {
+		"TITLE": "ការកំណត់",
+		"LANG": "ភាសា",
+		"NALANG": "ភាសាកំណើត",
+		"TALANG": "ភាសាបរទេស"
+	},
+	"_ALERT": {
+		"DELBOOK": "តើអ្នកប្រាកដជាចង់លុបសៀវភៅនេះមែនទេ?",
+		"DISLIKEBOOK": "តើអ្នកប្រាកដថាអ្នកមិនចង់ចំណាំសៀវភៅនេះទេ?",
+		"OVERWRITEBOOK": "សរសេរជាន់លើមាតិកានេះជាកំណែត្រឹមត្រូវ?",
+		"ANSNUMRECOGN": "អានចម្លើយដូចជា \"លេខមួយ\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ការរុករកបានបរាជ័យ ...",
+		"NEWBOOKFAILURE": "បង្កើតបរាជ័យ ...",
+		"DELBOOKFAILURE": "បរាជ័យក្នុងការលុប ..."
+	},
+	"_MCQ": {
+		"NAME": "កាតសំណួរ",
+		"MODEPLAY": "លេង",
+		"MODESPEAK": "និយាយ",
+		"MODETEST": "សាកល្បង",
+		"SHOWNSPEAK": "បង្ហាញ / ធ្វើម្តងទៀត",
+		"RANDOM": "ចៃដន្យ",
+		"SPELL": "អក្ខរាវិរុទ្ធ",
+		"QUESTION": "សំណួរ",
+		"ANSWER": "ចម្លើយ",
+		"EXAMPLE": "ឧទាហរណ៍",
+		"TIP": "ព័ត៌មានជំនួយ",
+		"OUTOFQUIZ": "មិនមានសំណួរទៀតទេ",
+		"ANS_FIRST": "ឆ្លើយមុន"
+	},
+	"_CONQ": {
+		"NAME": "ការសន្ទនា"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "ហាងលក់សៀវភៅ"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "ការកំណត់"
+	},
+	"_READERSETTING": {
+		"TITLE": "ការកំណត់"
+	},
+	"_NEWS": {
+		"TITLE": "ព័ត៌មាន"
+	},
+	"_CREDIT": {
+		"TITLE": "អរគុណសម្រាប់"
+	},
+	"_CREATION": {
+		"TITLE": "ការបង្កើត"
+	},
+	"_COLLECTION": {
+		"TITLE": "សំណព្វ"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "សំណួរ",
+		"ANSWER": "ចម្លើយ",
+		"EXAMPLE": "ឧទាហរណ៍",
+		"TIPS": "គន្លឹះ",
+		"STAR": "ផ្កាយ"
+	}
+}

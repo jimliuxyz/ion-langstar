@@ -1,0 +1,93 @@
+{
+	"SETTING": "შექმნის",
+	"LOGIN": "შესვლა",
+	"LOGOUT": "გამოსვლა",
+	"OKAY": "კარგი",
+	"CANCEL": "გაუქმება",
+	"CLOSE": "დახურვა",
+	"CREDIT": "გმადლობთ",
+	"SAVE": "გადარჩენა",
+	"DELETE": "წაშლა",
+	"NALANG": "მშობლიური ენა",
+	"TALANG": "უცხო ენა",
+	"TAG": "საკვანძო",
+	"LANG": "ენა",
+	"SPEECHVOICE": "საუბარი",
+	"VOICERECOGN": "აღიარება",
+	"VOICESPEED": "სიჩქარე",
+	"PUBLISH": "გამოქვეყნება",
+	"EDIT": "რედაქტირება",
+	"BOOKNAME": "სათაური",
+	"GENERAL": "ზოგადი",
+	"MYFIRSTBOOKNAME": "ჩემი პირველი წიგნი",
+	"LEARNING": "სწავლა",
+	"LEARNED": "სწავლობდა",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "არის ახალი ვერსია!",
+		"MSG": "განაახლეთ ახლა?"
+	},
+	"_SETTINGS": {
+		"TITLE": "შექმნის",
+		"LANG": "ენა",
+		"NALANG": "მშობლიური ენა",
+		"TALANG": "უცხო ენა"
+	},
+	"_ALERT": {
+		"DELBOOK": "ნამდვილად გსურთ ამ წიგნის წაშლა?",
+		"DISLIKEBOOK": "დარწმუნებული ხართ, რომ არ გსურთ წიგნის დასაწერად?",
+		"OVERWRITEBOOK": "ამ შინაარსის გადაწერას სწორი ვერსია?",
+		"ANSNUMRECOGN": "წაიკითხეთ პასუხი, როგორიცაა \"ნომერ პირველი\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "ნავიგაცია ვერ მოხერხდა ...",
+		"NEWBOOKFAILURE": "შექმნა ვერ მოხერხდა ...",
+		"DELBOOKFAILURE": "ვერ წაიშალა ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz ბარათის",
+		"MODEPLAY": "ითამაშეთ",
+		"MODESPEAK": "ლაპარაკი",
+		"MODETEST": "ტესტი",
+		"SHOWNSPEAK": "ჩვენება / გამეორება",
+		"RANDOM": "შემთხვევითი",
+		"SPELL": "მართლწერის",
+		"QUESTION": "კითხვა",
+		"ANSWER": "პასუხი",
+		"EXAMPLE": "მაგალითად",
+		"TIP": "წვერი",
+		"OUTOFQUIZ": "არ quiz აღარ",
+		"ANS_FIRST": "პასუხი პირველ რიგში"
+	},
+	"_CONQ": {
+		"NAME": "საუბარი"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "წიგნის თარო"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "შექმნის"
+	},
+	"_READERSETTING": {
+		"TITLE": "შექმნის"
+	},
+	"_NEWS": {
+		"TITLE": "ახალი ამბები"
+	},
+	"_CREDIT": {
+		"TITLE": "გმადლობთ"
+	},
+	"_CREATION": {
+		"TITLE": "შექმნა"
+	},
+	"_COLLECTION": {
+		"TITLE": "საყვარელი"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "კითხვა",
+		"ANSWER": "პასუხი",
+		"EXAMPLE": "მაგალითად",
+		"TIPS": "რჩევები",
+		"STAR": "ვარსკვლავი"
+	}
+}

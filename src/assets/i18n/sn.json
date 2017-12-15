@@ -1,0 +1,93 @@
+{
+	"SETTING": "Kuisa",
+	"LOGIN": "log in",
+	"LOGOUT": "kubuda",
+	"OKAY": "Zvakanaka",
+	"CANCEL": "Kanzura",
+	"CLOSE": "Swedera",
+	"CREDIT": "Ndinotenda ne",
+	"SAVE": "Save",
+	"DELETE": "Bvisa",
+	"NALANG": "Mutauro wekare",
+	"TALANG": "Mutauro wokumwe",
+	"TAG": "Tag",
+	"LANG": "Mutauro",
+	"SPEECHVOICE": "taura",
+	"VOICERECOGN": "Kuziva",
+	"VOICESPEED": "speed",
+	"PUBLISH": "Publish",
+	"EDIT": "Hora",
+	"BOOKNAME": "Title",
+	"GENERAL": "General",
+	"MYFIRSTBOOKNAME": "Bhuku rangu rokutanga",
+	"LEARNING": "Kudzidza",
+	"LEARNED": "Akadzidza",
+	"ANSNUMRECOGN": "",
+	"_UPGRADE": {
+		"TITLE": "Icho chiri chimbo chitsva!",
+		"MSG": "Ivandudza Ikozvino?"
+	},
+	"_SETTINGS": {
+		"TITLE": "Kuisa",
+		"LANG": "Mutauro",
+		"NALANG": "Mutauro wekare",
+		"TALANG": "Mutauro wokumwe"
+	},
+	"_ALERT": {
+		"DELBOOK": "Unofunga kuti unoda kubvisa bhuku rino here?",
+		"DISLIKEBOOK": "Unonyatsoziva here kuti haugoni kuisa bhuku rino?",
+		"OVERWRITEBOOK": "Kunyoresa zvinyorwa izvi shanduro yakarurama here?",
+		"ANSNUMRECOGN": "Verenga kunze mhinduro, yakadai se \"nhamba imwe\""
+	},
+	"_TOAST": {
+		"NAVFAILURE": "Navigation yakakundikana ...",
+		"NEWBOOKFAILURE": "Yona yakakundikana ...",
+		"DELBOOKFAILURE": "yakakundikana kubvisa ..."
+	},
+	"_MCQ": {
+		"NAME": "Quiz Card",
+		"MODEPLAY": "Play",
+		"MODESPEAK": "Taura",
+		"MODETEST": "Test",
+		"SHOWNSPEAK": "Ratidza / Kudzokorora",
+		"RANDOM": "random",
+		"SPELL": "spell",
+		"QUESTION": "Mubvunzo",
+		"ANSWER": "mhinduro",
+		"EXAMPLE": "muenzaniso",
+		"TIP": "tip",
+		"OUTOFQUIZ": "hapana mhinduro iyo zvakare",
+		"ANS_FIRST": "mhinduro yekutanga"
+	},
+	"_CONQ": {
+		"NAME": "Kukurukurirana"
+	},
+	"_CLOUD_HOME": {
+		"TITLE": "Bookshelf"
+	},
+	"_BOOKSETTING": {
+		"TITLE": "Kuisa"
+	},
+	"_READERSETTING": {
+		"TITLE": "Kuisa"
+	},
+	"_NEWS": {
+		"TITLE": "Nhau"
+	},
+	"_CREDIT": {
+		"TITLE": "Ndinotenda ne"
+	},
+	"_CREATION": {
+		"TITLE": "Zvisikwa"
+	},
+	"_COLLECTION": {
+		"TITLE": "unofarira"
+	},
+	"_PLACEHOLDER": {
+		"QUESTION": "Mubvunzo",
+		"ANSWER": "mhinduro",
+		"EXAMPLE": "muenzaniso",
+		"TIPS": "mazano",
+		"STAR": "nyeredzi"
+	}
+}
