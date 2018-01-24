@@ -113,7 +113,7 @@ class GoogleLang{
 }
 
 function getCodeArr(): GoogleLang[]{
-  const arr = [];
+  const arr: GoogleLang[] = [];
   const langs= langstr.split("\n");
 
   for (const lang of langs){
@@ -125,7 +125,7 @@ function getCodeArr(): GoogleLang[]{
     
     arr.push(new GoogleLang(pair[1], pair[0]))
   }
-  console.log(arr);
+  // console.log("GoogleLang", arr.map(lang=>lang.code));
   return arr;
 }
 

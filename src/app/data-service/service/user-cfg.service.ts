@@ -31,9 +31,8 @@ export class UserCfgService extends DataService{
     if ((!res.err && !res.data) || (anonymous && res.err)) {
       const temp = UserCfg.getDefault();
 
-      res = await this.db.write(dac, this.path, temp);
-      if (!res.err)
-        this.data = temp;
+      res = await this.db.create(dac, this.path, temp);
+      this.data = temp;
     }
     else
       this.data = res.data;

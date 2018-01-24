@@ -66,7 +66,13 @@ export class AuthService {
       console.log("appWidgetLogout ? " + ok);
     }
 
-    ok = await this.afAuth.auth.signOut(); //always return undefined
+    // ok = await this.afAuth.auth.signOut(); //always return undefined
+
+    this.afAuth.auth.signOut().then(() => {
+      // window.location.assign('https://accounts.google.com/Logout');
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   async login(socialtype) {

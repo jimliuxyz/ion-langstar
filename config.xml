@@ -3,7 +3,7 @@
     <name>LangStar</name>
     <description>LangStar</description>
     <author email="jimliuxyz@gmail.com" href="http://langstar.com.tw/">LangStar</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.102:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -83,6 +83,8 @@
         <auto-download enabled="false" />
         <auto-install enabled="false" />
     </chcp>
+    <engine name="android" spec="^6.4.0" />
+    <engine name="ios" spec="^4.5.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.7" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
@@ -101,6 +103,4 @@
     <plugin name="cordova-hot-code-push-plugin" spec="^1.5.3" />
     <plugin name="cordova-hot-code-push-local-dev-addon" spec="^0.4.2" />
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
-    <engine name="android" spec="^6.4.0" />
-    <engine name="ios" spec="^4.5.1" />
 </widget>

@@ -39,9 +39,9 @@ export class QstUserCfgRec{
   qshow = true;
   acnt = 1;
   ashow = true;
-  expcnt = 0;
+  expcnt = 1;
   expshow = true;
-  tipcnt = 0;
+  tipcnt = 1;
   tipshow = true;
   learned: { [idx: string]: boolean } = {};
   static fix(data: QstUserCfgRec) {

@@ -47,7 +47,6 @@ import { Insomnia } from '@ionic-native/insomnia';
 import { AdMobFree } from '@ionic-native/adMob-Free';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
-console.log("COMPILE VER HINT : X")
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

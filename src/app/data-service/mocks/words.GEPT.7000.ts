@@ -25,7 +25,7 @@ types['aux'] = "助動詞";
 types['conj'] = "連接詞";
 types['int'] = "感嘆詞";
 types['noun'] = "名詞";
-types['prep'] = "介繫詞";
+types['prep'] = "介系詞";
 types['pron'] = "代名詞";
 types['verb'] = "動詞";
 
@@ -65,8 +65,13 @@ export const getCates = function () {
   }
   cate.all_sorted = arr;
   // console.log(cate.all_sorted.join(","));
+  
+  // console.log(trans.text.substr(59140, 10))
 
   // getWords(cate.bylvtype["GEPT-中級-代名詞"], "代名詞");
+  // let tmp = getWords(cate.bytype["名詞"], "名詞").map(data=>data.quiz).join("\", \"");
+  // console.log(tmp);
+  
   return cate;
 }
 
@@ -79,7 +84,7 @@ export const getWords = function (list: string[], type: string) {
   for (const word of list) {
     if (!transdata[word]) {
       console.log("word not found : " + word)
-      return;
+      continue;
     }
 
     let selected = transdata[word][type];

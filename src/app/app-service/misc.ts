@@ -202,7 +202,7 @@ let langarr: Lang[];
 export class MiscFunc{
 
   static getLangArr(): Lang[] {
-    const arr = [];
+    const arr:Lang[] = [];
     for (let lang of iso_lang) {
       //filte out language did not list in google.
       let glang = GoogleTranslate.getLang(lang.code);
@@ -211,6 +211,7 @@ export class MiscFunc{
   
       arr.push(new Lang(lang.code, lang.name, lang.nativeName));
     }
+    console.log("SysLang", arr.map(lang=>lang.code));
     return arr;
   }
 
@@ -317,18 +318,22 @@ export class MiscFunc{
     return code.toLowerCase().replace(/[^A-Za-z].*/g,"");
   }
   static getLangCodeNormalize(code: string): string {
-    let code_ = code.toLowerCase().replace(/[^A-Za-z]/g,"_");
-    if (!langarr) return code_;
 
-    let lang = langarr.find((lang) => {
-      // if (lang.code.toLowerCase() === code)
-      //   return true;
-      return lang.code.toLowerCase().split(",").find((langcode) => {
-        // return false;
-        if (langcode.toLowerCase() === code_)
-          return true;
-      }) ? true : false;
-    })
+    let code_ = code.toLowerCase().replace(/[^A-Za-z]/g, "_");
+    if (!langarr) return code_;
+    
+    let lang: Lang;
+    for (let i of [0, 1]) {
+      if (i == 1)
+        code_ = code_.replace(/[^A-Za-z].*/g, "");
+
+      lang = langarr.find((lang) => {
+      if (lang.code.toLowerCase() === code_)
+        return true;
+      })
+      if (lang) break;
+    }
+    
     if (!lang) {
       this.warn_once("unknown language : " + code);
       return;

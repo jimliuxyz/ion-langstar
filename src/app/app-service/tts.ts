@@ -35,6 +35,7 @@ function webLoadVoice(): boolean {
     langs[voice.lang] = voice.lang;
   }
   // console.log(Object.keys(langs).sort().join("\",\""))
+  console.log("web tts", voices.map(lang=>lang.lang+ ":" + lang.uri));
   
   return true;
 }
@@ -63,6 +64,7 @@ export class TTS{
         }
         console.log(voices);
       }
+      console.log("app tts", voices.map(lang=>lang.uri));
     }
   }
 
@@ -82,7 +84,11 @@ export class TTS{
     return arr;
   }
   
+  
   static speak(text: string, cfg: VoiceCfg, onstart?: () => void, onend?: () => void) {
+    
+    text = text.replace(/[//]/, '; '); //remove '/'
+    
     if (webtts)
       TTS.webSpeak(text, cfg, onstart, onend);
     else if (this.iontts)
@@ -182,11 +188,10 @@ export class TTS{
         opt.locale = "yue-HK";
     // }
 
-    // console.log(opt)
     // opt.text = "測試";
     // opt.locale = "zh-TW";
     // opt.rate = 0.5;
-    
+    // console.log(opt.locale + " " + text)
     
     this.iontts.speak(opt).then((data) => {
       if (onend) onend();

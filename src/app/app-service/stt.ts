@@ -151,6 +151,7 @@ for (const lang of langs) {
   voices.push(v);
   }
 }
+// console.log("google stt", voices.map(lang=>lang.lang+ ":" + lang.uri));
 
 
 

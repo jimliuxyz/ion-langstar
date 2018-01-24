@@ -17,14 +17,6 @@ export class AppQuizPlayerService {
   init() {
     this.quiz_idx = -1;
     this.keys_idx = -1;
-
-    setTimeout(() => {
-      this.nextQuiz(1);
-      
-      this.fnNextQuiz(this.quiz);
-      this.fnNextKey(this.quiz, this.quizkey);
-      // this.nextKey();
-    }, 0);
   }
 
   private quiz_idx = -1;
@@ -123,6 +115,20 @@ export class AppQuizPlayerService {
     return false;
   }
 
+  private isLastKey(): boolean {
+    if (!this.quiz) return;
+    
+    for (let i = this.keys_idx + 1; i < this.getKeys().length; i++) {
+      let key = this.getKeys()[i];
+      const show = <boolean>this.app.cfgrec[key + "show"];
+      const cnt = <number>this.app.cfgrec[key + "cnt"];
+      if (show && cnt > 0 && this.quiz[key]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   getRandomQuiz() {
     const quizs = this.listtype == 'learned' ? this.app.learned : this.app.learning;
 
@@ -171,7 +177,6 @@ export class AppQuizPlayerService {
       this.pause();
     else
       this.play();
-    console.log(this.state)
   }
 
   private gonext = false;
@@ -219,7 +224,7 @@ export class AppQuizPlayerService {
 
     let spell;
     if (this.app.cfgrec.spell && key === 'q')
-      spell = " ... " + text.replace(" ", "- ").split("").join("-");
+      spell = " ;... " + text.replace(" ", "- ").split("").join("-");
 
     const vcfg = await this.app.serv.getVoiceCfg(native ? this.app.cfgrec.navoice : this.app.cfgrec.tavoice);
 
@@ -233,17 +238,26 @@ export class AppQuizPlayerService {
   }
 
   private onend() {
-
+    
     const hasact = this.goprev || this.gonext || this.goidx >= 0 || this.gokey;
 
     if (this.state !== 'playing' && !hasact)
       return;
 
+    //hold a second for end of quiz 
+    if (!hasact && this.isLastKey() && this.repeat == 0) {
+      this.repeat--;
+      setTimeout(() => { this.onend() }, 1000);
+      return;
+    }
+
     let curKeyIdx = this.keys_idx;
+    let newquiz = false;
     if (hasact || this.repeat <= 0) {
 
       this.nextKey();
       if (!this.gokey && (this.goprev || this.gonext || this.goidx >= 0 || curKeyIdx >= this.keys_idx)) {
+        newquiz = true;
         this.nextQuiz(this.goprev ? -1 : 1);
         
         this.fnNextQuiz(this.quiz);

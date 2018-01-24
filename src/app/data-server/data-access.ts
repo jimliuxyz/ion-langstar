@@ -164,6 +164,11 @@ export class DataAccess{
     const dirtyable = data.hasOwnProperty(STRKEY.__dirty);
     const versionable = data.hasOwnProperty(STRKEY.__ver);
 
+    if (dac.accessPolicy === DataAccessPolicy.CACHE_ONLY) {
+      await this.cache.set(dac, path, data);
+      return new QResult(null, null);
+    }
+    
     //for delete
     if (!data) {
       throw new Error("can not write with null/undefined! try to call remove().");

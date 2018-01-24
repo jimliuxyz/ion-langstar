@@ -113,13 +113,13 @@ export class AppService {
     }
 
     this.admobFree.banner.config(bannerConfig);
-    // this.admobFree.banner.prepare()
-    //   .then(() => {
-    //     console.log("banner Ad is ready")
-    //     this.admobFree.banner.show();
-    //      // if we set autoShow to false, then we will need to call the show method here
-    //    })
-    //    .catch(e => console.log(e));
+    this.admobFree.banner.prepare()
+      .then(() => {
+        console.log("banner Ad is ready")
+        this.admobFree.banner.show();
+         // if we set autoShow to false, then we will need to call the show method here
+       })
+       .catch(e => console.log(e));
     
     //setup TTS / STT
     await TTS.appInit(this.platform, this.iontts);
@@ -147,8 +147,11 @@ export class AppService {
     this.translate.addLangs(MiscFunc.getLangListCode());
     this.translate.setDefaultLang('en');
 
-    await this.devInitDB();
+    // this.storage.clear();
+    // await this.devInitDB();
     this.devInitMock();
+    // this.storage.clear();
+    
     // this.devInitMock2();
     
     // this.auth.authedUser$.subscribe(this.loginStateCallback())      
@@ -439,6 +442,7 @@ export class AppService {
 
     this.storage.clear();
   }
+
   private async devInitMock2() {
     const user = await this.ser_user.data$.take(1).toPromise();
     const ucfg = await this.ser_cfg.data$.take(1).toPromise();
@@ -501,11 +505,11 @@ export class AppService {
           });
 
           // console.log(words);
-          this.mockNewBook(words, title + "-" + (idx<10?"0":"") + idx, hearder, hearder + "-" + level);
+          this.mockNewBook(words, title + "-" + (idx<10?"0":"") + idx, title, hearder + "-" + level);
         }
       }
       else {
-        this.mockNewBook(words, title, hearder, hearder + "-" + level);
+        this.mockNewBook(words, title, title, hearder + "-" + level);
       }
     }
   }
