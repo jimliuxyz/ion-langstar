@@ -36,7 +36,6 @@ export class BookListPage {
   constructor(public navCtrl: NavController, public serv: AppService, public navParams: NavParams) {
     this.urlParams = MiscFunc.getUrlParams();
 
-    this.langpair = this.getParam("langpair");
     this.bytag = this.getParam("bytag");
     this.byauthor = this.getParam("byauthor");
 
@@ -46,6 +45,9 @@ export class BookListPage {
   }
 
   async ionViewCanEnter() {
+
+    const cfg = await this.serv.ser_cfg.data$.take(1).toPromise();
+    this.langpair = MiscFunc.getLangPair(cfg.nalang, cfg.talang);
 
     if (this.bytag) {
       this.title = this.bytag;
@@ -58,7 +60,7 @@ export class BookListPage {
       const user = await UserInfoService.get(this.byauthor).data$.take(1).toPromise();
       this.title = user ? user.displayName : "";
 
-      this.dsev = BookListByAuthorService.get(this.byauthor);
+      this.dsev = BookListByAuthorService.get(this.byauthor, this.langpair);
       (<BookListByAuthorService>this.dsev).more(this.LOADSIZE);
       this.data$ = this.dsev.data$;
     }

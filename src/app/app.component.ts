@@ -43,10 +43,10 @@ export class MyApp implements OnDestroy{
 
           this.nav.push(PageLink.HomeSlidesPage)
 
-          this.headerColor.tint('#76C0FF');
-          statusBar.styleDefault();
-          statusBar.backgroundColorByHexString("#76C0FF");
-          splashScreen.hide(); 
+          this.headerColor.tint('#37548F');
+          statusBar.styleLightContent();
+          statusBar.backgroundColorByHexString("#37548F");
+          splashScreen.hide();
         }
 
         if (platform.is('cordova')) {

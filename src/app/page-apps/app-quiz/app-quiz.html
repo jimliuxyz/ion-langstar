@@ -105,8 +105,8 @@
                                         {{casetype=='learning'?'－':'＋'}}
                                   </button>
                                 <h1 (click)="app.speak(quiz, 'q')">{{quiz.q}}</h1>
-                                <p>{{quiz.a}} | 
-                                {{quiz.exp}} | 
+                                <p>{{quiz.a}}{{quiz.exp?" | ":""}}
+                                {{quiz.exp}}{{quiz.tip?" | ":""}}
                                 {{quiz.tip}}</p>
                             </div>
                     

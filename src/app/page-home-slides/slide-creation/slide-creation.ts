@@ -15,6 +15,7 @@ import { UserInfo, BookType, BookInfo } from '../../data-service/models';
 import { SlidePage } from '../home-slides';
 import { ToastController } from 'ionic-angular';
 import { PageLink } from '../../app-service/define';
+import { MiscFunc } from '../../app-service/misc';
 
 
 @Component({
@@ -28,14 +29,21 @@ export class SlideCreation implements SlidePage {
   
   dsev: BookListByAuthorService;
   data$: ReplaySubject<BookInfoSet[]>;
-  user: UserInfo;
 
   SIZE = 20;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl:ToastController, private translate: TranslateService, public serv: AppService) {
-    this.serv.ser_user.data$.subscribe(async (user) => {
-      // this.init(user);
-      this.dsev = BookListByAuthorService.get(user.uid);
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl: ToastController, private translate: TranslateService, public serv: AppService) {
+    
+    // this.serv.ser_user.data$.subscribe(async (user) => {
+    //   this.dsev = BookListByAuthorService.get(user.uid);
+    //   await this.dsev.more(this.SIZE);
+  
+    //   this.data$ = this.dsev.data$;
+    // })
+
+    this.serv.ser_cfg.data$.subscribe(async (cfg) => {
+      const langpair = MiscFunc.getLangPair(cfg.nalang, cfg.talang);
+      this.dsev = BookListByAuthorService.get(this.serv.curr_user.uid, langpair);
       await this.dsev.more(this.SIZE);
   
       this.data$ = this.dsev.data$;

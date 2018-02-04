@@ -6,23 +6,24 @@ import { WeakCache } from './weak-cache';
 import { BookListService } from './book-list.service';
 import { BookInfo } from '../models';
 import { TBLKEY } from '../define';
+import { MiscFunc } from '../../app-service/misc';
 
-const POOL = new DataAccessConfig("BookList", 500);
+const POOL = new DataAccessConfig("BookList", 100);
 
 export class BookListByAuthorService extends BookListService{
   private path: string[];
 
-  private constructor(public authoruid: string) {
+  private constructor(public authoruid: string, private langpair: string) {
     super();
     this.path = [...TBLKEY.BOOKINFO_BYUID];
   }
 
   private static cache = new WeakCache<BookListByAuthorService>();
-  static get(authoruid: string): BookListByAuthorService {
-    const key = authoruid;
+  static get(authoruid: string, langpair: string): BookListByAuthorService {
+    const key = authoruid+"+"+langpair;
     let data = this.cache.get(key);
     if (!data) {
-      data = new BookListByAuthorService(authoruid);
+      data = new BookListByAuthorService(authoruid, langpair);
       this.cache.set(key, data);
     }
     return data;
@@ -41,7 +42,12 @@ export class BookListByAuthorService extends BookListService{
     if (!res.err && res.data) {
       let arr: BookInfo[] = [];
       for (let key in res.data) {
-        arr.push(res.data[key]);
+        const book:BookInfo = res.data[key];
+        const langpair = MiscFunc.getLangPair(book.nalang, book.talang);
+        if (langpair != this.langpair)
+          continue;  
+
+        arr.push(book);
       }
 
       // arr.sort(function (a, b) { return a.uid>b.uid?-1:(a.uid<b.uid?1:0) });
