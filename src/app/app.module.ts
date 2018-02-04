@@ -11,6 +11,7 @@ import { IonicPatchModule } from '../patch/ionic-patch.module'
 //native
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { HeaderColor } from '@ionic-native/header-color';
 import { StatusBar } from '@ionic-native/status-bar';
 import { GooglePlus } from '@ionic-native/google-plus';
 
@@ -93,7 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     Network,Insomnia,AdMobFree,GoogleAnalytics,
     TextToSpeech,SpeechRecognition,
-    StatusBar,
+    HeaderColor, StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     GooglePlus,

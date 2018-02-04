@@ -62,13 +62,13 @@ export class UserCfg{
   static getDefault():UserCfg {
     let cfg = new UserCfg();
     cfg.nalang = MiscFunc.getLangCodeNormalize(navigator.language);
-    cfg.talang = "en";
-    if (!cfg.numrecongs_def["en_US"]) {
-      cfg.numrecongs_def["en_US"] = {};
-      cfg.numrecongs_def["en_US"][1] = "number one";
-      cfg.numrecongs_def["en_US"][2] = "number 2";
-      cfg.numrecongs_def["en_US"][3] = "number 3";
-      cfg.numrecongs_def["en_US"][4] = "number for";
+    cfg.talang = "en"; 
+    if (!cfg.numrecongs_def["en"]) {
+      cfg.numrecongs_def["en"] = {};
+      cfg.numrecongs_def["en"][1] = "number one";
+      cfg.numrecongs_def["en"][2] = "number 2";
+      cfg.numrecongs_def["en"][3] = "number 3";
+      cfg.numrecongs_def["en"][4] = "number for";
     }
     if (!cfg.numrecongs_def["zh_TW"]) {
       cfg.numrecongs_def["zh_TW"] = {};

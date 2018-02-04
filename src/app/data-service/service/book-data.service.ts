@@ -85,6 +85,7 @@ export class BookDataService extends DataService{
     const res = await this.db.create(dac, this.path, data);
 
     if (res.err) {
+      console.trace(res)
       // throw new Error("create bookdata failure!");
       return false;
     }

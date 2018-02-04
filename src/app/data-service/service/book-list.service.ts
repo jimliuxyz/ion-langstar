@@ -8,6 +8,7 @@ import { UserInfo, BookInfo } from '../models';
 
 export class BookInfoSet{
   bookuid: string;
+  booktitle: string;  //for sorting
   bookinfo$: ReplaySubject<BookInfo>;
   author$: ReplaySubject<UserInfo>;
 }
@@ -35,9 +36,10 @@ export abstract class BookListService extends DataService {
    * @param size 
    */
   protected async _more(size: number) {
+    // size = 999;
     if (this._uidArr.length == 0)
       await this._init();
-      
+
     let pms: Promise<any>[] = [];
     let arr: BookInfoSet[] = [];
 
@@ -60,6 +62,7 @@ export abstract class BookListService extends DataService {
     this._uidIdx += cnt;
 
     arr = arr.filter(set => !!set);
+    arr.sort((a, b) => (a.booktitle > b.booktitle)?1:-1 );
     return arr;
   }
 
@@ -70,6 +73,7 @@ export abstract class BookListService extends DataService {
     set.bookinfo$ = BookInfoService.get(bookuid).data$;
     const book = await set.bookinfo$.take(1).toPromise();
     if (!book) return;
+    set.booktitle = book.title;
 
     set.author$ = UserInfoService.get(book.author_uid).data$;
 

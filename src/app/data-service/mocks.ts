@@ -39,18 +39,6 @@ export class Mocks{
 
 `;
 
-/*
-    大江大海一九四九
-    皮囊
-    人浮於愛
-    你走慢了我的時間
-    閉起雙眼你最掛念誰
-    解憂雜貨店 (電影書腰版)
-    外科醫生
-    便利店人間
-    在咖啡冷掉之前
-    我想吃掉你的胰臟 (電影珍藏版)
-*/
   static tags = ["國小", "國中", "高中", "GEPT", "TOEFL", "TOEIC", "IELTS", "Movie", "Song"];
 
   static userphoto = [

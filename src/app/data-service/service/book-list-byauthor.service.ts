@@ -36,7 +36,7 @@ export class BookListByAuthorService extends BookListService{
     this._uidArr = [];
     this._uidIdx = 0;
 
-    const res = await this.db.read(POOL, this.path, {orderBy:'author_uid', equalTo:this.authoruid});
+    const res = await this.db.read(POOL, this.path, { orderBy: 'author_uid', equalTo: this.authoruid });
 
     if (!res.err && res.data) {
       let arr: BookInfo[] = [];

@@ -35,7 +35,8 @@ function webLoadVoice(): boolean {
     langs[voice.lang] = voice.lang;
   }
   // console.log(Object.keys(langs).sort().join("\",\""))
-  console.log("web tts", voices.map(lang=>lang.lang+ ":" + lang.uri));
+  console.debug("web tts", voices.map(lang => lang.lang + " " + lang.uri));
+  
   
   return true;
 }
@@ -62,9 +63,8 @@ export class TTS{
           const v = new SpeechVoice(lang, lang, lang);
           voices.push(v);
         }
-        console.log(voices);
       }
-      console.log("app tts", voices.map(lang=>lang.uri));
+      console.debug("app tts", voices.map(lang=>lang.uri));
     }
   }
 

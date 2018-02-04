@@ -17,11 +17,20 @@ export class ExtJobs {
     const job = new Book_DayOfWeek();
     return await job.get();
   }
-
-
+  
+  static async getGeptBooks() {
+    const job = new Book_GEPT();
+    return await job.get();
+  }
+  
 }
 
+async function translateHelper(srclang: string, desclang: string, content: string) {
+  
+  const ans = await GoogleTranslate.translate(srclang, desclang, "="+content);
 
+  return ans.trim().replace(/^=/, "");
+}
 
 class TempBook{
   info = new BookInfo();
@@ -36,30 +45,40 @@ class Book_DayOfWeek{
   quizs = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
   
   async get() {
-    const books: TempBook[] = [];
+    const books: Map<string, TempBook> = new Map();
+    // const books: TempBook[] = [];
     const langs = MiscFunc.getLangListCode();
 
     for (const nalang of langs) {
-      if (nalang !== "zh_TW") continue;
+      // if (nalang !== langs[idx]) continue;
+      // if (nalang !== "zh_TW" && nalang !== "en") continue;
       for (const talang of langs) {
-        if (talang !== "ja") continue;
+        if (nalang == talang) continue;
+        // if (talang !== "en" && talang !== "zh_TW") continue;
+        // console.clear();
+        const langpair = MiscFunc.getLangPair(nalang, talang);
+        if (books.get(langpair) != null) continue;
+        
+        console.log(langpair)
 
-        const title = await GoogleTranslate.translate(this.srclang, nalang, this.tilte);
-        const tag = await GoogleTranslate.translate(this.srclang, nalang, this.tag);
+        const title = await translateHelper(this.srclang, nalang, this.tilte);
+        const tag = await translateHelper(this.srclang, nalang, this.tag);
 
         const quizs_na = [];
         const quizs_ta = [];
         for (const text of this.quizs) {
-          const text_na = await GoogleTranslate.translate(this.srclang, nalang, text);
-          const text_ta = await GoogleTranslate.translate(this.srclang, talang, text);
+          const text_na = await translateHelper(this.srclang, nalang, text);
+          const text_ta = await translateHelper(this.srclang, talang, text);
 
           quizs_na.push(text_na);
           quizs_ta.push(text_ta);
-          // console.log(text_na + " : " + text_ta);
+          // console.log(" >" + text_na + " : " + text_ta);
         }
 
         const book = this.makeBook(title, tag, nalang, talang, quizs_na, quizs_ta);
-        books.push(book);
+        // books.push(book);
+
+        books.set(langpair, book);
       }        
     }
     return books;
@@ -103,12 +122,12 @@ class Book_GEPT {
     
     for (const key in cate.bylvtype) {
       // if (key !== "GEPT-中高級-名詞")
-      if (key)
-        continue;  
-      console.log(key);
+      // if (key)
+      //   continue;  
+      // console.log(key);
       const arr = key.split("-");
 
-      const title = key;  //GEPT-中高級-名詞
+      const title = key;  //GEPT-中高-名詞
       const hearder = arr[0];
       const level = arr[1];
       const type = arr[2];
@@ -141,12 +160,12 @@ class Book_GEPT {
           });
 
           // console.log(words);
-          const book = this.mockNewBook(words, title + "-" + (idx<10?"0":"") + idx, hearder, hearder + "-" + level);
+          const book = await this.mockNewBook(words, title + "-" + (idx<10?"0":"") + idx, title, hearder + "-" + level);
           books.push(book);
         }
       }
       else {
-        const book = this.mockNewBook(words, title, hearder, hearder + "-" + level);
+        const book = await this.mockNewBook(words, title, title, hearder + "-" + level);
         books.push(book);
       }
     }

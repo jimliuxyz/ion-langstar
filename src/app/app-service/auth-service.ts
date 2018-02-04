@@ -35,7 +35,7 @@ export class AuthService {
       // this.online = false;
       this.online ? firebase.database().goOnline() : firebase.database().goOffline();
       console.log("online =? " + this.online)
-    
+
       this.network.onDisconnect().subscribe(() => {
         console.log('network was disconnected!');
         this.online = false;
@@ -44,10 +44,10 @@ export class AuthService {
         console.log('network connected!');
         this.online = true;
       });
-
     
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
+          console.debug("firebase user", user);
           this.authedUser = this.normalizeUserInfo(user);
           this.authedUser$.next(this.authedUser);
         } else {
@@ -98,7 +98,7 @@ export class AuthService {
     try {
       const credential = firebase.auth.EmailAuthProvider.credential(this.anonymous_email, this.anonymous_pwd);
       const user = await firebase.auth().signInWithCredential(credential);
-      console.log("anonymous:", user)
+      // console.log("anonymous:", user)
     } catch (error) {
       console.error(error);
     }
@@ -116,7 +116,6 @@ export class AuthService {
   }
 
   private normalizeUserInfo(user): UserInfo {
-    console.dir(user)
     if (user.user)
       user = user.user; //if login by credential
 

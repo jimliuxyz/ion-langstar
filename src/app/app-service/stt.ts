@@ -151,7 +151,7 @@ for (const lang of langs) {
   voices.push(v);
   }
 }
-// console.log("google stt", voices.map(lang=>lang.lang+ ":" + lang.uri));
+console.debug("google stt", voices.map(lang=>lang.lang+ ":" + lang.uri));
 
 
 
@@ -182,18 +182,14 @@ export class STT{
       if (permission)
         this.ionstt = ionstt;      
     }      
-    
   }
 
     
   static getVoices(code: string): SpeechVoice[] {
-    // console.log("code "+code)
     return voices;
   }
 
   static getDefVoiceRecogn(lang: string, voice: string): string {
-    console.log("lang " + lang);
-    console.log("voice " + voice);
     
     for (const uri of voices) {
       //two of these "粵" are different char
@@ -215,9 +211,9 @@ export class STT{
         if (patten === uri_) return uri.uri;
       }        
     }
-    
     return "";
   }
+
   static start(uri: string,
     onstart?: () => void,
     onend?: () => void,
@@ -260,7 +256,6 @@ export class STT{
     this._onend = onend;
     const opt = <SpeechRecognitionListeningOptions>{};
 
-    console.log("STT:"+uri);
     opt.language = uri;
     opt.matches = 10;
     (<any>opt).showPopup = false;
@@ -273,20 +268,23 @@ export class STT{
     }
 
     if (onstart) onstart();
+    console.debug('stt start...' + opt.language);
+    
     await this.ionstt.startListening(opt)
       .take(1).toPromise()
       .then(
       (matches: Array<string>) => {
-        console.log(matches);
+        console.debug(matches);
         for (const ans of matches) {
           if (onresult) onresult(ans);
         }
+        console.debug('stt done!');
         if (onend) onend();
       }
     )
     .catch(
       (onerror) => {
-        console.log('error:', onerror);
+        console.debug('stt error:', onerror);
         if (onend) onend();
       })
   }
@@ -302,24 +300,17 @@ export class STT{
       if (this.recognition) this.recognition.stop();
 
       const recognition = new SpeechRecognition();
-      // console.log(this.recognition)      
-
-      // let gram = new SpeechGrammarList();
-      // var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + ["abbey", "abbey"].join(' | ') + ' ;'
-      // gram.addFromString(grammar, 1);
-      // recognition.grammars = gram;
-    
       recognition.continuous=true;
       recognition.interimResults=true;
       recognition.lang = uri ? uri : "en-US";
 
       recognition.onstart = function () {
+        console.debug('stt start...'+recognition.lang);
         if (onstart) onstart();
-        console.log('開始辨識...'+recognition.lang);
       };
       recognition.onend = function () {
+        console.debug('stt done!');
         if (onend) onend();
-        console.log('停止辨識!');
       };
       
       const obs = new Subject<string>();

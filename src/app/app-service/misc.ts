@@ -211,7 +211,7 @@ export class MiscFunc{
   
       arr.push(new Lang(lang.code, lang.name, lang.nativeName));
     }
-    console.log("SysLang", arr.map(lang=>lang.code));
+    console.debug("SysLang", arr.map(lang=>lang.code));
     return arr;
   }
 

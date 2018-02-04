@@ -8,6 +8,7 @@ import { AppService } from './app-service/app-service';
 import { MiscFunc } from './app-service/misc';
 import { PageLink } from './app-service/define';
 import { TranslateService } from '@ngx-translate/core';
+import { HeaderColor } from '@ionic-native/header-color';
 
 declare var chcp: any;
 
@@ -20,6 +21,7 @@ export class MyApp implements OnDestroy{
 
   constructor(
     private platform: Platform,
+    private headerColor: HeaderColor,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private modalCtrl: ModalController,
@@ -30,20 +32,20 @@ export class MyApp implements OnDestroy{
     console.log("platforms : ", platform.platforms());
     platform.ready().then(() => {
       console.log("platform ready~")
-
+      
       this.serv.init(this.nav);
       this.serv.ready$.then(async () => {
         console.log("everything ready~");
 
-        console.log(platform.url())
         if (platform.url().indexOf("#") <= 0) {
-
           //the page component may renamed by aot or removed by tree shaking, so keep this snippet code here.
-          console.log("HomeSlidesPage.name?" + HomeSlidesPage.name);
+          console.log("nav to HomeSlidesPage : " + HomeSlidesPage.name);
 
           this.nav.push(PageLink.HomeSlidesPage)
 
+          this.headerColor.tint('#76C0FF');
           statusBar.styleDefault();
+          statusBar.backgroundColorByHexString("#76C0FF");
           splashScreen.hide(); 
         }
 

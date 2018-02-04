@@ -30,11 +30,13 @@ export class SlideCreation implements SlidePage {
   data$: ReplaySubject<BookInfoSet[]>;
   user: UserInfo;
 
+  SIZE = 20;
+
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private toastCtrl:ToastController, private translate: TranslateService, public serv: AppService) {
     this.serv.ser_user.data$.subscribe(async (user) => {
       // this.init(user);
       this.dsev = BookListByAuthorService.get(user.uid);
-      await this.dsev.more(9999);
+      await this.dsev.more(this.SIZE);
   
       this.data$ = this.dsev.data$;
     })
@@ -50,11 +52,20 @@ export class SlideCreation implements SlidePage {
   doRefresh(refresher) {
     setTimeout(async () => {
       await this.dsev.reset();
-      await this.dsev.more(9999);
+      await this.dsev.more(this.SIZE);
 
       if (refresher)
         refresher.complete();
     }, 0);
+  }
+
+  doInfinite(infiniteScroll) {
+    setTimeout(async () => {
+      if (this.dsev) {
+        await this.dsev.more(this.SIZE);
+      }  
+      infiniteScroll.complete();
+    }, 100);
   }
 
   async newBook(type: BookType) {
