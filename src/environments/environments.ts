@@ -4,7 +4,8 @@ export const environment = {
     webClientId: '547724781060-kr06v8821b2v84ln7808qpf662rbaf05.apps.googleusercontent.com',
   },
   firebasecfg:{
-    apiKey: "AIzaSyAGIk--206kYZ8kHw37_DK1XTzIoFwa09E",
+    // apiKey: "AIzaSyAGIk--206kYZ8kHw37_DK1XTzIoFwa09E",
+    apiKey: "AIzaSyDtJRlLi0N1wr85C-w5X-CgTCXoWVdAPQY",
     authDomain: "langstar-b15d9.firebaseapp.com",
     databaseURL: "https://langstar-b15d9.firebaseio.com",
     projectId: "langstar-b15d9",

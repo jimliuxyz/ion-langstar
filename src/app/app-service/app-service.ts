@@ -104,8 +104,9 @@ export class AppService {
     //set AdMod
     const bannerConfig: AdMobFreeBannerConfig = {
       bannerAtTop: !true,
-      isTesting: true,
+      isTesting: !true,
       autoShow: true,
+      // id: 'ca-pub-xxxxxxxxxxx',
       id: "ca-app-pub-7242559985200809/1577246763"
       // id: "ca-app-pub-7242559985200809~2733404005"
     };
