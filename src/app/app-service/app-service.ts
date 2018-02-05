@@ -104,22 +104,21 @@ export class AppService {
     //set AdMod
     const bannerConfig: AdMobFreeBannerConfig = {
       bannerAtTop: !true,
-      isTesting: !true,
+      isTesting: true,
       autoShow: true,
       id: "ca-app-pub-7242559985200809/1577246763"
+      // id: "ca-app-pub-7242559985200809~2733404005"
     };
     if (this.platform.is('ios')) {
       bannerConfig.id = "ca-app-pub-7242559985200809/4775089894";
     }
-
     this.admobFree.banner.config(bannerConfig);
-    this.admobFree.banner.prepare()
-      .then(() => {
-        console.log("banner Ad is ready")
-        this.admobFree.banner.show();
-         // if we set autoShow to false, then we will need to call the show method here
-       })
-       .catch(e => console.log(e));
+    // this.admobFree.banner.prepare()
+    //   .then(() => {
+    //     console.log("banner Ad is ready")
+    //     this.admobFree.banner.show();
+    //    })
+    //    .catch(e => console.log(e));
     
     //setup TTS / STT
     await TTS.appInit(this.platform, this.iontts);
@@ -144,6 +143,14 @@ export class AppService {
       
       if (this.curr_user.email.indexOf("jimliuxyz")==0) {
         this.devInitMock();
+
+        //test ads behavior
+        this.admobFree.banner.prepare()
+        .then(() => {
+          console.log("banner Ad is ready")
+          this.admobFree.banner.show();
+         })
+         .catch(e => console.log(e));
       }
     })
 

@@ -62,7 +62,7 @@ export class UserCfg{
   static getDefault():UserCfg {
     let cfg = new UserCfg();
     cfg.nalang = MiscFunc.getLangCodeNormalize(navigator.language);
-    cfg.talang = "en"; 
+    cfg.talang = cfg.nalang=="en"?"zh_TW":"en"; 
     if (!cfg.numrecongs_def["en"]) {
       cfg.numrecongs_def["en"] = {};
       cfg.numrecongs_def["en"][1] = "number one";

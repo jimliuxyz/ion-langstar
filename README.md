@@ -1,6 +1,11 @@
 ### install
 ```bash
 npm i
+mkdir www
+cordova platform add android
+
+//if fetch 'cordova-plugin-statusbar' failed
+cordova plugin add https://github.com/apache/cordova-plugin-statusbar.git
 ```
 
 ### run web
