@@ -46,7 +46,7 @@ export class MyApp implements OnDestroy{
           this.headerColor.tint('#37548F');
           statusBar.styleLightContent();
           statusBar.backgroundColorByHexString("#37548F");
-          splashScreen.hide();
+          // splashScreen.hide();
         }
 
         if (platform.is('cordova')) {

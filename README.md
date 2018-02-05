@@ -29,6 +29,7 @@ cordova-hcp build
 
 # build and run android-debug.apk
 cordova emulate android
+cordova run android --target="FAAZCY04B307"
 ```
 
 ```bash

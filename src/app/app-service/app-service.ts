@@ -35,6 +35,7 @@ import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/adMob-Free';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { GoogleTranslate } from './google-translate';
 import { ExtJobs } from './ext-jobs';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 @Injectable()
@@ -53,6 +54,7 @@ export class AppService {
 
   constructor(
     private platform: Platform,
+    private splashScreen: SplashScreen,
     public network: Network,
     private iontts: TextToSpeech,
     private ionstt: SpeechRecognition,
@@ -151,8 +153,12 @@ export class AppService {
           console.log("banner Ad is ready")
           this.admobFree.banner.show();
          })
-         .catch(e => console.log(e));
+          .catch(e => console.log(e));
       }
+      setTimeout(() => {
+        console.log("splashScreen hide")
+        this.splashScreen.hide();
+      }, 500);
     })
 
     this.translate.addLangs(MiscFunc.getLangListCode());
