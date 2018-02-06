@@ -29,7 +29,7 @@ export class WeakCache<T>{
   private _timebuf = 1 * 1000;
 
   private rerange() {
-    if (this.ID != "BookInfoService") return;
+    // if (this.ID != "BookInfoService") return;
     
     let keys = Object.keys(this.ckeys);
     if (keys.length < this.cache_size + this.cache_jitter) return;

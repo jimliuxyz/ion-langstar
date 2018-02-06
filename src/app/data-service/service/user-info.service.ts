@@ -27,6 +27,9 @@ export class UserInfoService extends DataService{
       data.init();
       this.cache.set(useruid, data);
     }
+    else if (!data.data)
+      data.init();
+
     return data;
   }
   

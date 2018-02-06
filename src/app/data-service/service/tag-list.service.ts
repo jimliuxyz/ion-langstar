@@ -39,6 +39,9 @@ export class TagListService extends DataService{
       data.init();
       this.cache.set(key, data);
     }
+    else if (!data.data)
+      data.init();
+
     return data;
   }
 

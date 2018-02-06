@@ -1,5 +1,6 @@
 import { Storage } from '@ionic/storage';
 import { DBQuery } from './define';
+import { MiscFunc } from '../app-service/misc';
 
 export enum DataAccessPolicy {
   BY_VERSION, //default
@@ -42,51 +43,83 @@ export class DbCache{
     return pool.cacheID + "-" + path.join("/") + (!query ? "" : JSON.stringify(query));
   }
 
-  private async visit(pool:DataAccessConfig, key:string) {
-    //remove data out of range
-    if (!this.pools[pool.cacheID]) {
-      this.pools[pool.cacheID] = await this.storage.get(pool.cacheID);
-      if (!this.pools[pool.cacheID]) {
-        this.pools[pool.cacheID] = {};
-      }
-      else {
-        //clear cache out of range
-      }
-    }
-
-    this.pools[pool.cacheID][key] = Date.now();
-
-    //todo : save after 10 seconds
-    await this.storage.set("_poolrec-"+pool.cacheID, this.pools[pool.cacheID]);
+  private getVisitPoolID(pool: DataAccessConfig) {
+    return "_visit-"+pool.cacheID;
   }
 
-  async get(pool: DataAccessConfig, path: string[], query?: DBQuery) {
-    if (!pool.cacheID) return;
-    
-    const key = this.getDataKey(pool, path, query);
-    this.visit(pool, key);
+  private _visitpoolstate = [];
+  private async loadVisitPool(dac: DataAccessConfig) {
+    const visitID = this.getVisitPoolID(dac);
+    if (!this._visitpoolstate[visitID]) {
+      this._visitpoolstate[visitID] = 1;
+
+      this.pools[visitID] = await this.storage.get(visitID);
+      if (!this.pools[visitID]) {
+        this.pools[visitID] = {};
+      }
+      //remove data out of range
+      else {
+        let arr = [];
+        for (let key in this.pools[visitID]) {
+          arr[this.pools[visitID][key]] = key;
+          // console.log(this.pools[poolrec_key][key])
+        }
+
+        let len = Object.keys(arr).length;
+        for (const key in arr) {
+          delete arr[key]; len--;
+          await this.storage.remove(key);
+          if (len <= dac.cacheSize) break;
+        }
+      }
+      this._visitpoolstate[visitID] = 2;
+    }
+    else {
+      while (true) {
+        await MiscFunc.sleep(10);
+        if (this._visitpoolstate[visitID] == 2)
+          return;  
+      }
+    }
+  }
+
+  private async visit(dac: DataAccessConfig, key: string) {
+    const visitID = this.getVisitPoolID(dac);
+
+    if (!this.pools[visitID])
+      await this.loadVisitPool(dac);  
+
+    this.pools[visitID][key] = Date.now();
+
+    await this.storage.set(visitID, this.pools[visitID]);
+  }
+
+  async get(dac: DataAccessConfig, path: string[], query?: DBQuery) {
+    if (!dac.cacheID) return;
+
+    const key = this.getDataKey(dac, path, query);
+    this.visit(dac, key);
     const data = await this.storage.get(key);
-// console.log(pool.id + " : ", key, data)
     return data === null ? undefined : data;
   }
 
-  async set(pool: DataAccessConfig, path: string[], data: any, query?: DBQuery) {
-    if (!pool.cacheID) return;
-
-    const key = this.getDataKey(pool, path, query);
+  async set(dac: DataAccessConfig, path: string[], data: any, query?: DBQuery) {
+    if (!dac.cacheID) return;
+    
+    const key = this.getDataKey(dac, path, query);
     if (!data) {
-      this.del(pool, path, query);
+      this.del(dac, path, query);
     }
     else {
-      this.visit(pool, key);
+      this.visit(dac, key);
       await this.storage.set(key, data);
     }
   }
 
-  async del(pool: DataAccessConfig, path: string[], query?: DBQuery) {
-    if (!pool.cacheID) return;
+  async del(dac: DataAccessConfig, path: string[], query?: DBQuery) {
+    if (!dac.cacheID) return;
     
-    const key = this.getDataKey(pool, path, query);
+    const key = this.getDataKey(dac, path, query);
     await this.storage.remove(key);
   }
 }

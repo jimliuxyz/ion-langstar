@@ -6,7 +6,7 @@ import { BookListService } from './book-list.service';
 import { BookInfoLink } from '../models';
 import { TBLKEY } from '../define';
 
-const POOL = new DataAccessConfig("BookList", 500);
+const POOL = new DataAccessConfig("BookListByTag", 100);
 
 export class BookListByTagService extends BookListService{
   private path: string[];

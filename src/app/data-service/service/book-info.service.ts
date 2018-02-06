@@ -11,7 +11,7 @@ import { BookInfo, BookInfoLink } from '../models';
 import { TBLKEY, QResult } from '../define';
 import { AuthedUserInfoService } from './authed-user-info.service';
 
-const dac = new DataAccessConfig("BookInfo", 500);
+const dac = new DataAccessConfig("BookInfo", 1000);
 
 export class BookInfoService extends DataService{
   readonly data$: ReplaySubject<BookInfo> = new ReplaySubject(1);
@@ -55,6 +55,8 @@ export class BookInfoService extends DataService{
       data.init();
       this.cache.set(bookuid, data);
     }
+    else if (!data.data)
+      data.init();
     return data;
   }
 

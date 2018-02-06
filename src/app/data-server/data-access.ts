@@ -24,7 +24,7 @@ export class DataAccess{
   }
 
   async read(dac: DataAccessConfig, path: string[], query?: DBQuery) {
-
+console.log
     let cdata, rdata;
     let cache_ver, remote_ver;
     if (dac.accessPolicy !== DataAccessPolicy.REMOTE_ONLY) {

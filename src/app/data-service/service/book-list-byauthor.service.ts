@@ -8,7 +8,7 @@ import { BookInfo } from '../models';
 import { TBLKEY } from '../define';
 import { MiscFunc } from '../../app-service/misc';
 
-const POOL = new DataAccessConfig("BookList", 100);
+const POOL = new DataAccessConfig("BookListByAuthor", 100);
 
 export class BookListByAuthorService extends BookListService{
   private path: string[];

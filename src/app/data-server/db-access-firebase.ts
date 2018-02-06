@@ -4,12 +4,12 @@ import { DBQuery } from './define';
 import { QERR } from '../data-service/define';
 import { Subject } from 'rxjs';
 
-const DBTIMEOUT = 3000;
+const DBTIMEOUT = 30 * 1000;
 
 export class DbAccessFirebase{
 
   private acttime = 0;
-  private disconn_delay = 10 * 1000;
+  private disconn_delay = 30 * 1000;
   private actobs = new Subject();
 
   constructor() {
